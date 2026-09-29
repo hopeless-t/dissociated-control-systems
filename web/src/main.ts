@@ -246,7 +246,9 @@ function advanceAndDrawParticle(
   const color = colors[particle.group];
 
   if (!reducedMotion) {
-    const speed = (0.052 + accessibility * 0.12) * particle.speedBias;
+    // Public-facing VIS-001 should read as "flow" at a glance rather than
+    // requiring several seconds to notice movement.
+    const speed = (0.14 + accessibility * 0.34) * particle.speedBias;
     particle.progress += dt * speed;
     if (particle.progress > 1) {
       particle.progress -= 1;
