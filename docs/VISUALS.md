@@ -71,8 +71,13 @@ biological measurements.
 The first implementation uses:
 
 - `pmndrs/math` for seeded random and simplex-noise primitives;
-- `gpucat` for WebGL2 rendering;
+- browser-standard Canvas2D for the public renderer;
+- `pmndrs/math` for seeded random and simplex-noise trajectory primitives;
 - ordinary HTML/CSS controls for inspectable interaction.
+
+`gpucat` remains recorded as an experimental rendering reference, but VIS-001
+uses Canvas2D as its canonical public backend after real-browser testing found a
+blank WebGL field on the target Lubuntu/Chrome environment.
 
 Pinned provenance is recorded under `external/`.
 
