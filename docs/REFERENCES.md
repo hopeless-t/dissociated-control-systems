@@ -156,6 +156,29 @@ https://github.com/raphaelvallat/yasa
 
 Role: candidate sleep-analysis tooling for later qualified public datasets.
 
+### [S-PMNDRS-MATH] pmndrs/math
+
+Repository: https://github.com/pmndrs/math
+
+Pinned reference commit:
+
+~~~text
+98762395c1f34d7d594d31165e8005fd6915c431
+~~~
+
+License: MIT.
+
+Upstream describes the library as a small, tree-shakeable, data-oriented math
+engine with vectors, matrices, geometry, seeded random generators, noise,
+animation helpers, and related primitives.
+
+Role in this repository: optional lightweight calculation / prototyping tool.
+It is not scientific evidence, not a canonical dependency, and not a substitute
+for independently validated numerical methods when a research contract requires
+them.
+
+See [../external/pmndrs-math.md](../external/pmndrs-math.md).
+
 ## Repository-shape provenance
 
 Repository discipline is adapted from:
