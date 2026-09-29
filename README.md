@@ -269,6 +269,8 @@ dissociated-control-systems/
 │   ├── LITERATURE_MAP.md
 │   ├── MATHEMATICAL_MODEL.md
 │   └── VAL-001.md
+├── external/
+│   └── pmndrs-math.md
 └── .github/
     └── workflows/
         └── ci.yml
@@ -311,10 +313,14 @@ Candidate tools are references, not mandatory dependencies:
 - [hmmlearn](https://github.com/hmmlearn/hmmlearn) — Hidden Markov Models;
 - [ssm](https://github.com/lindermanlab/ssm) — state-space / switching models;
 - [MNE-Python](https://github.com/mne-tools/mne-python) — EEG/MEG analysis;
-- [YASA](https://github.com/raphaelvallat/yasa) — sleep analysis utilities.
+- [YASA](https://github.com/raphaelvallat/yasa) — sleep analysis utilities;
+- [pmndrs/math](https://github.com/pmndrs/math) — lightweight, tree-shakeable
+  vector / matrix / geometry / random / noise utilities for small calculations
+  and exploratory tooling. See [external/pmndrs-math.md](external/pmndrs-math.md).
 
 The bootstrap code intentionally uses only the Python standard library so that
-VAL-001 remains inspectable and deterministic.
+VAL-001 remains inspectable and deterministic. pmndrs/math is recorded as an
+optional tool reference, not a canonical runtime dependency.
 
 ## Public-repository rule
 
