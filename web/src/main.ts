@@ -87,8 +87,9 @@ canvas.setAttribute(
 );
 mount.appendChild(canvas);
 
-const context = canvas.getContext('2d', { alpha: true });
-if (!context) throw new Error('Canvas2D context unavailable');
+const maybeContext = canvas.getContext('2d', { alpha: true });
+if (!maybeContext) throw new Error('Canvas2D context unavailable');
+const context: CanvasRenderingContext2D = maybeContext;
 
 let width = 0;
 let height = 0;
