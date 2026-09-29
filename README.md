@@ -76,8 +76,9 @@ scientific evidence.
 **[Open the interactive field](https://hopeless-t.github.io/dissociated-control-systems/)**
 
 It uses `pmndrs/math` for deterministic random/noise primitives and
-`gpucat` for WebGL2 rendering. Four subsystem-accessibility controls change
-how state trajectories converge toward the same coarse observable.
+browser-standard Canvas2D for the public renderer. Four subsystem-accessibility
+controls change how state trajectories converge toward the same coarse
+observable.
 
 ~~~text
 Visualization != Evidence

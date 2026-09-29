@@ -1,6 +1,6 @@
 # gpucat — external rendering reference
 
-> Status: OPTIONAL VISUALIZATION DEPENDENCY  
+> Status: OPTIONAL / EXPERIMENTAL VISUALIZATION REFERENCE  
 > Scientific evidence: NO  
 > Acceptance authority: NO
 
@@ -28,10 +28,14 @@ renderer with typed shader composition and explicit GPU-resource control.
 
 ## Role here
 
-Dissociated Control Systems uses gpucat only in the optional browser visual
-under `web/`.
+Dissociated Control Systems evaluated gpucat for the optional browser visual.
 
-The scientific Python harness does not depend on gpucat.
+A real-browser deployment on the target Lubuntu/Chrome environment produced a
+blank WebGL field even though the TypeScript/Vite build and deployment passed.
+VIS-001 therefore uses Canvas2D as its canonical public renderer.
+
+gpucat remains a useful experimental rendering reference for future work. The
+scientific Python harness and current public visual do not depend on it.
 
 ~~~text
 Renderer != Model

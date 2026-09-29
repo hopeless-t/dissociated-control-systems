@@ -1,45 +1,12 @@
 import './style.css';
 
-import {
-  attribute,
-  cameraProjectionMatrix,
-  cameraViewMatrix,
-  createCanvasTarget,
-  createMaterial,
-  createSphereGeometry,
-  d,
-  f32,
-  frame,
-  fullscreen,
-  init,
-  Mesh,
-  modelNormalMatrix,
-  modelWorldMatrix,
-  mul,
-  normalize,
-  PerspectiveCamera,
-  renderOutput,
-  renderTexture,
-  Scene,
-  varying,
-  vec3,
-  vec4,
-  webgl,
-} from 'gpucat';
 import { simplex2d } from 'math/noise';
 import { mulberry32 } from 'math/random';
 
 type SubsystemName = 'motor' | 'procedural' | 'executive' | 'memory';
 
 const subsystemNames: SubsystemName[] = ['motor', 'procedural', 'executive', 'memory'];
-const laneY = [1.5, 0.5, -0.5, -1.5];
-const colors = [
-  [1.0, 0.30, 0.43],
-  [1.0, 0.64, 0.18],
-  [0.25, 0.83, 0.78],
-  [0.54, 0.45, 1.0],
-] as const;
-
+const colors = ['#ff6680', '#ffc857', '#6fe7dd', '#9e8cff'];
 const state: Record<SubsystemName, number> = {
   motor: 1,
   procedural: 1,
@@ -113,141 +80,256 @@ updateHud();
 
 const mount = document.querySelector<HTMLElement>('#scene')!;
 const canvas = document.createElement('canvas');
+canvas.setAttribute('role', 'img');
+canvas.setAttribute(
+  'aria-label',
+  'Conceptual state field showing four subsystem trajectories converging toward one coarse observable.',
+);
 mount.appendChild(canvas);
 
-const view = createCanvasTarget(canvas, { samples: 4 });
-view.setPixelRatio(Math.min(devicePixelRatio, 2));
-view.setSize(window.innerWidth, window.innerHeight);
+const maybeContext = canvas.getContext('2d', { alpha: true });
+if (!maybeContext) throw new Error('Canvas2D context unavailable');
+const context: CanvasRenderingContext2D = maybeContext;
 
-const renderer = await init(webgl({ target: view }));
-const scene = new Scene();
+let width = 0;
+let height = 0;
+let dpr = 1;
 
-const camera = new PerspectiveCamera(Math.PI / 4, window.innerWidth / window.innerHeight, 0.1, 100);
-camera.position[2] = 8.2;
-scene.add(camera);
-
-window.addEventListener('resize', () => {
-  view.setSize(window.innerWidth, window.innerHeight);
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-});
-
-const position = attribute('position', d.vec3f);
-const normal = attribute('normal', d.vec3f);
-const worldPosition = mul(modelWorldMatrix, vec4(position, f32(1)));
-const clipPosition = mul(cameraProjectionMatrix, mul(cameraViewMatrix, worldPosition));
-const vWorldNormal = varying(normalize(mul(modelNormalMatrix, normal)), 'vNormal');
-const lightDirection = vec3(0.35, 0.9, 0.7).normalize();
-const lighting = f32(0.55).add(
-  vWorldNormal.dot(lightDirection).max(f32(0)).mul(f32(0.45)),
-);
-
-function material(rgb: readonly [number, number, number]) {
-  return createMaterial({
-    vertex: clipPosition,
-    fragment: vec4(vec3(rgb[0], rgb[1], rgb[2]).mul(lighting), f32(1)),
-  });
+function resize(): void {
+  dpr = Math.min(window.devicePixelRatio || 1, 2);
+  width = window.innerWidth;
+  height = window.innerHeight;
+  canvas.width = Math.floor(width * dpr);
+  canvas.height = Math.floor(height * dpr);
+  canvas.style.width = width + 'px';
+  canvas.style.height = height + 'px';
+  context.setTransform(dpr, 0, 0, dpr, 0, 0);
 }
 
-const particleGeometry = createSphereGeometry(0.085, 12, 8);
-const coreGeometry = createSphereGeometry(0.17, 18, 12);
-const portalGeometry = createSphereGeometry(0.30, 24, 16);
-const materials = colors.map((color) => material(color));
-
-const portal = new Mesh(portalGeometry, material([0.75, 0.95, 0.28]));
-portal.position[0] = 2.45;
-portal.position[1] = 0;
-portal.position[2] = 0;
-scene.add(portal);
-
-for (let group = 0; group < 4; group += 1) {
-  const core = new Mesh(coreGeometry, materials[group]);
-  core.position[0] = -3.35;
-  core.position[1] = laneY[group];
-  core.position[2] = 0;
-  scene.add(core);
-}
+window.addEventListener('resize', resize);
+resize();
 
 interface Particle {
-  mesh: Mesh;
   group: number;
   progress: number;
   phase: number;
   speedBias: number;
+  radiusBias: number;
 }
 
 const noise = simplex2d.create(73);
 const rng = mulberry32.create(42);
 const particles: Particle[] = [];
-const particlesPerGroup = 18;
+const particlesPerGroup = 24;
 
 for (let group = 0; group < 4; group += 1) {
   for (let index = 0; index < particlesPerGroup; index += 1) {
-    const mesh = new Mesh(particleGeometry, materials[group]);
-    scene.add(mesh);
     particles.push({
-      mesh,
       group,
       progress: mulberry32.sample(rng),
       phase: mulberry32.sample(rng) * 100,
-      speedBias: 0.75 + mulberry32.sample(rng) * 0.5,
+      speedBias: 0.72 + mulberry32.sample(rng) * 0.62,
+      radiusBias: 0.72 + mulberry32.sample(rng) * 0.85,
     });
   }
 }
 
-function updateParticle(particle: Particle, elapsed: number, dt: number): void {
+function layout() {
+  const panelWidth = Math.min(470, Math.max(320, width - 32));
+  const startX = width < 820 ? 40 : Math.max(panelWidth + 90, width * 0.34);
+  const portalX = width < 820 ? width * 0.72 : width * 0.80;
+  const portalY = height * 0.5;
+  const spread = Math.min(height * 0.56, 430);
+  const top = portalY - spread / 2;
+  const laneY = subsystemNames.map((_, index) => top + (spread * index) / 3);
+  return { startX, portalX, portalY, laneY };
+}
+
+function drawGlow(x: number, y: number, radius: number, color: string, alpha = 1): void {
+  context.save();
+  context.globalAlpha = alpha;
+  const glow = context.createRadialGradient(x, y, 0, x, y, radius * 3.4);
+  glow.addColorStop(0, color);
+  glow.addColorStop(0.22, color + 'cc');
+  glow.addColorStop(0.48, color + '44');
+  glow.addColorStop(1, color + '00');
+  context.fillStyle = glow;
+  context.beginPath();
+  context.arc(x, y, radius * 3.4, 0, Math.PI * 2);
+  context.fill();
+  context.restore();
+}
+
+function drawPortal(x: number, y: number, active: boolean): void {
+  const color = active ? '#d7ff5d' : '#ff8d8d';
+  drawGlow(x, y, 18, color, 0.9);
+
+  context.save();
+  context.strokeStyle = color;
+  context.lineWidth = 1.5;
+  context.globalAlpha = 0.85;
+  context.beginPath();
+  context.arc(x, y, 18, 0, Math.PI * 2);
+  context.stroke();
+
+  context.globalAlpha = 0.28;
+  context.beginPath();
+  context.arc(x, y, 34, 0, Math.PI * 2);
+  context.stroke();
+
+  context.font = '600 11px ui-monospace, SFMono-Regular, Menlo, monospace';
+  context.textAlign = 'center';
+  context.fillStyle = color;
+  context.globalAlpha = 0.95;
+  context.fillText('OBSERVABLE', x, y + 55);
+  context.restore();
+}
+
+function drawLane(
+  group: number,
+  sourceX: number,
+  sourceY: number,
+  portalX: number,
+  portalY: number,
+): void {
+  const name = subsystemNames[group];
+  const accessibility = state[name];
+  const color = colors[group];
+  const reach = 0.50 + accessibility * 0.50;
+  const endX = sourceX + (portalX - sourceX) * reach;
+  const endY = sourceY + (portalY - sourceY) * accessibility;
+
+  context.save();
+  context.strokeStyle = color;
+  context.globalAlpha = 0.11 + accessibility * 0.14;
+  context.lineWidth = 1.1;
+  context.setLineDash([3, 10]);
+  context.beginPath();
+  context.moveTo(sourceX, sourceY);
+  context.bezierCurveTo(
+    sourceX + (portalX - sourceX) * 0.35,
+    sourceY,
+    sourceX + (portalX - sourceX) * 0.68,
+    endY,
+    endX,
+    endY,
+  );
+  context.stroke();
+  context.setLineDash([]);
+
+  drawGlow(sourceX, sourceY, 9, color, 0.72);
+  context.fillStyle = color;
+  context.globalAlpha = 0.95;
+  context.beginPath();
+  context.arc(sourceX, sourceY, 5.5, 0, Math.PI * 2);
+  context.fill();
+
+  context.font = '600 10px ui-monospace, SFMono-Regular, Menlo, monospace';
+  context.textAlign = 'right';
+  context.fillStyle = '#f3efe6';
+  context.globalAlpha = 0.72;
+  context.fillText(name.toUpperCase(), sourceX - 16, sourceY + 4);
+  context.restore();
+}
+
+function advanceAndDrawParticle(
+  particle: Particle,
+  elapsed: number,
+  dt: number,
+  sourceX: number,
+  sourceY: number,
+  portalX: number,
+  portalY: number,
+): void {
   const name = subsystemNames[particle.group];
   const accessibility = state[name];
-  const speed = (0.055 + accessibility * 0.12) * particle.speedBias;
-  particle.progress += dt * speed * (reducedMotion ? 0.18 : 1);
+  const color = colors[particle.group];
 
-  if (particle.progress > 1) {
-    particle.progress -= 1;
-    particle.phase = mulberry32.sample(rng) * 100;
+  if (!reducedMotion) {
+    const speed = (0.052 + accessibility * 0.12) * particle.speedBias;
+    particle.progress += dt * speed;
+    if (particle.progress > 1) {
+      particle.progress -= 1;
+      particle.phase = mulberry32.sample(rng) * 100;
+    }
   }
 
   const p = particle.progress;
-  const reach = 0.66 + 0.34 * accessibility;
-  const x = -3.2 + 5.65 * p * reach;
-  const convergence = Math.pow(p, 1.7) * accessibility;
-  const n1 = simplex2d.sample(noise, particle.phase + p * 1.4, elapsed * 0.035 + particle.group);
-  const n2 = simplex2d.sample(noise, particle.phase + 19, elapsed * 0.028 + p * 1.2);
-  const baseY = laneY[particle.group];
-  const y = baseY * (1 - convergence) + n1 * (0.10 + (1 - accessibility) * 0.20);
-  const z = n2 * 0.28;
+  const eased = p * p * (3 - 2 * p);
+  const reach = 0.50 + 0.50 * accessibility;
+  const localP = eased * reach;
 
-  particle.mesh.position[0] = x;
-  particle.mesh.position[1] = y;
-  particle.mesh.position[2] = z;
-  particle.mesh.updateWorldMatrix();
+  const x = sourceX + (portalX - sourceX) * localP;
+  const convergence = Math.pow(eased, 1.65) * accessibility;
+  const baseY = sourceY + (portalY - sourceY) * convergence;
+
+  const n1 = simplex2d.sample(
+    noise,
+    particle.phase + p * 1.65,
+    elapsed * 0.06 + particle.group * 0.8,
+  );
+  const n2 = simplex2d.sample(
+    noise,
+    particle.phase + 17.2,
+    elapsed * 0.045 + p * 1.35,
+  );
+
+  const amplitude = 7 + (1 - accessibility) * 20;
+  const y = baseY + n1 * amplitude;
+  const radius = (2.1 + accessibility * 1.7 + n2 * 0.45) * particle.radiusBias;
+
+  context.save();
+  context.globalCompositeOperation = 'lighter';
+  context.shadowBlur = 12 + accessibility * 10;
+  context.shadowColor = color;
+  context.globalAlpha = 0.40 + accessibility * 0.48;
+  context.fillStyle = color;
+  context.beginPath();
+  context.arc(x, y, Math.max(1.4, radius), 0, Math.PI * 2);
+  context.fill();
+  context.restore();
 }
-
-// Match gpucat's upstream examples: establish initial object/camera matrices
-// before constructing the render texture.
-for (const particle of particles) updateParticle(particle, 0, 0);
-scene.updateWorldMatrix();
-camera.updateViewMatrix();
-
-const scenePass = renderTexture(scene, camera);
-const composite = fullscreen(renderOutput(scenePass.getTextureNode()));
 
 let previous = performance.now() / 1000;
 
 function render(nowMs: number): void {
   const elapsed = nowMs / 1000;
-  const dt = Math.min(elapsed - previous, 0.05);
+  const dt = Math.min(Math.max(elapsed - previous, 0), 0.05);
   previous = elapsed;
 
-  for (const particle of particles) updateParticle(particle, elapsed, dt);
+  context.clearRect(0, 0, width, height);
 
-  scene.updateWorldMatrix();
-  camera.updateViewMatrix();
+  const { startX, portalX, portalY, laneY } = layout();
+  const complexAction = state.motor >= 0.5 && state.procedural >= 0.5;
 
-  const f = frame(renderer);
-  const pass = f.pass({ target: view });
-  pass.draw(composite);
-  pass.end();
-  f.submit();
+  context.save();
+  context.globalAlpha = 0.14;
+  context.strokeStyle = '#d7ff5d';
+  context.lineWidth = 1;
+  for (let r = 90; r <= Math.min(width, height) * 0.58; r += 88) {
+    context.beginPath();
+    context.arc(portalX, portalY, r, 0, Math.PI * 2);
+    context.stroke();
+  }
+  context.restore();
+
+  for (let group = 0; group < 4; group += 1) {
+    drawLane(group, startX, laneY[group], portalX, portalY);
+  }
+
+  for (const particle of particles) {
+    advanceAndDrawParticle(
+      particle,
+      elapsed,
+      dt,
+      startX,
+      laneY[particle.group],
+      portalX,
+      portalY,
+    );
+  }
+
+  drawPortal(portalX, portalY, complexAction);
 
   requestAnimationFrame(render);
 }
