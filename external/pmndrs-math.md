@@ -55,6 +55,11 @@ without pulling in a large scientific stack.
 This is especially useful for browser-side visualizations or small TypeScript
 research utilities.
 
+The first concrete use in this repository is the optional
+`web/` Dissociated State Field, where seeded random and simplex-noise
+primitives shape deterministic visual trajectories. Rendering is delegated to
+`gpucat`; the visualization is explicitly non-evidentiary.
+
 ## Boundary
 
 ~~~text

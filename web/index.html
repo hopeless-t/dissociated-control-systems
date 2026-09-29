@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Dissociated State Field — an interactive conceptual projection for Dissociated Control Systems."
+    />
+    <title>Dissociated State Field</title>
+  </head>
+  <body>
+    <div id="scene" aria-hidden="true"></div>
+
+    <main class="panel">
+      <p class="eyebrow">Dissociated Control Systems · VIS-001</p>
+      <h1>Dissociated<br />State Field</h1>
+      <p class="lede">
+        Different internal accessibility states can preserve the same coarse
+        observable. Move the subsystem controls and watch the trajectories change.
+      </p>
+
+      <div class="notice">
+        Conceptual projection — <strong>not scientific evidence.</strong>
+      </div>
+
+      <section class="metrics" aria-label="Current model state">
+        <div>
+          <span>State vector</span>
+          <strong id="state-vector">[1.00, 1.00, 1.00, 1.00]</strong>
+        </div>
+        <div>
+          <span>Dissociation index</span>
+          <strong id="d-index">0.000</strong>
+        </div>
+        <div>
+          <span>Coarse observable</span>
+          <strong id="observable" data-true="true">complex_action = true</strong>
+        </div>
+      </section>
+
+      <section class="controls" aria-label="Subsystem accessibility">
+        <label>
+          <span><b>Motor</b><output id="motor-out">1.00</output></span>
+          <input id="motor" type="range" min="0" max="1" step="0.01" value="1" />
+        </label>
+        <label>
+          <span><b>Procedural</b><output id="procedural-out">1.00</output></span>
+          <input id="procedural" type="range" min="0" max="1" step="0.01" value="1" />
+        </label>
+        <label>
+          <span><b>Executive</b><output id="executive-out">1.00</output></span>
+          <input id="executive" type="range" min="0" max="1" step="0.01" value="1" />
+        </label>
+        <label>
+          <span><b>Memory</b><output id="memory-out">1.00</output></span>
+          <input id="memory" type="range" min="0" max="1" step="0.01" value="1" />
+        </label>
+      </section>
+
+      <div class="presets">
+        <button id="integrated" type="button">Integrated</button>
+        <button id="dissociated" type="button">Dissociated</button>
+        <button id="randomize" type="button">Explore</button>
+      </div>
+
+      <div class="legend" aria-label="Subsystem legend">
+        <span><i class="motor"></i>motor</span>
+        <span><i class="procedural"></i>procedural</span>
+        <span><i class="executive"></i>executive</span>
+        <span><i class="memory"></i>memory</span>
+      </div>
+
+      <footer>
+        <a href="https://github.com/hopeless-t/dissociated-control-systems">Source &amp; research notes ↗</a>
+        <a href="https://github.com/hopeless-t/dissociated-control-systems/blob/main/CONTRIBUTING.md">Contribute ↗</a>
+      </footer>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
