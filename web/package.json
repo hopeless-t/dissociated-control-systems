@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "gpucat": "github:isaac-mason/gpucat#d739e5bed1597858a5c1d96f53641b965699cf32",
     "math": "0.1.0"
   },
   "devDependencies": {
