@@ -191,9 +191,11 @@ d739e5bed1597858a5c1d96f53641b965699cf32
 
 License: MIT.
 
-Role in this repository: rendering backend for the optional Dissociated State
-Field conceptual projection. It is not scientific evidence and its rendered
-output is not an acceptance oracle.
+Role in this repository: experimental rendering reference for the Dissociated
+State Field lineage. The canonical public VIS-001 renderer is Canvas2D after
+real-browser testing found a blank WebGL field on the target environment.
+gpucat is not scientific evidence and rendered output is not an acceptance
+oracle.
 
 See [../external/gpucat.md](../external/gpucat.md).
 
