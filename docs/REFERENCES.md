@@ -179,6 +179,24 @@ them.
 
 See [../external/pmndrs-math.md](../external/pmndrs-math.md).
 
+### [S-GPUCAT] gpucat
+
+Repository: https://github.com/isaac-mason/gpucat
+
+Pinned reference commit:
+
+~~~text
+d739e5bed1597858a5c1d96f53641b965699cf32
+~~~
+
+License: MIT.
+
+Role in this repository: rendering backend for the optional Dissociated State
+Field conceptual projection. It is not scientific evidence and its rendered
+output is not an acceptance oracle.
+
+See [../external/gpucat.md](../external/gpucat.md).
+
 ## Repository-shape provenance
 
 Repository discipline is adapted from:

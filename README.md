@@ -67,6 +67,27 @@ flowchart LR
 
 The diagram is a navigation aid, not an empirical result.
 
+## Interactive conceptual projection
+
+The repository includes a small browser visualization, **Dissociated State
+Field**, designed as a comprehension and contribution surface rather than
+scientific evidence.
+
+**[Open the interactive field](https://hopeless-t.github.io/dissociated-control-systems/)**
+
+It uses `pmndrs/math` for deterministic random/noise primitives and
+`gpucat` for WebGL2 rendering. Four subsystem-accessibility controls change
+how state trajectories converge toward the same coarse observable.
+
+~~~text
+Visualization != Evidence
+Conceptual Projection != Biological Mechanism
+Interaction != Experiment
+~~~
+
+See [docs/VISUALS.md](docs/VISUALS.md) for the visual contract and
+[CONTRIBUTING.md](CONTRIBUTING.md) for ways to participate.
+
 ## Why this project exists
 
 Several research areas contain examples where a single global label is a poor
@@ -268,9 +289,15 @@ dissociated-control-systems/
 │   ├── REFERENCES.md
 │   ├── LITERATURE_MAP.md
 │   ├── MATHEMATICAL_MODEL.md
-│   └── VAL-001.md
+│   ├── VAL-001.md
+│   └── VISUALS.md
 ├── external/
+│   ├── gpucat.md
 │   └── pmndrs-math.md
+├── web/
+│   ├── src/
+│   └── package.json
+├── CONTRIBUTING.md
 └── .github/
     └── workflows/
         └── ci.yml
@@ -316,7 +343,10 @@ Candidate tools are references, not mandatory dependencies:
 - [YASA](https://github.com/raphaelvallat/yasa) — sleep analysis utilities;
 - [pmndrs/math](https://github.com/pmndrs/math) — lightweight, tree-shakeable
   vector / matrix / geometry / random / noise utilities for small calculations
-  and exploratory tooling. See [external/pmndrs-math.md](external/pmndrs-math.md).
+  and exploratory tooling. See [external/pmndrs-math.md](external/pmndrs-math.md);
+- [gpucat](https://github.com/isaac-mason/gpucat) — TypeScript-first WebGPU /
+  WebGL2 renderer used by the optional interactive conceptual projection. See
+  [external/gpucat.md](external/gpucat.md).
 
 The bootstrap code intentionally uses only the Python standard library so that
 VAL-001 remains inspectable and deterministic. pmndrs/math is recorded as an
