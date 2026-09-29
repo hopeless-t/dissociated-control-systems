@@ -1,0 +1,26 @@
+{
+  "schema_version": "dcs-validation/v0.1",
+  "validation_id": "VAL-001",
+  "title": "Latent-State Non-Identifiability",
+  "model": "binary-four-subsystem-v0.1",
+  "subsystems": ["motor", "procedural", "executive", "memory"],
+  "coarse_observation": {
+    "complex_action": {
+      "all_of": ["motor", "procedural"],
+      "threshold": 0.5
+    }
+  },
+  "references": {
+    "integrated": [1.0, 1.0, 1.0, 1.0],
+    "dissociated": [1.0, 1.0, 0.0, 0.0]
+  },
+  "acceptance": {
+    "same_coarse_observation": true,
+    "different_rich_observation": true,
+    "integrated_dissociation_index": 0.0,
+    "dissociated_dissociation_index": 1.0,
+    "complex_action_true_equivalence_class_size": 4,
+    "invalid_values_fail_closed": true
+  },
+  "claim_ceiling": "synthetic known-answer validation only"
+}
