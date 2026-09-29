@@ -11,11 +11,20 @@ Repository:
 
 https://github.com/pmndrs/math
 
-Pinned reference commit:
+Pinned source-reference commit:
 
 ~~~text
 98762395c1f34d7d594d31165e8005fd6915c431
 ~~~
+
+Browser visual runtime package:
+
+~~~text
+math@0.1.0
+~~~
+
+The published package is used by the web build because the upstream source
+repository intentionally does not commit its generated `dist/` artifacts.
 
 License:
 

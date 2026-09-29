@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "gpucat": "github:isaac-mason/gpucat#d739e5bed1597858a5c1d96f53641b965699cf32",
-    "math": "github:pmndrs/math#98762395c1f34d7d594d31165e8005fd6915c431"
+    "math": "0.1.0"
   },
   "devDependencies": {
     "typescript": "5.9.2",
