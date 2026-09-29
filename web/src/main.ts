@@ -138,7 +138,9 @@ const worldPosition = mul(modelWorldMatrix, vec4(position, f32(1)));
 const clipPosition = mul(cameraProjectionMatrix, mul(cameraViewMatrix, worldPosition));
 const vWorldNormal = varying(normalize(mul(modelNormalMatrix, normal)), 'vNormal');
 const lightDirection = vec3(0.35, 0.9, 0.7).normalize();
-const lighting = f32(0.28).add(vWorldNormal.dot(lightDirection).max(f32(0)));
+const lighting = f32(0.55).add(
+  vWorldNormal.dot(lightDirection).max(f32(0)).mul(f32(0.45)),
+);
 
 function material(rgb: readonly [number, number, number]) {
   return createMaterial({
@@ -147,9 +149,9 @@ function material(rgb: readonly [number, number, number]) {
   });
 }
 
-const particleGeometry = createSphereGeometry(0.055, 10, 7);
-const coreGeometry = createSphereGeometry(0.12, 16, 10);
-const portalGeometry = createSphereGeometry(0.22, 20, 12);
+const particleGeometry = createSphereGeometry(0.085, 12, 8);
+const coreGeometry = createSphereGeometry(0.17, 18, 12);
+const portalGeometry = createSphereGeometry(0.30, 24, 16);
 const materials = colors.map((color) => material(color));
 
 const portal = new Mesh(portalGeometry, material([0.75, 0.95, 0.28]));
@@ -219,6 +221,12 @@ function updateParticle(particle: Particle, elapsed: number, dt: number): void {
   particle.mesh.position[2] = z;
   particle.mesh.updateWorldMatrix();
 }
+
+// Match gpucat's upstream examples: establish initial object/camera matrices
+// before constructing the render texture.
+for (const particle of particles) updateParticle(particle, 0, 0);
+scene.updateWorldMatrix();
+camera.updateViewMatrix();
 
 const scenePass = renderTexture(scene, camera);
 const composite = fullscreen(renderOutput(scenePass.getTextureNode()));
