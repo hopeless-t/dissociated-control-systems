@@ -78,6 +78,11 @@ This repository does not conduct or encourage medication self-experiments.
 No protocol may require zolpidem administration, medication rechallenge,
 intentional induction of parasomnia, or other hazardous self-experimentation.
 
+Somatosensory hypotheses do not authorize painful threshold-seeking, electrical
+stimulation, invasive recording, injury, or unsupervised clinical-style
+intervention. Those require separate safety, ethics, and domain-specific
+protocols.
+
 ## Cross-domain transfer rule
 
 ~~~text
