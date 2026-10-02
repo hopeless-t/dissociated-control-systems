@@ -418,3 +418,67 @@ MIT. See [LICENSE](LICENSE).
 > **Do not ask only whether a system has capability. Ask whether the capability
 > is accessible, integrated, observable, and remembered — and measure those
 > questions separately.**
+
+## Human control research frontier
+
+The newest HYP-007 branch asks a more operational question than "expert vs novice":
+
+> **Which latent control property changed, and how can we tell?**
+
+A performance increase can come from different update classes:
+
+~~~text
+U-PHYS    physical capability
+U-BASIS   accessible control basis / synergy
+U-OBS     observability
+U-WEIGHT  sensory weighting
+U-MODEL   predictive / internal model
+U-POLICY  control policy
+U-REACH   controllable state set
+U-VAR     variability structure
+U-MEM     retention / retrieval
+~~~
+
+Therefore:
+
+~~~text
+same performance improvement
+!=
+same controller update
+~~~
+
+The Human Control Transition program uses named transitions such as DISCOVER,
+ACCESS, INDIVIDUATE, REINTEGRATE, CALIBRATE, ANTICIPATE, REWEIGHT, ROBUSTIFY,
+PRUNE, AUGMENT-OBS, INTERNALIZE-FB, VARIABILITY-RESHAPE, EDGE-EXTEND, and
+TRANSFER, with failure states including COMPENSATED-EXPANSION, OVERFIT,
+FEEDBACK-DEPENDENT, and RISK-DOMINANT.
+
+Transition labels are not assigned from task score alone. Candidate mechanisms
+should be separated using perturbation fingerprints: feedback removal, sensory
+perturbation, context shift, dual-task load, mechanical perturbation, component
+constraint, and held-out transfer where appropriate.
+
+The program also studies **transition grammar** and order effects:
+
+~~~text
+AUGMENT-OBS -> CALIBRATE -> INTERNALIZE-FB
+~~~
+
+must be distinguished from:
+
+~~~text
+AUGMENT-OBS -> FEEDBACK-DEPENDENT
+~~~
+
+and in general:
+
+~~~text
+T_A(T_B(Theta))
+!=
+T_B(T_A(Theta))
+~~~
+
+See [docs/HUMAN_CONTROL_DYNAMICS.md](docs/HUMAN_CONTROL_DYNAMICS.md),
+[docs/HUMAN_CONTROL_TRANSITION_ONTOLOGY.md](docs/HUMAN_CONTROL_TRANSITION_ONTOLOGY.md),
+and [docs/ELITE_HUMAN_CONTROL_ATLAS.md](docs/ELITE_HUMAN_CONTROL_ATLAS.md).
+
