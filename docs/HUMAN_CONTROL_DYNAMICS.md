@@ -654,3 +654,39 @@ predict before observe
 ~~~
 
 not retrospective storytelling.
+
+## 18. Correction is not learning
+
+The deep model distinguishes execution-time error correction from persistent
+controller change.
+
+~~~text
+CORRECT
+    current movement is rescued by feedback
+
+ADAPT
+    next trials change because of prior error / perturbation
+
+CONSOLIDATE
+    acquired change survives time without equivalent practice
+
+RETAIN
+    delayed test still expresses the change
+
+TRANSFER
+    the change appears in a held-out neighboring condition
+~~~
+
+Therefore:
+
+~~~text
+good performance with live feedback
+!=
+motor adaptation
+!=
+retained learning
+!=
+general transfer
+~~~
+
+This distinction should be enforced in evidence tables and README claims.
