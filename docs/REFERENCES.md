@@ -289,3 +289,175 @@ PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC8820238/
 Role: primary psychophysical evidence for an inverted-U relation between
 stroking velocity and pleasantness and for limits of a simple CT-afferent-only
 interpretation.
+
+
+## Dynamic erogeneity, interpersonal context, and reflective learning
+
+### [P-EROGMAP-2016] Nummenmaa et al.
+
+L. Nummenmaa, J. T. Suvilehto, E. Glerean, P. Santtila, and J. K. Hietanen.
+"Topography of Human Erogenous Zones." Archives of Sexual Behavior 45(5),
+1207–1216 (2016).
+
+DOI: https://doi.org/10.1007/s10508-016-0745-z  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/27091187/
+
+Role: large body-map study showing broad erogenous maps and context dependence
+between partner-sex and masturbation conditions.
+
+### [P-PLEASUREPAIN-2013] Paterson, Amsel, and Binik
+
+L. Q. P. Paterson, R. Amsel, and Y. M. Binik. "Pleasure and pain: the effect
+of (almost) having an orgasm on genital and nongenital sensitivity." Journal of
+Sexual Medicine 10(6), 1531–1544 (2013).
+
+DOI: https://doi.org/10.1111/jsm.12144  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/23551826/
+
+Role: primary evidence that pleasantness and pain thresholds can change without
+a corresponding significant change in touch detection threshold.
+
+### [P-AROUSALTOUCH-2007] Jiao et al.
+
+C. Jiao, P. K. Knight, P. Weerakoon, and A. B. Turman. "Effects of visual
+erotic stimulation on vibrotactile detection thresholds in men." Archives of
+Sexual Behavior 36(6), 787–792 (2007).
+
+DOI: https://doi.org/10.1007/s10508-007-9232-x  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/17713850/
+
+Role: primary evidence that sexual arousal can alter vibrotactile detection
+thresholds at a non-genital body site.
+
+### [P-SOCIALTOUCH-2015] Suvilehto et al.
+
+J. T. Suvilehto, E. Glerean, R. I. M. Dunbar, R. Hari, and L. Nummenmaa.
+"Topography of social touching depends on emotional bonds between humans."
+PNAS 112(45), 13811–13816 (2015).
+
+DOI: https://doi.org/10.1073/pnas.1519231112  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/26504228/  
+PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC4653180/
+
+Role: relationship-specific maps of acceptable social touch; supports modeling
+emotional bond as a contextual variable rather than a physical touch property.
+
+### [P-ROMANTICTOUCH-2017] Kreuder et al.
+
+A.-K. Kreuder et al. "How the brain codes intimacy: The neurobiological
+substrates of romantic touch." Human Brain Mapping 38, 4525–4534 (2017).
+
+DOI: https://doi.org/10.1002/hbm.23679  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/28580708/  
+PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC6867116/
+
+Role: randomized fMRI study in which participants believed identical physical
+touch came from either their romantic partner or an unfamiliar person; relevant
+to perceived-identity and relationship gating.
+
+### [P-RESPONSIVE-2016] Birnbaum et al.
+
+G. E. Birnbaum et al. "Intimately connected: The importance of partner
+responsiveness for experiencing sexual desire." Journal of Personality and
+Social Psychology 111(4), 530–546 (2016).
+
+DOI: https://doi.org/10.1037/pspi0000069  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/27399250/
+
+Role: evidence linking perceived partner responsiveness with sexual desire,
+used as an interpersonal-context source rather than a somatosensory-mechanism
+source.
+
+### [M-SEXCMM-2022] Mallory
+
+A. B. Mallory. "Dimensions of couples' sexual communication, relationship
+satisfaction, and sexual satisfaction: A meta-analysis." Journal of Family
+Psychology 36(3), 358–371 (2022).
+
+DOI: https://doi.org/10.1037/fam0000946  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/34968095/  
+PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC9153093/
+
+Role: meta-analysis of 93 studies / 38,499 individuals; supports treating
+communication quality as a dyadic variable associated with sexual and
+relationship satisfaction.
+
+### [P-COMPLIMENT-2023] Eckstein et al.
+
+M. Eckstein et al. "Neural responses to instructed positive couple interaction:
+an fMRI study on compliment sharing." Social Cognitive and Affective
+Neuroscience 18(1), nsad005 (2023).
+
+DOI: https://doi.org/10.1093/scan/nsad005  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/36852857/  
+PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC9976881/
+
+Role: romantic-couple fMRI evidence relevant to verbal affective input,
+relationship meaning, empathy, and reward-related processing.
+
+### [P-REWARDTACT-2008] Pleger et al.
+
+B. Pleger, F. Blankenburg, C. C. Ruff, J. Driver, and R. J. Dolan. "Reward
+facilitates tactile judgments and modulates hemodynamic responses in human
+primary somatosensory cortex." Journal of Neuroscience 28(33), 8161–8168
+(2008).
+
+DOI: https://doi.org/10.1523/JNEUROSCI.1093-08.2008  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/18701678/  
+PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC2682779/
+
+Role: primary evidence that reward can modulate tactile judgment and
+somatosensory-cortex responses, including effects on a subsequent trial.
+
+### [P-COACT-2004] Hodzic et al.
+
+A. Hodzic, R. Veit, A. A. Karim, M. Erb, and B. Godde. "Improvement and
+decline in tactile discrimination behavior after cortical plasticity induced by
+passive tactile coactivation." Journal of Neuroscience 24(2), 442–446 (2004).
+
+DOI: https://doi.org/10.1523/JNEUROSCI.3731-03.2004  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/14724242/  
+PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC6730006/
+
+Role: primary evidence that passive tactile coactivation can induce
+somatosensory cortical plasticity and alter discrimination.
+
+### [P-SEXCND-2008] Both et al.
+
+S. Both, M. Spiering, E. Laan, S. Belcome, B. van den Heuvel, and W. Everaerd.
+"Unconscious classical conditioning of sexual arousal: evidence for the
+conditioning of female genital arousal to subliminally presented sexual
+stimuli." Journal of Sexual Medicine 5(1), 100–109 (2008).
+
+DOI: https://doi.org/10.1111/j.1743-6109.2007.00643.x  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/17971104/
+
+Role: evidence that human genital responding can show associative conditioning;
+does not establish acquired erogeneity of a body region.
+
+### [P-SELFATTN-2004] van Lankveld, van den Hout, and Schouten
+
+J. J. D. M. van Lankveld, M. A. van den Hout, and E. G. W. Schouten. "The
+effects of self-focused attention, performance demand, and dispositional sexual
+self-consciousness on sexual arousal of sexually functional and dysfunctional
+men." Behaviour Research and Therapy 42(8), 915–935 (2004).
+
+DOI: https://doi.org/10.1016/j.brat.2003.07.011  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/15178466/
+
+Role: evidence that self-focused attention can alter sexual response in a
+person-dependent direction; relevant to observer-state and measurement-
+interference hypotheses.
+
+### [P-MIRROR-2012] Ainley et al.
+
+V. Ainley, A. Tajadura-Jiménez, A. Fotopoulou, and M. Tsakiris. "Looking into
+myself: changes in interoceptive sensitivity during mirror self-observation."
+Psychophysiology 49(11), 1504–1508 (2012).
+
+DOI: https://doi.org/10.1111/j.1469-8986.2012.01468.x  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/22978299/  
+PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC3755258/
+
+Role: primary evidence that mirror self-observation can alter interoceptive
+sensitivity in some participants; relevant to Self-Observation Re-entry.
