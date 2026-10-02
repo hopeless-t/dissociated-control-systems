@@ -585,3 +585,125 @@ T_B o T_A
 ~~~
 
 See [HUMAN_CONTROL_DYNAMICS.md](HUMAN_CONTROL_DYNAMICS.md).
+
+
+## Dependency-aware distributed-control extension
+
+HYP-008 represents a distributed system with multiple overlapping edge types:
+
+~~~text
+G = (
+    V,
+    E_dep,
+    E_auth,
+    E_obs,
+    E_info,
+    E_load
+)
+~~~
+
+For local node i:
+
+~~~text
+Ghat_i
+~~~
+
+is the node's internal model of the relevant graph.
+
+A role / task scoped projection is:
+
+~~~text
+z_i(t) = P_i(G, X_t)
+~~~
+
+and local action is:
+
+~~~text
+u_i(t) =
+    pi_i(
+        x_i(t),
+        z_i(t),
+        goal_i,
+        authority_i
+    )
+~~~
+
+The research target is not complete global state exposure.
+
+It is a minimal sufficient projection:
+
+~~~text
+P_i_star =
+    argmin_P ExposureCost(P)
+~~~
+
+subject to declared bounds on decision quality, dependency coverage, authority
+error, and global harm.
+
+### Capacity and backpressure
+
+For node i:
+
+~~~text
+rho_i(t) =
+    load_i(t)
+    /
+    capacity_i(t)
+~~~
+
+A downstream backpressure signal can be modeled as:
+
+~~~text
+b_i(t) =
+    B(
+        rho_i,
+        queue_i,
+        error_i,
+        reserve_i
+    )
+~~~
+
+Upstream policy becomes:
+
+~~~text
+u_j(t) =
+    pi_j(
+        x_j,
+        goal_j,
+        b_i,
+        dependency_state
+    )
+~~~
+
+The semantics of load, capacity, queue, reserve, and backpressure remain
+domain-local.
+
+### Local vs global objective
+
+~~~text
+u_i_star = argmax_u_i J_i
+~~~
+
+does not generally imply:
+
+~~~text
+argmax J_global
+~~~
+
+when J_global depends on dependency state, congestion, compensation, and
+coordination cost.
+
+### Observation re-entry over dependency state
+
+~~~text
+X_t
+ -> P_i(X_t, G)
+ -> Ghat_i
+ -> u_i
+ -> X_{t+1}
+ -> P_i(X_{t+1}, G)
+~~~
+
+This is the HYP-008 form of Observation Re-entry.
+
+See [HYP-008.md](HYP-008.md).
