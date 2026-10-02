@@ -264,27 +264,28 @@ Role: primary evidence relevant to pre-contact visual approach and
 multisensory tactile facilitation. Used as a decomposition source, not as proof
 of a special non-contact mechanism.
 
-### [P-EROG-2018] Croy et al.
+### [P-EROG-2018] Panagiotopoulou et al.
 
-I. Croy et al. "Dissociable sources of erogeneity in social touch: Imagining
-and perceiving C-Tactile optimal touch in erogenous zones." PLoS ONE 13(8),
-e0201929 (2018).
+E. Panagiotopoulou, M. L. Filippetti, A. Gentsch, and A. Fotopoulou.
+"Dissociable sources of erogeneity in social touch: Imagining and perceiving
+C-Tactile optimal touch in erogenous zones." PLoS ONE 13(8), e0203039 (2018).
 
+DOI: https://doi.org/10.1371/journal.pone.0203039  
 PubMed: https://pubmed.ncbi.nlm.nih.gov/30142185/
 
 Role: primary behavioral evidence that imagined and actual affective touch can
 both influence pleasantness/arousal ratings, relevant to top-down expectation,
 body-region effects, and the need to separate imagined from physical input.
 
-### [R-CT-2020] Strauss et al.
+### [P-CT-2020] Sailer, Hausmann, and Croy
 
-T. Strauss et al. "Pleasantness Only? How Sensory and Hedonic Properties of
-Gentle Touch Are Processed." Experimental Psychology 67(3), 196–208 (2020).
+U. Sailer, M. Hausmann, and I. Croy. "Pleasantness Only?" Experimental
+Psychology 67(4), 224–236 (2020).
 
 DOI: https://doi.org/10.1027/1618-3169/a000492  
 PubMed: https://pubmed.ncbi.nlm.nih.gov/33111658/  
 PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC8820238/
 
-Role: review / interpretive source for the group-level inverted-U relation
-between stroking velocity and pleasantness and for limits of a simple
-CT-afferent-only explanation.
+Role: primary psychophysical evidence for an inverted-U relation between
+stroking velocity and pleasantness and for limits of a simple CT-afferent-only
+interpretation.
