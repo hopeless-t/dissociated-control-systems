@@ -199,3 +199,166 @@ future EXP  expected-touch omission
 future EXP  pre-contact cue decomposition
 future EXP  mechanical-dose knee / regime switch
 ~~~
+
+
+## Line G — Dynamic erogeneity and multidimensional sensitivity
+
+**SOURCE**
+
+- [P-EROGMAP-2016] Nummenmaa et al.
+- [P-PLEASUREPAIN-2013] Paterson, Amsel, and Binik.
+- [P-AROUSALTOUCH-2007] Jiao et al.
+- [P-EROG-2018] Panagiotopoulou et al.
+
+**ESTABLISHED SOURCE OBSERVATION**
+
+Large body-map work reports that human erogenous maps extend beyond a small set
+of anatomical hotspots and that the mapped area differs between partner-sex
+and masturbation contexts.
+
+Experimental work also shows that touch detection, pleasantness, sexual
+arousal-related sensitivity, and pain thresholds need not move together.
+
+**OUR INFERENCE**
+
+A single scalar "sensitivity" variable is too coarse for HYP-006.
+
+~~~text
+detection
+intensity
+pleasantness
+erotic value
+nociception
+~~~
+
+should initially be modeled separately.
+
+**EXPERIMENT IMPACT**
+
+~~~text
+HYP-006  Erogenous–Insensitivity State
+future VAL  scalar vs multidimensional model recovery
+future EXP  same-site / same-input / different-state comparison
+~~~
+
+## Line H — Interpersonal and semantic gating
+
+**SOURCE**
+
+- [P-SOCIALTOUCH-2015] Suvilehto et al.
+- [P-ROMANTICTOUCH-2017] Kreuder et al.
+- [P-RESPONSIVE-2016] Birnbaum et al.
+- [M-SEXCMM-2022] Mallory.
+- [P-COMPLIMENT-2023] Eckstein et al.
+
+**ESTABLISHED SOURCE OBSERVATION**
+
+Relationship-specific body maps of socially acceptable touch covary with
+emotional bond.
+
+In an fMRI romantic-touch study, participants believed touch came either from a
+partner or an unfamiliar person even though the same experimenter delivered
+the physical touch, demonstrating that believed interpersonal context can alter
+touch valuation and neural response.
+
+Partner responsiveness is associated with sexual desire, and a meta-analysis
+reports positive associations between sexual-communication quality and sexual
+and relationship satisfaction.
+
+Romantic compliment exchange recruits broad social-affective networks and can
+engage reward-related circuitry.
+
+**OUR INFERENCE**
+
+~~~text
+physical toucher
+!=
+perceived toucher
+!=
+relationship meaning
+~~~
+
+and verbal/social inputs should be represented separately from physical touch.
+
+This motivates:
+
+~~~text
+Interpersonal Somatic Gating
+Verbal Affective State Injection
+Dyadic Reflective Learning
+~~~
+
+as testable DCS components.
+
+## Line I — Somatosensory learning and observation re-entry
+
+**SOURCE**
+
+- [P-REWARDTACT-2008] Pleger et al.
+- [P-COACT-2004] Hodzic et al.
+- [P-SEXCND-2008] Both et al.
+- [P-SELFATTN-2004] van Lankveld et al.
+- [P-MIRROR-2012] Ainley et al.
+
+**ESTABLISHED SOURCE OBSERVATION**
+
+Reward can modulate tactile judgment and later somatosensory responses.
+Passive tactile coactivation can induce cortical plasticity and change tactile
+discrimination.
+
+Human sexual responses can show associative conditioning under controlled
+laboratory conditions.
+
+Self-focused attention can change sexual responding in a person-dependent
+direction, while mirror self-observation can alter interoceptive sensitivity in
+some participants.
+
+**OUR INFERENCE**
+
+Observation, reward, and history are candidate control inputs rather than
+passive metadata.
+
+~~~text
+observation
+ -> re-entry
+ -> state change
+ -> learning
+ -> next trajectory
+~~~
+
+is therefore a legitimate DCS model family.
+
+The literature does not yet establish reliable acquired erogeneity of a
+previously neutral human body region.
+
+## Line J — Formal correspondence with AI / agent harnesses
+
+**SOURCE**
+
+No neuroscience source establishes that brains and AI agents share a physical
+control mechanism.
+
+**OUR INFERENCE**
+
+Both domains can be represented using a shared abstract vocabulary:
+
+~~~text
+input
+gate
+latent state
+output
+observation
+memory
+policy update
+next trajectory
+~~~
+
+This is a formal-method transfer only.
+
+**EXPERIMENT IMPACT**
+
+See [FORMAL_CORRESPONDENCE_AI.md](FORMAL_CORRESPONDENCE_AI.md).
+
+~~~text
+Shared formalism != shared mechanism
+~~~
