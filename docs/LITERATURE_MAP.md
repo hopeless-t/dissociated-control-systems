@@ -362,3 +362,88 @@ See [FORMAL_CORRESPONDENCE_AI.md](FORMAL_CORRESPONDENCE_AI.md).
 ~~~text
 Shared formalism != shared mechanism
 ~~~
+
+
+## Line K — Skill learning as control-space reshaping
+
+**SOURCE**
+
+- [P-FINGER-2014] Furuya, Nakamura, and Nagata.
+- [P-ARCHERY-2023] Kuch et al.
+- [P-GYM-2001] Vuillerme, Teasdale, and Nougier.
+- [P-CLIMB-2014] Seifert et al.
+- [R-MOTORVAR-2024] Marineau et al.
+- [R-BALLET-2021] Kaufmann et al.
+- [R-BALLET-2026] Ota et al.
+- [P-SURGSmooth-2023] Aghazadeh et al.
+
+**ESTABLISHED SOURCE OBSERVATION**
+
+Short piano practice in musically naive adults can reduce cross-finger movement
+covariation, especially for less independently controlled fingers.
+
+Trained archers can exhibit postural adjustments before string release, with
+elite archers in one study using earlier anticipatory strategies more often.
+
+Expert gymnasts can use reintroduced proprioceptive information more
+efficiently than comparison athletes in a perturbation paradigm.
+
+Expert ice climbers can exhibit a wider set of functional inter-limb
+coordination solutions while using fewer exploratory actions than beginners.
+
+Across sports, expertise is often associated with lower measured motor
+variability, but domain-specific work also shows useful functional variability.
+
+Ballet literature distinguishes displayed turnout from compensated turnout;
+systematic reviews report methodological uncertainty while newer evidence
+suggests compensated turnout may be associated with lower-extremity injury.
+
+Surgical-skill work shows that some motion-smoothness metrics can distinguish
+skill levels in simulated tasks.
+
+**OUR INFERENCE**
+
+These findings motivate a transition ontology that separates:
+
+~~~text
+DISCOVER
+ACCESS
+INDIVIDUATE
+REINTEGRATE
+CALIBRATE
+ANTICIPATE
+REWEIGHT
+ROBUSTIFY
+PRUNE
+AUGMENT-OBS
+VARIABILITY-RESHAPE
+EDGE-EXTEND
+TRANSFER
+~~~
+
+rather than compressing expertise into one scalar label.
+
+A central DCS extension is:
+
+~~~text
+Capability
+!= Accessibility
+!= Controllability
+!= Observability
+!= Task Utility
+~~~
+
+**EXPERIMENT IMPACT**
+
+~~~text
+HYP-007  Human Control-Space Reshaping
+ATLAS    Elite Human Control Atlas
+ONTOLOGY Human Control Transition Ontology
+future VAL  recover known transition from synthetic controller
+future EXP  ordinary-adult bounded transition tests
+future EXP  compensation vs genuine state-space expansion
+future EXP  feedback dependence vs internalization
+~~~
+
+Named elite performers remain hypothesis generators unless a proposed
+transition is directly instrumented.
