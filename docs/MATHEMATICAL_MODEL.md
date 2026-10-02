@@ -478,3 +478,110 @@ identification.
 
 See [HYP-007.md](HYP-007.md) and
 [HUMAN_CONTROL_TRANSITION_ONTOLOGY.md](HUMAN_CONTROL_TRANSITION_ONTOLOGY.md).
+
+## Human-control identifiability and multi-timescale learning
+
+The HYP-007 extension now factorizes controller adaptation:
+
+~~~text
+Theta_n = {
+    P_n,
+    B_n,
+    O_n,
+    W_n,
+    M_n,
+    Pi_n,
+    R_n,
+    V_n,
+    H_n
+}
+~~~
+
+where the components represent physical capability, control basis,
+observability, sensory weights, predictive model, policy, reachable state set,
+variability structure, and retained history.
+
+A task-score change alone does not identify which component changed.
+
+### Competing update models
+
+For observation D:
+
+~~~text
+M1 = policy update
+M2 = sensory reweighting
+M3 = predictive-model update
+M4 = control-basis update
+M5 = physical-capability update
+M6 = compensatory solution
+~~~
+
+Compare models using declared likelihoods or held-out predictive error:
+
+~~~text
+P(D | M_k)
+E_test(M_k)
+~~~
+
+### Multi-timescale learning
+
+A minimal two-rate model is:
+
+~~~text
+Theta_fast(n+1)
+=
+    rho_fast * Theta_fast(n)
+  + eta_fast * Delta_n
+
+Theta_slow(n+1)
+=
+    rho_slow * Theta_slow(n)
+  + eta_slow * Consolidate(Delta_n)
+~~~
+
+This separates immediate adaptation from retained change.
+
+### Feedback dependence
+
+~~~text
+Dependency =
+    J_feedback_on
+  - J_feedback_off
+~~~
+
+AUGMENT-OBS without later reduction in Dependency should not be labeled
+INTERNALIZE-FB.
+
+### Compensation index
+
+For a declared target subsystem:
+
+~~~text
+CompensationIndex =
+    off_target_load_increase
+    /
+    target_control_gain
+~~~
+
+The numerator must be defined per domain.
+
+This is a diagnostic structure, not a universal physiological metric.
+
+### Transition operator composition
+
+Let T_A and T_B be controller-update operators.
+
+~~~text
+Theta' = T_A(Theta)
+Theta'' = T_B(Theta')
+~~~
+
+Order effects are explicitly allowed:
+
+~~~text
+T_A o T_B
+!=
+T_B o T_A
+~~~
+
+See [HUMAN_CONTROL_DYNAMICS.md](HUMAN_CONTROL_DYNAMICS.md).
