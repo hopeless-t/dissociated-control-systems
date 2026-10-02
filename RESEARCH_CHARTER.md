@@ -78,6 +78,17 @@ This repository does not conduct or encourage medication self-experiments.
 No protocol may require zolpidem administration, medication rechallenge,
 intentional induction of parasomnia, or other hazardous self-experimentation.
 
+Somatosensory hypotheses do not authorize painful threshold-seeking, electrical
+stimulation, invasive recording, injury, or unsupervised clinical-style
+intervention. Those require separate safety, ethics, and domain-specific
+protocols.
+
+Sexual / interpersonal hypotheses do not authorize non-consensual activity,
+coercive restraint, deception about consent or identity in real intimate
+activity, or privacy-invasive recording. Human sexual-research protocols
+require appropriate ethics review, informed consent, withdrawal rights,
+privacy protection, and domain expertise.
+
 ## Cross-domain transfer rule
 
 ~~~text
@@ -95,3 +106,29 @@ transferable claim candidate
 ~~~
 
 A shared equation is not evidence of a shared physical mechanism.
+
+## Distributed-control invariants
+
+HYP-008 adds a cross-domain formal layer.
+
+~~~text
+Capability != Authority
+Capability != Dependency
+Dependency != Ownership
+Observation != Authority
+Local Completion != Global Completion
+Local Optimum != Global Optimum
+Visible Action != Full Dependency Graph
+Full Global State != Minimum Sufficient Projection
+~~~
+
+These statements are methodological invariants, not claims that human bodies,
+software systems, AI agents, and organizations share one physical mechanism.
+
+Cross-domain use must preserve:
+
+~~~text
+FORMAL CORRESPONDENCE / NOT SHARED MECHANISM
+~~~
+
+and require domain-local evidence before any operational transfer.

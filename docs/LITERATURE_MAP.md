@@ -139,3 +139,369 @@ Cross-domain comparison remains downstream of domain-local validation.
 ~~~text
 Analogy != evidence of shared mechanism
 ~~~
+
+
+## Line F — Anticipatory somatic routing and pre-contact state
+
+**SOURCE**
+
+- [P-TACTEXP-2010] van Ede, Jensen, and Maris.
+- [P-SOMATTN-2014] van Ede et al.
+- [P-TACTOMIT-2018] Andersen and Lundqvist.
+- [P-PPS-2024] Geers, Kozieja, and Coello.
+- [P-EROG-2018] Panagiotopoulou et al.
+- [P-CT-2020] Sailer, Hausmann, and Croy.
+
+**ESTABLISHED SOURCE OBSERVATION**
+
+Human MEG studies report pre-stimulus somatosensory oscillatory modulation when
+touch is expected or spatially attended. Expected-but-omitted tactile events can
+produce time-locked central somatosensory responses despite no physical event
+at the expected time.
+
+Visual approach / looming can facilitate responses to tactile targets, although
+peripersonal-space interpretations require care because attention,
+multisensory prediction, timing, and task design can contribute.
+
+Affective-touch work reports a group-level inverted-U relation between stroking
+velocity and pleasantness, with substantial individual variability and
+top-down/contextual contributions.
+
+**OUR INFERENCE**
+
+A body-part-specific somatosensory subsystem may occupy a different
+pre-stimulus state depending on attention and expectation. Physical contact is
+therefore not necessarily the first control input in the causal sequence.
+
+This motivates separating:
+
+~~~text
+attention
+expectation
+pre-contact sensory cues
+physical touch
+mechanical dose
+nociceptive / defensive dominance
+~~~
+
+rather than collapsing them into a single "touch" variable.
+
+The literature does **not** establish a special non-contact biological field or
+a therapeutic mechanism. Any such claim remains outside the current evidence.
+
+**EXPERIMENT IMPACT**
+
+~~~text
+HYP-005  Anticipatory Somatic Routing
+future VAL  recover additive vs gain-modulation models
+future EXP  attention x identical-touch interaction
+future EXP  expected-touch omission
+future EXP  pre-contact cue decomposition
+future EXP  mechanical-dose knee / regime switch
+~~~
+
+
+## Line G — Dynamic erogeneity and multidimensional sensitivity
+
+**SOURCE**
+
+- [P-EROGMAP-2016] Nummenmaa et al.
+- [P-PLEASUREPAIN-2013] Paterson, Amsel, and Binik.
+- [P-AROUSALTOUCH-2007] Jiao et al.
+- [P-EROG-2018] Panagiotopoulou et al.
+
+**ESTABLISHED SOURCE OBSERVATION**
+
+Large body-map work reports that human erogenous maps extend beyond a small set
+of anatomical hotspots and that the mapped area differs between partner-sex
+and masturbation contexts.
+
+Experimental work also shows that touch detection, pleasantness, sexual
+arousal-related sensitivity, and pain thresholds need not move together.
+
+**OUR INFERENCE**
+
+A single scalar "sensitivity" variable is too coarse for HYP-006.
+
+~~~text
+detection
+intensity
+pleasantness
+erotic value
+nociception
+~~~
+
+should initially be modeled separately.
+
+**EXPERIMENT IMPACT**
+
+~~~text
+HYP-006  Erogenous–Insensitivity State
+future VAL  scalar vs multidimensional model recovery
+future EXP  same-site / same-input / different-state comparison
+~~~
+
+## Line H — Interpersonal and semantic gating
+
+**SOURCE**
+
+- [P-SOCIALTOUCH-2015] Suvilehto et al.
+- [P-ROMANTICTOUCH-2017] Kreuder et al.
+- [P-RESPONSIVE-2016] Birnbaum et al.
+- [M-SEXCMM-2022] Mallory.
+- [P-COMPLIMENT-2023] Eckstein et al.
+
+**ESTABLISHED SOURCE OBSERVATION**
+
+Relationship-specific body maps of socially acceptable touch covary with
+emotional bond.
+
+In an fMRI romantic-touch study, participants believed touch came either from a
+partner or an unfamiliar person even though the same experimenter delivered
+the physical touch, demonstrating that believed interpersonal context can alter
+touch valuation and neural response.
+
+Partner responsiveness is associated with sexual desire, and a meta-analysis
+reports positive associations between sexual-communication quality and sexual
+and relationship satisfaction.
+
+Romantic compliment exchange recruits broad social-affective networks and can
+engage reward-related circuitry.
+
+**OUR INFERENCE**
+
+~~~text
+physical toucher
+!=
+perceived toucher
+!=
+relationship meaning
+~~~
+
+and verbal/social inputs should be represented separately from physical touch.
+
+This motivates:
+
+~~~text
+Interpersonal Somatic Gating
+Verbal Affective State Injection
+Dyadic Reflective Learning
+~~~
+
+as testable DCS components.
+
+## Line I — Somatosensory learning and observation re-entry
+
+**SOURCE**
+
+- [P-REWARDTACT-2008] Pleger et al.
+- [P-COACT-2004] Hodzic et al.
+- [P-SEXCND-2008] Both et al.
+- [P-SELFATTN-2004] van Lankveld et al.
+- [P-MIRROR-2012] Ainley et al.
+
+**ESTABLISHED SOURCE OBSERVATION**
+
+Reward can modulate tactile judgment and later somatosensory responses.
+Passive tactile coactivation can induce cortical plasticity and change tactile
+discrimination.
+
+Human sexual responses can show associative conditioning under controlled
+laboratory conditions.
+
+Self-focused attention can change sexual responding in a person-dependent
+direction, while mirror self-observation can alter interoceptive sensitivity in
+some participants.
+
+**OUR INFERENCE**
+
+Observation, reward, and history are candidate control inputs rather than
+passive metadata.
+
+~~~text
+observation
+ -> re-entry
+ -> state change
+ -> learning
+ -> next trajectory
+~~~
+
+is therefore a legitimate DCS model family.
+
+The literature does not yet establish reliable acquired erogeneity of a
+previously neutral human body region.
+
+## Line J — Formal correspondence with AI / agent harnesses
+
+**SOURCE**
+
+No neuroscience source establishes that brains and AI agents share a physical
+control mechanism.
+
+**OUR INFERENCE**
+
+Both domains can be represented using a shared abstract vocabulary:
+
+~~~text
+input
+gate
+latent state
+output
+observation
+memory
+policy update
+next trajectory
+~~~
+
+This is a formal-method transfer only.
+
+**EXPERIMENT IMPACT**
+
+See [FORMAL_CORRESPONDENCE_AI.md](FORMAL_CORRESPONDENCE_AI.md).
+
+~~~text
+Shared formalism != shared mechanism
+~~~
+
+
+## Line K — Skill learning as control-space reshaping
+
+**SOURCE**
+
+- [P-FINGER-2014] Furuya, Nakamura, and Nagata.
+- [P-ARCHERY-2023] Kuch et al.
+- [P-GYM-2001] Vuillerme, Teasdale, and Nougier.
+- [P-CLIMB-2014] Seifert et al.
+- [R-MOTORVAR-2024] Marineau et al.
+- [R-BALLET-2021] Kaufmann et al.
+- [R-BALLET-2026] Ota et al.
+- [P-SURGSmooth-2023] Aghazadeh et al.
+
+**ESTABLISHED SOURCE OBSERVATION**
+
+Short piano practice in musically naive adults can reduce cross-finger movement
+covariation, especially for less independently controlled fingers.
+
+Trained archers can exhibit postural adjustments before string release, with
+elite archers in one study using earlier anticipatory strategies more often.
+
+Expert gymnasts can use reintroduced proprioceptive information more
+efficiently than comparison athletes in a perturbation paradigm.
+
+Expert ice climbers can exhibit a wider set of functional inter-limb
+coordination solutions while using fewer exploratory actions than beginners.
+
+Across sports, expertise is often associated with lower measured motor
+variability, but domain-specific work also shows useful functional variability.
+
+Ballet literature distinguishes displayed turnout from compensated turnout;
+systematic reviews report methodological uncertainty while newer evidence
+suggests compensated turnout may be associated with lower-extremity injury.
+
+Surgical-skill work shows that some motion-smoothness metrics can distinguish
+skill levels in simulated tasks.
+
+**OUR INFERENCE**
+
+These findings motivate a transition ontology that separates:
+
+~~~text
+DISCOVER
+ACCESS
+INDIVIDUATE
+REINTEGRATE
+CALIBRATE
+ANTICIPATE
+REWEIGHT
+ROBUSTIFY
+PRUNE
+AUGMENT-OBS
+VARIABILITY-RESHAPE
+EDGE-EXTEND
+TRANSFER
+~~~
+
+rather than compressing expertise into one scalar label.
+
+A central DCS extension is:
+
+~~~text
+Capability
+!= Accessibility
+!= Controllability
+!= Observability
+!= Task Utility
+~~~
+
+**EXPERIMENT IMPACT**
+
+~~~text
+HYP-007  Human Control-Space Reshaping
+ATLAS    Elite Human Control Atlas
+ONTOLOGY Human Control Transition Ontology
+future VAL  recover known transition from synthetic controller
+future EXP  ordinary-adult bounded transition tests
+future EXP  compensation vs genuine state-space expansion
+future EXP  feedback dependence vs internalization
+~~~
+
+Named elite performers remain hypothesis generators unless a proposed
+transition is directly instrumented.
+
+## Line L — Controller adaptation, feedback, retention, and transition identifiability
+
+**SOURCE**
+
+- [P-FEEDBACKCTRL-2025] Feulner et al.
+- [R-UCM-2024] Latash.
+- [R-AUGFB-2022] Petancevski et al.
+- [M-CI-RET-2024] Czyż et al.
+- [M-CI-XFER-2024] Czyż, Wójcik, and Solarská.
+
+**ESTABLISHED SOURCE OBSERVATION**
+
+A 2025 recurrent-network motor-control model showed that the same error-based
+feedback stream can support fast within-movement correction and slower
+trial-by-trial adaptation when the controller policy itself is plastic. The
+model reproduced several neural and behavioral features of motor adaptation,
+but it remains a computational model rather than proof of one unique biological
+implementation.
+
+Recent UCM review work emphasizes that performance-stabilizing motor synergies
+are naturally studied in task-relative subspaces and that mapping such findings
+onto neural control mechanisms remains difficult.
+
+A systematic review of augmented feedback in adult gross-motor and
+sport-specific learning found likely benefits but also emphasized that optimal
+feedback timing, frequency, and duration remain unresolved and that null /
+negative evidence is underrepresented.
+
+2024 meta-analyses of contextual interference found beneficial average effects
+for retention and transfer, with important heterogeneity by age and especially
+between laboratory and applied settings.
+
+**OUR INFERENCE**
+
+These findings strengthen four DCS requirements:
+
+~~~text
+1. immediate correction != retained controller change
+2. performance score != identified update class
+3. useful variability must be task-relative
+4. practice variability must be evaluated against target-environment transfer
+~~~
+
+They motivate multi-timescale controller state, perturbation fingerprinting,
+feedback-dependency tests, transition grammar, and representative-robustness
+tests.
+
+**EXPERIMENT IMPACT**
+
+~~~text
+HYP-007  require acquisition / retention / transfer separation
+future VAL  recover update class under synthetic perturbations
+future EXP  feedback-on -> feedback-off internalization test
+future EXP  representative vs irrelevant variability
+future EXP  transition-order / non-commutativity test
+~~~
+
