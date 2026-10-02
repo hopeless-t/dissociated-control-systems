@@ -140,6 +140,7 @@ parasomnia is in scope.
 | HYP-002 | **Subsystem State Dissociation:** a useful global state may require a vector of subsystem states rather than one scalar label. | OPEN |
 | HYP-003 | **Observability Gap:** multiple latent subsystem configurations can produce the same coarse external observation. | OPEN |
 | HYP-004 | **Local Intervention / Global Transition:** a bounded change to one gate or coupling can move the whole system between qualitatively different observable regimes. | OPEN |
+| HYP-005 | **Anticipatory Somatic Routing:** attention / expectation may configure body-part-specific somatosensory processing before physical input arrives and may change the transfer function applied to later touch. | OPEN |
 
 ## Mathematical starting point
 
@@ -168,6 +169,10 @@ This deliberately supports multiple model families:
 - Bayesian latent-state models.
 
 See [docs/MATHEMATICAL_MODEL.md](docs/MATHEMATICAL_MODEL.md).
+
+For the somatosensory extension — attention, expectation, pre-contact cues,
+touch, and the transition toward defensive/nociceptive processing — see
+[docs/HYP-005.md](docs/HYP-005.md).
 
 ## VAL-001 — Latent-State Non-Identifiability
 
@@ -290,6 +295,7 @@ dissociated-control-systems/
 │   ├── REFERENCES.md
 │   ├── LITERATURE_MAP.md
 │   ├── MATHEMATICAL_MODEL.md
+│   ├── HYP-005.md
 │   ├── VAL-001.md
 │   └── VISUALS.md
 ├── external/
