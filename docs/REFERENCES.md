@@ -461,3 +461,117 @@ PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC3755258/
 
 Role: primary evidence that mirror self-observation can alter interoceptive
 sensitivity in some participants; relevant to Self-Observation Re-entry.
+
+
+## Human control-space reshaping and skill transitions
+
+### [P-FINGER-2014] Furuya, Nakamura, and Nagata
+
+S. Furuya, A. Nakamura, and N. Nagata. "Acquisition of individuated finger
+movements through musical practice." Neuroscience (2014).
+
+DOI: https://doi.org/10.1016/j.neuroscience.2014.06.031  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/24973654/
+
+Role: primary evidence that four days of piano practice in musically naive
+adults reduced movement covariation across fingers, especially ring and little
+fingers; supports an INDIVIDUATE transition without claiming complete
+anatomical independence.
+
+### [P-ARCHERY-2023] Kuch et al.
+
+A. Kuch, R. Tisserand, F. Durand, T. Monnet, and J.-F. Debril. "Postural
+adjustments preceding string release in trained archers." Journal of Sports
+Sciences 41(7), 677–685 (2023).
+
+DOI: https://doi.org/10.1080/02640414.2023.2235154  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/37470415/
+
+Role: primary evidence for anticipatory postural adjustments before string
+release in trained archers; elite archers used earlier anticipatory strategies
+more often in this study.
+
+### [P-GYM-2001] Vuillerme, Teasdale, and Nougier
+
+N. Vuillerme, N. Teasdale, and V. Nougier. "The effect of expertise in
+gymnastics on proprioceptive sensory integration in human subjects."
+Neuroscience Letters 311(2), 73–76 (2001).
+
+DOI: https://doi.org/10.1016/S0304-3940(01)02147-4  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/11567781/
+
+Role: primary evidence that expert gymnasts more efficiently used reintroduced
+proprioceptive information to reduce postural sway in the declared perturbation
+task; supports REWEIGHT as a testable transition.
+
+### [P-CLIMB-2014] Seifert et al.
+
+L. Seifert, L. Wattebled, R. Herault, G. Poizat, D. Adé, N. Gal-Petitfaux,
+and K. Davids. "Neurobiological degeneracy and affordance perception support
+functional intra-individual variability of inter-limb coordination during ice
+climbing." PLoS ONE 9(2), e89865 (2014).
+
+DOI: https://doi.org/10.1371/journal.pone.0089865  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/24587084/  
+PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC3933688/
+
+Role: primary evidence that expert ice climbers used a wider range of
+functional coordination patterns and fewer exploratory actions than beginners;
+supports separating functional variability from task-harmful variability.
+
+### [R-MOTORVAR-2024] Marineau et al.
+
+E. Marineau et al. "From Novice to Expert: How Expertise Shapes Motor
+Variability in Sports Biomechanics-a Scoping Review." Scandinavian Journal of
+Medicine & Science in Sports 34(8), e14706 (2024).
+
+DOI: https://doi.org/10.1111/sms.14706  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/39049526/
+
+Role: scoping review showing that most included sport studies reported lower
+motor variability in higher-skilled athletes; used together with climbing
+evidence to motivate a structured, task-relative variability model.
+
+### [R-BALLET-2021] Kaufmann et al.
+
+J.-E. Kaufmann, R. G. H. H. Nelissen, E. Exner-Grave, and M. G. J. Gademan.
+"Does forced or compensated turnout lead to musculoskeletal injuries in
+dancers? A systematic review on the complexity of causes." Journal of
+Biomechanics 114, 110084 (2021).
+
+DOI: https://doi.org/10.1016/j.jbiomech.2020.110084  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/33338756/
+
+Role: systematic review establishing the methodological complexity of forced /
+compensated turnout and showing that older evidence did not support a simple
+causal conclusion.
+
+### [R-BALLET-2026] Ota et al.
+
+H. Ota, A. Ogura, Y. Kanejima, T. Hidekuma, and K. P. Izawa. "Relationship
+between compensated turnout and lower extremity injuries in ballet dancers: A
+systematic review." Journal of Bodywork and Movement Therapies 47, 646–651
+(2026).
+
+DOI: https://doi.org/10.1016/j.jbmt.2026.05.006  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/42264850/
+
+Role: newer systematic review in which three of four included studies reported
+significant associations between compensated turnout and lower-extremity
+injury, while emphasizing measurement variation and small samples; supports
+COMPENSATED-EXPANSION as a research failure state, not a deterministic injury
+rule.
+
+### [P-SURGSmooth-2023] Aghazadeh et al.
+
+F. Aghazadeh, B. Zheng, M. Tavakoli, and H. Rouhani. "Motion
+Smoothness-Based Assessment of Surgical Expertise: The Importance of Selecting
+Proper Metrics." Sensors 23(6), 3146 (2023).
+
+DOI: https://doi.org/10.3390/s23063146  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/36991855/  
+PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC10057623/
+
+Role: primary simulated-surgery evidence that selected smoothness metrics,
+including logarithmic dimensionless jerk and 95% motion frequency, can
+differentiate skill levels; relevant to PRUNE / smoothness metrics.
