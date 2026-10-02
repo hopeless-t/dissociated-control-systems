@@ -333,3 +333,148 @@ This represents a partner as an observer, external memory, and future input
 generator without treating human relationships as software components.
 
 See [HYP-006.md](HYP-006.md).
+
+
+## Human controller adaptation extension
+
+HYP-007 introduces two timescales.
+
+Fast movement dynamics:
+
+~~~text
+x_{t+1} = f(x_t, u_t, d_t ; Theta_n)
+y_t     = h(x_t)
+xhat_t  = E_Theta(y_0:t, u_0:t-1)
+u_t     = pi_Theta(xhat_t, goal_t, context_t)
+~~~
+
+Slow controller adaptation:
+
+~~~text
+Theta_{n+1}
+=
+T(
+    Theta_n,
+    practice_n,
+    error_n,
+    reward_n,
+    feedback_n
+)
+~~~
+
+Candidate controller state:
+
+~~~text
+Theta = {
+    capability_ceiling,
+    accessible_control_basis,
+    observability,
+    sensory_weights,
+    internal_model,
+    policy,
+    controllable_state_set,
+    variability_structure,
+    retained_memory
+}
+~~~
+
+This makes skill learning a model of controller-state transition rather than a
+single performance-score increase.
+
+### Control-coupling model
+
+For selective motor control:
+
+~~~text
+a = C v
+~~~
+
+where v is intended control and a is observed component activation.
+
+A candidate INDIVIDUATE transition is:
+
+~~~text
+norm(C_offdiag) decreases
+~~~
+
+without requiring complete physical independence.
+
+### Anticipatory transition
+
+For predictable perturbation:
+
+~~~text
+Delta_t =
+    control_onset
+  - perturbation_onset
+~~~
+
+with:
+
+~~~text
+Delta_t > 0   reactive correction
+Delta_t < 0   anticipatory correction
+~~~
+
+### Sensory reweighting
+
+A state estimator can be represented as:
+
+~~~text
+xhat =
+    w_visual(t) * y_visual
+  + w_proprio(t) * y_proprio
+  + w_vestib(t) * y_vestib
+~~~
+
+A REWEIGHT transition changes the weights as a function of task and sensory
+reliability rather than treating them as fixed constants.
+
+### Variability structure
+
+For task output z = g(x):
+
+~~~text
+J = dg/dx
+delta_x = delta_x_null + delta_x_task
+~~~
+
+with:
+
+~~~text
+J delta_x_null = 0
+J delta_x_task != 0
+~~~
+
+The model therefore distinguishes task-harmful variance from internal variance
+that leaves the declared output unchanged.
+
+A candidate expert transition is:
+
+~~~text
+Var(delta_x_task) decreases
+while useful Var(delta_x_null) is retained
+~~~
+
+### Training-probe selection
+
+A candidate research-design objective is:
+
+~~~text
+p_star =
+    argmax_p [
+        alpha * I(Theta ; Y | p)
+      + beta  * DeltaTaskPerformance
+      + gamma * DeltaTransfer
+      + delta * DeltaObservability
+      - lambda * Risk
+      - mu     * Cost
+      - nu     * CognitiveLoad
+    ]
+~~~
+
+This treats practice as both task optimization and active system
+identification.
+
+See [HYP-007.md](HYP-007.md) and
+[HUMAN_CONTROL_TRANSITION_ONTOLOGY.md](HUMAN_CONTROL_TRANSITION_ONTOLOGY.md).
