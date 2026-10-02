@@ -304,3 +304,119 @@ mechanism exists in brains and software.
 The research value is:
 
 > use a shared formal language while keeping domain mechanisms separate.
+
+
+## Dependency-aware distributed control
+
+HYP-008 extends the correspondence from observation re-entry to dependency
+graphs and load routing.
+
+The shared formal object is:
+
+~~~text
+local controller
++ partial view of a dependency graph
++ bounded authority
++ shared resource / downstream state
++ feedback
++ rerouting / escalation
+~~~
+
+### Cross-domain correspondence table
+
+| Formal object | Human motor control | Computer / agent system | Organization |
+| --- | --- | --- | --- |
+| local actuator / node | limb / muscle group / coordination component | service / worker / tool-facing component | person / team |
+| dependency edge | postural / kinetic / coordination dependency | service / data / resource dependency | workflow dependency |
+| observability | proprioception / task feedback | telemetry / state summary | status / reporting / shared context |
+| authority | not directly equivalent | permission / dispatcher / policy | decision rights / reporting line |
+| load | effort / mechanical work / fatigue exposure | requests / memory / I/O / queue | tasks / review load / backlog |
+| backpressure | local fatigue / loss of control / stiffness | queue depth / saturation / resource pressure | downstream capacity / blocker / unavailable reviewer |
+| routing | whole-body redistribution / synergy change | scheduler / router / tool-surface change | reassignment / escalation / coordination |
+| local model | body / task model | dependency / runtime model | role / dependency mental model |
+
+The table is deliberately abstract.
+
+~~~text
+manager != nervous system
+fatigue != queue depth
+organizational authority != neural control
+~~~
+
+### Minimum sufficient projection
+
+The correspondence suggests a common research question:
+
+> How much state does a local controller need to see to act correctly in a
+> larger distributed system?
+
+Too little:
+
+~~~text
+HIDDEN-DEPENDENCY
+ROLE-BLIND
+STALE-PROJECTION
+~~~
+
+Too much:
+
+~~~text
+CONTEXT-FLOOD
+~~~
+
+Candidate target:
+
+~~~text
+Minimum Sufficient Dependency Projection
+~~~
+
+This is structurally related to minimum sufficient tool surface, but a positive
+result in one domain does not establish another.
+
+### Local optimization failure
+
+Across domains:
+
+~~~text
+local success
+!=
+global success
+~~~
+
+Examples include:
+
+~~~text
+BODY:
+    one joint / muscle group preserves output by shifting excessive load
+    elsewhere
+
+SYSTEM:
+    one service maximizes throughput while saturating a downstream queue
+
+ORGANIZATION:
+    one team closes local work while creating downstream backlog or policy debt
+~~~
+
+The formal research object is omitted dependency cost.
+
+### Projection internalization
+
+A local controller may first receive an external representation of its
+dependencies and later internalize enough of that representation for lower-cost
+coordination.
+
+~~~text
+external projection
+ -> repeated action / feedback
+ -> internal dependency model
+ -> lower-overhead coordination
+~~~
+
+The candidate transition is:
+
+~~~text
+PROJECTION-INTERNALIZE
+ -> IMPLICIT-COORDINATE
+~~~
+
+This remains a hypothesis until validated separately in each domain.
