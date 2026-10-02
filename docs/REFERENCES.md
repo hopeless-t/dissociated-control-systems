@@ -209,3 +209,82 @@ and later Catfood Lab research repositories.
 
 Only the reproducibility and evidence discipline is inherited; the scientific
 claims are not.
+
+
+## Somatosensory attention, expectation, and affective touch
+
+### [P-TACTEXP-2010] van Ede, Jensen, and Maris
+
+F. van Ede, O. Jensen, and E. Maris. "Tactile expectation modulates
+pre-stimulus beta-band oscillations in human sensorimotor cortex."
+NeuroImage 51(2), 867–876 (2010).
+
+DOI: https://doi.org/10.1016/j.neuroimage.2010.02.053  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/20188186/
+
+Role: primary MEG evidence that expectation of a tactile event is associated
+with pre-stimulus oscillatory modulation in sensorimotor / somatosensory
+cortex; supports a central preparatory-state hypothesis.
+
+### [P-SOMATTN-2014] van Ede et al.
+
+F. van Ede et al. "Attentional modulations of somatosensory alpha, beta and
+gamma oscillations dissociate between anticipation and stimulus processing."
+NeuroImage 97, 134–141 (2014).
+
+PubMed: https://pubmed.ncbi.nlm.nih.gov/24769186/
+
+Role: primary MEG evidence distinguishing anticipatory attention-related
+alpha/beta modulation from gamma modulation during tactile stimulus
+processing.
+
+### [P-TACTOMIT-2018] Andersen and Lundqvist
+
+L. M. Andersen and D. Lundqvist. "Somatosensory responses to nothing: An MEG
+study of expectations during omission of tactile stimulations." NeuroImage 184,
+78–89 (2019; online 2018).
+
+DOI: https://doi.org/10.1016/j.neuroimage.2018.09.014  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/30213774/
+
+Role: primary evidence that an expected but omitted tactile event can produce a
+time-locked central response, source-localized in the study to secondary
+somatosensory cortex and insula.
+
+### [P-PPS-2024] Geers, Kozieja, and Coello
+
+L. Geers, P. Kozieja, and Y. Coello. "Multisensory peripersonal space: Visual
+looming stimuli induce stronger response facilitation to tactile than auditory
+and visual stimulations." Cortex 173, 222–233 (2024).
+
+DOI: https://doi.org/10.1016/j.cortex.2024.01.008  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/38430652/
+
+Role: primary evidence relevant to pre-contact visual approach and
+multisensory tactile facilitation. Used as a decomposition source, not as proof
+of a special non-contact mechanism.
+
+### [P-EROG-2018] Croy et al.
+
+I. Croy et al. "Dissociable sources of erogeneity in social touch: Imagining
+and perceiving C-Tactile optimal touch in erogenous zones." PLoS ONE 13(8),
+e0201929 (2018).
+
+PubMed: https://pubmed.ncbi.nlm.nih.gov/30142185/
+
+Role: primary behavioral evidence that imagined and actual affective touch can
+both influence pleasantness/arousal ratings, relevant to top-down expectation,
+body-region effects, and the need to separate imagined from physical input.
+
+### [R-CT-2020] Strauss et al.
+
+T. Strauss et al. "Pleasantness Only? How Sensory and Hedonic Properties of
+Gentle Touch Are Processed." Experimental Psychology 67(3), 196–208 (2020).
+
+DOI: https://doi.org/10.1027/1618-3169/a000492  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/33111658/  
+PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC8820238/
+
+Role: review / interpretive source for the group-level inverted-U relation
+between stroking velocity and pleasantness and for limits of a simple
+CT-afferent-only explanation.
