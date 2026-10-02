@@ -141,6 +141,7 @@ parasomnia is in scope.
 | HYP-003 | **Observability Gap:** multiple latent subsystem configurations can produce the same coarse external observation. | OPEN |
 | HYP-004 | **Local Intervention / Global Transition:** a bounded change to one gate or coupling can move the whole system between qualitatively different observable regimes. | OPEN |
 | HYP-005 | **Anticipatory Somatic Routing:** attention / expectation may configure body-part-specific somatosensory processing before physical input arrives and may change the transfer function applied to later touch. | OPEN |
+| HYP-006 | **Erogenous–Insensitivity State:** erogenous, neutral, insensitive, pleasant, and defensive responses may be dynamic multidimensional control states shaped by physical input, attention, relationship context, observation, and learning history. | OPEN |
 
 ## Mathematical starting point
 
@@ -173,6 +174,14 @@ See [docs/MATHEMATICAL_MODEL.md](docs/MATHEMATICAL_MODEL.md).
 For the somatosensory extension — attention, expectation, pre-contact cues,
 touch, and the transition toward defensive/nociceptive processing — see
 [docs/HYP-005.md](docs/HYP-005.md).
+
+For the dynamic erogenous / insensitivity model, interpersonal gating,
+self-observation re-entry, associative valuation, and dyadic learning loop, see
+[docs/HYP-006.md](docs/HYP-006.md).
+
+For the deliberately bounded formal correspondence between these DCS loops and
+instrumented AI / agent harnesses, see
+[docs/FORMAL_CORRESPONDENCE_AI.md](docs/FORMAL_CORRESPONDENCE_AI.md).
 
 ## VAL-001 — Latent-State Non-Identifiability
 
@@ -296,6 +305,8 @@ dissociated-control-systems/
 │   ├── LITERATURE_MAP.md
 │   ├── MATHEMATICAL_MODEL.md
 │   ├── HYP-005.md
+│   ├── HYP-006.md
+│   ├── FORMAL_CORRESPONDENCE_AI.md
 │   ├── VAL-001.md
 │   └── VISUALS.md
 ├── external/
