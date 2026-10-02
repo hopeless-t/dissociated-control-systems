@@ -677,3 +677,70 @@ component constraint
 ~~~
 
 The probe must be specified before observing the result whenever feasible.
+
+## Temporal qualification layer
+
+"Improved" is split into distinct temporal states.
+
+### CORRECT — fast event, not yet learning
+
+~~~text
+error occurs
+-> online feedback reduces current-trial error
+~~~
+
+CORRECT is an execution event rather than evidence that the slow controller
+changed.
+
+### ADAPT
+
+~~~text
+repeated perturbation
+-> next-trial behavior changes systematically
+~~~
+
+Candidate signature:
+
+~~~text
+behavior_{n+1}
+depends on
+error_n / perturbation_n
+~~~
+
+### CONSOLIDATE
+
+~~~text
+session-acquired change
+-> retained representation after time without equivalent practice
+~~~
+
+Candidate signature requires a delayed test.
+
+### RETAIN
+
+~~~text
+learned performance survives declared delay / washout condition
+~~~
+
+RETENTION is an observation state and should report the delay and context.
+
+### TRANSFER
+
+~~~text
+retained / learned controller property
+-> held-out neighboring condition
+~~~
+
+The temporal claim ladder is therefore:
+
+~~~text
+CORRECT
+!=
+ADAPT
+!=
+CONSOLIDATE / RETAIN
+!=
+TRANSFER
+~~~
+
+A study may support one level without supporting the next.
