@@ -575,3 +575,74 @@ PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC10057623/
 Role: primary simulated-surgery evidence that selected smoothness metrics,
 including logarithmic dimensionless jerk and 95% motion frequency, can
 differentiate skill levels; relevant to PRUNE / smoothness metrics.
+
+### [P-FEEDBACKCTRL-2025] Feulner et al.
+
+B. Feulner, M. G. Perich, L. E. Miller, C. Clopath, and J. A. Gallego.
+"A neural implementation model of feedback-based motor learning." Nature
+Communications 16, 1805 (2025).
+
+DOI: https://doi.org/10.1038/s41467-024-54738-5  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/39979257/  
+PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC11842561/
+
+Role: computational / neural-population modeling evidence that an adaptive
+feedback controller can support both online correction and trial-by-trial motor
+adaptation; used to motivate multiple timescales and policy-update hypotheses,
+not as proof of a unique biological architecture.
+
+### [R-UCM-2024] Latash
+
+M. L. Latash. "Terra incognita of the uncontrolled manifold." Journal of
+Neurophysiology 132(6), 1729–1743 (2024).
+
+DOI: https://doi.org/10.1152/jn.00394.2024  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/39475487/
+
+Role: current review of UCM / motor-abundance analysis; supports task-relative
+variance decomposition while emphasizing unresolved mapping from measured
+synergies to neural control variables.
+
+### [R-AUGFB-2022] Petancevski et al.
+
+E. L. Petancevski, J. Inns, J. Fransen, and F. M. Impellizzeri. "The effect
+of augmented feedback on the performance and learning of gross motor and
+sport-specific skills: A systematic review." Psychology of Sport and Exercise
+63, 102277 (2022).
+
+DOI: https://doi.org/10.1016/j.psychsport.2022.102277
+
+Role: systematic review supporting augmented feedback as a potentially useful
+motor-learning intervention while highlighting unresolved optimal frequency,
+timing, duration, and limited negative / null evidence; motivates explicit
+feedback-removal and dependency tests.
+
+### [M-CI-RET-2024] Czyż et al.
+
+S. H. Czyż, A. M. Wójcik, P. Solarská, and P. Kiper. "High contextual
+interference improves retention in motor learning: systematic review and
+meta-analysis." Scientific Reports 14, 15974 (2024).
+
+DOI: https://doi.org/10.1038/s41598-024-65753-3  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/38987617/  
+PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC11237090/
+
+Role: meta-analysis supporting an average retention benefit of high contextual
+interference while showing strong heterogeneity, including much weaker effects
+in applied settings; motivates separating random variation from representative
+robustification.
+
+### [M-CI-XFER-2024] Czyż, Wójcik, and Solarská
+
+S. H. Czyż, A. M. Wójcik, and P. Solarská. "The effect of contextual
+interference on transfer in motor learning - a systematic review and
+meta-analysis." Frontiers in Psychology 15, 1377122 (2024).
+
+DOI: https://doi.org/10.3389/fpsyg.2024.1377122  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/39205981/  
+PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC11349744/
+
+Role: meta-analysis of motor-learning transfer; supports explicit held-out
+transfer measurement and cautions against treating laboratory acquisition gains
+as general skill improvement.
+
