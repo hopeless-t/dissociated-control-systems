@@ -143,6 +143,7 @@ parasomnia is in scope.
 | HYP-005 | **Anticipatory Somatic Routing:** attention / expectation may configure body-part-specific somatosensory processing before physical input arrives and may change the transfer function applied to later touch. | OPEN |
 | HYP-006 | **Erogenous–Insensitivity State:** erogenous, neutral, insensitive, pleasant, and defensive responses may be dynamic multidimensional control states shaped by physical input, attention, relationship context, observation, and learning history. | OPEN |
 | HYP-007 | **Human Control-Space Reshaping:** expertise may be better modeled as structured changes in controllability, observability, sensory weighting, prediction, reachable state space, variability, and policy complexity than as one scalar capability increase. | OPEN |
+| HYP-008 | **Dependency-Aware Distributed Control:** local capability can fail globally when a subsystem lacks an adequate model of dependency, authority, load, backpressure, or relevant shared state. | OPEN |
 
 ## Mathematical starting point
 
@@ -188,6 +189,10 @@ and [docs/ELITE_HUMAN_CONTROL_ATLAS.md](docs/ELITE_HUMAN_CONTROL_ATLAS.md).
 For the deliberately bounded formal correspondence between these DCS loops and
 instrumented AI / agent harnesses, see
 [docs/FORMAL_CORRESPONDENCE_AI.md](docs/FORMAL_CORRESPONDENCE_AI.md).
+
+For the cross-domain dependency / load-routing extension spanning human
+coordination, computer systems, agent harnesses, and organizations, see
+[docs/HYP-008.md](docs/HYP-008.md).
 
 ## VAL-001 — Latent-State Non-Identifiability
 
@@ -499,3 +504,73 @@ TRANSFER
 A movement rescued by live feedback is not yet evidence of retained learning,
 and a retained training effect is not yet evidence of transfer.
 
+
+
+## Dependency-aware distributed control frontier
+
+A visible local action can depend on a much larger hidden coordination graph.
+
+~~~text
+Visible Action != Full Dependency Graph
+Local Completion != Global Completion
+Capability != Authority != Dependency != Observation
+~~~
+
+HYP-008 models systems as overlapping graphs for dependency, authority,
+observation, information / expertise, and load transfer.
+
+The research target is not maximum global awareness. It is the **minimum
+sufficient dependency projection** required for a local controller to act
+correctly.
+
+~~~text
+global state
+  -> role / task scoped projection
+  -> local internal model
+  -> local action
+  -> changed global state
+  -> new projection
+~~~
+
+Candidate transitions include:
+
+~~~text
+LINKAGE-DISCOVER
+DEPENDENCY-AWARE
+AUTHORITY-CALIBRATE
+ATTENTIONAL-REPARAMETERIZE
+SYNERGY-AWARE
+LOAD-ROUTE
+BACKPRESSURE-INTEGRATE
+PROJECTION-INTERNALIZE
+IMPLICIT-COORDINATE
+~~~
+
+Candidate failure states include:
+
+~~~text
+ROLE-BLIND
+HIDDEN-DEPENDENCY
+AUTHORITY-HALLUCINATION
+LOAD-HOTSPOT
+CASCADE-COMPENSATION
+STALE-PROJECTION
+CONTEXT-FLOOD
+LOCAL-OPTIMUM
+ESCALATION-FAILURE
+~~~
+
+In the human-control lane, conscious proprioception is treated as a candidate
+instrumentation layer over an otherwise largely automatic distributed
+controller. In the systems and organizational lanes, telemetry or role-scoped
+state projection plays the analogous formal role.
+
+These are formal correspondences only.
+
+~~~text
+muscle synergy != service dependency
+proprioception != telemetry
+manager != nervous system
+~~~
+
+See [docs/HYP-008.md](docs/HYP-008.md).
