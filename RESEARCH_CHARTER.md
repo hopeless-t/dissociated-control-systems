@@ -83,6 +83,12 @@ stimulation, invasive recording, injury, or unsupervised clinical-style
 intervention. Those require separate safety, ethics, and domain-specific
 protocols.
 
+Sexual / interpersonal hypotheses do not authorize non-consensual activity,
+coercive restraint, deception about consent or identity in real intimate
+activity, or privacy-invasive recording. Human sexual-research protocols
+require appropriate ethics review, informed consent, withdrawal rights,
+privacy protection, and domain expertise.
+
 ## Cross-domain transfer rule
 
 ~~~text
