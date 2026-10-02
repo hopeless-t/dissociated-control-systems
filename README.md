@@ -482,3 +482,20 @@ See [docs/HUMAN_CONTROL_DYNAMICS.md](docs/HUMAN_CONTROL_DYNAMICS.md),
 [docs/HUMAN_CONTROL_TRANSITION_ONTOLOGY.md](docs/HUMAN_CONTROL_TRANSITION_ONTOLOGY.md),
 and [docs/ELITE_HUMAN_CONTROL_ATLAS.md](docs/ELITE_HUMAN_CONTROL_ATLAS.md).
 
+### Temporal evidence ladder
+
+For human-control work, the repository now separates:
+
+~~~text
+CORRECT
+!=
+ADAPT
+!=
+CONSOLIDATE / RETAIN
+!=
+TRANSFER
+~~~
+
+A movement rescued by live feedback is not yet evidence of retained learning,
+and a retained training effect is not yet evidence of transfer.
+
