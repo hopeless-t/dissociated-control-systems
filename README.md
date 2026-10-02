@@ -142,6 +142,7 @@ parasomnia is in scope.
 | HYP-004 | **Local Intervention / Global Transition:** a bounded change to one gate or coupling can move the whole system between qualitatively different observable regimes. | OPEN |
 | HYP-005 | **Anticipatory Somatic Routing:** attention / expectation may configure body-part-specific somatosensory processing before physical input arrives and may change the transfer function applied to later touch. | OPEN |
 | HYP-006 | **Erogenous–Insensitivity State:** erogenous, neutral, insensitive, pleasant, and defensive responses may be dynamic multidimensional control states shaped by physical input, attention, relationship context, observation, and learning history. | OPEN |
+| HYP-007 | **Human Control-Space Reshaping:** expertise may be better modeled as structured changes in controllability, observability, sensory weighting, prediction, reachable state space, variability, and policy complexity than as one scalar capability increase. | OPEN |
 
 ## Mathematical starting point
 
@@ -178,6 +179,11 @@ touch, and the transition toward defensive/nociceptive processing — see
 For the dynamic erogenous / insensitivity model, interpersonal gating,
 self-observation re-entry, associative valuation, and dyadic learning loop, see
 [docs/HYP-006.md](docs/HYP-006.md).
+
+For the skill / expertise extension, see
+[docs/HYP-007.md](docs/HYP-007.md),
+[docs/HUMAN_CONTROL_TRANSITION_ONTOLOGY.md](docs/HUMAN_CONTROL_TRANSITION_ONTOLOGY.md),
+and [docs/ELITE_HUMAN_CONTROL_ATLAS.md](docs/ELITE_HUMAN_CONTROL_ATLAS.md).
 
 For the deliberately bounded formal correspondence between these DCS loops and
 instrumented AI / agent harnesses, see
