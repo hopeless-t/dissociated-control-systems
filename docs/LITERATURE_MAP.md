@@ -149,8 +149,8 @@ Analogy != evidence of shared mechanism
 - [P-SOMATTN-2014] van Ede et al.
 - [P-TACTOMIT-2018] Andersen and Lundqvist.
 - [P-PPS-2024] Geers, Kozieja, and Coello.
-- [P-EROG-2018] Croy et al.
-- [R-CT-2020] Strauss et al.
+- [P-EROG-2018] Panagiotopoulou et al.
+- [P-CT-2020] Sailer, Hausmann, and Croy.
 
 **ESTABLISHED SOURCE OBSERVATION**
 
