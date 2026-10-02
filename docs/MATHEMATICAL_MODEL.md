@@ -176,3 +176,160 @@ Candidate analyses include segmented regression, switching state-space models,
 and transition-probability changes.
 
 See [HYP-005.md](HYP-005.md).
+
+
+## Dynamic somatic-valuation extension
+
+HYP-006 separates local sensory dimensions that should not be collapsed into
+one sensitivity scalar.
+
+~~~text
+z_i(t) = [
+    D_i(t),  # detection
+    I_i(t),  # intensity
+    P_i(t),  # pleasantness
+    E_i(t),  # erotic salience
+    N_i(t)   # nociceptive / aversive value
+]
+~~~
+
+Physical input is vector-valued:
+
+~~~text
+u_i(t) = (
+    force,
+    area,
+    force_rate,
+    velocity,
+    frequency,
+    duration,
+    temperature,
+    site
+)
+~~~
+
+A phenomenological peripheral term is:
+
+~~~text
+r_i(t) =
+    sigmoid(
+        (phi_i(u_i(t)) - theta_i)
+        / kappa_i
+    )
+~~~
+
+Control state is explicitly separate:
+
+~~~text
+c_t = [
+    attention,
+    expectation,
+    arousal,
+    relationship_trust,
+    consent_agency,
+    mood,
+    perceived_threat,
+    perceived_observation,
+    self_observation
+]
+~~~
+
+History state:
+
+~~~text
+h_t = [
+    habituation,
+    learned_couplings,
+    self_model,
+    partner_model,
+    recent_interaction_history
+]
+~~~
+
+A local gain model is:
+
+~~~text
+g_i(t) =
+    sigmoid(
+        beta_i^T c_t
+        + gamma_i^T h_t
+    )
+~~~
+
+with:
+
+~~~text
+s_i(t) = g_i(t) * r_i(t)
+~~~
+
+and valuation:
+
+~~~text
+z_i(t) = V_i(s_i(t), c_t, h_t)
+~~~
+
+### Switching regimes
+
+A higher-level latent regime can be represented as:
+
+~~~text
+q_t in {
+    subthreshold,
+    neutral,
+    pleasant,
+    erotic,
+    defensive,
+    habituated
+}
+~~~
+
+with:
+
+~~~text
+P(q_{t+1} | q_t, u_t, c_t, h_t)
+P(y_t | z_t, q_t)
+~~~
+
+This makes "same input, different state transition" an explicit model property.
+
+### Associative update
+
+A minimal eligibility-trace form is:
+
+~~~text
+Delta W =
+    eta_positive * eligibility * positive_prediction_error
+  - eta_negative * eligibility * aversive_prediction_error
+  - lambda * habituation
+~~~
+
+This is a model family for testing somatic valuation learning, not evidence that
+a new erogenous region has been created.
+
+### Observation re-entry
+
+For self-observation:
+
+~~~text
+y_t = H(x_t)
+o_t = O(y_{t-tau}, perspective)
+x_{t+1} = F(x_t, u_t, o_t)
+~~~
+
+This permits observation itself to become an intervention when it re-enters the
+observed system.
+
+### Dyadic memory
+
+For persons A and B:
+
+~~~text
+M_B(t+1) = Update(M_B(t), report_A(t))
+u_B(t+1) = Policy_B(M_B(t+1), context_t+1)
+x_A(t+2) = F(x_A(t+1), u_B(t+1), c_A(t+1))
+~~~
+
+This represents a partner as an observer, external memory, and future input
+generator without treating human relationships as software components.
+
+See [HYP-006.md](HYP-006.md).
