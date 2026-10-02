@@ -576,3 +576,104 @@ The generalizable research question is:
 Transfer must always be measured separately from training-task improvement.
 
 See [ELITE_HUMAN_CONTROL_ATLAS.md](ELITE_HUMAN_CONTROL_ATLAS.md).
+
+## Transition grammar and update classes
+
+The transition label and the physical / computational update class are separate
+objects.
+
+For example:
+
+~~~text
+CALIBRATE
+~~~
+
+may be achieved by:
+
+~~~text
+U-MODEL
+U-POLICY
+U-WEIGHT
+or a mixture
+~~~
+
+while:
+
+~~~text
+EDGE-EXTEND
+~~~
+
+may reflect:
+
+~~~text
+U-PHYS
+U-BASIS
+U-REACH
+~~~
+
+or may be a false positive caused by COMPENSATED-EXPANSION.
+
+Therefore each coded transition should carry:
+
+~~~text
+transition_label
+candidate_update_class
+perturbation_fingerprint
+retention_result
+transfer_result
+compensation_check
+~~~
+
+### Candidate composition constraints
+
+Useful research paths include:
+
+~~~text
+INDIVIDUATE -> REINTEGRATE
+AUGMENT-OBS -> INTERNALIZE-FB
+CALIBRATE -> ROBUSTIFY
+ROBUSTIFY -> TRANSFER
+EDGE-EXTEND -> REINTEGRATE
+~~~
+
+Failure paths include:
+
+~~~text
+AUGMENT-OBS -> FEEDBACK-DEPENDENT
+EDGE-EXTEND -> COMPENSATED-EXPANSION
+CALIBRATE -> OVERFIT
+ROBUSTIFY -> RISK-DOMINANT
+~~~
+
+### Non-commutativity question
+
+For transition operators T_A and T_B:
+
+~~~text
+T_A(T_B(Theta))
+!=
+T_B(T_A(Theta))
+~~~
+
+is permitted.
+
+The ontology therefore records order, not merely membership.
+
+### Qualification requires perturbation
+
+A high task score is insufficient to qualify a transition.
+
+A candidate transition should survive at least one discriminating probe
+appropriate to the claim, such as:
+
+~~~text
+feedback removal
+sensory perturbation
+context shift
+mechanical perturbation
+dual-task load
+held-out transfer
+component constraint
+~~~
+
+The probe must be specified before observing the result whenever feasible.
