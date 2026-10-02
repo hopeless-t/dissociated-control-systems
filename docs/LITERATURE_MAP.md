@@ -447,3 +447,61 @@ future EXP  feedback dependence vs internalization
 
 Named elite performers remain hypothesis generators unless a proposed
 transition is directly instrumented.
+
+## Line L — Controller adaptation, feedback, retention, and transition identifiability
+
+**SOURCE**
+
+- [P-FEEDBACKCTRL-2025] Feulner et al.
+- [R-UCM-2024] Latash.
+- [R-AUGFB-2022] Petancevski et al.
+- [M-CI-RET-2024] Czyż et al.
+- [M-CI-XFER-2024] Czyż, Wójcik, and Solarská.
+
+**ESTABLISHED SOURCE OBSERVATION**
+
+A 2025 recurrent-network motor-control model showed that the same error-based
+feedback stream can support fast within-movement correction and slower
+trial-by-trial adaptation when the controller policy itself is plastic. The
+model reproduced several neural and behavioral features of motor adaptation,
+but it remains a computational model rather than proof of one unique biological
+implementation.
+
+Recent UCM review work emphasizes that performance-stabilizing motor synergies
+are naturally studied in task-relative subspaces and that mapping such findings
+onto neural control mechanisms remains difficult.
+
+A systematic review of augmented feedback in adult gross-motor and
+sport-specific learning found likely benefits but also emphasized that optimal
+feedback timing, frequency, and duration remain unresolved and that null /
+negative evidence is underrepresented.
+
+2024 meta-analyses of contextual interference found beneficial average effects
+for retention and transfer, with important heterogeneity by age and especially
+between laboratory and applied settings.
+
+**OUR INFERENCE**
+
+These findings strengthen four DCS requirements:
+
+~~~text
+1. immediate correction != retained controller change
+2. performance score != identified update class
+3. useful variability must be task-relative
+4. practice variability must be evaluated against target-environment transfer
+~~~
+
+They motivate multi-timescale controller state, perturbation fingerprinting,
+feedback-dependency tests, transition grammar, and representative-robustness
+tests.
+
+**EXPERIMENT IMPACT**
+
+~~~text
+HYP-007  require acquisition / retention / transfer separation
+future VAL  recover update class under synthetic perturbations
+future EXP  feedback-on -> feedback-off internalization test
+future EXP  representative vs irrelevant variability
+future EXP  transition-order / non-commutativity test
+~~~
+
