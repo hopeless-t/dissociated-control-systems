@@ -139,3 +139,63 @@ Cross-domain comparison remains downstream of domain-local validation.
 ~~~text
 Analogy != evidence of shared mechanism
 ~~~
+
+
+## Line F — Anticipatory somatic routing and pre-contact state
+
+**SOURCE**
+
+- [P-TACTEXP-2010] van Ede, Jensen, and Maris.
+- [P-SOMATTN-2014] van Ede et al.
+- [P-TACTOMIT-2018] Andersen and Lundqvist.
+- [P-PPS-2024] Geers, Kozieja, and Coello.
+- [P-EROG-2018] Croy et al.
+- [R-CT-2020] Strauss et al.
+
+**ESTABLISHED SOURCE OBSERVATION**
+
+Human MEG studies report pre-stimulus somatosensory oscillatory modulation when
+touch is expected or spatially attended. Expected-but-omitted tactile events can
+produce time-locked central somatosensory responses despite no physical event
+at the expected time.
+
+Visual approach / looming can facilitate responses to tactile targets, although
+peripersonal-space interpretations require care because attention,
+multisensory prediction, timing, and task design can contribute.
+
+Affective-touch work reports a group-level inverted-U relation between stroking
+velocity and pleasantness, with substantial individual variability and
+top-down/contextual contributions.
+
+**OUR INFERENCE**
+
+A body-part-specific somatosensory subsystem may occupy a different
+pre-stimulus state depending on attention and expectation. Physical contact is
+therefore not necessarily the first control input in the causal sequence.
+
+This motivates separating:
+
+~~~text
+attention
+expectation
+pre-contact sensory cues
+physical touch
+mechanical dose
+nociceptive / defensive dominance
+~~~
+
+rather than collapsing them into a single "touch" variable.
+
+The literature does **not** establish a special non-contact biological field or
+a therapeutic mechanism. Any such claim remains outside the current evidence.
+
+**EXPERIMENT IMPACT**
+
+~~~text
+HYP-005  Anticipatory Somatic Routing
+future VAL  recover additive vs gain-modulation models
+future EXP  attention x identical-touch interaction
+future EXP  expected-touch omission
+future EXP  pre-contact cue decomposition
+future EXP  mechanical-dose knee / regime switch
+~~~
