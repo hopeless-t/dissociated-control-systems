@@ -370,3 +370,96 @@ directly instrumented.
 - [HUMAN_CONTROL_TRANSITION_ONTOLOGY.md](HUMAN_CONTROL_TRANSITION_ONTOLOGY.md)
 - [MATHEMATICAL_MODEL.md](MATHEMATICAL_MODEL.md)
 - [FORMAL_CORRESPONDENCE_AI.md](FORMAL_CORRESPONDENCE_AI.md)
+
+## Deeper atlas rule: specimen != mechanism
+
+The atlas now separates three levels:
+
+~~~text
+Level 1  public / measured performance phenotype
+Level 2  candidate transition label
+Level 3  candidate controller update class
+~~~
+
+Example:
+
+~~~text
+precise repeated output
+ -> CALIBRATE
+ -> U-MODEL and/or U-POLICY candidate
+~~~
+
+The first line can be directly observed.
+
+The second and third require controlled evidence.
+
+This prevents a famous training anecdote from being promoted into a mechanism.
+
+## Cross-domain comparison vector
+
+Every future atlas specimen should attempt to fill:
+
+~~~text
+[
+    task_gain,
+    transfer,
+    retention,
+    perturbation_robustness,
+    observability,
+    controllability,
+    feedback_dependency,
+    task_harmful_variance,
+    control_cost,
+    compensation_or_risk
+]
+~~~
+
+Missing fields remain UNKNOWN rather than being inferred from reputation.
+
+## General-person extraction rule
+
+The atlas should extract a safe principle only when the elite example can be
+rewritten as a low-risk control operation.
+
+Examples:
+
+~~~text
+elite form:
+    extreme task-specific practice
+
+general research abstraction:
+    measure one output,
+    change one bounded constraint,
+    test retention,
+    remove feedback,
+    test a held-out condition
+~~~
+
+The general-person object is therefore the transition method, not the elite
+load, range, speed, or volume.
+
+## New cross-domain question
+
+A major open question is whether expert practice differs primarily in the
+chosen exercise or in **probe selection**:
+
+~~~text
+Which next practice condition is most informative about the current
+controller?
+~~~
+
+Candidate formalization:
+
+~~~text
+probe_star =
+    argmax [
+        information_gain
+      + expected_task_gain
+      + expected_transfer
+      - risk
+      - cost
+    ]
+~~~
+
+This reframes unusual elite training as possible active system identification,
+while leaving causal claims open until measured.
