@@ -744,3 +744,103 @@ TRANSFER
 ~~~
 
 A study may support one level without supporting the next.
+
+## Dependency-aware coordination transitions
+
+The human-control lane now includes transitions for hidden coupling and
+whole-body load distribution.
+
+### LINKAGE-DISCOVER
+
+~~~text
+unobserved coordination dependency
+->
+recognized coordination dependency
+~~~
+
+Candidate signature:
+
+~~~text
+the learner can predict which proximal / supporting states change with a
+declared distal action better than at baseline
+~~~
+
+This is an observability transition, not proof of a newly created anatomical
+connection.
+
+### SYNERGY-AWARE
+
+~~~text
+single-effector mental model
+->
+distributed coordination model
+~~~
+
+The learner represents a task as requiring a linked set of body components
+rather than one visible actuator.
+
+### ATTENTIONAL-REPARAMETERIZE
+
+~~~text
+many local control instructions
+->
+smaller task-level / relational control coordinates
+~~~
+
+Candidate representation:
+
+~~~text
+q in R^n
+z in R^k
+k << n
+
+q = Phi(z, context, fatigue, task)
+~~~
+
+The subjective coordinate is not assumed to be anatomically literal.
+
+### LOAD-ROUTE
+
+~~~text
+local load concentration
+->
+work redistributed across an available coordination graph
+~~~
+
+Candidate outcomes include:
+
+~~~text
+local peak effort down
+task output preserved
+time to local fatigue up
+off-target compensation bounded
+~~~
+
+### BACKPRESSURE-INTEGRATE
+
+~~~text
+local fatigue / loss-of-control signal ignored
+->
+upstream / whole-body policy changes before local failure
+~~~
+
+This is the human-control form of the broader HYP-008 backpressure concept.
+
+### Failure states
+
+#### LOCAL-ACTUATOR LOCK
+
+The learner represents a multi-component task as if one visible effector were
+the whole controller.
+
+#### LOAD-HOTSPOT
+
+A local subsystem carries disproportionate effort while alternate coordination
+routes remain unused or unobserved.
+
+#### CASCADE-COMPENSATION
+
+A degraded subsystem causes sequential compensatory changes in other
+subsystems, preserving coarse output while hidden cost rises.
+
+These labels are research abstractions and require domain-local measurement.
