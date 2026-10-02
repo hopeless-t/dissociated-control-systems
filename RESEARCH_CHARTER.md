@@ -106,3 +106,29 @@ transferable claim candidate
 ~~~
 
 A shared equation is not evidence of a shared physical mechanism.
+
+## Distributed-control invariants
+
+HYP-008 adds a cross-domain formal layer.
+
+~~~text
+Capability != Authority
+Capability != Dependency
+Dependency != Ownership
+Observation != Authority
+Local Completion != Global Completion
+Local Optimum != Global Optimum
+Visible Action != Full Dependency Graph
+Full Global State != Minimum Sufficient Projection
+~~~
+
+These statements are methodological invariants, not claims that human bodies,
+software systems, AI agents, and organizations share one physical mechanism.
+
+Cross-domain use must preserve:
+
+~~~text
+FORMAL CORRESPONDENCE / NOT SHARED MECHANISM
+~~~
+
+and require domain-local evidence before any operational transfer.
