@@ -1,4 +1,9 @@
-"""Deterministic primitives for the VAL-001 synthetic state model."""
+"""Deterministic primitives for dissociated-state synthetic models.
+
+VAL-001 covers latent-state non-identifiability.  The assisted-retrieval
+primitives are a separate synthetic formalism for studying whether a high
+joint-context score can conceal low independent retrievability.
+"""
 
 from __future__ import annotations
 
@@ -31,6 +36,51 @@ class SubsystemState:
     @property
     def values(self) -> tuple[float, float, float, float]:
         return (self.motor, self.procedural, self.executive, self.memory)
+
+
+@dataclass(frozen=True)
+class AssistedRetrievalState:
+    """Synthetic state for separating internal retrieval from external support.
+
+    This is a model primitive, not a claim about a biological memory mechanism.
+    """
+
+    internal_capability: float
+    retrieval_access: float
+    external_scaffold: float
+
+    def __post_init__(self) -> None:
+        for name in ("internal_capability", "retrieval_access", "external_scaffold"):
+            object.__setattr__(self, name, _bounded(getattr(self, name), name))
+
+
+def independent_retrieval(state: AssistedRetrievalState) -> float:
+    """Return expression after external context/support has been removed."""
+
+    return state.internal_capability * state.retrieval_access
+
+
+def assisted_performance(state: AssistedRetrievalState) -> float:
+    """Return a coarse joint-context score under a declared max-composition model.
+
+    The max operator is deliberately simple: either independently retrievable
+    knowledge or the external scaffold can support the coarse observable.
+    It exists only to make the non-identifiability test inspectable.
+    """
+
+    return max(independent_retrieval(state), state.external_scaffold)
+
+
+def offloading_gap(state: AssistedRetrievalState) -> float:
+    """Difference between assisted and context-evicted performance."""
+
+    return assisted_performance(state) - independent_retrieval(state)
+
+
+def context_evicted_observation(state: AssistedRetrievalState) -> dict[str, float]:
+    """Expose the independent score after removing the external scaffold."""
+
+    return {"independent_retrieval": independent_retrieval(state)}
 
 
 def coarse_observation(state: SubsystemState) -> dict[str, bool]:
