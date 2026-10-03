@@ -1,5 +1,6 @@
 """Dissociated Control Systems research primitives."""
 
+from .curriculum import CurriculumTask, choose_curriculum_task
 from .meta_loop import (
     ObservationOption,
     choose_observation,
@@ -29,9 +30,11 @@ from .state_model import (
 
 __all__ = [
     "CompiledSkill",
+    "CurriculumTask",
     "ObservationOption",
     "RepresentationOption",
     "SubsystemState",
+    "choose_curriculum_task",
     "choose_minimal_sufficient_representation",
     "choose_observation",
     "coarse_observation",
