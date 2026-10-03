@@ -109,6 +109,50 @@ PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC4251320/
 
 Role: small responder study reporting metabolic changes after zolpidem.
 
+
+## AI-assisted learning, retrieval, and cognitive offloading
+
+### [B-IWASHI-STUDY-2026] iwashi.co
+
+"AI時代の勉強法(2026)." 2026-10-01.
+
+https://iwashi.co/2026/10/01/how-to-study-in-ai-era
+
+Role: practitioner source motivating the context-eviction / self-explanation /
+targeted-feedback loop. It is not scientific evidence by itself.
+
+### [M-RETRIEVAL-2025] Gonçalves, Muniz, and Jaeger
+
+A. de Oliveira Gonçalves, B. F. B. Muniz, and A. Jaeger. "Retrieval Practice
+Versus Elaborative Encoding: A Systematic and Meta-analytic Review."
+Educational Psychology Review 37, 100 (2025).
+
+DOI: https://doi.org/10.1007/s10648-025-10076-6
+
+Role: meta-analytic evidence relevant to retrieval practice and the moderating
+role of corrective feedback.
+
+### [P-AITUTOR-2025] Kestin et al.
+
+G. Kestin et al. "AI tutoring outperforms in-class active learning: an RCT
+introducing a novel research-based design in an authentic educational setting."
+Scientific Reports 15, 17458 (2025).
+
+DOI: https://doi.org/10.1038/s41598-025-97652-6
+
+Role: randomized controlled evidence that a structured AI tutor can support
+learning; does not establish that every AI-assistance policy improves retention.
+
+### [P-CHATGPT-RETENTION-2025] ChatGPT cognitive-crutch RCT
+
+"ChatGPT as a cognitive crutch: Evidence from a randomized controlled trial on
+knowledge retention." Social Sciences & Humanities Open (2025).
+
+DOI: https://doi.org/10.1016/j.ssaho.2025.102287
+
+Role: experimental evidence motivating explicit measurement of retention and
+cognitive offloading under unrestricted ChatGPT assistance.
+
 ## Mathematical and software references
 
 ### [M-HMM-1989] Rabiner
