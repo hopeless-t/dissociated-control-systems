@@ -209,3 +209,34 @@ and later Catfood Lab research repositories.
 
 Only the reproducibility and evidence discipline is inherited; the scientific
 claims are not.
+
+
+## Voice, speech, and cognitive-state observability
+
+### [P-VOICE-COG-2026] Russo, Hawkshaw, and Sataloff
+
+A. G. Russo, M. J. Hawkshaw, and R. T. Sataloff. "Voice Disorders as Early
+Biomarkers of Cognitive Decline." Journal of Voice (2026), online ahead of
+print.
+
+DOI: https://doi.org/10.1016/j.jvoice.2026.07.037  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/42575772/
+
+Role: large retrospective cohort evidence that diagnosed voice disorders are
+associated with elevated incident cognitive decline. This source supports a
+voice/speech observability research lane; it does not establish causation,
+specific acoustic biomarkers, or beneficial cognitive effects from voice
+treatment.
+
+### [P-VOICE-SCREEN-2026] Mekulu, Aqlan, and Yang
+
+K. Mekulu, F. Aqlan, and H. Yang. "A 60-second interpretable voice model for
+early dementia screening." PLOS Digital Health 5(7), e0001552 (2026).
+
+DOI: https://doi.org/10.1371/journal.pdig.0001552
+
+Role: interpretable short-speech screening precedent using linguistic and
+semantic features from DementiaBank picture descriptions. The reported
+ElasticNet model used eight active features and achieved ROC-AUC 0.858 on a
+held-out split. This is a dataset-specific screening result, not prospective
+evidence of disease prevention or reversal.

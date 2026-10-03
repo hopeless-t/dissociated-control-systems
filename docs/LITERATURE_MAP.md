@@ -139,3 +139,44 @@ Cross-domain comparison remains downstream of domain-local validation.
 ~~~text
 Analogy != evidence of shared mechanism
 ~~~
+
+
+## Line F — Voice/speech as a partial observation of cognitive-control state
+
+**SOURCE**
+
+- [P-VOICE-COG-2026] Russo, Hawkshaw, and Sataloff.
+- [P-VOICE-SCREEN-2026] Mekulu, Aqlan, and Yang.
+
+**ESTABLISHED SOURCE OBSERVATION**
+
+A large retrospective health-record study reports an association between
+diagnosed voice disorders and later incident cognitive decline. A separate
+DementiaBank study reports that a sparse, interpretable model using short
+picture-description speech/transcript features can classify dementia cases and
+controls with useful held-out discrimination in that dataset.
+
+These findings concern different observables and study designs. They must not be
+collapsed into one biomarker claim.
+
+**OUR INFERENCE**
+
+Voice and speech are candidate low-burden observation channels for a latent
+control-state model. Their value may be strongest longitudinally, especially
+when combined with an independent task-performance channel and explicit nuisance
+modeling.
+
+Deliberate speech modulation is also a useful adversarial case: if the voice
+channel can be changed without independent cognitive change, the model must not
+mistake sensor gaming for latent-state recovery.
+
+**EXPERIMENT IMPACT**
+
+~~~text
+RQ-VOICE-001  Voice as a longitudinal control-state sensor
+HYP-005       Longitudinal Voice Observability
+HYP-006       Volitional State Perturbation
+HYP-007       Sensor-Gaming Separability
+~~~
+
+See [RQ-VOICE-001.md](RQ-VOICE-001.md).

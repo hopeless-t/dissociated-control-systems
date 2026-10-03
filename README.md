@@ -125,7 +125,8 @@ This repository does **not** currently claim to:
 - prove that a hidden-state model corresponds to a biological latent state;
 - treat analogy as causality;
 - turn a synthetic model into a clinical conclusion;
-- turn a research finding into production authority for another project.
+- turn a research finding into production authority for another project;
+- infer that voluntarily changing speech proves prevention, reversal, or slowing of cognitive decline.
 
 Medical and neuroscience claims must be traced to published sources.
 
@@ -140,6 +141,9 @@ parasomnia is in scope.
 | HYP-002 | **Subsystem State Dissociation:** a useful global state may require a vector of subsystem states rather than one scalar label. | OPEN |
 | HYP-003 | **Observability Gap:** multiple latent subsystem configurations can produce the same coarse external observation. | OPEN |
 | HYP-004 | **Local Intervention / Global Transition:** a bounded change to one gate or coupling can move the whole system between qualitatively different observable regimes. | OPEN |
+| HYP-005 | **Longitudinal Voice Observability:** voice/speech trajectories may provide a partial observation of latent control-state change after nuisance control. | OPEN |
+| HYP-006 | **Volitional State Perturbation:** deliberate attention/metacognitive strategies may perturb control/accessibility state; independent channels must confirm any inferred state change. | OPEN |
+| HYP-007 | **Sensor-Gaming Separability:** changing the voice observation without independent cognitive change must not count as latent-state recovery. | OPEN |
 
 ## Mathematical starting point
 
@@ -168,6 +172,8 @@ This deliberately supports multiple model families:
 - Bayesian latent-state models.
 
 See [docs/MATHEMATICAL_MODEL.md](docs/MATHEMATICAL_MODEL.md).
+
+A new observation lane treats voice/speech as a candidate longitudinal sensor while explicitly separating latent-state change from manipulation of the observation channel. See [docs/RQ-VOICE-001.md](docs/RQ-VOICE-001.md).
 
 ## VAL-001 — Latent-State Non-Identifiability
 
