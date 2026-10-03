@@ -8,6 +8,16 @@ from .meta_loop import (
     learning_velocity,
     two_tier_break_even_stop_probability,
 )
+from .representation_budget import (
+    RepresentationOption,
+    choose_minimal_sufficient_representation,
+    should_expand_representation,
+)
+from .skill_compiler import (
+    CompiledSkill,
+    replay_is_economical,
+    select_compiled_skill,
+)
 from .state_model import (
     SubsystemState,
     coarse_observation,
@@ -18,8 +28,11 @@ from .state_model import (
 )
 
 __all__ = [
+    "CompiledSkill",
     "ObservationOption",
+    "RepresentationOption",
     "SubsystemState",
+    "choose_minimal_sufficient_representation",
     "choose_observation",
     "coarse_observation",
     "dissociation_index",
@@ -28,6 +41,9 @@ __all__ = [
     "expected_cascade_cost",
     "expressed_capability",
     "learning_velocity",
+    "replay_is_economical",
     "rich_observation",
+    "select_compiled_skill",
+    "should_expand_representation",
     "two_tier_break_even_stop_probability",
 ]
