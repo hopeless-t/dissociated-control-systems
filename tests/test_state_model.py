@@ -1,11 +1,16 @@
 import pytest
 
 from dissociated_control_systems import (
+    AssistedRetrievalState,
+    assisted_performance,
+    context_evicted_observation,
     SubsystemState,
     coarse_observation,
     dissociation_index,
     equivalence_class,
     expressed_capability,
+    independent_retrieval,
+    offloading_gap,
     rich_observation,
 )
 
@@ -54,3 +59,44 @@ def test_invalid_state_values_fail_closed(bad: float) -> None:
 def test_boolean_is_not_silently_accepted_as_numeric_state() -> None:
     with pytest.raises(TypeError):
         SubsystemState(True, 1.0, 1.0, 1.0)
+
+
+
+def test_assisted_score_can_hide_independent_retrieval_dissociation() -> None:
+    scaffold_dependent = AssistedRetrievalState(
+        internal_capability=1.0,
+        retrieval_access=0.2,
+        external_scaffold=0.9,
+    )
+    independently_accessible = AssistedRetrievalState(
+        internal_capability=0.9,
+        retrieval_access=1.0,
+        external_scaffold=0.9,
+    )
+
+    assert assisted_performance(scaffold_dependent) == pytest.approx(0.9)
+    assert assisted_performance(independently_accessible) == pytest.approx(0.9)
+    assert context_evicted_observation(scaffold_dependent) == {
+        "independent_retrieval": pytest.approx(0.2)
+    }
+    assert context_evicted_observation(independently_accessible) == {
+        "independent_retrieval": pytest.approx(0.9)
+    }
+
+
+def test_offloading_gap_known_answer() -> None:
+    state = AssistedRetrievalState(
+        internal_capability=1.0,
+        retrieval_access=0.2,
+        external_scaffold=0.9,
+    )
+    assert independent_retrieval(state) == pytest.approx(0.2)
+    assert offloading_gap(state) == pytest.approx(0.7)
+
+
+def test_retrieval_state_fails_closed_on_out_of_range_inputs() -> None:
+    with pytest.raises(ValueError):
+        AssistedRetrievalState(1.0, 1.0, 1.01)
+
+    with pytest.raises(TypeError):
+        AssistedRetrievalState(1.0, True, 0.5)
