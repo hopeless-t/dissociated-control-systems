@@ -139,7 +139,7 @@ parasomnia is in scope.
 | HYP-001 | **Capability–Accessibility Separation:** retained capability and expressed capability can differ because of a gate or control state. | OPEN |
 | HYP-002 | **Subsystem State Dissociation:** a useful global state may require a vector of subsystem states rather than one scalar label. | OPEN |
 | HYP-003 | **Observability Gap:** multiple latent subsystem configurations can produce the same coarse external observation. | OPEN |
-| HYP-004 | **Local Intervention / Global Transition:** a bounded change to one gate or coupling can move the whole system between qualitatively different observable regimes. | OPEN |
+| HYP-004 | **Local Intervention / Global Transition:** a bounded change to one gate or coupling can move the whole system between qualitatively different observable regimes. | OPEN |\n| HYP-005 | **Assisted/Independent Retrieval Dissociation:** high performance with an external cognitive scaffold can coexist with materially lower independent retrieval after the scaffold is removed. | OPEN |
 
 ## Mathematical starting point
 
@@ -167,7 +167,7 @@ This deliberately supports multiple model families:
 - coupled dynamical systems;
 - Bayesian latent-state models.
 
-See [docs/MATHEMATICAL_MODEL.md](docs/MATHEMATICAL_MODEL.md).
+See [docs/MATHEMATICAL_MODEL.md](docs/MATHEMATICAL_MODEL.md).\n\nA separate synthetic research lane now studies AI-assisted retrieval as an\nobservability problem: [RQ-001 — AI-assisted retrieval dissociation](docs/RQ-001_AI_ASSISTED_RETRIEVAL_DISSOCIATION.md).
 
 ## VAL-001 — Latent-State Non-Identifiability
 
