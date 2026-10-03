@@ -52,7 +52,7 @@ def step_norms(trajectory: Iterable[Iterable[float]]) -> tuple[float, ...]:
     dimension = len(states[0])
     if any(len(state) != dimension for state in states):
         raise ValueError("trajectory states must have the same dimension")
-    return tuple(distance(previous, current) for previous, current in zip(states, states[1:], strict=True))
+    return tuple(distance(previous, current) for previous, current in zip(states, states[1:]))
 
 
 def contraction_ratios(
@@ -64,7 +64,7 @@ def contraction_ratios(
         raise ValueError("zero_tolerance must be non-negative")
     steps = step_norms(trajectory)
     ratios: list[float] = []
-    for previous, current in zip(steps, steps[1:], strict=True):
+    for previous, current in zip(steps, steps[1:]):
         if previous <= zero_tolerance:
             ratios.append(0.0 if current <= zero_tolerance else float("inf"))
         else:
