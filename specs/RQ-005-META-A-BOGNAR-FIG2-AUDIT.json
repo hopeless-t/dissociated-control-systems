@@ -11,7 +11,7 @@
     {"row":1,"label":"ZHANG_L_2021","intervention_n":80,"control_n":80,"hr":0.51,"ci95":[0.17,1.52],"canonical_count_source":"ZHANG_L_2021","canonical_effect_match":"ZHANG_L_2021"},
     {"row":2,"label":"BAO_2019","intervention_n":136,"control_n":135,"hr":0.65,"ci95":[0.43,1.00],"canonical_count_source":"KUCHLER_1999_2007","canonical_effect_match":"BAO_2019"},
     {"row":3,"label":"LU_2021","intervention_n":92,"control_n":94,"hr":0.68,"ci95":[0.51,0.90],"canonical_count_source":"VANBUTSELE_2018","canonical_effect_match":"LU_2021"},
-    {"row":4,"label":"KIRKEGAARD_2023","intervention_n":62,"control_n":62,"hr":0.68,"ci95":[0.41,1.14],"canonical_count_source":"EDELMAN_1999_RANDOMIZED","canonical_effect_match":"KIRKEGAARD_2023"},
+    {"row":4,"label":"KIRKEGAARD_2023","intervention_n":62,"control_n":62,"hr":0.68,"ci95":[0.41,1.14],"canonical_count_source":"EDELMAN_1999","canonical_count_snapshot":"EDELMAN_1999_RANDOMIZED","canonical_effect_match":"KIRKEGAARD_2023"},
     {"row":5,"label":"TAKANO_2021","intervention_n":30,"control_n":36,"hr":0.83,"ci95":[0.50,1.38],"canonical_count_source":"CUNNINGHAM_1998","canonical_effect_match":"TAKANO_2021"},
     {"row":6,"label":"GOODWIN_2001","intervention_n":114,"control_n":113,"hr":0.93,"ci95":[0.76,1.15],"canonical_count_source":"ANDERSEN_2008","canonical_effect_match":null},
     {"row":7,"label":"SPIEGEL_2007","intervention_n":110,"control_n":110,"hr":0.93,"ci95":[0.62,1.40],"canonical_count_source":"BAO_2019","canonical_effect_match":"SPIEGEL_2007"},
@@ -32,7 +32,7 @@
     "GOODWIN_2001":{"intervention_n":158,"control_n":77,"hr":1.060,"ci95":[0.780,1.450],"source":"Goodwin et al. 2001 primary RCT / Asakawa-Haas Table 4"},
     "SPIEGEL_2007":{"intervention_n":64,"control_n":61,"hr":0.930,"ci95":[0.620,1.400],"source":"Asakawa-Haas 2026 Table 4"},
     "EDELMAN_1999":{"intervention_n":60,"control_n":61,"count_scope":"survival analysis after exclusion of 3 non-metastatic participants","hr":1.323,"ci95":[0.841,2.080],"source":"Asakawa-Haas 2026 Table 4"},
-    "EDELMAN_1999_RANDOMIZED":{"intervention_n":62,"control_n":62,"count_scope":"initial randomized allocation","source":"Edelman primary trial / secondary review"},
+    "EDELMAN_1999_RANDOMIZED":{"trial_id":"EDELMAN_1999","intervention_n":62,"control_n":62,"count_scope":"initial randomized allocation","source":"Edelman primary trial / secondary review"},
     "GUO_Z_2013":{"intervention_n":89,"control_n":89,"hr":1.044,"ci95":[0.504,2.162],"source":"Asakawa-Haas 2026 Table 4"},
     "VANBUTSELE_2018":{"intervention_n":92,"control_n":94,"hr":null,"ci95":null,"source":"Vanbutsele et al. 2018 primary RCT; published survival reported by medians/P value"},
     "KISSANE_2007":{"intervention_n":147,"control_n":80,"hr":0.920,"ci95":[0.690,1.240],"source":"Kissane et al. 2007 primary RCT / Asakawa-Haas Table 4"},
@@ -47,7 +47,8 @@
     "some_figure_effects_match_the_labeled_trial_while_counts_match_another_trial",
     "at_least_one_row_kissane_2007_carries_goodwin_2001_count_and_effect_tuple",
     "figure_pooled_hr_is_arithmetically_consistent_with_displayed_hr_and_weight_columns",
-    "main_text_os_hr_1_01_remains_in_conflict_with_abstract_and_figure_hr_0_97"
+    "main_text_os_hr_1_01_remains_in_conflict_with_abstract_and_figure_hr_0_97",
+    "population_snapshot_identity_is_distinct_from_trial_identity"
   ],
   "nonclaims": [
     "cross_row_matches_do_not_yet_prove_a_plotting_or_join_bug",
