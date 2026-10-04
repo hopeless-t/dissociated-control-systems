@@ -64,6 +64,7 @@ def classify_dimension(
     *,
     confidence,
     max_repeats=MAX_REPEATS,
+    force_all=False,
 ):
     llr = 0.0
     used = 0
@@ -82,12 +83,26 @@ def classify_dimension(
         )
         posterior = posterior_from_llr(llr)
         used += 1
-        if posterior >= confidence or posterior <= 1.0 - confidence:
+        if (
+            not force_all
+            and (
+                posterior >= confidence
+                or posterior <= 1.0 - confidence
+            )
+        ):
             break
     return posterior >= 0.5, posterior, used
 
 
-def evaluate_policy(models, *, samples_per_hypothesis, seed_base, confidence, max_repeats):
+def evaluate_policy(
+    models,
+    *,
+    samples_per_hypothesis,
+    seed_base,
+    confidence,
+    max_repeats,
+    force_all=False,
+):
     exact = 0
     total = 0
     total_probes = 0
@@ -109,6 +124,7 @@ def evaluate_policy(models, *, samples_per_hypothesis, seed_base, confidence, ma
                     + sample * 10,
                     confidence=confidence,
                     max_repeats=max_repeats,
+                    force_all=force_all,
                 )
                 truth = target_fault in fault_set
                 correct = prediction == truth
@@ -179,6 +195,7 @@ def evidence_budget_experiment():
         seed_base=1_000_000_000,
         confidence=0.999999,
         max_repeats=5,
+        force_all=True,
     )
     sequential = evaluate_policy(
         models,
@@ -218,6 +235,7 @@ def format_markdown() -> str:
         "> Synthetic control-model result only. Clinical authority: NONE.",
         "",
         f"- max repeats / dimension: {MAX_REPEATS}",
+        "- fixed-five comparator: exactly five probes per dimension (20 total)",
         f"- declared probe-cost weight: {PROBE_COST_WEIGHT:.3f}",
         f"- validation-selected confidence: {result['selected_confidence']:.3f}",
         "",
