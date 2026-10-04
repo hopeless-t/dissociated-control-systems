@@ -139,7 +139,7 @@ parasomnia is in scope.
 | HYP-001 | **Capability–Accessibility Separation:** retained capability and expressed capability can differ because of a gate or control state. | OPEN |
 | HYP-002 | **Subsystem State Dissociation:** a useful global state may require a vector of subsystem states rather than one scalar label. | OPEN |
 | HYP-003 | **Observability Gap:** multiple latent subsystem configurations can produce the same coarse external observation. | OPEN |
-| HYP-004 | **Local Intervention / Global Transition:** a bounded change to one gate or coupling can move the whole system between qualitatively different observable regimes. | OPEN |
+| HYP-004 | **Local Intervention / Global Transition:** a bounded change to one gate or coupling can move the whole system between qualitatively different observable regimes. | OPEN |\n| HYP-005 | **Mediated Psychological State Transition:** any effect of a psychological control state on tumor dynamics must pass through measurable behavioral, neuroendocrine, immune, or treatment mediators; no direct `hope -> tumor` edge is assumed. | OPEN |\n| HYP-006 | **Rare Regression as Basin Crossing:** some rare tumor regressions may be nonlinear state transitions caused by combinations of immune, treatment, inflammatory, and tumor-specific factors; psychological narrative alone is not causal evidence. | OPEN |
 
 ## Mathematical starting point
 
@@ -206,7 +206,7 @@ fail this validation.
 See [docs/VAL-001.md](docs/VAL-001.md) and
 [specs/VAL-001.json](specs/VAL-001.json).
 
-## Research architecture
+## New oncology control-state lane\n\n[RQ-005 — Psychological control state, neuroimmune mediation, and tumor dynamics](docs/RQ-005_HOPE_NEUROIMMUNE_CONTROL.md) introduces a strictly non-clinical synthetic model for asking whether measurable mediator changes can move a tumor-bearing system across a growth/control boundary. It explicitly preserves `Hope != cancer treatment` and `Model QED != clinical QED`.\n\n## Research architecture
 
 ~~~text
 Question
