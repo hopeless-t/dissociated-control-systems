@@ -2,8 +2,9 @@
 
 A meta-analysis row is treated as a tuple of identities, not just an effect
 estimate. Canonical records may contain multiple evidence snapshots from one
-trial (for example randomized allocation vs survival-analysis population).
-Those snapshots must never be mistaken for independent trials.
+trial and may contain semantically different count pairs (for example
+population sizes versus recurrence-event counts). Equal numbers do not imply
+equal field semantics.
 """
 
 from __future__ import annotations
@@ -22,6 +23,7 @@ class CanonicalEvidence:
     lower: float | None = None
     upper: float | None = None
     evidence_id: str | None = None
+    count_semantics: str = "population_size"
 
     def __post_init__(self) -> None:
         if not self.trial_id.strip() or self.trial_id != self.trial_id.strip():
@@ -29,6 +31,8 @@ class CanonicalEvidence:
         if self.evidence_id is not None:
             if not self.evidence_id.strip() or self.evidence_id != self.evidence_id.strip():
                 raise ValueError("evidence_id must be non-empty and normalized")
+        if not self.count_semantics.strip() or self.count_semantics != self.count_semantics.strip():
+            raise ValueError("count_semantics must be non-empty and normalized")
         for name in ("intervention_n", "control_n"):
             value = getattr(self, name)
             if value is not None and (
@@ -58,6 +62,7 @@ class DisplayedEvidence:
     hr: float
     lower: float
     upper: float
+    count_semantics: str = "population_size"
 
     def __post_init__(self) -> None:
         if not self.row_id.strip() or self.row_id != self.row_id.strip():
@@ -67,6 +72,8 @@ class DisplayedEvidence:
             or self.displayed_trial_id != self.displayed_trial_id.strip()
         ):
             raise ValueError("displayed_trial_id must be non-empty and normalized")
+        if not self.count_semantics.strip() or self.count_semantics != self.count_semantics.strip():
+            raise ValueError("count_semantics must be non-empty and normalized")
         if self.intervention_n <= 0 or self.control_n <= 0:
             raise ValueError("displayed counts must be positive")
         if not (0 < self.lower <= self.hr <= self.upper):
@@ -91,12 +98,16 @@ def build_canonical_index(
 def count_matches(
     row: DisplayedEvidence,
     canonical: Mapping[str, CanonicalEvidence],
+    *,
+    same_semantics: bool = True,
 ) -> tuple[str, ...]:
-    """Return evidence snapshot IDs with the exact displayed allocation counts."""
+    """Return exact count-pair matches, optionally requiring field semantics."""
 
     matches = []
     for evidence_id, record in canonical.items():
         if record.intervention_n is None or record.control_n is None:
+            continue
+        if same_semantics and record.count_semantics != row.count_semantics:
             continue
         if (record.intervention_n, record.control_n) == (
             row.intervention_n,
@@ -104,6 +115,20 @@ def count_matches(
         ):
             matches.append(evidence_id)
     return tuple(sorted(matches))
+
+
+def cross_semantic_count_matches(
+    row: DisplayedEvidence,
+    canonical: Mapping[str, CanonicalEvidence],
+) -> tuple[str, ...]:
+    """Return equal count pairs whose declared field semantics differ."""
+
+    all_matches = count_matches(row, canonical, same_semantics=False)
+    return tuple(
+        evidence_id
+        for evidence_id in all_matches
+        if canonical[evidence_id].count_semantics != row.count_semantics
+    )
 
 
 def effect_matches(
@@ -146,6 +171,7 @@ def classify_binding(
     """Describe identity consistency without guessing the mechanism of mismatch."""
 
     counts = count_matches(row, canonical)
+    semantic_collisions = cross_semantic_count_matches(row, canonical)
     effects = effect_matches(
         row,
         canonical,
@@ -153,6 +179,7 @@ def classify_binding(
         interval_tolerance=interval_tolerance,
     )
     count_trial_ids = _trial_ids_for_matches(counts, canonical)
+    semantic_collision_trial_ids = _trial_ids_for_matches(semantic_collisions, canonical)
     effect_trial_ids = _trial_ids_for_matches(effects, canonical)
     own_count = row.displayed_trial_id in count_trial_ids
     own_effect = row.displayed_trial_id in effect_trial_ids
@@ -165,14 +192,19 @@ def classify_binding(
         status = "EFFECT_SOURCE_CONFLICT_OR_DERIVATION"
     elif counts or effects:
         status = "CROSS_BINDING_CANDIDATE"
+    elif semantic_collisions:
+        status = "COUNT_SEMANTIC_COLLISION_CANDIDATE"
     else:
         status = "UNRESOLVED_IDENTITY"
 
     return {
         "row_id": row.row_id,
         "displayed_trial_id": row.displayed_trial_id,
+        "displayed_count_semantics": row.count_semantics,
         "count_matches": counts,
         "count_match_trial_ids": count_trial_ids,
+        "cross_semantic_count_matches": semantic_collisions,
+        "cross_semantic_count_match_trial_ids": semantic_collision_trial_ids,
         "effect_matches": effects,
         "effect_match_trial_ids": effect_trial_ids,
         "own_count_match": own_count,
