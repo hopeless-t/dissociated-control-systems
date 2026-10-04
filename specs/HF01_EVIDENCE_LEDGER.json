@@ -89,5 +89,50 @@
   "synthetic_hysteresis": {
     "status": "QED_WITHIN_FROZEN_MODEL_ONLY",
     "human_validation": "NONE"
-  }
+  },
+  "dynamic_observation": {
+    "HF_SIM_002": {
+      "evidence": "SYNTHETIC_KNOWN_ANSWER",
+      "result": "matched visible-output states show different early regeneration response and radically different late output response",
+      "invariant_candidate": "Early Molecular Response != Recoverability",
+      "biological_authority": "NONE"
+    },
+    "Tang_2003": {
+      "evidence": "SMALL_UNCONTROLLED_HUMAN_TEMPORAL_ASSOCIATION",
+      "pmid": "12894070",
+      "result": "4-month dermal-papilla IGF-1 response was associated with 12-month photographic response in 9 men",
+      "role": "proof-of-concept temporal observer architecture",
+      "limitations": [
+        "n=9",
+        "uncontrolled",
+        "single candidate probe"
+      ]
+    },
+    "Mirmirani_2015": {
+      "evidence": "CONTROLLED_HUMAN_INTERVENTION_FEASIBILITY",
+      "pmid": "25204361",
+      "result": "prospective minoxidil/placebo design combined scalp transcriptomics with photographic observation",
+      "role": "feasibility of intervention-linked molecular and output observation",
+      "limitations": [
+        "pilot study",
+        "short horizon"
+      ]
+    },
+    "GSE178510": {
+      "evidence": "PRE_REGISTERED_ACTUATOR_PREDICTION_FAILED",
+      "input": "minoxidil 48 h in primary HFDPC 2D culture",
+      "primary_axis": "wnt_regeneration_loss",
+      "expected_mean_signed_effect": "< 0",
+      "observed_mean_signed_effect": 0.159093,
+      "gene_direction": "4/6 genes moved opposite the disease direction, but frozen mean score remained positive",
+      "interpretation": "cross-sectional disease-state projection is not established as a monotonic actuator-response coordinate"
+    }
+  },
+  "model_invariants": [
+    "Observable Hair Output != Unique Latent State",
+    "State Separation Axis != Actuator Response Axis",
+    "Early Molecular Response != Recoverability",
+    "Structural Remodeling != Proven Mechanical Lock",
+    "Mechanism Existence != Measurement Sensitivity"
+  ]
 }
