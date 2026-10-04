@@ -155,5 +155,23 @@
       "cognitive_gap": "existing bridge is too compressed for reliable reconstruction",
       "control_target": "minimum exposed explanation complexity subject to correct reconstruction, uncertainty calibration, and evidence-authority preservation"
     }
+  },
+  "minimum_checkpoint_architecture": {
+    "status": "SYNTHETIC_LOCAL_FIXED_POINT",
+    "contracts": [
+      "HF-SIM-007",
+      "HF-SIM-008"
+    ],
+    "mandatory_role_candidates": [
+      "provenance",
+      "state_response_typing",
+      "uncertainty",
+      "reachability"
+    ],
+    "distinction": {
+      "checkpoint_instance": "replaceable concrete representation",
+      "checkpoint_role": "semantic correctness barrier that must appear on every accepted path"
+    },
+    "compression_rule": "Compress aggressively between required role-dominators; reject any endpoint path that bypasses one."
   }
 }
