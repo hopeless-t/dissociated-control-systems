@@ -126,40 +126,51 @@ def masked_distance(left, right, norm):
     return fmean(terms)
 
 
-def masked_knn(features, train, norm, *, k):
-    distances = [
-        (masked_distance(features, train_features, norm), label)
-        for label, train_features in train
-    ]
-    nearest = [
-        label
-        for distance, label in sorted(distances, key=lambda item: item[0])
-        if distance != float("inf")
-    ][:k]
-
+def _knn_posterior(nearest, *, k):
     labels = hypotheses()
+    chosen = nearest[:k]
     smoothing = 0.05
-    if not nearest:
+    if not chosen:
         return {label: 1.0 / len(labels) for label in labels}
-
-    counts = Counter(nearest)
-    denominator = len(nearest) + smoothing * len(labels)
+    counts = Counter(chosen)
+    denominator = len(chosen) + smoothing * len(labels)
     return {
         label: (counts.get(label, 0) + smoothing) / denominator
         for label in labels
     }
 
 
-def evaluate(dataset, train, templates, norm, *, k, bayes_weight):
+def precompute(dataset, train, templates, norm):
+    max_k = max(K_VALUES)
+    rows = []
+    for true_label, features in dataset:
+        bp = masked_bayes(features, templates)
+        distances = [
+            (masked_distance(features, train_features, norm), label)
+            for label, train_features in train
+        ]
+        nearest = [
+            label
+            for distance, label in sorted(distances, key=lambda item: item[0])
+            if distance != float("inf")
+        ][:max_k]
+        knn_by_k = {
+            k: _knn_posterior(nearest, k=k)
+            for k in K_VALUES
+        }
+        rows.append((true_label, bp, knn_by_k))
+    return rows
+
+
+def evaluate_precomputed(data, *, k, bayes_weight):
     correct = 0
     oracle_correct = 0
     bayes_correct = 0
     knn_correct = 0
     confidence = []
 
-    for true_label, features in dataset:
-        bp = masked_bayes(features, templates)
-        kp = masked_knn(features, train, norm, k=k)
+    for true_label, bp, knn_by_k in data:
+        kp = knn_by_k[k]
         ep = {
             label: bayes_weight * bp[label] + (1.0 - bayes_weight) * kp[label]
             for label in bp
@@ -176,7 +187,7 @@ def evaluate(dataset, train, templates, norm, *, k, bayes_weight):
         oracle_correct += int(b_ok or n_ok)
         confidence.append(ep[e])
 
-    total = len(dataset)
+    total = len(data)
     return {
         "accuracy": correct / total,
         "bayes_accuracy": bayes_correct / total,
@@ -189,15 +200,18 @@ def evaluate(dataset, train, templates, norm, *, k, bayes_weight):
 def fit_select(train, validation):
     templates = masked_templates(train)
     norm = observed_norm(train)
+    validation_precomputed = precompute(
+        validation,
+        train,
+        templates,
+        norm,
+    )
     best = None
     best_params = (7, 0.5)
     for k in K_VALUES:
         for weight in WEIGHTS:
-            result = evaluate(
-                validation,
-                train,
-                templates,
-                norm,
+            result = evaluate_precomputed(
+                validation_precomputed,
                 k=k,
                 bayes_weight=weight,
             )
@@ -250,11 +264,14 @@ def missingness_aware_restoration():
             shifted_train,
             shifted_validation,
         )
-        test_result = evaluate(
+        test_precomputed = precompute(
             shifted_test,
             shifted_train,
             templates,
             norm,
+        )
+        test_result = evaluate_precomputed(
+            test_precomputed,
             k=params[0],
             bayes_weight=params[1],
         )
