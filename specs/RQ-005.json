@@ -66,5 +66,18 @@
     "model_must_allow_null_or_adverse_empirical_mediator_mapping",
     "synthetic_model_result_cannot_be_promoted_to_clinical_claim",
     "case_report_cannot_establish_psychological_causation"
+  ],
+  "divergence_threshold_role": "descriptive_projection_only",
+  "primary_real_data_inference": "uncertainty_aware_change_point_or_state_space_model_coupled_to_future_hazard_or_response",
+  "data_priority": [
+    "METABRIC_public_matched_biological_baseline",
+    "NCI_exceptional_responders_rare_state_analysis",
+    "longitudinal_psychosocial_immune_row_level_if_accessible",
+    "ovarian_HGSC_collaborative_analysis",
+    "survivor_narratives_for_variable_discovery_only"
+  ],
+  "meta_loop_findings": [
+    "positive_only_mediator_boosts_were_beneficial_by_construction_and_removed",
+    "hard_divergence_thresholds_are_noise_sensitive_and_downgraded_from_primary_inference"
   ]
 }
