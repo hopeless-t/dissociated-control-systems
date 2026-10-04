@@ -79,5 +79,29 @@
   "meta_loop_findings": [
     "positive_only_mediator_boosts_were_beneficial_by_construction_and_removed",
     "hard_divergence_thresholds_are_noise_sensitive_and_downgraded_from_primary_inference"
+  ],
+  "metabric_pilot": {
+    "status": "REAL_DATA_METHOD_PILOT_NONCANONICAL",
+    "source_rows": 1897,
+    "canonical_mb_rows": 1985,
+    "mts_rows_separate_block": 524,
+    "unreconciled_mb_delta": 88,
+    "lts": 906,
+    "sts": 324,
+    "tumor_basic_block_heldout_auc": 0.7802203417545581,
+    "combined_block_heldout_auc": 0.7820701496198185,
+    "unexpected_lts_p_lt_0_25": 15,
+    "unexpected_sts_p_gt_0_75": 89
+  },
+  "survivor_trajectory_classes": [
+    "no_recorded_recurrence",
+    "late_recurrence_gt_60_months",
+    "early_recurrence_le_60_months_with_prolonged_survival"
+  ],
+  "new_invariants": [
+    "data_snapshot_identity_required_for_model_reproducibility",
+    "long_term_survival_endpoint_is_not_one_survivor_trajectory",
+    "post_recurrence_interval_only_defined_when_recurrence_event_is_recorded",
+    "residual_specimen_should_be_frozen_before_model_complexity_increase"
   ]
 }
