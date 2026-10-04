@@ -4,8 +4,9 @@ Usage:
     python analysis/rq005_verify_meta_artifacts.py \
         specs/RQ-005-META-A-OSF-MANIFEST.json /path/to/downloaded/artifacts
 
-The script performs no network access. It fails closed on missing files, size
-mismatches, digest mismatches, duplicate manifest names, or malformed entries.
+The script performs no network access. It fails closed on missing files, unsafe
+artifact names, symlinks, size mismatches, digest mismatches, duplicate manifest
+names, or malformed entries.
 """
 
 from __future__ import annotations
@@ -14,7 +15,10 @@ import argparse
 import json
 from pathlib import Path
 
-from dissociated_control_systems.artifact_verification import verify_sha256
+from dissociated_control_systems.artifact_verification import (
+    safe_artifact_path,
+    verify_sha256,
+)
 
 
 def manifest_artifacts(payload: dict[str, object]) -> tuple[dict[str, object], ...]:
@@ -31,9 +35,9 @@ def manifest_artifacts(payload: dict[str, object]) -> tuple[dict[str, object], .
                 raise ValueError("artifact entries must be objects")
             artifacts.append(item)
 
-    names = [str(item.get("name", "")) for item in artifacts]
-    if any(not name for name in names):
-        raise ValueError("artifact name must not be empty")
+    names = [item.get("name") for item in artifacts]
+    if any(not isinstance(name, str) or not name for name in names):
+        raise ValueError("artifact name must be a non-empty string")
     if len(names) != len(set(names)):
         raise ValueError("artifact names must be unique across the manifest")
     return tuple(artifacts)
@@ -41,21 +45,24 @@ def manifest_artifacts(payload: dict[str, object]) -> tuple[dict[str, object], .
 
 def verify_manifest(manifest_path: Path, artifact_dir: Path) -> dict[str, object]:
     payload = json.loads(manifest_path.read_text(encoding="utf-8"))
+    if not isinstance(payload, dict):
+        raise ValueError("manifest root must be an object")
     artifacts = manifest_artifacts(payload)
     verified = []
 
     for item in artifacts:
-        name = str(item["name"])
+        name = item["name"]
+        assert isinstance(name, str)
         expected_size = item.get("size_bytes")
         expected_sha = item.get("sha256")
-        if not isinstance(expected_size, int) or expected_size < 0:
+        if isinstance(expected_size, bool) or not isinstance(expected_size, int):
+            raise ValueError(f"invalid size_bytes for {name}")
+        if expected_size < 0:
             raise ValueError(f"invalid size_bytes for {name}")
         if not isinstance(expected_sha, str):
             raise ValueError(f"invalid sha256 for {name}")
 
-        path = artifact_dir / name
-        if not path.is_file():
-            raise FileNotFoundError(f"missing frozen artifact: {path}")
+        path = safe_artifact_path(artifact_dir, name)
         observed_size = path.stat().st_size
         if observed_size != expected_size:
             raise ValueError(
@@ -73,8 +80,8 @@ def verify_manifest(manifest_path: Path, artifact_dir: Path) -> dict[str, object
         )
 
     return {
-        "manifest": str(manifest_path),
-        "artifact_dir": str(artifact_dir),
+        "manifest": str(manifest_path.resolve()),
+        "artifact_dir": str(artifact_dir.resolve()),
         "verified_count": len(verified),
         "artifacts": verified,
         "status": "ALL_ARTIFACTS_VERIFIED",
