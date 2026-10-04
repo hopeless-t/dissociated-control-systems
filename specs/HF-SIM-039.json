@@ -1,0 +1,35 @@
+{
+  "id": "HF-SIM-039",
+  "title": "Many follicles from few donors do not equal many independent human replicates",
+  "status": "SYNTHETIC_CLUSTER_INFORMATION_CONTRACT",
+  "clinical_authority": "NONE",
+  "equal_cluster_surrogate": {
+    "design_effect": "DE = 1 + (m - 1) * rho",
+    "effective_sample_size": "n_eff = n_total / DE",
+    "definitions": {
+      "m": "follicles per donor cluster",
+      "rho": "within-donor intraclass correlation surrogate"
+    }
+  },
+  "known_answer": {
+    "donors": 3,
+    "follicles_per_donor": 10,
+    "total_follicles": 30,
+    "rho": 0.5,
+    "design_effect": 5.5,
+    "effective_n_surrogate": 5.4545454545
+  },
+  "extreme_check": {
+    "rho": 1.0,
+    "effective_n_surrogate": 3.0,
+    "interpretation": "if follicles within each donor are perfectly redundant, 30 follicle measurements contain only three donor-level units of independent information under this toy model"
+  },
+  "HF01_implication": [
+    "follicle count must not be reported as independent human sample count",
+    "donor/region/follicle hierarchy belongs in the analysis model",
+    "random follicle train/test splits can leak donor-specific structure",
+    "donor-held-out validation is necessary for donor-generalization claims but can still be unstable with very few donors",
+    "repeated time points within a follicle add another dependence layer and are not independent rows"
+  ],
+  "claim_boundary": "The equal-cluster design-effect formula is a planning surrogate, not a substitute for the actual hierarchical model, and does not provide a power calculation for a future HF01 study."
+}
