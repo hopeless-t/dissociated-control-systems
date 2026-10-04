@@ -1,0 +1,105 @@
+{
+  "id": "RQ-005-META-A-RECONCILIATION",
+  "status": "OPEN_RECONCILIATION",
+  "invariants": [
+    "paper_title_scope_label_is_not_eligibility_criteria",
+    "abstract_estimate_is_not_automatically_canonical",
+    "publication_is_not_trial",
+    "followup_publication_is_not_new_randomization",
+    "same_effect_metric_does_not_imply_same_data_universe",
+    "pooled_survival_effect_does_not_identify_biological_mediator"
+  ],
+  "reports": {
+    "BOGNAR_2024": {
+      "doi": "10.1038/s41598-024-63431-y",
+      "pmid": "38853187",
+      "search_updated_through": "2024-02-01",
+      "title_scope_label": "early-stage cancer",
+      "published_eligibility_population": "adult patients with any cancer receiving cancer or palliative treatment, or reporting as cancer survivors",
+      "effect_metric_primary_survival": "HR",
+      "random_effects": true,
+      "os": {
+        "body_results": {
+          "k": 14,
+          "n": 2683,
+          "hr": 1.01,
+          "ci95": [0.95, 1.07]
+        },
+        "abstract": {
+          "hr": 0.97,
+          "ci95": [0.87, 1.08]
+        },
+        "status": "INTERNAL_CONFLICT_OPEN"
+      },
+      "rfs": {
+        "k": 5,
+        "n": 900,
+        "hr": 0.99,
+        "ci95": [0.84, 1.16],
+        "status": "SOURCE_AGREEMENT_OBSERVED"
+      },
+      "preprint_signal": {
+        "os_hr": 1.01,
+        "ci95": [0.95, 1.07],
+        "role": "provenance_clue_not_canonical_resolution"
+      }
+    },
+    "ASAKAWA_HAAS_2026": {
+      "doi": "10.1038/s44271-026-00414-x",
+      "pmid": "41673256",
+      "search_updated_through": "2025-10-17",
+      "eligibility_population": "adult patients with primary or metastatic cancer of any type and any stage",
+      "effect_metric_primary_survival": "HR",
+      "random_effects": true,
+      "os": {
+        "k": 32,
+        "n": 5704,
+        "hr": 0.80,
+        "ci95": [0.71, 0.90],
+        "i2_pct": 48,
+        "prediction_interval_hr": [0.49, 1.29]
+      },
+      "hr_provenance_counts": {
+        "available_in_primary_rct": 16,
+        "inverse_of_control_group_hr": 2,
+        "taken_from_prior_meta_analysis": 4,
+        "reconstructed_from_kaplan_meier": 10
+      },
+      "median_survival_difference_months": {
+        "k": 16,
+        "estimate": 3.9,
+        "ci95": [-0.7, 8.5],
+        "hypothesis_testing_role": "not_used"
+      }
+    }
+  },
+  "current_discrepancy_hypotheses_ranked": [
+    "trial_inclusion_and_search_horizon_difference",
+    "followup_publication_identity_and_effect_selection_rules",
+    "hr_extraction_or_reconstruction_difference",
+    "bognar_2024_internal_os_estimate_conflict",
+    "eligibility_and_intervention_definition_difference",
+    "pooling_and_variance_estimation_difference",
+    "treatment_era_and_case_mix_difference"
+  ],
+  "downgraded_explanations": [
+    {
+      "claim": "effect_metric_alone_explains_2024_vs_2026_difference",
+      "reason": "both primary syntheses report hazard ratios"
+    },
+    {
+      "claim": "2024_is_strictly_early_stage_whereas_2026_is_all_stage",
+      "reason": "the 2024 published eligibility text permits adult patients with any cancer, including palliative treatment or survivor populations"
+    }
+  ],
+  "next_gates": [
+    "resolve_2024_abstract_vs_body_os_provenance_without_guessing",
+    "build_stable_trial_id_map_for_both_reviews",
+    "compute_trial_set_intersection_and_symmetric_difference",
+    "map_each_included_effect_to_primary_followup_or_reconstructed_source",
+    "reproduce_2026_author_analysis_from_sha256_verified_osf_assets",
+    "reproduce_2024_analysis_from_available_primary_or_supplementary_assets",
+    "rerun_common_trial_set_under_common_hr_extraction_rule"
+  ],
+  "claim_ceiling": "no causal cancer-survival or psychoneuroimmune mechanism claim may be promoted from the review-level discrepancy"
+}
