@@ -1,77 +1,61 @@
-# CGD-SIM-033 — External Observation Lane Qualification
+# CGD-SIM-033 — Exact random-capture null and causal-selection biopsy
 
-> Status: EVIDENCE-GOVERNANCE CONTRACT  
-> Clinical authority: NONE  
-> Real human data ingested: NONE
+> Status: SYNTHETIC STATISTICAL FOLLOW-UP  
+> Clinical authority: NONE
 
-The post-convergence stopping rule says that further progress must eventually
-come from external/domain-local evidence rather than stronger synthetic oracle
-probes.
+SIM-032 compared one causal targeting run against one same-budget random draw.
+The random draw captured zero rare specimens, which makes a ratio look infinite
+but is not a stable statistical summary.
 
-SIM-033 defines the gate **before** any human dataset is selected.
+SIM-033 freezes the same held-out population and solves the random baseline
+exactly.
 
-## Decisions
-
-~~~text
-ADMIT_OBSERVATIONAL_LANE
-ADMIT_METHOD_ONLY
-DEFER_REVALIDATE
-REJECT_CANONICAL_EVIDENCE
-~~~
-
-### ADMIT_OBSERVATIONAL_LANE
-
-Means only:
-
-> this source shape is eligible to participate in a bounded DCS observational
-> validation protocol.
-
-It does **not** mean a clinical claim is established.
-
-### ADMIT_METHOD_ONLY
-
-A high-quality engineering/synthetic source can transfer methodology while
-remaining ineligible to support a cognitive-domain empirical claim.
-
-This is the formal destination for Finite RAM Lab, MVCA, Jev/Cua, Harness
-Economics, and other cross-domain research unless domain-local evidence exists.
-
-## Required bindings
+If:
 
 ~~~text
-source identity or captured snapshot
-provenance
-measurement definition
-population scope
-freshness / revision
-missingness semantics
-deidentification or aggregation for human data
-public or otherwise authorized access
-claim scope
+N = total held-out episodes
+K = rare specimens
+n = causal biopsy budget
+X = rare specimens in an equally sized random biopsy
 ~~~
 
-Unbound mutable web material is DEFER, not silently treated as current fact.
-
-Anecdotal-only material and identifiable unauthorized human records are not
-canonical evidence.
-
-DCS-generated human intervention/challenge data are rejected by this lane; this
-repository does not gain human-experiment authority by writing a protocol.
-
-## Cross-research lineage
-
-The contract composes:
-
-- Jev/Cua external-material binding and freshness;
-- Harness Component Economics UNKNOWN/provenance semantics;
-- Memory Attention claim partitioning;
-- Finite RAM hosted-evidence authority boundaries;
-- DCS's existing analogy != mechanism rule.
-
-## Compact boundary
+then:
 
 ~~~text
-Engineering Reproducibility != Cognitive External Validity
-Observational Admission != Treatment Authority
-Synthetic Accuracy != Clinical Validity
+X ~ Hypergeometric(N, K, n)
 ~~~
+
+The exact tail probability
+
+~~~text
+P(X >= causal capture count)
+~~~
+
+is the primary null result.
+
+A seeded 100,000-trial simulation samples from the exact discrete CDF only as a
+cross-check.
+
+## Selection-set biopsy
+
+SIM-032 also observed slightly higher biopsy precision for causal targeting than
+for the true frozen oracle stratum.
+
+That does **not** mean the causal classifier is better than oracle knowledge.
+The sets have different sizes.
+
+SIM-033 decomposes:
+
+- causal selections whose true label equals the oracle stratum;
+- causal contaminants from other true strata;
+- rare specimens carried by each group;
+- nonrare oracle-stratum rows pruned by the causal classifier;
+- rare oracle-stratum rows pruned by the causal classifier.
+
+This determines whether the precision difference is simple pruning,
+contaminant enrichment, or both.
+
+## Boundary
+
+The exact random null evaluates sampling efficiency in this synthetic world.
+It does not establish a human-risk classifier or clinical enrichment strategy.
