@@ -107,20 +107,14 @@ def clean_sequences(*, count: int, seed_base: int):
     ]
 
 
-def calibrate_detector(templates, stats):
+def calibrate_detector(templates, stats, norm):
     clean_calibration = clean_sequences(count=20, seed_base=200_000_000)
     weak_shift_base = make_dataset(50, 221_000_000)
     # A declared tuning shift; held-out test uses different seeds.
     weak_shift = noise_inflation(
         weak_shift_base,
         seed=222_000_000,
-        norm={
-            probe: (
-                0.0,
-                stats[1],
-            )
-            for probe in BASE_FEATURES
-        },
+        norm=norm,
     )
 
     best = None
@@ -222,7 +216,7 @@ def residual_cusum_experiment():
     residual_templates = train_templates(samples=160)
     baseline = make_dataset(80, 232_000_000)
     stats = score_stats(baseline, residual_templates)
-    detector = calibrate_detector(residual_templates, stats)
+    detector = calibrate_detector(residual_templates, stats, norm)
 
     clean_test_sequences = clean_sequences(count=20, seed_base=240_000_000)
     clean_false_alarms = 0
