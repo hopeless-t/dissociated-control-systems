@@ -184,11 +184,12 @@ def route_metrics(dataset, prepared, params, templates, stats, detector, *, seed
     total = len(ordered)
     forced_error = 1.0 - forced_correct / total
     residual_error = accepted_errors / total
-    reduction = (
+    raw_reduction = (
         1.0 - residual_error / forced_error
         if forced_error > 0.0
         else 0.0
     )
+    reduction = min(1.0, max(0.0, raw_reduction))
 
     return {
         "forced_accuracy": forced_correct / total,
