@@ -2,7 +2,8 @@
 
 The input spec contains transcribed publication rows plus independently sourced
 canonical comparator identities. This script classifies identity consistency
-and constructs a count-binding graph. It does not infer why a mismatch exists.
+and constructs a trial-level count-binding graph. It does not infer why a
+mismatch exists.
 """
 
 from __future__ import annotations
@@ -21,33 +22,38 @@ from dissociated_control_systems.evidence_binding import (
 )
 
 
-def _canonical_record(trial_id: str, payload: dict[str, object]) -> CanonicalEvidence:
+def _canonical_record(evidence_id: str, payload: dict[str, object]) -> CanonicalEvidence:
+    trial_id_raw = payload.get("trial_id", evidence_id)
+    if not isinstance(trial_id_raw, str):
+        raise ValueError(f"{evidence_id}: trial_id must be a string")
+
     count_i = payload.get("intervention_n")
     count_c = payload.get("control_n")
     hr = payload.get("hr")
     ci = payload.get("ci95")
 
     if count_i is not None and not isinstance(count_i, int):
-        raise ValueError(f"{trial_id}: intervention_n must be an integer or null")
+        raise ValueError(f"{evidence_id}: intervention_n must be an integer or null")
     if count_c is not None and not isinstance(count_c, int):
-        raise ValueError(f"{trial_id}: control_n must be an integer or null")
+        raise ValueError(f"{evidence_id}: control_n must be an integer or null")
 
     lower: float | None = None
     upper: float | None = None
     if hr is not None:
         if not isinstance(hr, (int, float)) or isinstance(hr, bool):
-            raise ValueError(f"{trial_id}: hr must be numeric or null")
+            raise ValueError(f"{evidence_id}: hr must be numeric or null")
         if not isinstance(ci, list) or len(ci) != 2:
-            raise ValueError(f"{trial_id}: ci95 required when hr is present")
+            raise ValueError(f"{evidence_id}: ci95 required when hr is present")
         lower, upper = float(ci[0]), float(ci[1])
 
     return CanonicalEvidence(
-        trial_id=trial_id,
+        trial_id=trial_id_raw,
         intervention_n=count_i,
         control_n=count_c,
         hr=None if hr is None else float(hr),
         lower=lower,
         upper=upper,
+        evidence_id=evidence_id,
     )
 
 
@@ -61,9 +67,9 @@ def run(spec_path: Path) -> dict[str, object]:
         raise ValueError("canonical_comparators must be a non-empty object")
 
     canonical = build_canonical_index(
-        _canonical_record(trial_id, value)
-        for trial_id, value in comparators.items()
-        if isinstance(trial_id, str) and isinstance(value, dict)
+        _canonical_record(evidence_id, value)
+        for evidence_id, value in comparators.items()
+        if isinstance(evidence_id, str) and isinstance(value, dict)
     )
 
     audits: list[dict[str, object]] = []
@@ -71,6 +77,7 @@ def run(spec_path: Path) -> dict[str, object]:
     own_count_rows = 0
     cross_count_rows = 0
     unresolved_count_rows = 0
+    ambiguous_count_rows = 0
 
     for raw in rows:
         if not isinstance(raw, dict):
@@ -90,17 +97,16 @@ def run(spec_path: Path) -> dict[str, object]:
         result = classify_binding(row, canonical)
         audits.append(result)
 
-        count_matches = tuple(result["count_matches"])
-        if row.displayed_trial_id in count_matches:
+        count_trial_ids = tuple(result["count_match_trial_ids"])
+        if row.displayed_trial_id in count_trial_ids:
             own_count_rows += 1
-        elif len(count_matches) == 1:
+        elif len(count_trial_ids) == 1:
             cross_count_rows += 1
-            count_edges[row.displayed_trial_id] = count_matches[0]
-        elif len(count_matches) == 0:
+            count_edges[row.displayed_trial_id] = count_trial_ids[0]
+        elif len(count_trial_ids) == 0:
             unresolved_count_rows += 1
         else:
-            # Ambiguous exact matches are kept out of the one-edge graph.
-            cross_count_rows += 1
+            ambiguous_count_rows += 1
 
     statuses = Counter(str(item["status"]) for item in audits)
     graph = binding_summary(count_edges)
@@ -110,7 +116,8 @@ def run(spec_path: Path) -> dict[str, object]:
         "row_count": len(audits),
         "count_identity": {
             "own": own_count_rows,
-            "cross": cross_count_rows,
+            "cross_unique_trial": cross_count_rows,
+            "ambiguous_multiple_trials": ambiguous_count_rows,
             "unresolved": unresolved_count_rows,
         },
         "binding_status_counts": dict(sorted(statuses.items())),
