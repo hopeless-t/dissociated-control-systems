@@ -1,7 +1,7 @@
 """Canonical content fingerprint for HF01 assurance inputs.
 
 The digest is an integrity/change detector, not a digital signature and not a
-scientific confidence score.  It prevents a proof object from remaining
+scientific confidence score. It prevents a proof object from remaining
 nominally 'the same' while its claim semantics, witnesses, support graph,
 defeaters, or trust assumptions silently change.
 """
@@ -37,6 +37,39 @@ def _canonical_payload(
     edges_t = tuple(support_edges)
     roots_t = tuple(trust_roots)
 
+    witness_items = [
+        {
+            "witness_id": witness.witness_id,
+            "role": witness.role.value,
+            "source_roots": sorted(witness.source_roots),
+            "obligations": {
+                "source_authenticity": witness.obligations.source_authenticity.value,
+                "claim_relevance": witness.obligations.claim_relevance.value,
+                "scope_compatibility": witness.obligations.scope_compatibility.value,
+                "transformation_reproducibility": witness.obligations.transformation_reproducibility.value,
+            },
+        }
+        for witness in witnesses_t
+    ]
+    defeater_items = [
+        {
+            "defeater_id": defeater.defeater_id,
+            "target_role": defeater.target_role.value,
+            "status": defeater.status.value,
+            "note": defeater.note,
+            "resolution_witness_id": defeater.resolution_witness_id,
+        }
+        for defeater in defeaters_t
+    ]
+    trust_items = [
+        {
+            "root_id": root.root_id,
+            "kind": root.kind.value,
+            "assumptions": list(root.assumptions),
+        }
+        for root in roots_t
+    ]
+
     return {
         "certificate": {
             "claim_type": certificate.claim_type.value,
@@ -56,30 +89,8 @@ def _canonical_payload(
             "infers_intervention_response": claim_semantics.infers_intervention_response,
             "asserts_target_reachability": claim_semantics.asserts_target_reachability,
         },
-        "witnesses": sorted(
-            {
-                "witness_id": witness.witness_id,
-                "role": witness.role.value,
-                "source_roots": sorted(witness.source_roots),
-                "obligations": {
-                    "source_authenticity": witness.obligations.source_authenticity.value,
-                    "claim_relevance": witness.obligations.claim_relevance.value,
-                    "scope_compatibility": witness.obligations.scope_compatibility.value,
-                    "transformation_reproducibility": witness.obligations.transformation_reproducibility.value,
-                },
-            }
-            for witness in witnesses_t
-        , key=lambda item: item["witness_id"]),
-        "defeaters": sorted(
-            {
-                "defeater_id": defeater.defeater_id,
-                "target_role": defeater.target_role.value,
-                "status": defeater.status.value,
-                "note": defeater.note,
-                "resolution_witness_id": defeater.resolution_witness_id,
-            }
-            for defeater in defeaters_t
-        , key=lambda item: item["defeater_id"]),
+        "witnesses": sorted(witness_items, key=lambda item: item["witness_id"]),
+        "defeaters": sorted(defeater_items, key=lambda item: item["defeater_id"]),
         "support_nodes": sorted(
             (node.node_id, node.kind.value)
             for node in nodes_t
@@ -89,14 +100,7 @@ def _canonical_payload(
             for edge in edges_t
         ),
         "support_target": support_target,
-        "trust_roots": sorted(
-            {
-                "root_id": root.root_id,
-                "kind": root.kind.value,
-                "assumptions": list(root.assumptions),
-            }
-            for root in roots_t
-        , key=lambda item: item["root_id"]),
+        "trust_roots": sorted(trust_items, key=lambda item: item["root_id"]),
         "extra_dependencies": sorted((extra_dependencies or {}).items()),
     }
 
