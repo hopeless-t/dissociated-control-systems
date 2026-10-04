@@ -1,0 +1,38 @@
+{
+  "id": "HF-SIM-011",
+  "title": "Exhaustive bypass attack on reachability proof protocol",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "attack_space": {
+    "role_subsets": {
+      "count": 16,
+      "accepted": 1
+    },
+    "complete_role_permutations": {
+      "count": 24,
+      "accepted": 1
+    },
+    "pass_unknown_fail_vectors": {
+      "count": 81,
+      "accepted": 1
+    }
+  },
+  "accepted_configuration": {
+    "roles": [
+      "PROVENANCE",
+      "STATE_RESPONSE",
+      "UNCERTAINTY",
+      "REACHABILITY"
+    ],
+    "order": "canonical",
+    "statuses": [
+      "PASS",
+      "PASS",
+      "PASS",
+      "PASS"
+    ],
+    "empirical_authority_requested": true
+  },
+  "interpretation": "A human or model may imagine omitted bridges, but the official empirical reachability claim cannot pass the frozen protocol through a missing, reordered, UNKNOWN, or FAIL checkpoint trace.",
+  "boundary": "This exhausts only the declared four-role protocol state space; it does not prove the role set captures every possible scientific reasoning failure."
+}
