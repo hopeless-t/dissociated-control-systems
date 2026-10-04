@@ -1,0 +1,29 @@
+{
+  "id": "HF-SIM-042",
+  "title": "Statewise reachability does not imply a usable recovery policy under partial observability",
+  "status": "SYNTHETIC_CONTROL_COUNTEREXAMPLE",
+  "clinical_authority": "NONE",
+  "definitions": {
+    "statewise": "for all x in X, there exists u in U such that Reach(x,u)",
+    "uniform_policy": "there exists u in U such that for all x in X, Reach(x,u)"
+  },
+  "known_answer": {
+    "reachability_matrix": [
+      [true, false],
+      [false, true]
+    ],
+    "statewise_reachability": "PASS",
+    "uniform_policy_reachability": "FAIL",
+    "observer_selection_gap": true
+  },
+  "result": "Every latent state can be recoverable under some allowed control while no single control is safe/effective for all states still compatible with the observations.",
+  "HF01_implication": [
+    "Recoverability must be conditioned on the allowed actuator set U.",
+    "Biological state reachability != deployable policy reachability.",
+    "If the correct actuator depends on latent state, observer quality becomes part of the control problem rather than a reporting detail.",
+    "A broader actuator set can enlarge statewise reachability while also increasing the cost of misclassification/control selection.",
+    "behavior-only, AR-axis, mechanical, regenerative and combined control sets can have different reachable sets in the synthetic model and must not share one universal RECOVERABLE label."
+  ],
+  "observer_contract": "If only statewise reachability is established, an operational recovery claim remains UNKNOWN until either (a) a uniform policy is shown to work across the compatible state set or (b) the observer discriminates the policy-relevant latent states with the required error bound.",
+  "claim_boundary": "This is a control-theoretic quantifier distinction inside HF01 synthetic reasoning. It does not establish the effectiveness or safety of any real intervention class."
+}
