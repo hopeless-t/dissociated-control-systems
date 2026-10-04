@@ -15,7 +15,7 @@
     {"row":5,"label":"TAKANO_2021","intervention_n":30,"control_n":36,"hr":0.83,"ci95":[0.50,1.38],"canonical_count_source":"CUNNINGHAM_1998","canonical_effect_match":"TAKANO_2021"},
     {"row":6,"label":"GOODWIN_2001","intervention_n":114,"control_n":113,"hr":0.93,"ci95":[0.76,1.15],"canonical_count_source":"ANDERSEN_2008","canonical_effect_match":null},
     {"row":7,"label":"SPIEGEL_2007","intervention_n":110,"control_n":110,"hr":0.93,"ci95":[0.62,1.40],"canonical_count_source":"BAO_2019","canonical_effect_match":"SPIEGEL_2007"},
-    {"row":8,"label":"EDELMAN_1999","intervention_n":29,"control_n":33,"hr":0.96,"ci95":[0.78,1.19],"canonical_count_source":null,"canonical_effect_match":null},
+    {"row":8,"label":"EDELMAN_1999","intervention_n":29,"control_n":33,"hr":0.96,"ci95":[0.78,1.19],"canonical_count_source":null,"canonical_effect_match":null,"cross_semantic_candidate":"ANDERSEN_2008_RECURRENCE_EVENTS"},
     {"row":9,"label":"GUO_Z_2013","intervention_n":89,"control_n":89,"hr":1.00,"ci95":[0.88,1.13],"canonical_count_source":"GUO_Z_2013","canonical_effect_match":null},
     {"row":10,"label":"VANBUTSELE_2018","intervention_n":154,"control_n":149,"hr":1.03,"ci95":[0.87,1.21],"canonical_count_source":"KISSANE_2004","canonical_effect_match":null},
     {"row":11,"label":"KISSANE_2007","intervention_n":158,"control_n":77,"hr":1.06,"ci95":[0.78,1.45],"canonical_count_source":"GOODWIN_2001","canonical_effect_match":"GOODWIN_2001"},
@@ -40,19 +40,23 @@
     "KUCHLER_1999_2007":{"intervention_n":136,"control_n":135,"hr":0.653,"ci95":[0.495,0.861],"source":"Kuchler 2007 primary follow-up / Asakawa-Haas Table 4"},
     "KISSANE_2004":{"intervention_n":154,"control_n":149,"hr":1.350,"ci95":[0.760,2.390],"source":"Asakawa-Haas 2026 Table 4"},
     "CUNNINGHAM_1998":{"intervention_n":30,"control_n":36,"source":"Asakawa-Haas 2026 Table 4"},
-    "ANDERSEN_2008":{"intervention_n":114,"control_n":113,"source":"Asakawa-Haas 2026 Table 4"}
+    "ANDERSEN_2008":{"intervention_n":114,"control_n":113,"source":"Andersen randomized allocation / Asakawa-Haas 2026 Table 4"},
+    "ANDERSEN_2008_RECURRENCE_EVENTS":{"trial_id":"ANDERSEN_2008","intervention_n":29,"control_n":33,"count_semantics":"recurrence_event_count","source":"Andersen long-term follow-up: recurrence events among randomized arms"}
   },
   "observed_patterns": [
     "multiple_figure_count_pairs_exactly_match_different_known_rcts",
     "some_figure_effects_match_the_labeled_trial_while_counts_match_another_trial",
     "at_least_one_row_kissane_2007_carries_goodwin_2001_count_and_effect_tuple",
+    "edelman_29_33_exactly_matches_andersen_recurrence_event_counts_but_not_population_size_semantics",
     "figure_pooled_hr_is_arithmetically_consistent_with_displayed_hr_and_weight_columns",
     "main_text_os_hr_1_01_remains_in_conflict_with_abstract_and_figure_hr_0_97",
-    "population_snapshot_identity_is_distinct_from_trial_identity"
+    "population_snapshot_identity_is_distinct_from_trial_identity",
+    "field_value_match_is_not_field_semantics_match"
   ],
   "nonclaims": [
     "cross_row_matches_do_not_yet_prove_a_plotting_or_join_bug",
     "different_analysis_subsets_or_undocumented_transformations_remain_possible",
+    "exact_29_33_match_does_not_prove_andersen_events_were_inserted_into_the_figure",
     "no_biological_or_clinical_conclusion_follows_from_this_provenance_audit"
   ],
   "promotion_gate": [
