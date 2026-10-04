@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "id": "HF01-ORGAN-SYSID-V1",
-  "status": "SOURCE_BOUND_SYSTEM_IDENTIFICATION_CONTRACT",
+  "status": "SOURCE_BOUND_PHENOTYPING_CONTRACT_RAW_RNASEQ_QUARANTINED",
   "source": {
     "title": "Development and validation of a comprehensive in vitro organ model for androgenetic alopecia",
     "year": 2026,
@@ -36,8 +36,8 @@
     "DHT": [
       "inhibited follicle growth",
       "accelerated catagen entry",
-      "24 percent reduction in matrix-cell proliferation",
-      "31 percent increase in apoptosis",
+      "reduced matrix-cell proliferation",
+      "increased apoptosis",
       "decreased beta-catenin and IGF-1",
       "increased TGF-beta1, DKK1, p21 and AR",
       "reduced versican",
@@ -58,12 +58,20 @@
     "Are there discordant follicles with molecular response but poor functional rescue, analogous to synthetic Early Response != Recoverability?",
     "Does regional frontal-vs-occipital sensitivity create a within-donor recoverability gradient?"
   ],
+  "provenance_defeater": {
+    "id": "HF01-DEFEATER-GSE267664-ORGANISM-MAPPING",
+    "status": "OPEN",
+    "issue": "the paper describes human follicles and GRCh38/HISAT2 processing, while GEO sample GSM8272412 is labeled Homo sapiens but lists GrCM38/mm10 mapping and Assembly mm10",
+    "effect": "GSE267664 raw/processed RNA-seq reanalysis is blocked until organism/reference-build provenance is independently resolved"
+  },
   "claim_ceiling": [
-    "stronger source-bound bridge from input to state to functional output than cross-sectional tissue comparison",
+    "paper-level human organ-culture phenotype and immunostaining results remain source-bound evidence",
+    "stronger input-to-state-to-functional-output architecture than cross-sectional tissue comparison",
+    "RNA-seq bridge from GSE267664 is currently quarantined",
     "not in-vivo human longitudinal recoverability",
     "not evidence that minoxidil or bicalutamide should be used by a particular person",
     "not proof that K15 preservation implies recoverability"
   ],
-  "next_data_rule": "Do not infer subject-level clinical advice. If raw data are later analyzed, freeze exact temporal contrasts and outcome variables before label inspection.",
+  "next_data_rule": "Do not analyze GSE267664 for HF01 until the organism/reference-build discrepancy is resolved. If resolved, freeze temporal contrasts/outcomes and independently realign raw reads to an explicitly versioned reference before expression claims.",
   "clinical_authority": "NONE"
 }
