@@ -1,50 +1,44 @@
-# CGD-SIM-018 — Multivariate cumulative-energy detector
+# CGD-SIM-018 — Template-residual CUSUM
 
 > Status: SYNTHETIC POST-CONVERGENCE CONTROL TEST  
 > Clinical authority: NONE
 
-SIM-017 showed that longer observation alone was not enough.
+SIM-017 accumulated evidence across time but still failed on weak variance
+inflation. The failure biopsy suggested that the monitored variable itself was
+wrong.
 
-The score still selected the **maximum single-channel deviation**, so a weak
-shift spread across every channel could remain below the threshold until almost
-the end of the sequence.
+The global observation stream is a mixture of many legitimate latent fault
+states. Its natural between-state variance can hide a small increase in
+within-state observation noise.
 
-## New invariant
+SIM-018 first removes that nuisance structure.
 
-~~~text
-Distributed Weak Shift != Max Single-Channel Deviation
-~~~
-
-SIM-018 changes the statistic rather than adding another controller.
-
-For each sample and feature:
+For each sample:
 
 ~~~text
-z_j = (x_j - mean_clean_j) / std_clean_j
+for every clean fault template h:
+    E_h = mean_j ((x_j - mu_hj)^2 / var_hj)
+
+residual_energy = min_h E_h
 ~~~
 
-The detector computes multivariate standardized energy:
+The minimum asks:
+
+> How surprising is this observation even under the clean latent state that
+> explains it best?
+
+The residual energy is standardized against independent clean data and fed to
+a one-sided CUSUM:
 
 ~~~text
-e = mean_j(z_j^2)
+C_t = max(0, C_(t-1) + z_t - kappa)
 ~~~
 
-and accumulates the departure of mean energy from the clean baseline across
-the sequence.
+The detector's kappa and threshold are selected on separate calibration data
+subject to a declared clean-sequence false-alarm target. Final performance is
+measured on different clean and shifted seeds.
 
-A separate multivariate mean-vector score remains available for common-mode
-drift. Explicit missingness still causes immediate OOD routing.
-
-The sequence threshold is set strictly above the maximum score observed across
-20 independent clean calibration sequences, then tested on 20 different clean
-sequences.
-
-Success requires:
-
-~~~text
-independent clean sequence false-alarm rate <= 0.10
-noise inflation is detected
-noise-shift error-exposure reduction > 0.50
-~~~
+This generation therefore changes the monitored sufficient statistic rather
+than adding another governance layer.
 
 Synthetic engineering result only; no clinical authority.
