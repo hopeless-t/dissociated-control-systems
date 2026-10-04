@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "RQ-005-META-A-TRIAL-LEDGER.schema.json",
+  "title": "RQ-005 META-A Trial Publication Ledger",
+  "type": "object",
+  "required": ["ledger_version", "records"],
+  "properties": {
+    "ledger_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "records": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "trial_id",
+          "publication_id",
+          "publication_role",
+          "randomized_population_id",
+          "cancer_type",
+          "disease_scope",
+          "intervention",
+          "control",
+          "endpoint",
+          "effect_metric",
+          "randomized"
+        ],
+        "properties": {
+          "trial_id": {"type": "string", "minLength": 1},
+          "publication_id": {"type": "string", "minLength": 1},
+          "publication_role": {
+            "type": "string",
+            "enum": [
+              "primary",
+              "long_term_followup",
+              "survival_followup",
+              "recurrence_followup",
+              "post_recurrence_mechanistic",
+              "mediator",
+              "protocol",
+              "secondary_analysis",
+              "other"
+            ]
+          },
+          "randomized_population_id": {"type": "string", "minLength": 1},
+          "cancer_type": {"type": "string", "minLength": 1},
+          "disease_scope": {
+            "type": "string",
+            "enum": [
+              "early_stage",
+              "locoregional",
+              "recurrent",
+              "metastatic",
+              "mixed",
+              "unclear"
+            ]
+          },
+          "intervention": {"type": "string", "minLength": 1},
+          "control": {"type": "string", "minLength": 1},
+          "intervention_start_anchor": {
+            "type": ["string", "null"]
+          },
+          "endpoint": {"type": "string", "minLength": 1},
+          "effect_metric": {
+            "type": "string",
+            "enum": ["HR", "RR", "OR", "median_difference", "other"]
+          },
+          "effect_estimate": {"type": ["number", "null"]},
+          "ci_low": {"type": ["number", "null"]},
+          "ci_high": {"type": ["number", "null"]},
+          "followup_months": {"type": ["number", "null"], "minimum": 0},
+          "randomized": {"type": "boolean"},
+          "post_randomization_selection": {"type": "boolean", "default": false},
+          "selection_event": {"type": ["string", "null"]},
+          "mediators_measured": {
+            "type": "array",
+            "items": {"type": "string"},
+            "uniqueItems": true
+          },
+          "source_url": {"type": ["string", "null"]},
+          "notes": {"type": ["string", "null"]}
+        }
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$comment": "Semantic invariants enforced in Python in trial_ledger.py: publication_id unique; one trial_id must map to exactly one randomized_population_id; publications sharing a randomization count as one independent trial."
+}
