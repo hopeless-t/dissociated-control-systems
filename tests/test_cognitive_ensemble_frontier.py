@@ -1,3 +1,5 @@
+import pytest
+
 from dissociated_control_systems.cognitive_ensemble_frontier import (
     mix_posteriors,
     optimize,
@@ -12,8 +14,8 @@ def test_mixture_is_convex():
         {h1: 0.4, h2: 0.6},
         bayes_weight=0.5,
     )
-    assert mixed[h1] == 0.6
-    assert mixed[h2] == 0.4
+    assert mixed[h1] == pytest.approx(0.6)
+    assert mixed[h2] == pytest.approx(0.4)
 
 
 def test_ensemble_frontier_returns_valid_accuracy():
