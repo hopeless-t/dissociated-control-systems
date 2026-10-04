@@ -9,14 +9,17 @@ on:
       - "src/dissociated_control_systems/cognitive_experiments.py"
       - "src/dissociated_control_systems/cognitive_governor.py"
       - "src/dissociated_control_systems/cognitive_observation_stress.py"
+      - "src/dissociated_control_systems/cognitive_harness_repair.py"
       - "tests/test_cognitive_decline.py"
       - "tests/test_cognitive_experiments.py"
       - "tests/test_cognitive_governor.py"
       - "tests/test_cognitive_observation_stress.py"
+      - "tests/test_cognitive_harness_repair.py"
       - "docs/CGD-SIM-001.md"
       - "docs/CGD-SIM-002.md"
       - "docs/CGD-SIM-003.md"
       - "docs/CGD-SIM-004.md"
+      - "docs/CGD-SIM-005.md"
       - ".github/workflows/cognitive-simulation.yml"
   pull_request:
     paths:
@@ -24,14 +27,17 @@ on:
       - "src/dissociated_control_systems/cognitive_experiments.py"
       - "src/dissociated_control_systems/cognitive_governor.py"
       - "src/dissociated_control_systems/cognitive_observation_stress.py"
+      - "src/dissociated_control_systems/cognitive_harness_repair.py"
       - "tests/test_cognitive_decline.py"
       - "tests/test_cognitive_experiments.py"
       - "tests/test_cognitive_governor.py"
       - "tests/test_cognitive_observation_stress.py"
+      - "tests/test_cognitive_harness_repair.py"
       - "docs/CGD-SIM-001.md"
       - "docs/CGD-SIM-002.md"
       - "docs/CGD-SIM-003.md"
       - "docs/CGD-SIM-004.md"
+      - "docs/CGD-SIM-005.md"
       - ".github/workflows/cognitive-simulation.yml"
   workflow_dispatch:
 
@@ -54,6 +60,7 @@ jobs:
           pytest -q tests/test_cognitive_experiments.py
           pytest -q tests/test_cognitive_governor.py
           pytest -q tests/test_cognitive_observation_stress.py
+          pytest -q tests/test_cognitive_harness_repair.py
       - name: Run frozen four-arm simulation
         run: |
           python -m dissociated_control_systems.cognitive_decline --format markdown > cognitive-summary.md
@@ -74,3 +81,8 @@ jobs:
           python -m dissociated_control_systems.cognitive_observation_stress > cognitive-observation.md
           cat cognitive-observation.md
           cat cognitive-observation.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Run harness fault-localization and repair loop
+        run: |
+          python -m dissociated_control_systems.cognitive_harness_repair > cognitive-harness.md
+          cat cognitive-harness.md
+          cat cognitive-harness.md >> "$GITHUB_STEP_SUMMARY"
