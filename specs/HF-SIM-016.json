@@ -1,0 +1,31 @@
+{
+  "id": "HF-SIM-016",
+  "title": "Asymmetric false-pass / false-block checkpoint threshold",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "quantitative_confidence_authority": "NONE_WITHOUT_CALIBRATION",
+  "model": {
+    "q": "calibrated probability-like support that the checkpoint condition is actually satisfied",
+    "false_pass_cost": "loss from PASS when the condition is false",
+    "false_block_cost": "loss from BLOCK when the condition is true",
+    "pass_loss": "C_fp * (1-q)",
+    "block_loss": "C_fb * q",
+    "optimal_pass_threshold": "q* = C_fp / (C_fp + C_fb)"
+  },
+  "interval_rule": {
+    "PASS": "support lower bound >= q*",
+    "FAIL": "support upper bound < q*",
+    "UNKNOWN": "support interval straddles q*"
+  },
+  "known_answers": {
+    "symmetric_costs_1_to_1": 0.5,
+    "false_pass_to_false_block_99_to_1": 0.99
+  },
+  "invariants": [
+    "Gate strictness should reflect the consequence of a false authority upgrade.",
+    "Uncertainty that straddles the action threshold remains UNKNOWN.",
+    "A numerical threshold is invalid unless its support interval is meaningfully calibrated.",
+    "This layer must not manufacture probabilities from qualitative evidence labels."
+  ],
+  "boundary": "The theorem is ordinary expected-loss decision theory. HF01 currently lacks calibrated biological support probabilities, so the numeric layer is a design primitive rather than an operational biomedical rule."
+}
