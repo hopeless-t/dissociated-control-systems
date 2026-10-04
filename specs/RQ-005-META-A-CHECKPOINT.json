@@ -1,0 +1,52 @@
+{
+  "id": "RQ-005-META-A-CHECKPOINT",
+  "status": "OPEN_HIGH_PRIORITY_PROVENANCE_AUDIT",
+  "checkpoint": "2026-10-05",
+  "confirmed": [
+    "bognar_2024_abstract_reports_os_hr_0_97_ci_0_87_1_08",
+    "bognar_2024_figure2_reports_os_hr_0_97_ci_0_87_1_08",
+    "bognar_2024_results_text_reports_os_hr_1_01_ci_0_95_1_07",
+    "bognar_2024_figure2_displayed_hr_and_weight_columns_reconstruct_pooled_hr_approximately_0_971",
+    "bognar_2024_vs_asakawa_haas_2026_trial_sets_have_11_shared_3_2024_only_21_2026_only_trials_under_current_normalization",
+    "asakawa_haas_2026_primary_synthesis_uses_32_rcts_5704_participants",
+    "both_2024_and_2026_primary_survival_syntheses_use_hazard_ratios",
+    "sequential_meta_delta_attribution_can_be_path_dependent_when_bridge_factors_interact",
+    "latest_known_answer_suite_passed_github_actions_at_head_6138bbe1bd23b0f97693e5af3deb3fb746386e98"
+  ],
+  "high_priority_conflicts": [
+    "bognar_2024_abstract_and_figure_agree_while_results_text_differs",
+    "bognar_2024_figure2_contains_apparent_study_label_count_effect_identity_conflicts_against_primary_trials",
+    "bognar_2024_only_trial_exclusion_reasons_in_asakawa_haas_2026_are_not_yet_confirmed_from_supplement_A8",
+    "reason_bognar_2024_is_absent_from_asakawa_haas_2026_prior_meta_table_is_unresolved"
+  ],
+  "current_invariants": [
+    "pooled_arithmetic_consistency_is_not_row_identity_consistency",
+    "aggregate_observable_is_not_correct_internal_binding",
+    "majority_agreement_across_abstract_figure_body_does_not_auto_canonicalize_an_open_source_conflict",
+    "trial_identity_must_be_bidirectionally_unique_with_randomized_population_identity",
+    "artifact_hash_match_does_not_waive_path_or_symlink_identity_checks",
+    "one_sequential_bridge_order_is_not_unique_meta_delta_attribution",
+    "review_level_survival_disagreement_is_not_a_psychoneuroimmune_mechanism"
+  ],
+  "implemented_guards": [
+    "sha256_byte_identity_verification",
+    "direct_child_no_symlink_artifact_path_guard",
+    "bidirectional_trial_randomization_identity_guard",
+    "source_location_estimate_reconciliation",
+    "trial_set_intersection_and_symmetric_difference",
+    "forest_plot_displayed_weight_arithmetic_audit",
+    "path_dependent_bridge_detection",
+    "exact_small_factor_shapley_bridge_accounting"
+  ],
+  "next_gates": [
+    "obtain_bognar_2024_source_or_supplementary_analysis_data",
+    "audit_all_14_figure2_rows_as_label_population_effect_triplets",
+    "test_whether_apparent_row_mismatches_form_a_permutation_or_join_pattern",
+    "confirm_2026_supplement_A8_exclusion_reasons_for_lu_2021_takano_2021_vanbutsele_2018",
+    "download_and_sha256_verify_frozen_2026_osf_assets_in_an_egress_capable_environment",
+    "reproduce_2026_author_primary_analysis_before_any_dcs_reanalysis",
+    "reconstruct_common_trial_set_under_one_frozen_effect_extraction_rule",
+    "keep_psychological_mechanism_claims_nonprivileged_until_mediator_specific_evidence_survives_competing_worlds"
+  ],
+  "claim_ceiling": "provenance and evidence-synthesis debugging only; no cancer treatment, prognosis, or hope-mediated tumor-control claim is established"
+}
