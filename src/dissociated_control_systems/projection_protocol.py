@@ -33,6 +33,33 @@ class CheckStatus(str, Enum):
     FAIL = "FAIL"
 
 
+class ClaimType(str, Enum):
+    DESCRIPTIVE = "DESCRIPTIVE"
+    STATE_INFERENCE = "STATE_INFERENCE"
+    RESPONSE_INFERENCE = "RESPONSE_INFERENCE"
+    REACHABILITY = "REACHABILITY"
+
+
+def required_roles_for_claim(
+    claim_type: ClaimType,
+) -> tuple[CheckpointRole, ...]:
+    if claim_type is ClaimType.DESCRIPTIVE:
+        return (
+            CheckpointRole.PROVENANCE,
+            CheckpointRole.UNCERTAINTY,
+        )
+    if claim_type in (
+        ClaimType.STATE_INFERENCE,
+        ClaimType.RESPONSE_INFERENCE,
+    ):
+        return (
+            CheckpointRole.PROVENANCE,
+            CheckpointRole.STATE_RESPONSE,
+            CheckpointRole.UNCERTAINTY,
+        )
+    return REQUIRED_ORDER
+
+
 @dataclass(frozen=True)
 class CheckpointRecord:
     role: CheckpointRole
@@ -43,6 +70,7 @@ class CheckpointRecord:
 @dataclass(frozen=True)
 class ProjectionCertificate:
     records: tuple[CheckpointRecord, ...]
+    claim_type: ClaimType = ClaimType.REACHABILITY
     empirical_authority_requested: bool = False
 
 
@@ -60,9 +88,11 @@ def validate_projection_certificate(
     records = certificate.records
     violations: list[str] = []
 
-    # A required role must occur at least once.
+    required_roles = required_roles_for_claim(certificate.claim_type)
+
+    # Only roles required by the terminal claim type are mandatory.
     positions: dict[CheckpointRole, int] = {}
-    for role in REQUIRED_ORDER:
+    for role in required_roles:
         indexes = [
             idx for idx, record in enumerate(records)
             if record.role is role
@@ -72,9 +102,9 @@ def validate_projection_certificate(
         else:
             positions[role] = indexes[0]
 
-    # The semantic roles form a protocol, not an unordered checklist.
-    if len(positions) == len(REQUIRED_ORDER):
-        ordered_positions = [positions[role] for role in REQUIRED_ORDER]
+    # The selected required roles remain a protocol, not an unordered checklist.
+    if len(positions) == len(required_roles):
+        ordered_positions = [positions[role] for role in required_roles]
         if ordered_positions != sorted(ordered_positions):
             violations.append("required_roles_out_of_order")
 
@@ -102,21 +132,21 @@ def validate_projection_certificate(
 def canonical_trace(
     statuses: Iterable[CheckStatus] | None = None,
     *,
+    claim_type: ClaimType = ClaimType.REACHABILITY,
     empirical_authority_requested: bool = False,
 ) -> ProjectionCertificate:
     """Build one canonical trace for tests/examples."""
-    statuses_t = tuple(statuses) if statuses is not None else (
-        CheckStatus.PASS,
-        CheckStatus.PASS,
-        CheckStatus.PASS,
-        CheckStatus.PASS,
+    roles = required_roles_for_claim(claim_type)
+    statuses_t = tuple(statuses) if statuses is not None else tuple(
+        CheckStatus.PASS for _ in roles
     )
-    if len(statuses_t) != len(REQUIRED_ORDER):
-        raise ValueError("one status is required per mandatory role")
+    if len(statuses_t) != len(roles):
+        raise ValueError("one status is required per claim-conditioned role")
     return ProjectionCertificate(
         records=tuple(
             CheckpointRecord(role, status)
-            for role, status in zip(REQUIRED_ORDER, statuses_t)
+            for role, status in zip(roles, statuses_t)
         ),
+        claim_type=claim_type,
         empirical_authority_requested=empirical_authority_requested,
     )
