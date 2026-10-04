@@ -286,6 +286,8 @@ Start here:
 - [longitudinal evidence](docs/HF01_LONGITUDINAL_EVIDENCE.md)
 - [normal-model feedback gates](docs/HF01_FEEDBACK_GATE.md)
 - [adaptive projection ladder / mesh](docs/HF01_PROJECTION_LADDER.md)
+- [minimum sufficient checkpoints](docs/HF01_MINIMUM_CHECKPOINTS.md)
+- [must-pass semantic roles](docs/HF01_MUST_PASS_ROLES.md)
 - [public-data result: GSE36169](docs/HF01_GSE36169_RESULT.md)
 - [public-data result: GSE93766](docs/HF01_GSE93766_RESULT.md)
 - [actuator test: GSE178510](docs/HF01_GSE178510_RESULT.md)
