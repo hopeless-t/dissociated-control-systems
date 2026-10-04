@@ -5,6 +5,7 @@ on:
   pull_request:
     paths:
       - "scripts/analyze_gse36169.py"
+      - "scripts/analyze_gse90594.py"
       - "specs/HF01_GSE36169_AXES.json"
       - ".github/workflows/hf01-public-data.yml"
   push:
@@ -12,6 +13,7 @@ on:
       - "research/hf01-follicle-state-calibration"
     paths:
       - "scripts/analyze_gse36169.py"
+      - "scripts/analyze_gse90594.py"
       - "specs/HF01_GSE36169_AXES.json"
       - ".github/workflows/hf01-public-data.yml"
 
@@ -31,3 +33,19 @@ jobs:
         with:
           name: hf01-gse36169-result
           path: artifacts/hf01/gse36169-result.json
+
+  gse90594:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run frozen-axis independent-cohort replication
+        run: python scripts/analyze_gse90594.py
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: hf01-gse90594-result
+          path: artifacts/hf01/gse90594-result.json
