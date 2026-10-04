@@ -10,10 +10,13 @@ from __future__ import annotations
 import argparse
 import csv
 import gzip
+import http.client
 import io
 import json
 import math
 import statistics
+import time
+import urllib.error
 import urllib.request
 from collections import defaultdict
 from pathlib import Path
@@ -28,10 +31,27 @@ ANNOT_URL = (
 )
 
 
-def fetch_gzip_text(url: str) -> str:
-    with urllib.request.urlopen(url, timeout=60) as response:
-        payload = response.read()
-    return gzip.decompress(payload).decode("utf-8", errors="replace")
+def fetch_gzip_text(url: str, attempts: int = 5) -> str:
+    last_error = None
+    request = urllib.request.Request(
+        url,
+        headers={"User-Agent": "dissociated-control-systems-hf01/0.1"},
+    )
+    for attempt in range(attempts):
+        try:
+            with urllib.request.urlopen(request, timeout=60) as response:
+                payload = response.read()
+            return gzip.decompress(payload).decode("utf-8", errors="replace")
+        except (
+            http.client.IncompleteRead,
+            urllib.error.URLError,
+            TimeoutError,
+            OSError,
+        ) as exc:
+            last_error = exc
+            if attempt + 1 < attempts:
+                time.sleep(1 + attempt)
+    raise RuntimeError(f"failed to download {url}") from last_error
 
 
 def parse_matrix(text: str):
