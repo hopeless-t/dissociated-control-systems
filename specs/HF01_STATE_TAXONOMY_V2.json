@@ -1,0 +1,57 @@
+{
+  "schema_version": 2,
+  "status": "WORKING_BIOLOGICAL_STATE_TAXONOMY",
+  "purpose": "Separate coordinates only when current evidence or actuator distinctions make their collapse unsafe.",
+  "states": {
+    "D": {
+      "name": "upstream DHT-like ligand/input state",
+      "authority": "source-supported biological input candidate"
+    },
+    "A_AR": {
+      "name": "canonical androgen-receptor signaling state",
+      "authority": "source-supported pathway candidate"
+    },
+    "Q": {
+      "name": "stress/neuroendocrine/context state",
+      "authority": "source-supported context candidate; human AGA contribution incompletely validated"
+    },
+    "R": {
+      "name": "regenerative-state candidate",
+      "authority": "cross-sectional orthogonal compatibility; not a validated scalar"
+    },
+    "P": {
+      "name": "functional progenitor-compartment/reserve candidate",
+      "authority": "human cross-sectional multi-assay support; dynamic competence unvalidated"
+    },
+    "N": {
+      "name": "stem-cell/niche integrity candidate",
+      "authority": "source-supported but not currently identifiable as one scalar"
+    },
+    "E": {
+      "name": "ECM/fibrogenic remodeling candidate",
+      "authority": "cross-sectional spatial/transcript/protein compatibility"
+    },
+    "M": {
+      "name": "mechanical/contractile state candidate",
+      "authority": "directional ex-vivo human-HF / humanized-model support"
+    },
+    "F_hyst": {
+      "name": "hysteretic structural-lock coordinate",
+      "authority": "synthetic-control variable only"
+    },
+    "H": {
+      "name": "observable hair-output state",
+      "authority": "measurement layer, delayed phenotype"
+    }
+  },
+  "context_not_promoted_to_core_state": {
+    "I": "immune/microinflammatory context has source support but is not yet promoted to a unique dynamic latent coordinate because current evidence does not identify its independent state dynamics from E/P/context",
+    "V": "vascular mechanism candidates exist, but the current frozen transcript observer was rejected"
+  },
+  "legacy_mapping": {
+    "legacy_A": "reduced abstraction that previously mixed upstream DHT exposure and downstream androgen-linked effects; unsafe for branch-specific actuator reasoning",
+    "legacy_F": "reduced abstraction that previously mixed ECM remodeling, mechanics and synthetic hysteresis; unsafe for actuator-specific biological interpretation"
+  },
+  "migration_rule": "Use the legacy 7-state model only for synthetic questions whose conclusions are invariant to the D/A_AR/M and E/M/F_hyst distinctions. Use v2 taxonomy when interpreting biological probes or actuator-specific responses.",
+  "clinical_authority": "NONE"
+}
