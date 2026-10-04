@@ -1,0 +1,22 @@
+{
+  "id": "HF-SIM-018",
+  "title": "Version-bound assurance certificate freshness",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "problem": "A previously valid PASS trace can become stale when evidence, analysis code, model rules, or declared dependencies change.",
+  "model": {
+    "certificate_snapshot": "sorted mapping of dependency id to bound revision",
+    "current_state": "current declared mapping of the same dependency universe",
+    "stale_if": [
+      "a bound dependency revision changes",
+      "a previously bound dependency disappears",
+      "a new declared dependency is added"
+    ]
+  },
+  "invariants": [
+    "Proof Validity Is Versioned",
+    "A stale PASS certificate is not a current PASS certificate",
+    "Dependency-set changes trigger reassessment even when old inputs are unchanged"
+  ],
+  "boundary": "Revision equality is necessary for reuse but not sufficient for scientific validity; unchanged evidence can still be wrong."
+}
