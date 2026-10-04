@@ -1,8 +1,8 @@
 """Evidence-bound assurance layer for proof-carrying projections.
 
 This module distinguishes syntactic checkpoint completion from substantive
-witness support.  It does not decide scientific truth; it makes support,
-applicability, and common-mode dependency explicit.
+witness support. It does not decide scientific truth; it makes support,
+applicability, defeater disposition, and common-mode dependency explicit.
 """
 
 from __future__ import annotations
@@ -14,7 +14,6 @@ from typing import Iterable
 from .projection_protocol import (
     CheckpointRole,
     CheckStatus,
-    ClaimType,
     ProjectionCertificate,
     required_roles_for_claim,
     validate_projection_certificate,
@@ -76,6 +75,15 @@ class Defeater:
     target_role: CheckpointRole
     status: DefeaterStatus
     note: str = ""
+    resolution_witness_id: str | None = None
+
+    def __post_init__(self) -> None:
+        if not self.defeater_id:
+            raise ValueError("defeater_id must be non-empty")
+        if self.status is DefeaterStatus.RESOLVED and not self.resolution_witness_id:
+            raise ValueError("resolved defeater requires resolution_witness_id")
+        if self.status is DefeaterStatus.RESIDUAL and not self.note.strip():
+            raise ValueError("residual defeater requires an explicit rationale note")
 
 
 @dataclass(frozen=True)
