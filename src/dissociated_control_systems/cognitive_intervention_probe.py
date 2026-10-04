@@ -59,7 +59,8 @@ def raw_probe(fault_set, target_fault, seed):
 
 def noisy_probe(fault_set, target_fault, seed):
     signal = raw_probe(fault_set, target_fault, seed)
-    noise_seed = seed ^ (hash(target_fault) & 0xFFFFFFFF)
+    fault_index = FAULT_NAMES.index(target_fault) + 1
+    noise_seed = seed ^ (fault_index * 0x9E3779B1)
     rng = Random(noise_seed)
     return signal + rng.gauss(0.0, PROBE_NOISE_STD)
 
