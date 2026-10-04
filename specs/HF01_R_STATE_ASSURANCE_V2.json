@@ -1,0 +1,57 @@
+{
+  "schema_version": 2,
+  "claim_id": "HF01-R-STATE-CANDIDATE-V2",
+  "claim_type": "STATE_INFERENCE",
+  "claim": "A WNT/regeneration-associated biological state is a cross-sectional AGA state candidate supported by two transcriptomic contexts plus an orthogonal human protein/localization/perturbation study; it is not a validated actuator-response or recoverability coordinate.",
+  "claim_ceiling": "CROSS_SECTIONAL_ORTHOGONAL_STATE_COMPATIBILITY_ONLY",
+  "required_roles": [
+    "PROVENANCE",
+    "STATE_RESPONSE",
+    "UNCERTAINTY"
+  ],
+  "witness_families": {
+    "transcript_context_1": {
+      "source": "GSE36169",
+      "shared_projection_root": "HF01_GSE36169_AXES.json",
+      "result": "WNT/regeneration-loss direction positive in 5/5 paired subjects"
+    },
+    "transcript_context_2": {
+      "source": "GSE93766 BK0 vs NBK0",
+      "shared_projection_root": "HF01_GSE36169_AXES.json",
+      "result": "WNT/regeneration-loss positive mean; 4/6 gene directions aligned"
+    },
+    "orthogonal_human_mechanism_state": {
+      "source": "Lu et al. 2016; PMID 27472703; PMCID PMC5265840",
+      "independent_projection_root": "protein/localization/perturbation assays",
+      "human_material": "15 male AGA patients; 15 frontal balding specimens and 9 occipital nonbalding specimens",
+      "reported_observations": [
+        "lower Wnt10a and LEF1 mRNA in balding follicles",
+        "higher TGF-beta1 protein/pathway activity in balding follicles",
+        "TGF-beta inhibition increased Wnt10a/LEF1 and beta-catenin nuclear translocation in balding DP cells",
+        "Wnt inhibition in nonbalding DP cells increased active TGF-beta1 and Smad2/Akt phosphorylation"
+      ]
+    }
+  },
+  "state_response_boundary": {
+    "source": "GSE178510 minoxidil actuator test",
+    "result": "the frozen cross-sectional transcript projection failed its pre-registered monotonic short-term response prediction",
+    "invariant": "State Separation Axis != Actuator Response Axis"
+  },
+  "evidence_topology": {
+    "transcript_only_root_cut": 1,
+    "transcript_plus_orthogonal_root_cut": 2,
+    "interpretation": "the orthogonal study removes the frozen transcript-axis definition as a single point of failure for the broad R-state compatibility claim"
+  },
+  "open_defeaters": [
+    "R_state remains an abstract latent candidate rather than a directly measured scalar",
+    "cross-sectional and ex-vivo/cell perturbation evidence does not establish longitudinal human recoverability",
+    "the orthogonal source still studies Wnt/TGF-beta family biology and is not independent of the broader mechanistic hypothesis",
+    "measurement-family independence does not imply cohort or causal independence"
+  ],
+  "next_bridge": {
+    "preferred": "human or human-follicle intervention-linked study measuring an early orthogonal internal response and a later functional/hair output",
+    "high_value_source_candidate": "2026 human AGA organ model, PMID 42237333, which links DHT input, growth/catagen/proliferation/apoptosis, molecular state, and partial pharmacologic reversal",
+    "reason": "move from cross-sectional state compatibility toward response susceptibility and state-to-output coupling"
+  },
+  "clinical_authority": "NONE"
+}
