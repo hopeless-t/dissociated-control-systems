@@ -1043,3 +1043,126 @@ epistemic/cognitive gap separation       SYNTHETIC QED
 human comprehension benefit              OPEN: HF-VAL-004
 hair-biological benefit                  NOT IMPLIED / OPEN
 ~~~
+
+
+## Loop 21 — minimum sufficient checkpoint set
+
+The user direction was sharpened:
+
+> Do not preserve every intermediate explanation. Preserve only the checkpoints
+> whose omission permits the system to break.
+
+HF-SIM-007 formalizes this as a small exact set-cover problem.
+
+Let:
+
+~~~text
+F = declared catastrophic failure modes
+S_i = failures blocked by checkpoint c_i
+~~~
+
+Then choose:
+
+~~~text
+C* = argmin |C|
+subject to
+union(S_i for c_i in C) = F
+~~~
+
+A checkpoint is structurally critical when counterfactual deletion exposes a
+required failure mode.
+
+A checkpoint is removable when deletion preserves coverage of every declared
+failure.
+
+This separates useful information from correctness-critical barriers.
+
+## Loop 22 — mandatory role vs mandatory instance
+
+The set-cover view was still insufficient because two different concrete
+checkpoints may implement the same required semantic function.
+
+HF-SIM-008 therefore models the projection as a directed graph.
+
+A concrete node is a dominator only when every accepted source-to-target path
+contains that exact node.
+
+More importantly:
+
+> A semantic role is a role-dominator when every accepted path contains some
+> node implementing that role.
+
+This permits alternative visualizations or interaction patterns without
+allowing the invariant itself to disappear.
+
+Current HF01 role candidates:
+
+~~~text
+PROVENANCE
+STATE-vs-RESPONSE TYPING
+UNCERTAINTY / CLAIM CEILING
+REACHABILITY / UNKNOWN
+~~~
+
+A bypass path that reaches the endpoint without one of these required roles is
+invalid.
+
+## Current compact projection skeleton
+
+The previously long ladder can now compress to:
+
+~~~text
+[PROVENANCE]
+     ↓
+[STATE vs RESPONSE]
+     ↓
+[UNCERTAINTY]
+     ↓
+[REACHABILITY or UNKNOWN]
+     ↓
+calibrated claim
+~~~
+
+Mechanistic, molecular, mathematical, and visual detail is expandable between
+these barriers.
+
+The barriers themselves may be rendered compactly after the user demonstrates
+understanding, but they cannot be bypassed.
+
+## New fixed-point interpretation
+
+Intermediate representations fall into two classes:
+
+~~~text
+optimization nodes:
+    useful only while they reduce reconstruction friction
+
+correctness barriers:
+    must remain functionally present because removing them permits a known
+    failure class
+~~~
+
+The meta-meta target is therefore:
+
+~~~text
+minimum visible path
+subject to
+all mandatory semantic roles dominating every accepted endpoint path
+~~~
+
+This is the current strongest form of the projection-compression hypothesis.
+
+## Updated invariant set
+
+~~~text
+More Detail != Better Projection
+Explanation Smoothness != Evidence Authority
+Endpoint Correctness != Human-Reconstructible Path
+Optimization Node != Correctness Barrier
+Checkpoint Instance != Checkpoint Role
+Compression is allowed between barriers, not through barriers
+~~~
+
+The next empirical validation is still HF-VAL-004: test whether an adaptive
+minimal path preserves reconstruction and uncertainty with less exposed
+explanatory cost than a fixed ladder.
