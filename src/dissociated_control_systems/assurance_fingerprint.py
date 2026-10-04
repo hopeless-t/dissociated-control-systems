@@ -74,14 +74,15 @@ def _canonical_payload(
         "certificate": {
             "claim_type": certificate.claim_type.value,
             "empirical_authority_requested": certificate.empirical_authority_requested,
-            "records": sorted(
+            # Record order is semantic: it is the proof-trace protocol order.
+            "records": [
                 (
                     record.role.value,
                     record.status.value,
                     record.note,
                 )
                 for record in certificate.records
-            ),
+            ],
         },
         "claim_semantics": {
             "describes_observation": claim_semantics.describes_observation,
