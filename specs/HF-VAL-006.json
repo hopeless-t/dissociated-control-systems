@@ -18,6 +18,10 @@
     {
       "gate": "unit_linkage",
       "requirement": "early mechanical readout and later functional output belong to the same follicle; donor and scalp region remain attached as hierarchical identifiers"
+    },
+    {
+      "gate": "trajectory_accounting",
+      "requirement": "every baseline-enrolled follicle has a declared final disposition and HF-SIM-038 attrition/selection risks are reported before complete-case prediction is interpreted"
     }
   ],
   "early_candidates": {
@@ -30,7 +34,8 @@
   },
   "late_outputs": [
     "same-follicle elongation/growth trajectory",
-    "same-follicle time to or probability of catagen transition where validly scored"
+    "same-follicle time to or probability of catagen transition where validly scored",
+    "biological failure/death or irreversible loss of follow-up when scientifically meaningful rather than silently deleting it"
   ],
   "model_comparison": {
     "M0": "late output ~ baseline output + region + intervention + donor structure",
@@ -42,17 +47,22 @@
     "report within-donor and between-donor variance",
     "freeze feature definitions before inspecting late outcomes",
     "retain frontal/occipital region as a declared covariate/stratum rather than pooling by default",
-    "report missing/dropped follicle trajectories and reasons"
+    "freeze technical exclusion rules before late outcomes are inspected",
+    "report missing/dropped follicle trajectories and reasons by donor, region and intervention arm",
+    "do not condition analysis inclusion on post-baseline survival/trackability without an explicit selection model",
+    "perform declared sensitivity analyses when missing-not-at-random late output cannot be excluded"
   ],
   "primary_success_logic": [
     "M1 improves predeclared out-of-sample prediction versus M0 in the expected direction",
     "the improvement is not confined to one donor",
     "confidence/calibration does not worsen materially under the predeclared criterion",
+    "the result survives the declared trajectory-attrition sensitivity analysis",
     "if M2 is tested, M-susceptibility adds information beyond M-state and baseline output"
   ],
   "falsification": [
     "early mechanical state fails to improve donor-held-out prediction beyond baseline output",
     "apparent association disappears after donor/region structure is respected",
+    "apparent association disappears or reverses under plausible attrition/missingness sensitivity analyses",
     "observer back-action or diagnostic-probe persistence cannot be bounded",
     "the early feature is predictive only in-sample or only after post-hoc feature selection",
     "same-unit trajectories show molecular/mechanical response without later functional rescue, weakening a simple response->recovery bridge"
