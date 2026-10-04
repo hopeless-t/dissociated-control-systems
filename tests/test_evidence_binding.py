@@ -60,6 +60,34 @@ def test_same_counts_can_have_multiple_candidate_sources() -> None:
     assert result["status"] == "CROSS_BINDING_CANDIDATE"
 
 
+def test_multiple_population_snapshots_do_not_create_multiple_trials() -> None:
+    canonical = build_canonical_index(
+        [
+            CanonicalEvidence(
+                "EDELMAN",
+                62,
+                62,
+                evidence_id="EDELMAN:randomized",
+            ),
+            CanonicalEvidence(
+                "EDELMAN",
+                60,
+                61,
+                1.323,
+                0.841,
+                2.080,
+                evidence_id="EDELMAN:survival-analysis",
+            ),
+        ]
+    )
+    row = DisplayedEvidence("r", "EDELMAN", 62, 62, 1.0, 0.8, 1.2)
+    result = classify_binding(row, canonical)
+    assert result["count_matches"] == ("EDELMAN:randomized",)
+    assert result["count_match_trial_ids"] == ("EDELMAN",)
+    assert result["own_count_match"] is True
+    assert result["status"] == "EFFECT_SOURCE_CONFLICT_OR_DERIVATION"
+
+
 def test_missing_effect_in_canonical_stays_unresolved_not_fabricated() -> None:
     canonical = build_canonical_index([CanonicalEvidence("A", 10, 10)])
     row = DisplayedEvidence("r", "A", 10, 10, 1.03, 0.87, 1.21)
