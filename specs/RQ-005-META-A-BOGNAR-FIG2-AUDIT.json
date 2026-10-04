@@ -1,0 +1,63 @@
+{
+  "id": "RQ-005-META-A-BOGNAR-FIG2-AUDIT",
+  "status": "OPEN_IDENTITY_AUDIT",
+  "source": {
+    "paper": "Bognar et al. 2024",
+    "doi": "10.1038/s41598-024-63431-y",
+    "figure": "Figure 2 overall survival panel",
+    "figure_url": "https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fs41598-024-63431-y/MediaObjects/41598_2024_63431_Fig2_HTML.png"
+  },
+  "figure_rows": [
+    {"row":1,"label":"ZHANG_L_2021","intervention_n":80,"control_n":80,"hr":0.51,"ci95":[0.17,1.52],"canonical_count_source":"ZHANG_L_2021","canonical_effect_match":"ZHANG_L_2021"},
+    {"row":2,"label":"BAO_2019","intervention_n":136,"control_n":135,"hr":0.65,"ci95":[0.43,1.00],"canonical_count_source":"KUCHLER_1999_2007","canonical_effect_match":"BAO_2019"},
+    {"row":3,"label":"LU_2021","intervention_n":92,"control_n":94,"hr":0.68,"ci95":[0.51,0.90],"canonical_count_source":"VANBUTSELE_2018","canonical_effect_match":"LU_2021"},
+    {"row":4,"label":"KIRKEGAARD_2023","intervention_n":62,"control_n":62,"hr":0.68,"ci95":[0.41,1.14],"canonical_count_source":"EDELMAN_1999_RANDOMIZED","canonical_effect_match":"KIRKEGAARD_2023"},
+    {"row":5,"label":"TAKANO_2021","intervention_n":30,"control_n":36,"hr":0.83,"ci95":[0.50,1.38],"canonical_count_source":"CUNNINGHAM_1998","canonical_effect_match":"TAKANO_2021"},
+    {"row":6,"label":"GOODWIN_2001","intervention_n":114,"control_n":113,"hr":0.93,"ci95":[0.76,1.15],"canonical_count_source":"ANDERSEN_2008","canonical_effect_match":null},
+    {"row":7,"label":"SPIEGEL_2007","intervention_n":110,"control_n":110,"hr":0.93,"ci95":[0.62,1.40],"canonical_count_source":"BAO_2019","canonical_effect_match":"SPIEGEL_2007"},
+    {"row":8,"label":"EDELMAN_1999","intervention_n":29,"control_n":33,"hr":0.96,"ci95":[0.78,1.19],"canonical_count_source":null,"canonical_effect_match":null},
+    {"row":9,"label":"GUO_Z_2013","intervention_n":89,"control_n":89,"hr":1.00,"ci95":[0.88,1.13],"canonical_count_source":"GUO_Z_2013","canonical_effect_match":null},
+    {"row":10,"label":"VANBUTSELE_2018","intervention_n":154,"control_n":149,"hr":1.03,"ci95":[0.87,1.21],"canonical_count_source":"KISSANE_2004","canonical_effect_match":null},
+    {"row":11,"label":"KISSANE_2007","intervention_n":158,"control_n":77,"hr":1.06,"ci95":[0.78,1.45],"canonical_count_source":"GOODWIN_2001","canonical_effect_match":"GOODWIN_2001"},
+    {"row":12,"label":"WANG_J_2019","intervention_n":64,"control_n":61,"hr":1.12,"ci95":[0.94,1.33],"canonical_count_source":"SPIEGEL_2007","canonical_effect_match":null},
+    {"row":13,"label":"KUCHLER_1999_2007","intervention_n":214,"control_n":114,"hr":1.15,"ci95":[0.99,1.34],"canonical_count_source":"LU_2021","canonical_effect_match":null},
+    {"row":14,"label":"KISSANE_2004","intervention_n":96,"control_n":102,"hr":1.35,"ci95":[0.76,2.39],"canonical_count_source":"KIRKEGAARD_2023","canonical_effect_match":"KISSANE_2004"}
+  ],
+  "canonical_comparators": {
+    "ZHANG_L_2021":{"intervention_n":80,"control_n":80,"hr":0.512,"ci95":[0.172,1.522],"source":"Asakawa-Haas 2026 Table 4"},
+    "BAO_2019":{"intervention_n":110,"control_n":110,"hr":0.653,"ci95":[0.427,0.998],"source":"Asakawa-Haas 2026 Table 4"},
+    "LU_2021":{"intervention_n":214,"control_n":114,"hr":0.68,"ci95":[0.51,0.90],"source":"Lu et al. 2021 primary RCT PMID 33417481"},
+    "KIRKEGAARD_2023":{"intervention_n":96,"control_n":102,"hr":0.680,"ci95":[0.410,1.140],"source":"Asakawa-Haas 2026 Table 4"},
+    "TAKANO_2021":{"intervention_n":64,"control_n":65,"count_scope":"metastatic survival analysis subset","hr":0.832,"ci95":[0.499,1.376],"source":"Takano et al. 2021 primary RCT"},
+    "GOODWIN_2001":{"intervention_n":158,"control_n":77,"hr":1.060,"ci95":[0.780,1.450],"source":"Goodwin et al. 2001 primary RCT / Asakawa-Haas Table 4"},
+    "SPIEGEL_2007":{"intervention_n":64,"control_n":61,"hr":0.930,"ci95":[0.620,1.400],"source":"Asakawa-Haas 2026 Table 4"},
+    "EDELMAN_1999":{"intervention_n":60,"control_n":61,"count_scope":"survival analysis after exclusion of 3 non-metastatic participants","hr":1.323,"ci95":[0.841,2.080],"source":"Asakawa-Haas 2026 Table 4"},
+    "EDELMAN_1999_RANDOMIZED":{"intervention_n":62,"control_n":62,"count_scope":"initial randomized allocation","source":"Edelman primary trial / secondary review"},
+    "GUO_Z_2013":{"intervention_n":89,"control_n":89,"hr":1.044,"ci95":[0.504,2.162],"source":"Asakawa-Haas 2026 Table 4"},
+    "VANBUTSELE_2018":{"intervention_n":92,"control_n":94,"hr":null,"ci95":null,"source":"Vanbutsele et al. 2018 primary RCT; published survival reported by medians/P value"},
+    "KISSANE_2007":{"intervention_n":147,"control_n":80,"hr":0.920,"ci95":[0.690,1.240],"source":"Kissane et al. 2007 primary RCT / Asakawa-Haas Table 4"},
+    "WANG_J_2019":{"intervention_n":68,"control_n":68,"hr":0.646,"ci95":[0.441,0.947],"source":"Asakawa-Haas 2026 Table 4"},
+    "KUCHLER_1999_2007":{"intervention_n":136,"control_n":135,"hr":0.653,"ci95":[0.495,0.861],"source":"Kuchler 2007 primary follow-up / Asakawa-Haas Table 4"},
+    "KISSANE_2004":{"intervention_n":154,"control_n":149,"hr":1.350,"ci95":[0.760,2.390],"source":"Asakawa-Haas 2026 Table 4"},
+    "CUNNINGHAM_1998":{"intervention_n":30,"control_n":36,"source":"Asakawa-Haas 2026 Table 4"},
+    "ANDERSEN_2008":{"intervention_n":114,"control_n":113,"source":"Asakawa-Haas 2026 Table 4"}
+  },
+  "observed_patterns": [
+    "multiple_figure_count_pairs_exactly_match_different_known_rcts",
+    "some_figure_effects_match_the_labeled_trial_while_counts_match_another_trial",
+    "at_least_one_row_kissane_2007_carries_goodwin_2001_count_and_effect_tuple",
+    "figure_pooled_hr_is_arithmetically_consistent_with_displayed_hr_and_weight_columns",
+    "main_text_os_hr_1_01_remains_in_conflict_with_abstract_and_figure_hr_0_97"
+  ],
+  "nonclaims": [
+    "cross_row_matches_do_not_yet_prove_a_plotting_or_join_bug",
+    "different_analysis_subsets_or_undocumented_transformations_remain_possible",
+    "no_biological_or_clinical_conclusion_follows_from_this_provenance_audit"
+  ],
+  "promotion_gate": [
+    "obtain_2024_source_data_or_analysis_artifact",
+    "reconstruct_row_binding_from_source_artifact",
+    "explain_figure_vs_main_text_pooled_hr_difference",
+    "verify_each_effect_metric_against_primary_or_declared_derived_source"
+  ]
+}
