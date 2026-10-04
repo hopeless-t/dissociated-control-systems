@@ -16,8 +16,8 @@ from .projection_protocol import (
     CheckStatus,
     ProjectionCertificate,
     required_roles_for_claim,
-    validate_projection_certificate,
 )
+from .projection_validator_v2 import validate_projection_certificate_v2
 
 
 class DefeaterStatus(str, Enum):
@@ -137,8 +137,8 @@ def validate_evidence_bound_certificate(
     witnesses: Iterable[EvidenceWitness],
     defeaters: Iterable[Defeater] = (),
 ) -> AssuranceResult:
-    """Validate protocol plus witness obligations and explicit defeaters."""
-    base = validate_projection_certificate(certificate)
+    """Validate v2 protocol plus witness obligations and explicit defeaters."""
+    base = validate_projection_certificate_v2(certificate)
     violations = list(base.violations)
     warnings: list[str] = []
     witnesses_t = tuple(witnesses)
