@@ -7,15 +7,38 @@
     "figure_estimate_is_not_automatically_canonical",
     "publication_is_not_trial",
     "followup_publication_is_not_new_randomization",
+    "population_snapshot_is_not_new_randomization",
+    "field_value_match_is_not_field_semantics_match",
     "study_label_sample_count_and_effect_estimate_must_share_one_trial_identity",
+    "aggregate_total_consistency_is_not_row_identity_consistency",
+    "revision_complete_is_not_all_observers_converged",
     "same_effect_metric_does_not_imply_same_data_universe",
     "pooled_survival_effect_does_not_identify_biological_mediator"
   ],
   "reports": {
+    "BOGNAR_PREPRINT_2023": {
+      "doi": "10.21203/rs.3.rs-3407894/v1",
+      "posted": "2023-10-11",
+      "search_through": "2021-10-18",
+      "os": {
+        "k": 12,
+        "n": 2294,
+        "hr": 1.01,
+        "ci95": [0.95, 1.07],
+        "i2_pct": 3,
+        "figure_population_count_identity": {
+          "own": 12,
+          "cross": 0,
+          "unresolved": 0
+        }
+      },
+      "role": "direct_pre_revision_snapshot"
+    },
     "BOGNAR_2024": {
       "doi": "10.1038/s41598-024-63431-y",
       "pmid": "38853187",
       "search_updated_through": "2024-02-01",
+      "search_update_context": "during_revision_process",
       "title_scope_label": "early-stage cancer",
       "published_eligibility_population": "adult patients with any cancer receiving cancer or palliative treatment, or reporting as cancer survivors",
       "effect_metric_primary_survival": "HR",
@@ -37,7 +60,7 @@
           "prediction_interval": [0.77, 1.23]
         },
         "status": "INTERNAL_CONFLICT_OPEN",
-        "source_pattern": "abstract_and_figure_agree_body_results_isolated",
+        "source_pattern": "abstract_and_figure_agree_body_results_matches_preprint_state",
         "canonical_choice": null
       },
       "rfs": {
@@ -46,11 +69,6 @@
         "hr": 0.99,
         "ci95": [0.84, 1.16],
         "status": "SOURCE_AGREEMENT_OBSERVED"
-      },
-      "preprint_signal": {
-        "os_hr": 1.01,
-        "ci95": [0.95, 1.07],
-        "role": "provenance_clue_not_canonical_resolution"
       },
       "published_figure_2_trial_set": {
         "n": 14,
@@ -70,7 +88,19 @@
           "KUCHLER_1999_2007",
           "KISSANE_2004"
         ],
-        "row_identity_status": "CONFLICTS_DETECTED_PENDING_SOURCE_DATA_AUDIT"
+        "same_semantic_population_count_identity": {
+          "own": 2,
+          "cross": 11,
+          "unresolved": 1
+        },
+        "cross_semantic_exact_pair_candidate": {
+          "displayed_row": "EDELMAN_1999",
+          "displayed_pair": [29, 33],
+          "candidate_source_trial": "ANDERSEN_2008",
+          "candidate_source_semantics": "recurrence_event_count",
+          "status": "NUMERIC_COLLISION_NOT_SOURCE_PROOF"
+        },
+        "row_identity_status": "SYSTEMATIC_CONFLICT_PATTERN_PENDING_SOURCE_DATA_AUDIT"
       }
     },
     "ASAKAWA_HAAS_2026": {
@@ -108,6 +138,25 @@
       }
     }
   },
+  "bognar_revision_transition": {
+    "preprint_os_studies": 12,
+    "final_os_studies": 14,
+    "preprint_n": 2294,
+    "final_n": 2683,
+    "new_final_labels": ["LU_2021", "KIRKEGAARD_2023"],
+    "population_count_pair_intersection": 9,
+    "preprint_only_population_pairs": 3,
+    "final_only_observed_pairs": 5,
+    "pure_same_membership_permutation_status": "INSUFFICIENT_EXPLANATION",
+    "final_only_pair_sources_or_candidates": {
+      "214/114": "LU_2021_population_size",
+      "96/102": "KIRKEGAARD_2023_population_size",
+      "30/36": "CUNNINGHAM_1998_population_size_not_final_os_label",
+      "114/113": "ANDERSEN_2008_randomized_population_not_final_os_label",
+      "29/33": "ANDERSEN_2008_recurrence_event_count_numeric_match_cross_semantic_only"
+    },
+    "current_state": "REVISION_IDENTITY_REGRESSION_OBSERVED_CAUSE_UNRESOLVED"
+  },
   "trial_set_delta_2024_2026": {
     "shared": 11,
     "bognar_2024_only": 3,
@@ -126,42 +175,33 @@
     }
   },
   "figure_row_identity_red_team": {
-    "status": "OPEN_HIGH_PRIORITY",
-    "examples": [
-      {
-        "figure_label": "GOODWIN_2001",
-        "figure_displayed_randomized_counts": [114, 113],
-        "primary_trial_randomized_counts": [158, 77],
-        "primary_trial_univariate_hr": 1.06,
-        "primary_trial_ci95": [0.78, 1.45],
-        "note": "figure counts 114/113 match the randomized counts of Andersen 2008, not Goodwin 2001"
-      },
-      {
-        "figure_label": "KISSANE_2007",
-        "figure_displayed_randomized_counts": [158, 77],
-        "figure_displayed_hr": 1.06,
-        "figure_displayed_ci95": [0.78, 1.45],
-        "primary_trial_randomized_counts": [147, 80],
-        "primary_trial_univariate_hr": 0.92,
-        "primary_trial_ci95": [0.69, 1.26],
-        "note": "figure row values coincide with Goodwin 2001 primary values rather than Kissane 2007"
-      },
-      {
-        "figure_label": "KUCHLER_1999_2007",
-        "figure_displayed_randomized_counts": [214, 114],
-        "primary_trial_total_randomized": 271,
-        "asakawa_haas_2026_counts": [136, 135],
-        "note": "figure counts 214/114 match Lu 2021 randomization counts; source-data audit required before diagnosing a binding bug"
-      }
+    "status": "OPEN_HIGH_PRIORITY_SYSTEMATIC_PATTERN",
+    "same_semantic_population_count_summary": {
+      "own": 2,
+      "cross": 11,
+      "unresolved": 1
+    },
+    "longest_unique_count_cross_binding_path": [
+      "WANG_J_2019",
+      "SPIEGEL_2007",
+      "BAO_2019",
+      "KUCHLER_1999_2007",
+      "LU_2021",
+      "VANBUTSELE_2018",
+      "KISSANE_2004",
+      "KIRKEGAARD_2023",
+      "EDELMAN_1999"
     ],
-    "promotion_rule": "do_not_pool_or_compare_study_specific_values_until_label_count_effect_identity_is_reconciled"
+    "promotion_rule": "do_not_pool_or_compare_study_specific_values_until_label_population_snapshot_field_semantics_and_effect_identity_are_reconciled"
   },
   "current_discrepancy_hypotheses_ranked": [
+    "bognar_revision_partial_update_or_snapshot_divergence",
     "study_row_identity_or_source_binding_conflict_in_bognar_2024",
+    "broader_master_extraction_table_column_membership_or_join_mismatch",
+    "field_semantics_collision_between_population_and_event_counts",
     "trial_inclusion_and_search_horizon_difference",
     "followup_publication_identity_and_effect_selection_rules",
     "hr_extraction_or_reconstruction_difference",
-    "bognar_2024_internal_os_estimate_conflict",
     "eligibility_and_intervention_definition_difference",
     "pooling_and_variance_estimation_difference",
     "treatment_era_and_case_mix_difference"
@@ -178,16 +218,25 @@
     {
       "claim": "2024_abstract_is_simply_a_typo",
       "reason": "published Figure 2 independently reports the same 0.97 [0.87, 1.08] pooled OS estimate as the abstract"
+    },
+    {
+      "claim": "final_figure_count_conflict_is_only_a_permutation_of_the_same_preprint_count_pairs",
+      "reason": "preprint/final unique count-pair membership differs: intersection 9, preprint-only 3, final-only 5"
+    },
+    {
+      "claim": "exact_numeric_pair_match_proves_same_source_field",
+      "reason": "29/33 matches Andersen recurrence-event counts but the final forest column is presented as patient counts; equal values do not establish equal semantics"
     }
   ],
   "next_gates": [
-    "audit_bognar_2024_figure2_row_binding_against_primary_trials_and_supplement_source_data",
+    "obtain_final_2024_supplementary_source_data_without_transformation",
+    "recover_master_extraction_table_row_order_and_field_names",
+    "test_whether_final_count_sequence_is_one_column_from_a_broader_table_sorted_under_another_field",
     "resolve_2024_abstract_figure_vs_body_os_provenance_without_guessing",
     "verify_individual_exclusion_reasons_for_2024_only_trials_from_2026_supplement_A8",
-    "build_stable_trial_id_map_for_both_reviews",
     "map_each_included_effect_to_primary_followup_or_reconstructed_source",
     "reproduce_2026_author_analysis_from_sha256_verified_osf_assets",
-    "reproduce_2024_analysis_from_available_primary_or_supplementary_assets",
+    "reproduce_2024_analysis_from_verified_source_or_supplementary_assets",
     "rerun_common_trial_set_under_common_hr_extraction_rule",
     "quantify_path_dependence_of_any_sequential_delta_decomposition"
   ],
