@@ -1,0 +1,30 @@
+{
+  "id": "HF-SIM-036",
+  "title": "Matched baseline state does not identify local perturbation susceptibility",
+  "status": "SYNTHETIC_CONTROL_COUNTEREXAMPLE",
+  "clinical_authority": "NONE",
+  "model": "x(u + du) ~= x(u) + chi * du",
+  "susceptibility": "chi = partial x / partial u, estimated locally by a finite difference under a declared perturbation",
+  "known_answer": {
+    "shared_baseline": 0.5,
+    "input_delta": 0.5,
+    "system_A_susceptibility": 0.4,
+    "system_B_susceptibility": -0.2,
+    "system_A_response": 0.7,
+    "system_B_response": 0.4
+  },
+  "result": "Equal current state can hide different or opposite local response gains.",
+  "HF01_mapping": [
+    "baseline M != contraction susceptibility to a standardized mechanical/biochemical input",
+    "baseline A_AR proxy != transcriptional response susceptibility to DHT/AR perturbation",
+    "baseline R-state compatibility != pro-regenerative actuator response",
+    "response susceptibility != long-horizon recoverability"
+  ],
+  "experimental_implication": "When ethically and technically appropriate in ex-vivo/in-vitro systems, measure both baseline state and a prospectively declared small perturbation response. Do not infer local control gain from baseline alone.",
+  "claim_boundary": [
+    "The finite-difference gain is local and perturbation-specific.",
+    "A high or favorable early susceptibility does not establish later functional rescue.",
+    "Perturbation itself can create observer/controller back-action and must pass the measurement/intervention safety contract.",
+    "No personal clinical perturbation is proposed."
+  ]
+}
