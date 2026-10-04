@@ -30,8 +30,8 @@ breast-cancer recurrence.
 
 - original regional-breast-cancer trial: n=227 randomized before adjuvant care;
 - 62 patients subsequently recurred;
-- intent-to-treat post-recurrence analysis reported reduced risk of death for
-  the original intervention arm (HR 0.41, p=0.014);
+- post-recurrence analysis reported reduced risk of death for the original
+  intervention arm (HR 0.41, p=0.014);
 - a biobehavioral subset of 41 recurrent patients was reassessed at recurrence
   and 4, 8, and 12 months;
 - psychological/social/adherence/health and immune measures including NK-cell
@@ -51,7 +51,42 @@ randomized upstream perturbation
 ~~~
 
 It still does not identify which mediator, if any, caused a survival effect.
-The recurrent subgroup is small and is a post-randomization subset.
+
+## Post-randomization selection correction
+
+The recurrent subgroup is not automatically a randomized comparison.
+
+The parent trial also reported that the randomized intervention was associated
+with lower recurrence risk. If treatment assignment affects recurrence, then
+conditioning on the later event `recurrence = yes` can alter the latent-risk
+composition of the randomized arms.
+
+Thus:
+
+~~~text
+Randomized At Diagnosis
+!=
+Randomized Among Those Who Later Recurred
+~~~
+
+A deterministic RQ-005 fixture now shows the failure mode: an intervention with
+zero direct post-recurrence effect can appear to improve post-recurrence
+survival after conditioning on recurrence, solely because the selected
+recurrent groups contain different proportions of latent high-risk patients.
+
+See:
+
+- `RQ-005_POST_RANDOMIZATION_SELECTION.md`
+- `src/dissociated_control_systems/post_randomization_selection.py`
+- `tests/test_post_randomization_selection.py`
+
+Therefore the reported HR 0.41 remains an important signal and the repeated
+mediator measurements remain high-value, but the recurrent-subgroup estimate
+must not be promoted to a clean randomized causal effect after recurrence
+without addressing post-randomization selection.
+
+The original intention-to-treat randomized effect and the selected recurrent
+mechanistic analysis are separate estimands.
 
 ## Null metastatic randomized evidence
 
@@ -96,7 +131,7 @@ psychological survival mechanism.
 
 ## RQ-005 interpretation
 
-The literature currently supports at least four competing explanations for the
+The literature currently supports multiple competing explanations for the
 mixed trial record:
 
 ~~~text
@@ -109,6 +144,8 @@ P4  timing matters: pre-recurrence intervention changes later state, while
     intervention after advanced disease may be too late to alter disease control
 P5  survival effect is partly due to treatment engagement / health behavior
     rather than direct neuroimmune control
+P6  selected recurrent-subgroup estimates are partly distorted by
+    post-randomization selection on recurrence
 ~~~
 
 No P-world is currently privileged.
@@ -127,6 +164,7 @@ randomized perturbation
 + immune measures
 + recurrence topology / burden
 + transition-specific survival endpoint
++ explicit handling of post-randomization selection
 ~~~
 
 A late survivor narrative without contemporaneous mediator measurements remains
@@ -143,14 +181,17 @@ Domain Priority != Evidence-Design Priority
 If individual-level data from a suitable randomized cohort become available:
 
 1. preserve original randomization as the primary perturbation;
-2. avoid conditioning the causal treatment estimate on post-randomization
-   recurrence without explicitly handling selection;
-3. separately study the recurrent subgroup as a mechanistic cohort;
-4. model repeated mediators from recurrence forward;
-5. test whether mediator trajectories add information to recurrence site,
+2. report the original intention-to-treat total effect separately;
+3. do not treat randomization as automatically preserved after conditioning on
+   recurrence;
+4. compare baseline risk composition within recurrent randomized arms;
+5. separately study the recurrent subgroup as a mechanistic cohort;
+6. model repeated mediators from recurrence forward;
+7. test whether mediator trajectories add information to recurrence site,
    burden, treatment, and subtype;
-6. use transition-specific outcome `recurrence -> cancer death/censor`;
-7. report total randomized effect separately from exploratory mediation.
+8. use transition-specific outcome `recurrence -> cancer death/censor`;
+9. where justified, use principal-stratification, joint multi-state,
+   selection-weighting, and sensitivity analyses with assumptions exposed.
 
 ## Claim ceiling
 
