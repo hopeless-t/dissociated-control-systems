@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "id": "HF01-STRUCTURAL-STATE-SPLIT-V1",
+  "status": "MODEL_STRUCTURE_UPDATE",
+  "reason": "New human spatial and mechanotransduction evidence shows that ECM/fibrogenic remodeling and CTS mechanical hypercontractility are related structural phenomena but are not the same observed variable or intervention target.",
+  "states": {
+    "E": {
+      "name": "ECM/fibrogenic remodeling candidate",
+      "primary_support": [
+        "GSE36169/GSE93766 cross-context ECM projection",
+        "GSE282856 spatial progenitor-region ECM/EMT signatures including FN1, TWIST1 and TGFB2"
+      ],
+      "claim_ceiling": "cross-sectional structural-remodeling candidate"
+    },
+    "M": {
+      "name": "mechanical/contractile state candidate",
+      "primary_support": [
+        "Li et al. 2026 Nature Communications CTS hypercontractility / PIEZO1 experiments",
+        "human ex vivo HF organ perturbation and rescue",
+        "humanized mouse validation"
+      ],
+      "claim_ceiling": "directional mechanotransduction state in experimental human-HF / humanized systems"
+    },
+    "F": {
+      "name": "synthetic hysteretic structural lock",
+      "primary_support": "HF01 mathematical model only",
+      "claim_ceiling": "synthetic-only until longitudinal path dependence is demonstrated"
+    }
+  },
+  "non_equivalences": [
+    "E != M",
+    "M != F",
+    "E != F",
+    "fibrogenic transcript state != measured tissue contraction",
+    "mechanical contraction/rescue != proof of irreversible hysteresis"
+  ],
+  "working_connections": [
+    "M -> progenitor apoptosis / depletion is supported directionally in experimental human-HF systems",
+    "M -> matrix/ORS proliferation suppression and HF growth retardation is supported directionally",
+    "E and P are spatially associated in human AGA progenitor regions",
+    "E -> M and M -> E remain open",
+    "E/M -> F synthetic hysteresis mapping remains open"
+  ],
+  "synthetic_model_implication": "Future HF01 model revisions should not use one structural_lock variable as if it were simultaneously ECM fibrosis, contractility, mechanotransduction and biological irreversibility. Either split those coordinates or explicitly mark F as a reduced-order abstraction.",
+  "clinical_authority": "NONE"
+}
