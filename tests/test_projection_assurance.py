@@ -1,3 +1,5 @@
+import pytest
+
 from dissociated_control_systems.projection_assurance import (
     Defeater,
     DefeaterStatus,
@@ -153,7 +155,25 @@ def test_open_defeater_downgrades_pass_to_unknown() -> None:
     assert "open_defeater_blocks_empirical_pass" in result.violations
 
 
-def test_resolved_defeater_does_not_block_pass() -> None:
+def test_resolved_defeater_requires_resolution_witness() -> None:
+    with pytest.raises(ValueError):
+        Defeater(
+            "d-reach-1",
+            CheckpointRole.REACHABILITY,
+            DefeaterStatus.RESOLVED,
+        )
+
+
+def test_residual_defeater_requires_explicit_rationale() -> None:
+    with pytest.raises(ValueError):
+        Defeater(
+            "d-reach-1",
+            CheckpointRole.REACHABILITY,
+            DefeaterStatus.RESIDUAL,
+        )
+
+
+def test_resolved_defeater_with_witness_does_not_block_pass() -> None:
     cert = canonical_trace(
         claim_type=ClaimType.REACHABILITY,
         empirical_authority_requested=True,
@@ -162,6 +182,7 @@ def test_resolved_defeater_does_not_block_pass() -> None:
         "d-reach-1",
         CheckpointRole.REACHABILITY,
         DefeaterStatus.RESOLVED,
+        resolution_witness_id="resolution-analysis-1",
     )
 
     result = validate_evidence_bound_certificate(
@@ -172,6 +193,34 @@ def test_resolved_defeater_does_not_block_pass() -> None:
 
     assert result.accepted
     assert result.terminal_status is CheckStatus.PASS
+
+
+def test_residual_doubt_is_visible_but_does_not_silently_disappear() -> None:
+    cert = canonical_trace(
+        claim_type=ClaimType.DESCRIPTIVE,
+        empirical_authority_requested=True,
+    )
+    defeater = Defeater(
+        "d-scope-1",
+        CheckpointRole.UNCERTAINTY,
+        DefeaterStatus.RESIDUAL,
+        note="small cohort remains a declared residual limitation",
+    )
+
+    result = validate_evidence_bound_certificate(
+        cert,
+        witnesses=(
+            _witness("p", CheckpointRole.PROVENANCE, "source"),
+            _witness("u", CheckpointRole.UNCERTAINTY, "analysis"),
+        ),
+        defeaters=(defeater,),
+    )
+
+    assert result.accepted
+    assert any(
+        warning == "residual_doubt:d-scope-1:UNCERTAINTY"
+        for warning in result.warnings
+    )
 
 
 def test_shared_root_is_reported_as_common_mode_dependency() -> None:
