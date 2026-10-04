@@ -10,19 +10,19 @@ on:
       - "src/dissociated_control_systems/cognitive_governor.py"
       - "src/dissociated_control_systems/cognitive_observation_stress.py"
       - "src/dissociated_control_systems/cognitive_harness_repair.py"
-      - "src/dissociated_control_systems/cognitive_harness_scheduler.py"
+      - "src/dissociated_control_systems/cognitive_harness_scheduler.py"\n      - "src/dissociated_control_systems/cognitive_active_diagnosis.py"
       - "tests/test_cognitive_decline.py"
       - "tests/test_cognitive_experiments.py"
       - "tests/test_cognitive_governor.py"
       - "tests/test_cognitive_observation_stress.py"
       - "tests/test_cognitive_harness_repair.py"
-      - "tests/test_cognitive_harness_scheduler.py"
+      - "tests/test_cognitive_harness_scheduler.py"\n      - "tests/test_cognitive_active_diagnosis.py"
       - "docs/CGD-SIM-001.md"
       - "docs/CGD-SIM-002.md"
       - "docs/CGD-SIM-003.md"
       - "docs/CGD-SIM-004.md"
       - "docs/CGD-SIM-005.md"
-      - "docs/CGD-SIM-006.md"
+      - "docs/CGD-SIM-006.md"\n      - "docs/CGD-SIM-007.md"
       - ".github/workflows/cognitive-simulation.yml"
   pull_request:
     paths:
@@ -67,7 +67,7 @@ jobs:
           pytest -q tests/test_cognitive_governor.py
           pytest -q tests/test_cognitive_observation_stress.py
           pytest -q tests/test_cognitive_harness_repair.py
-          pytest -q tests/test_cognitive_harness_scheduler.py
+          pytest -q tests/test_cognitive_harness_scheduler.py\n          pytest -q tests/test_cognitive_active_diagnosis.py
       - name: Run frozen four-arm simulation
         run: |
           python -m dissociated_control_systems.cognitive_decline --format markdown > cognitive-summary.md
@@ -97,4 +97,4 @@ jobs:
         run: |
           python -m dissociated_control_systems.cognitive_harness_scheduler > cognitive-scheduler.md
           cat cognitive-scheduler.md
-          cat cognitive-scheduler.md >> "$GITHUB_STEP_SUMMARY"
+          cat cognitive-scheduler.md >> "$GITHUB_STEP_SUMMARY"\n      - name: Run cost-aware active diagnosis\n        run: |\n          python -m dissociated_control_systems.cognitive_active_diagnosis > cognitive-active-diagnosis.md\n          cat cognitive-active-diagnosis.md\n          cat cognitive-active-diagnosis.md >> "$GITHUB_STEP_SUMMARY"
