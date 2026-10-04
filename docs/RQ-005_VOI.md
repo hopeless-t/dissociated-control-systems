@@ -55,10 +55,7 @@ invalid likelihood normalization  -> fail closed
 
 These tests validate the calculator, not the oncology model.
 
-## Current qualitative ordering
-
-The current literature constrains the ordering without yet supporting numeric
-likelihoods for the METABRIC sentinels.
+## Current evidence constraints
 
 ### Response depth / NED state
 
@@ -71,7 +68,7 @@ post-recurrence durable-control residuals.
 
 Reference: PMID 39987798.
 
-### Metastatic immune/TME and dormancy/niche
+### Metastatic immune/TME and recurrence niche
 
 Current reviews describe metastatic dormancy and reactivation as dynamic,
 context-dependent states shaped by cancer-cell-intrinsic programs together
@@ -86,36 +83,61 @@ References:
 - PMID 41855938
 - PMID 42032160
 
-This supports measuring metastatic site and TME/niche state, but it does not
-establish that dormancy explains MB-5566, MB-4348, or any other pilot case.
+Classic dormancy is primarily a candidate for recurrence timing. It does not by
+itself explain prolonged control after an already established early recurrence.
+
+### Randomized psychosocial / neuroimmune evidence
+
+A post-recurrence follow-up of a randomized breast-cancer psychological
+intervention reported a lower death hazard after recurrence in the original
+intervention arm and collected repeated psychological, adherence, health, NK,
+and T-cell measures after recurrence (PMID 20530702).
+
+However, separate randomized supportive-expressive therapy trials in metastatic
+breast cancer did not show a general survival benefit (PMIDs 17385190,
+11742045, 17647221).
+
+This mixed evidence changes the VOI rule:
+
+~~~text
+Domain Priority != Evidence-Design Priority
+~~~
+
+A psychological self-report collected years after survival remains weak for
+causal identification. A randomized upstream perturbation with contemporaneous
+mediator measurements can be high-value evidence even though it belongs to the
+same broad psychological domain.
+
+See `RQ-005_POST_RECURRENCE_PSYCH_EVIDENCE.md`.
 
 ## Current observation tiers
 
-Until numeric observation likelihoods are learned, RQ-005 keeps a qualitative
-VOI ladder:
+Until numeric observation likelihoods are learned, RQ-005 keeps an adaptive
+qualitative ladder for the current METABRIC R2/R3 sentinels:
 
 ~~~text
-Tier A
+Tier A — direct post-recurrence state
   recurrence site/topology/burden
   radiologic response depth / CR / NED history
   exact treatment sequence and local metastatic treatment
 
-Tier B
+Tier B — mechanistic discrimination
   paired primary-vs-recurrence biology
   recurrent-tumor genomic/evolutionary state
   metastatic immune/TME architecture
+  randomized intervention + contemporaneous repeated mediator measurements
 
-Tier C
-  dormancy/reactivation biomarkers when a validated human measurement exists
+Tier C — systemic hidden-state candidates
+  validated post-control dormancy/minimal-residual-disease measurements
   systemic inflammatory/neuroendocrine trajectory
+  longitudinal psychological/agency state measured before the endpoint
 
-Tier D
-  psychological/agency state and survivor narrative variables
+Tier D — hypothesis generation only
+  late survivor narratives without contemporaneous mediator records
 ~~~
 
-Tier D is not considered unimportant. It is placed later because a measured
-psychological difference is difficult to interpret causally until major
-post-recurrence tumor, treatment, response, and TME competitors are observed.
+This hierarchy ranks evidence structures for the current transition. It is not
+a permanent ranking of biological importance.
 
 ## Promotion rule
 
