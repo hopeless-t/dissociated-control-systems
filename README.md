@@ -206,7 +206,7 @@ fail this validation.
 See [docs/VAL-001.md](docs/VAL-001.md) and
 [specs/VAL-001.json](specs/VAL-001.json).
 
-## New oncology control-state lane\n\n[RQ-005 — Psychological control state, neuroimmune mediation, and tumor dynamics](docs/RQ-005_HOPE_NEUROIMMUNE_CONTROL.md) introduces a strictly non-clinical synthetic model for asking whether measurable mediator changes can move a tumor-bearing system across a growth/control boundary. It explicitly preserves `Hope != cancer treatment` and `Model QED != clinical QED`.\n\n## Research architecture
+## New oncology control-state lane\n\n[RQ-005 — Survivor divergence and multi-layer cancer control dynamics](docs/RQ-005_HOPE_NEUROIMMUNE_CONTROL.md) introduces a strictly non-clinical synthetic model for asking whether measurable mediator changes can move a tumor-bearing system across a growth/control boundary. It explicitly preserves `Hope != cancer treatment` and `Model QED != clinical QED`. The first real-data method pilot is recorded in [docs/RQ-005_METABRIC_PILOT.md](docs/RQ-005_METABRIC_PILOT.md), with a hard provenance gate because the accessible 1,897-row mirror is smaller than the current 2,509-patient canonical METABRIC clinical object.\n\n## Research architecture
 
 ~~~text
 Question
