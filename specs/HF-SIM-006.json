@@ -1,0 +1,18 @@
+{
+  "id": "HF-SIM-006",
+  "title": "Projection gaps separate into epistemic and cognitive dimensions",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "dimensions": {
+    "epistemic_gap": "missing measurement, causal, provenance, or validation connection between model and reality",
+    "cognitive_gap": "connection exists but is too compressed for the intended human to reconstruct reliably"
+  },
+  "quadrants": {
+    "low_low": "collapse redundant explanation",
+    "low_epistemic_high_cognitive": "insert intermediate representations and test reconstruction",
+    "high_epistemic_low_cognitive": "collect/validate evidence and preserve UNKNOWN; do not explain around the gap",
+    "high_high": "improve both evidence and representation"
+  },
+  "invariant": "Explanatory refinement cannot repair missing empirical evidence, and additional empirical evidence does not automatically make a representation understandable.",
+  "boundary": "The normalized scores and threshold are controller variables, not validated psychological or statistical measures."
+}\n
