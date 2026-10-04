@@ -32,10 +32,11 @@ def test_rounding_scale_difference_can_remain_consistent() -> None:
     assert require_canonicalizable(result).source_location == "abstract"
 
 
-def test_bognar_2024_abstract_vs_body_known_answer_is_conflict() -> None:
+def test_bognar_2024_abstract_figure_vs_body_known_answer_is_conflict() -> None:
     result = reconcile_same_analysis(
         [
             estimate("published_abstract", 0.97, 0.87, 1.08),
+            estimate("published_figure_2", 0.97, 0.87, 1.08),
             estimate("published_results", 1.01, 0.95, 1.07),
         ],
         tolerance=0.005,
@@ -44,6 +45,19 @@ def test_bognar_2024_abstract_vs_body_known_answer_is_conflict() -> None:
     assert result.max_point_difference == pytest.approx(0.04)
     assert result.max_lower_difference == pytest.approx(0.08)
     with pytest.raises(ValueError, match="cannot be canonicalized"):
+        require_canonicalizable(result)
+
+
+def test_majority_agreement_does_not_auto_canonicalize_conflict() -> None:
+    result = reconcile_same_analysis(
+        [
+            estimate("abstract", 0.97, 0.87, 1.08),
+            estimate("figure", 0.97, 0.87, 1.08),
+            estimate("body", 1.01, 0.95, 1.07),
+        ]
+    )
+    assert result.status == "INTERNAL_CONFLICT"
+    with pytest.raises(ValueError):
         require_canonicalizable(result)
 
 
