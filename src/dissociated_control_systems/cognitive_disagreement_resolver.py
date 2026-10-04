@@ -5,6 +5,8 @@ Synthetic harness experiment only. Clinical authority: NONE.
 
 from __future__ import annotations
 
+from functools import lru_cache
+
 from collections import defaultdict
 
 from .cognitive_ceiling_audit import make_dataset
@@ -119,6 +121,7 @@ def evaluate(
     }
 
 
+@lru_cache(maxsize=1)
 def optimize():
     templates, norm, train = prepare()
     validation = precompute_posteriors(

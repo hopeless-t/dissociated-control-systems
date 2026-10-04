@@ -5,6 +5,8 @@ Synthetic harness experiment only. Clinical authority: NONE.
 
 from __future__ import annotations
 
+from functools import lru_cache
+
 from statistics import fmean
 
 from .cognitive_temporal_frontier import (
@@ -62,6 +64,7 @@ def evaluate_block(
     return result
 
 
+@lru_cache(maxsize=None)
 def replicated_audit(
     *,
     blocks: int = 5,

@@ -5,6 +5,8 @@ Synthetic harness experiment only. Clinical authority: NONE.
 
 from __future__ import annotations
 
+from functools import lru_cache
+
 from collections import Counter
 from itertools import combinations
 from math import exp, log, pi, sqrt
@@ -214,6 +216,7 @@ def optimize_representation(train, validation, test, features):
     return result
 
 
+@lru_cache(maxsize=1)
 def temporal_frontier():
     train = make_dataset(160, 60_000_000)
     validation = make_dataset(50, 61_000_000)

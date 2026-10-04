@@ -5,6 +5,8 @@ Synthetic harness experiment only. Clinical authority: NONE.
 
 from __future__ import annotations
 
+from functools import lru_cache
+
 from math import log
 from statistics import fmean
 
@@ -222,6 +224,7 @@ def optimize(
     return best_result, best_params
 
 
+@lru_cache(maxsize=1)
 def convergence_experiment() -> dict[str, object]:
     templates = train_templates(samples=120)
     validation = make_dataset(35, 20_000_000)
