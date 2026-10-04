@@ -437,3 +437,323 @@ Stopping rule for the current loop:
 The next high-value evidence is longitudinal or intervention-linked data with
 repeated follicle output plus at least one independent structural/regenerative
 probe.
+
+
+## Loop 8 — longitudinal evidence and dynamic observability
+
+Cross-sectional differences cannot establish whether an internal response
+precedes a later output change.
+
+Two published human intervention designs were added as source-bound design
+inputs:
+
+- Tang et al. 2003 (PMID 12894070): 9 men, dermal-papilla molecular
+  measurement after 4 months of finasteride and photographic outcome at
+  12 months. Early IGF-1 change was associated with later outcome.
+- Mirmirani et al. 2015 (PMID 25204361): controlled prospective minoxidil
+  pilot combining scalp transcriptomics with photographic observation.
+
+These studies do not validate HF01 recoverability. They establish that an
+intervention-linked early-state / later-output observation architecture is
+possible in humans.
+
+HF-VAL-002 was frozen:
+
+~~~text
+M0:
+    late output ~ baseline output + baseline covariates
+
+M1:
+    late output ~ baseline output + baseline covariates + early state response
+~~~
+
+A candidate dynamic probe is promoted only if M1 improves held-out prediction
+and transfers across independent intervention-linked data.
+
+## Loop 9 — synthetic early-response probe
+
+HF-SIM-002 asks whether a hidden response can become informative before the
+coarse output shows comparable intervention benefit.
+
+Two states start with identical:
+
+~~~text
+H0 = 0.50
+~~~
+
+but different synthetic structural state.
+
+Under the same upstream control:
+
+~~~text
+early checkpoint:
+
+recoverable:
+    intervention-linked Delta R = +0.268981
+    intervention-linked Delta H = +0.033543
+
+locked:
+    intervention-linked Delta R = +0.141960
+    intervention-linked Delta H = +0.004952
+
+late checkpoint:
+
+recoverable Delta H = +0.517550
+locked Delta H      ~ +0.000000077
+~~~
+
+Important negative result:
+
+The locked state still exhibits a positive early regenerative response while
+failing to produce meaningful late recovery.
+
+Therefore, even inside the synthetic equations:
+
+~~~text
+Early Molecular Response != Recoverability
+~~~
+
+Dynamic response is informative but insufficient without state/structural
+context.
+
+## Loop 10 — pre-registered minoxidil actuator test
+
+HF-DATA-003 froze a prediction before the repository data run on GSE178510:
+
+~~~text
+input:
+    minoxidil, 48 h, primary HFDPC 2D culture
+
+primary prediction:
+    frozen WNT/regeneration-loss disease axis should move < 0
+    if the static disease axis is also a valid monotonic response coordinate
+~~~
+
+The final observer ignores the vendor fold-change sign convention and computes
+directly:
+
+~~~text
+effect(g)
+  = log2 MINOXIDIL signal
+  - log2 CONTROL signal
+~~~
+
+Known-answer CI freezes this convention.
+
+Result:
+
+~~~text
+frozen WNT/regeneration-loss mean score = +0.159093
+expected                              = < 0
+PRIMARY TEST                          = FAIL
+~~~
+
+Four of six individual contributions move opposite the disease direction, but
+the pre-registered mean remains positive. The failed aggregate prediction is
+retained.
+
+This produces a stronger model correction:
+
+~~~text
+State Separation Axis != Actuator Response Axis
+~~~
+
+The associated publication independently reports Wnt/beta-catenin pathway
+effects after minoxidil. Therefore the failure is not interpreted as absence of
+WNT biology. It rejects the assumption that the frozen cross-sectional
+disease-state projection is automatically a monotonic intervention-response
+coordinate.
+
+Disposition:
+
+~~~text
+R_state:
+    retained as a cross-sectional disease-state candidate
+
+R_response:
+    OPEN; must be independently defined/validated from intervention-linked data
+~~~
+
+## Loop 11 — normal-model feedback gate
+
+The original awareness question was decomposed:
+
+~~~text
+normal/reference presentation
+    -> comprehension
+    -> learned/behavioral control
+    -> fast physiology
+    -> follicle state
+    -> delayed hair output
+~~~
+
+Each arrow is now a separate validation gate.
+
+Human biofeedback and conditioning literature establishes only a general,
+context-dependent possibility that learned feedback can alter psychological,
+autonomic, endocrine, or immune responses.
+
+It does not establish a hair-follicle route.
+
+HF-VAL-003 therefore compares:
+
+~~~text
+A: static educational normal model
+B: sham/non-contingent feedback
+C: contingent personalized feedback
+~~~
+
+The first primary endpoint is a pre-specified fast controllable state, not hair
+growth.
+
+A failure at this gate weakens the feedback channel; it is not repaired by
+asking the participant to try harder.
+
+## Loop 12 — fail-closed reachability semantics
+
+HF-SIM-003 formalizes decision uncertainty.
+
+If every latent state still compatible with evidence is recoverable:
+
+~~~text
+RECOVERABLE
+~~~
+
+If none are:
+
+~~~text
+NONRECOVERABLE
+~~~
+
+If candidate states disagree:
+
+~~~text
+UNKNOWN
+~~~
+
+The matched-H known answer contains one recoverable and one nonrecoverable
+latent state with identical H0=0.50.
+
+Therefore:
+
+~~~text
+H-only evidence -> UNKNOWN
+~~~
+
+New invariant candidates:
+
+~~~text
+Observation uncertainty must propagate into reachability uncertainty
+UNKNOWN != RECOVERABLE
+UNKNOWN != NONRECOVERABLE
+Probe value is decision-dependent, not merely descriptive
+~~~
+
+## Loop 13 — observation-harness stabilization
+
+Repeated PR synchronization caused the live GEO workflow to re-download
+immutable public data and eventually trigger NCBI HTTP 403 rate limiting.
+
+This was classified as:
+
+~~~text
+harness / observation transport failure
+!= analysis result
+!= biological falsification
+~~~
+
+Live GEO revalidation is now an explicit manual workflow. Ordinary CI remains
+network-independent and tests parsers, sign conventions, and frozen
+known-answer contracts.
+
+## Current reduced model
+
+The autonomous loop now distinguishes four different objects that were
+initially conflated:
+
+~~~text
+1. x_state
+   current latent biological state
+
+2. phi_state(y)
+   observation features used to estimate that state
+
+3. chi_u(x)
+   susceptibility / early response to a declared input
+
+4. Reach(x, U)
+   whether the target region is reachable with actuator class U
+~~~
+
+These are not interchangeable.
+
+A normal-model UI can help only through the controller side:
+
+~~~text
+reference
+  -> observation
+  -> residual
+  -> bounded controller response
+  -> measured susceptibility
+  -> updated state estimate
+  -> reachability decision
+~~~
+
+It is not a biological restore image.
+
+## Updated fixed point
+
+### QED inside the declared synthetic model
+
+The current synthetic contracts establish:
+
+1. current visible hair output does not uniquely identify latent state;
+2. equal visible output can hide opposite future reachability;
+3. early hidden-state response can precede visible-output separation;
+4. positive early internal response does not guarantee late recovery;
+5. uncertain latent reachability must produce UNKNOWN rather than a confident
+   recoverable/nonrecoverable claim.
+
+### Public-data compatible, not QED
+
+Current cross-sectional data support:
+
+~~~text
+R_state  regenerative-state candidate
+F*       structural-remodeling candidate
+~~~
+
+but do not prove biological hysteresis or recoverability.
+
+### Explicitly rejected / weakened
+
+~~~text
+whole-scalp androgen transcript abundance == androgen driver state
+current vascular transcript panel == local vascular state
+cross-sectional disease axis == actuator response axis
+normal-model comprehension == biological recovery
+early molecular response == recoverability
+~~~
+
+### Evidence needed to reopen internal model recursion
+
+The next material model change requires at least one of:
+
+1. longitudinal human data with repeated internal state probe(s), declared input,
+   and later hair output;
+2. intervention-linked data that independently validates a dynamic response
+   coordinate;
+3. a sham-controlled personalized-feedback study showing a measurable Gate-1
+   physiological effect followed by a follicle-relevant Gate-2 measurement;
+4. longitudinal evidence of path dependence that distinguishes structural
+   remodeling from true biological hysteresis.
+
+Until such evidence appears, adding another synthetic meta-layer is not
+justified.
+
+~~~text
+SYNTHETIC INTERNAL LOOP: LOCAL FIXED POINT
+CROSS-SECTIONAL BIOLOGICAL LOOP: LOCAL FIXED POINT
+DYNAMIC HUMAN RECOVERABILITY: OPEN EVIDENCE BOTTLENECK
+NORMAL-MODEL AWARENESS -> HAIR RECOVERY: UNPROVEN
+~~~
