@@ -1,23 +1,25 @@
 from dissociated_control_systems.cognitive_rare_state import (
-    rare_state_experiment,
+    THRESHOLD_GRID,
+    dataset,
+    pooled_rate,
+    select_threshold,
+    stratum_rates,
 )
 
 
-def test_rare_state_threshold_is_from_frozen_grid():
-    result = rare_state_experiment()
-    assert 0.20 <= result["threshold"] <= 0.55
+def test_rare_state_small_census_contract():
+    rows = dataset(3, 2_900_000_000)
+    threshold, rate = select_threshold(rows)
+    assert threshold in THRESHOLD_GRID
+    assert 0.0 <= rate <= 1.0
+    assert pooled_rate(rows, threshold) == rate
 
 
-def test_rare_state_rates_are_bounded():
-    result = rare_state_experiment()
-    assert 0.0 <= result["pilot_pooled_rate"] <= 1.0
-    assert 0.0 <= result["heldout_pooled_rate"] <= 1.0
-    assert 0.0 <= result["heldout_selected_rate"] <= 1.0
-
-
-def test_capture_sizes_are_positive_when_events_exist():
-    result = rare_state_experiment()
-    if result["heldout_pooled_rate"] > 0.0:
-        assert result["n95_pooled"] >= 1
-    if result["heldout_selected_rate"] > 0.0:
-        assert result["n95_enriched"] >= 1
+def test_small_census_reports_every_fault_stratum():
+    rows = dataset(2, 2_910_000_000)
+    threshold, _ = select_threshold(rows)
+    rates = stratum_rates(rows, threshold)
+    assert len(rates) == 16
+    for row in rates.values():
+        assert row["total"] == 2
+        assert 0.0 <= row["rate"] <= 1.0
