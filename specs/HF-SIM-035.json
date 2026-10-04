@@ -1,0 +1,32 @@
+{
+  "id": "HF-SIM-035",
+  "title": "Non-destructive measurement is not automatically non-perturbative",
+  "status": "SYNTHETIC_MEASUREMENT_ASSURANCE_CONTRACT",
+  "clinical_authority": "NONE",
+  "problem": "A same-follicle observer can preserve unit identity while still changing the later follicle trajectory through illumination, fluorophore chemistry, heat, handling, environmental drift or repeated acquisition.",
+  "invariant": "Non-destructive != non-perturbative",
+  "pass_rule": {
+    "statistical": "the full confidence interval for the observer effect on a declared downstream functional endpoint must lie inside a predeclared symmetric equivalence margin",
+    "design_obligations": [
+      "sham or observer-free control",
+      "matched culture/environmental conditions",
+      "time-matched handling",
+      "later functional endpoint measured",
+      "at least one acquisition-dose or frequency challenge"
+    ]
+  },
+  "unknown_rule": "If the confidence interval overlaps an equivalence boundary, or any required design control is absent, measurement back-action remains UNKNOWN.",
+  "fail_rule": "If the confidence interval lies wholly outside the equivalence region, the observer fails the back-action gate for that endpoint and acquisition regime.",
+  "important_non_equivalences": [
+    "p > 0.05 != equivalence",
+    "same-follicle linkage != passive observation",
+    "one safe acquisition regime != all acquisition regimes",
+    "photobleaching absence != absence of physiological phototoxicity"
+  ],
+  "source_context": [
+    "Li et al., Nature Communications 2026 used real-time confocal imaging to quantify intact human-HF width/contraction trajectories, making same-unit mechanical observation plausible.",
+    "Live-cell microscopy literature documents illumination- and fluorophore-associated phototoxicity and recommends explicit exposure and physiology controls."
+  ],
+  "HF01_implication": "A live mechanical observer is not promoted to a same-follicle predictive probe until its later-growth/cycle back-action is bounded under the exact acquisition protocol used.",
+  "claim_boundary": "This contract does not assert that the Li et al. imaging protocol caused material back-action; it defines the evidence required before HF01 reuses live imaging as a longitudinal state observer."
+}
