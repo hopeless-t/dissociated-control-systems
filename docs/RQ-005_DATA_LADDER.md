@@ -5,7 +5,7 @@
 Prioritize datasets by how much they can discriminate the competing survivor
 worlds, not by how emotionally compelling the cases are.
 
-## Tier 1 — immediately computable public biological baseline
+## Tier 1 — immediately computable public biological baseline\n\n### Current status\n\nA first real-data pilot has now been executed on a 1,897-row GitHub mirror. Because the current cBioPortal/Zenodo patient clinical object contains 2,509 patients, that run is explicitly non-canonical. See [RQ-005_METABRIC_PILOT.md](RQ-005_METABRIC_PILOT.md). Promotion requires rerunning the frozen pipeline on the 2,509-patient snapshot and reconciling row-level inclusion differences.
 
 ### METABRIC / cBioPortal
 
@@ -132,10 +132,10 @@ VOI(d)
 The first executable baseline should maximize information about the strongest
 non-psychological competitors.
 
-Current priority:
+Current priority after the first pilot:
 
 ~~~text
-1. METABRIC matched biological baseline
+1. METABRIC canonical 2,509-patient rerun + mirror-delta audit
 2. NCI exceptional-responder rare-state analysis
 3. longitudinal psychosocial/immune data if row-level access is found
 4. restricted ovarian HGSC collaboration target
