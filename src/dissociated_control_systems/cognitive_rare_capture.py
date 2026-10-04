@@ -64,7 +64,7 @@ def capture_policy_experiment():
     rare_result = rare_state_experiment()
     threshold = rare_result["threshold"]
     selected_label = rare_result["selected_label"]
-    thresholds = train_thresholds(samples=500)
+    thresholds = train_thresholds(samples_per_hypothesis=40)
 
     rows = []
     causal_indices = []
