@@ -45,28 +45,25 @@ class CancerControlState:
 
 @dataclass(frozen=True)
 class CancerControlInputs:
-    """Observable/controllable mediators.
+    """Measured/assigned mediators, not a latent "hope" variable.
 
-    No variable named "hope" appears here. A psychological construct must first
-    be operationalized into measurable mediators before it can affect the model.
+    The model is intentionally neutral about whether a psychological state
+    raises, lowers, or leaves these mediators unchanged. That mapping must be
+    estimated from data.
     """
 
     prescribed_treatment: float = 0.35
-    baseline_adherence: float = 0.55
-    adherence_boost: float = 0.0
-    recovery_boost: float = 0.0
+    adherence: float = 0.55
+    stress_recovery_rate: float = 0.22
 
     def __post_init__(self) -> None:
-        for name in ("prescribed_treatment", "baseline_adherence"):
+        for name in ("prescribed_treatment", "adherence"):
             object.__setattr__(self, name, _unit(getattr(self, name), name))
-        for name in ("adherence_boost", "recovery_boost"):
-            object.__setattr__(
-                self, name, _nonnegative(getattr(self, name), name)
-            )
-
-    @property
-    def adherence(self) -> float:
-        return min(1.0, self.baseline_adherence + self.adherence_boost)
+        object.__setattr__(
+            self,
+            "stress_recovery_rate",
+            _nonnegative(self.stress_recovery_rate, "stress_recovery_rate"),
+        )
 
     @property
     def effective_treatment(self) -> float:
@@ -94,7 +91,6 @@ class CancerControlParameters:
     suppression_clearance: float = 0.35
 
     stress_input: float = 0.17
-    stress_recovery: float = 0.22
 
     def __post_init__(self) -> None:
         for name, value in self.__dict__.items():
@@ -143,7 +139,7 @@ def step(
 
     d_stress = (
         params.stress_input
-        - (params.stress_recovery + inputs.recovery_boost) * state.stress
+        - inputs.stress_recovery_rate * state.stress
     )
     d_suppression = (
         params.suppression_from_tumor * tumor_saturation
