@@ -14,6 +14,9 @@ on:
       - "src/dissociated_control_systems/cognitive_context_authority_freshness.py"
       - "tests/test_cognitive_context_authority_freshness.py"
       - "docs/CGD-SIM-050.md"
+      - "src/dissociated_control_systems/cognitive_context_authority_watchdog.py"
+      - "tests/test_cognitive_context_authority_watchdog.py"
+      - "docs/CGD-SIM-051.md"
       - ".github/workflows/cognitive-frontier-fast.yml"
   workflow_dispatch:
 
@@ -51,3 +54,10 @@ jobs:
           python -m dissociated_control_systems.cognitive_context_authority_freshness > cognitive-context-authority-freshness.md
           cat cognitive-context-authority-freshness.md
           cat cognitive-context-authority-freshness.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Context authority watchdog validation
+        run: pytest -q tests/test_cognitive_context_authority_watchdog.py
+      - name: Run context authority freshness watchdog
+        run: |
+          python -m dissociated_control_systems.cognitive_context_authority_watchdog > cognitive-context-authority-watchdog.md
+          cat cognitive-context-authority-watchdog.md
+          cat cognitive-context-authority-watchdog.md >> "$GITHUB_STEP_SUMMARY"
