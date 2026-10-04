@@ -26,7 +26,7 @@ MATRIX_URL = (
 )
 ANNOT_URL = (
     "https://ftp.ncbi.nlm.nih.gov/geo/platforms/GPL17nnn/GPL17077/"
-    "annot/GPL17077.annot.gz"
+    "soft/GPL17077_family.soft.gz"
 )
 
 
