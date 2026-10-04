@@ -1,0 +1,41 @@
+{
+  "schema_version": 2,
+  "status": "NORMATIVE_KERNEL_MANIFEST",
+  "purpose": "Declare the smallest authority-bearing HF01 assurance surface after claim-relative validator correction.",
+  "schema_dependency": [
+    "src/dissociated_control_systems/projection_protocol.py"
+  ],
+  "normative_authority_kernel": [
+    "src/dissociated_control_systems/projection_validator_v2.py",
+    "src/dissociated_control_systems/projection_assurance.py",
+    "src/dissociated_control_systems/support_graph.py",
+    "src/dissociated_control_systems/assurance_versioning.py",
+    "src/dissociated_control_systems/trust_roots.py"
+  ],
+  "diagnostic_or_advisory": [
+    "src/dissociated_control_systems/checkpoint_minimizer.py",
+    "src/dissociated_control_systems/projection_checkpoint_graph.py",
+    "src/dissociated_control_systems/projection_attack_surface.py",
+    "src/dissociated_control_systems/checkpoint_placement.py",
+    "src/dissociated_control_systems/evidence_topology.py",
+    "src/dissociated_control_systems/defeater_saturation.py",
+    "src/dissociated_control_systems/assurance_dialectic.py",
+    "src/dissociated_control_systems/checkpoint_risk.py",
+    "src/dissociated_control_systems/projection_ladder.py",
+    "src/dissociated_control_systems/projection_gap.py",
+    "src/dissociated_control_systems/projection_contract.py"
+  ],
+  "v2_corrections": [
+    "terminal authority is computed only from roles required by the endpoint claim type",
+    "extra non-required role records remain auditable but cannot false-block weaker claims",
+    "duplicate required roles are rejected as ambiguous",
+    "projection_assurance delegates authority validation to projection_validator_v2"
+  ],
+  "legacy_boundary": "projection_protocol.py remains the shared enum/dataclass/schema source for compatibility; its v1 validate_projection_certificate function is not the normative authority validator in kernel v2.",
+  "kernel_rules": [
+    "Only normative-authority-kernel components may directly determine empirical claim acceptance.",
+    "Diagnostic/advisory components may warn, optimize or attack but must not silently upgrade authority.",
+    "A change to a schema dependency or normative authority component invalidates certificates bound to the previous kernel revision.",
+    "Adding authority-bearing code requires a documented failure class not blocked by the current kernel."
+  ]
+}
