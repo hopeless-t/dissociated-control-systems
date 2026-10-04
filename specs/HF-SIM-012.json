@@ -1,0 +1,21 @@
+{
+  "id": "HF-SIM-012",
+  "title": "Mandatory checkpoints belong at the last responsible moment",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "model": {
+    "hazard": "failure mode with first step at which it can irreversibly contaminate the endpoint",
+    "gate": "checkpoint covering one or more hazards",
+    "validity": "gate position must be at or before the earliest first-unsafe step among hazards it covers",
+    "early_cost": "presentation_cost_per_step * (latest_safe_position - actual_position)",
+    "late_cost": "infinite / invalid"
+  },
+  "theorem_contract": "Under the declared nonnegative early-exposure cost, the minimum-cost valid placement is the latest safe position before the earliest covered hazard activates.",
+  "interpretation": [
+    "Mandatory does not mean always visible.",
+    "A correctness barrier should appear immediately before the first operation that would make its omission consequential.",
+    "Placing a gate earlier than necessary creates avoidable cognitive friction.",
+    "Placing it later creates an invalid bypass."
+  ],
+  "boundary": "Hazard activation steps are design annotations, not measured human cognitive timing."
+}
