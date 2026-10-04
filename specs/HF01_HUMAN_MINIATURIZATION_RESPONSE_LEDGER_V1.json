@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "id": "HF01-HUMAN-MINIATURIZATION-RESPONSE-LEDGER-V1",
+  "status": "SOURCE_BOUND_CONFLICT_LEDGER",
+  "clinical_authority": "NONE",
+  "question": "Does baseline miniaturization define a general human recoverability boundary?",
+  "answer": "NO GENERAL BOUNDARY ESTABLISHED",
+  "evidence": [
+    {
+      "study": "Whiting et al. 1999",
+      "pmid": "10674382",
+      "design": "serial scalp biopsy follicular counts; men randomized to finasteride 1 mg or placebo for 12 months",
+      "unit_strength": "region/biopsy-level counts rather than same-follicle longitudinal identity",
+      "reported_pattern": "terminal counts increased and miniaturized counts decreased more with finasteride in men, interpreted as evidence compatible with some reversal of miniaturization",
+      "HF01_use": "group/region-level longitudinal compatibility; not same-follicle recoverability"
+    },
+    {
+      "study": "Van Neste 2019",
+      "pmid": "31206839",
+      "design": "13 men, 24-month phototrichogram study after short no-treatment baseline, then finasteride; mapped hair sites",
+      "unit_strength": "individual mapped-hair/site dynamics stronger than aggregate biopsy counts; small uncontrolled cohort",
+      "reported_pattern": "of 113 baseline miniaturized hairs <=30 um, 79 remained miniature after two years and most remaining mapped sites did not show terminal hairs; moderate improvement was attributed mainly to reactivation of deficient terminal follicles",
+      "HF01_use": "human longitudinal defeater against assuming finasteride response means vellus-to-terminal reconversion; too small/uncontrolled for a universal threshold"
+    },
+    {
+      "study": "Sinclair et al. 2025",
+      "pmid": "39774750",
+      "design": "hair-to-hair matched phototrichograms; 33-man 24-week randomized double-blind placebo-controlled 0.45 mg sublingual-minoxidil trial plus 12-person open-label higher-dose extension",
+      "unit_strength": "individual hairs are linked across time, but hair-level results were pooled across patients within treatment/diameter strata",
+      "reported_pattern": "0.45 mg did not increase mean fibre diameter; 1.35 mg and 4.05 mg extension groups showed dose-associated increases, with larger/intermediate-to-terminal baseline fibres showing the largest increases",
+      "HF01_use": "strong evidence that actuator dose and baseline fibre state interact with observed response; higher-dose inference is not from the randomized placebo-controlled arm"
+    }
+  ],
+  "conflict_resolution": [
+    "Do not infer a universal miniaturization irreversibility threshold from any one study.",
+    "Do not combine different actuators/doses into one control-gain curve.",
+    "Distinguish same-follicle/fibre tracking from region-level counts.",
+    "Preserve participant/donor hierarchy even when individual hairs are tracked; hair count is not independent human n.",
+    "Treat fibre diameter as an output/proxy, not a direct measurement of P, E, M or F_hyst."
+  ],
+  "model_update": "Define recoverability surfaces and any FRK candidate conditional on a declared actuator u: g(z,u), FRK(u). A knee for one actuator/dose is not a universal follicle state boundary.",
+  "claim_boundary": "The ledger documents conflicting human longitudinal response patterns. It does not rank treatments or recommend finasteride/minoxidil use."
+}
