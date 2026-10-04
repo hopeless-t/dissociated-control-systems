@@ -12,6 +12,7 @@ on:
       - "src/dissociated_control_systems/cognitive_harness_repair.py"
       - "src/dissociated_control_systems/cognitive_harness_scheduler.py"
       - "src/dissociated_control_systems/cognitive_active_diagnosis.py"
+      - "src/dissociated_control_systems/cognitive_convergence.py"
       - "tests/test_cognitive_decline.py"
       - "tests/test_cognitive_experiments.py"
       - "tests/test_cognitive_governor.py"
@@ -19,6 +20,7 @@ on:
       - "tests/test_cognitive_harness_repair.py"
       - "tests/test_cognitive_harness_scheduler.py"
       - "tests/test_cognitive_active_diagnosis.py"
+      - "tests/test_cognitive_convergence.py"
       - "docs/CGD-SIM-001.md"
       - "docs/CGD-SIM-002.md"
       - "docs/CGD-SIM-003.md"
@@ -26,6 +28,7 @@ on:
       - "docs/CGD-SIM-005.md"
       - "docs/CGD-SIM-006.md"
       - "docs/CGD-SIM-007.md"
+      - "docs/CGD-SIM-008.md"
       - ".github/workflows/cognitive-simulation.yml"
   pull_request:
     paths:
@@ -36,6 +39,7 @@ on:
       - "src/dissociated_control_systems/cognitive_harness_repair.py"
       - "src/dissociated_control_systems/cognitive_harness_scheduler.py"
       - "src/dissociated_control_systems/cognitive_active_diagnosis.py"
+      - "src/dissociated_control_systems/cognitive_convergence.py"
       - "tests/test_cognitive_decline.py"
       - "tests/test_cognitive_experiments.py"
       - "tests/test_cognitive_governor.py"
@@ -43,6 +47,7 @@ on:
       - "tests/test_cognitive_harness_repair.py"
       - "tests/test_cognitive_harness_scheduler.py"
       - "tests/test_cognitive_active_diagnosis.py"
+      - "tests/test_cognitive_convergence.py"
       - "docs/CGD-SIM-001.md"
       - "docs/CGD-SIM-002.md"
       - "docs/CGD-SIM-003.md"
@@ -50,6 +55,7 @@ on:
       - "docs/CGD-SIM-005.md"
       - "docs/CGD-SIM-006.md"
       - "docs/CGD-SIM-007.md"
+      - "docs/CGD-SIM-008.md"
       - ".github/workflows/cognitive-simulation.yml"
   workflow_dispatch:
 
@@ -75,6 +81,7 @@ jobs:
           pytest -q tests/test_cognitive_harness_repair.py
           pytest -q tests/test_cognitive_harness_scheduler.py
           pytest -q tests/test_cognitive_active_diagnosis.py
+          pytest -q tests/test_cognitive_convergence.py
       - name: Run frozen four-arm simulation
         run: |
           python -m dissociated_control_systems.cognitive_decline --format markdown > cognitive-summary.md
@@ -110,3 +117,8 @@ jobs:
           python -m dissociated_control_systems.cognitive_active_diagnosis > cognitive-active-diagnosis.md
           cat cognitive-active-diagnosis.md
           cat cognitive-active-diagnosis.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Run information frontier convergence search
+        run: |
+          python -m dissociated_control_systems.cognitive_convergence > cognitive-convergence.md
+          cat cognitive-convergence.md
+          cat cognitive-convergence.md >> "$GITHUB_STEP_SUMMARY"
