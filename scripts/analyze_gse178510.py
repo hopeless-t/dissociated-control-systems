@@ -62,31 +62,20 @@ def locate_header(lines: list[str]) -> tuple[int, list[str], list[str]]:
             ("gene" in x and "symbol" in x) or x in ("gene", "genesymbol")
             for x in norm
         )
-        has_fc = any("fold" in x and "change" in x for x in norm)
-        if has_gene and has_fc:
+        has_control = any(
+            "control" in x and "bi_weight_avg_signal" in x
+            for x in norm
+        )
+        has_minox = any(
+            "minoxidil" in x and "bi_weight_avg_signal" in x
+            for x in norm
+        )
+        if has_gene and has_control and has_minox:
             return idx, row, norm
     raise RuntimeError(
-        "could not locate gene-symbol/fold-change header; "
+        "could not locate gene/control/minoxidil signal header; "
         f"preview={lines[:8]!r}"
     )
-
-
-def linear_or_log2_effect(value: float, field_name: str) -> float:
-    field = _norm(field_name)
-    if "log2" in field:
-        return value
-
-    # Transcriptome Analysis Console commonly emits signed linear fold change:
-    # +X for up, -X for down. Preserve direction while converting magnitude to
-    # log2 scale. Also tolerate ordinary positive ratios in (0,1).
-    if value < 0:
-        magnitude = abs(value)
-        if magnitude == 0:
-            return 0.0
-        return -math.log2(magnitude)
-    if value == 0:
-        return 0.0
-    return math.log2(value)
 
 
 def parse_gene_effects(text: str) -> tuple[dict[str, float], dict[str, object]]:
@@ -99,25 +88,35 @@ def parse_gene_effects(text: str) -> tuple[dict[str, float], dict[str, object]]:
         if ("gene" in name and "symbol" in name)
         or name in ("gene", "genesymbol")
     )
-    fc_i = next(
-        i for i, name in enumerate(norm) if "fold" in name and "change" in name
+    control_i = next(
+        i
+        for i, name in enumerate(norm)
+        if "control" in name and "bi_weight_avg_signal" in name
     )
-    fc_field = header[fc_i]
+    minox_i = next(
+        i
+        for i, name in enumerate(norm)
+        if "minoxidil" in name and "bi_weight_avg_signal" in name
+    )
 
     gene_to_effects: dict[str, list[float]] = {}
     reader = csv.reader(lines[header_idx + 1 :], delimiter="\t")
     for row in reader:
-        if len(row) <= max(gene_i, fc_i):
+        if len(row) <= max(gene_i, control_i, minox_i):
             continue
         raw_genes = row[gene_i].strip().strip('"')
-        raw_fc = row[fc_i].strip().strip('"')
-        if not raw_genes or not raw_fc:
+        if not raw_genes:
             continue
         try:
-            raw_value = float(raw_fc)
+            control_log2 = float(row[control_i].strip().strip('"'))
+            minox_log2 = float(row[minox_i].strip().strip('"'))
         except ValueError:
             continue
-        effect = linear_or_log2_effect(raw_value, fc_field)
+
+        # Directly compute the declared HF01 convention from unambiguous
+        # condition-specific log2 signals. Do not depend on vendor fold-change
+        # sign conventions.
+        effect = minox_log2 - control_log2
         if not math.isfinite(effect):
             continue
 
@@ -136,8 +135,12 @@ def parse_gene_effects(text: str) -> tuple[dict[str, float], dict[str, object]]:
     return effects, {
         "header": header,
         "gene_field": header[gene_i],
-        "fold_change_field": fc_field,
-        "effect_convention": "minoxidil-minus-control; converted to log2-like signed scale",
+        "control_signal_field": header[control_i],
+        "minoxidil_signal_field": header[minox_i],
+        "effect_convention": (
+            "MINOXIDIL Bi-weight Avg Signal (log2) minus "
+            "CONTROL Bi-weight Avg Signal (log2)"
+        ),
     }
 
 
