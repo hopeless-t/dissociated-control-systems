@@ -757,3 +757,289 @@ CROSS-SECTIONAL BIOLOGICAL LOOP: LOCAL FIXED POINT
 DYNAMIC HUMAN RECOVERABILITY: OPEN EVIDENCE BOTTLENECK
 NORMAL-MODEL AWARENESS -> HAIR RECOVERY: UNPROVEN
 ~~~
+
+
+## Loop 14 — projection-gap hypothesis
+
+A new failure mode was introduced:
+
+~~~text
+endpoint model may be coherent
+endpoint evidence may be real
+but the semantic projection between them may be too sparse for reliable human reconstruction
+~~~
+
+HF01 now treats projection density as a first-class design variable.
+
+This does not assume that every disagreement is cognitive friction. The new
+question is whether missing intermediate representations explain some failures
+of recognition after the empirical bridge itself is already adequate.
+
+## Loop 15 — finite optimal granularity
+
+HF-SIM-004 freezes a cognitive-friction surrogate:
+
+~~~text
+J(n) = alpha * D^2 / n + beta * n
+~~~
+
+where:
+
+~~~text
+D      semantic/projection distance
+alpha  penalty for large jumps
+beta   per-stage overhead
+n      explanatory transitions
+~~~
+
+For positive D, alpha, beta:
+
+~~~text
+n* = D * sqrt(alpha / beta)
+~~~
+
+and J is strictly convex.
+
+Frozen known answer:
+
+~~~text
+D=8, alpha=1, beta=1
+
+direct:       n=1   J=65
+optimum:      n=8   J=16
+over-detailed n=32  J=34
+~~~
+
+The theorem is about the declared surrogate, not human working-memory capacity.
+
+Disposition:
+
+~~~text
+too sparse != optimal
+too dense  != optimal
+adaptive finite depth retained
+~~~
+
+## Loop 16 — heterogeneous gradient
+
+A uniform ladder is also too coarse.
+
+For local span j:
+
+~~~text
+J_j(n_j) = alpha*w_j*d_j^2/n_j + beta*n_j
+
+n_j* = d_j * sqrt(alpha*w_j/beta)
+~~~
+
+where w_j represents declared local difficulty/uncertainty.
+
+This means explanatory density should increase at difficult domain changes and
+collapse across familiar/easy transformations.
+
+The same endpoint can therefore be rendered at different depths without
+changing the underlying evidence.
+
+## Loop 17 — evidence-preserving edge contracts
+
+A new meta-risk appeared:
+
+> Adding intermediate concepts can make an unsupported causal story feel
+> smoother.
+
+HF-SIM-005 therefore assigns each scientific projection edge:
+
+~~~text
+SUPPORTED
+ASSUMED
+UNKNOWN
+FALSIFIED
+~~~
+
+and propagates the most restrictive endpoint ceiling:
+
+~~~text
+all supported                -> GROUNDED
+any assumed                  -> MODEL_ONLY
+any unknown                  -> UNKNOWN
+any required falsified edge  -> FALSIFIED
+~~~
+
+Adding more supported explanation steps cannot rescue an assumed or unknown
+scientific edge.
+
+New invariant:
+
+~~~text
+Explanation Smoothness != Evidence Authority
+~~~
+
+## Loop 18 — projection mesh
+
+The single ladder was then rejected as insufficient.
+
+Projection failure is now decomposed into two independent dimensions:
+
+~~~text
+E = epistemic gap
+    missing measurement / causal / provenance / validation bridge
+
+C = cognitive gap
+    bridge exists but is too compressed for reliable human reconstruction
+~~~
+
+Controller policy:
+
+~~~text
+E low, C low:
+    collapse redundant explanation
+
+E low, C high:
+    add intermediate representation
+    test reconstruction
+
+E high, C low:
+    collect/validate evidence
+    preserve UNKNOWN
+    do not explain around the gap
+
+E high, C high:
+    improve evidence and representation separately
+~~~
+
+HF-SIM-006 freezes this quadrant logic.
+
+New invariant:
+
+~~~text
+Explanatory refinement cannot repair missing empirical evidence
+Empirical refinement does not automatically repair comprehension
+~~~
+
+## Loop 19 — HF01 concrete projection map
+
+The current R_state path is now explicitly represented as:
+
+~~~text
+formal latent candidate
+  -> biological interpretation
+  -> mechanism family
+  -> measurable probe
+  -> normalized public-data result
+  -> falsification boundary
+  -> calibrated human claim
+  -> next discriminating probe
+~~~
+
+For the current WNT/regeneration candidate:
+
+~~~text
+epistemic gap:
+    MODERATE
+    cross-sectional transfer exists
+    longitudinal recoverability is unproven
+
+cognitive gap:
+    HIGH if rendered directly as pathway-score -> latent-state headline
+~~~
+
+For:
+
+~~~text
+normal-model presentation -> hair recovery
+~~~
+
+the classification is different:
+
+~~~text
+epistemic gap:
+    HIGH
+
+cognitive gap:
+    LOW-to-MODERATE
+~~~
+
+The causal story is easy to narrate, which makes this path especially
+susceptible to explanation fluency exceeding evidence authority.
+
+## Loop 20 — adaptive projection validation contract
+
+HF-VAL-004 pre-registers three explanation conditions:
+
+~~~text
+direct endpoint projection
+fixed intermediate ladder
+adaptive projection ladder
+~~~
+
+Primary outcomes:
+
+- causal-chain reconstruction;
+- claim-boundary retention;
+- state-vs-response distinction.
+
+Cost outcomes:
+
+- time to criterion;
+- number of exposed stages;
+- navigation burden.
+
+The adaptive ladder passes only if it reduces reconstruction error while not
+requiring unnecessary explanatory depth.
+
+Stop rule:
+
+> Do not add a projection stage unless it reduces a declared reconstruction or
+> calibration error, or is required to expose uncertainty/provenance.
+
+## Updated architecture
+
+HF01 now has two coupled but non-substitutable planes:
+
+~~~text
+SCIENTIFIC PLANE
+reality
+  -> probe
+  -> observable
+  -> evidence
+  -> latent-state candidate
+  -> reachability model
+
+HUMAN PROJECTION PLANE
+formal result
+  -> intermediate concepts
+  -> concrete examples
+  -> uncertainty boundary
+  -> next discriminating question
+~~~
+
+They meet at typed projection edges, but one plane cannot repair the other.
+
+## New local fixed point
+
+The original user direction is now formalized as:
+
+~~~text
+Large model-to-reality or model-to-human jumps may create avoidable friction.
+
+Insert intermediate projections only where the local semantic/evidential
+curvature justifies them.
+
+Preserve every unsupported scientific edge as ASSUMED/UNKNOWN/FALSIFIED.
+
+Optimize for minimum exposed complexity subject to:
+    correct reconstruction
+    calibrated uncertainty
+    preserved evidence authority
+~~~
+
+Current status:
+
+~~~text
+projection granularity theorem           SYNTHETIC QED
+adaptive heterogeneous allocation        SYNTHETIC QED
+evidence-ceiling propagation             SYNTHETIC QED
+epistemic/cognitive gap separation       SYNTHETIC QED
+human comprehension benefit              OPEN: HF-VAL-004
+hair-biological benefit                  NOT IMPLIED / OPEN
+~~~
