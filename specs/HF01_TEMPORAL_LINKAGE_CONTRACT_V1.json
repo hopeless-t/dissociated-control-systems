@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "id": "HF01-TEMPORAL-LINKAGE-CONTRACT-V1",
+  "status": "PRE_REGISTERED_EVIDENCE_CONTRACT",
+  "clinical_authority": "NONE",
+  "target_claim": "An early internal follicle-state response predicts a later functional/output response.",
+  "problem": "Many internal-state assays are destructive, so early and late measurements may come from different follicles even when they share donor, region and treatment group.",
+  "evidence_levels": {
+    "L0_GROUP_MARGINALS": {
+      "example": "early molecular group mean and later growth group mean",
+      "supports": "time-ordered group-level co-movement",
+      "does_not_support": "within-unit prediction or recoverability"
+    },
+    "L1_DONOR_LINKED_REPLICATES": {
+      "example": "destructive early assays and later functional readouts from randomized sibling follicles nested within the same donor/region/intervention",
+      "supports": "hierarchical donor-level association if donor identity and replicate allocation are preserved",
+      "does_not_support": "single-follicle prediction without additional assumptions"
+    },
+    "L2_SAME_UNIT_NONDESTRUCTIVE": {
+      "example": "the same follicle receives a non-destructive early state proxy and is followed to later functional output",
+      "supports": "within-follicle temporal prediction for the measured proxy"
+    },
+    "L3_HUMAN_IN_VIVO_LINKED": {
+      "example": "the same participant/region has an early state measurement and later objective hair output under a prospectively declared intervention",
+      "supports": "participant-level temporal association subject to confounding/design limits",
+      "does_not_support": "causal recoverability without appropriate intervention/control structure"
+    }
+  },
+  "minimum_for_HF_VAL_002": [
+    "preserve biological-unit identifiers at the strongest feasible level",
+    "state in advance whether the prediction target is follicle-level, donor-level or participant-level",
+    "do not fit M1 using early-state values that cannot be linked to the same prediction unit as late output",
+    "if destructive assays require sibling replicates, model donor/region/intervention nesting explicitly",
+    "report how much variance is within donor versus between donors where data permit"
+  ],
+  "source_context": {
+    "Tang_2003": "same participants had 4-month dermal-papilla IGF-1 assessment and 12-month photographic response; small uncontrolled n=9 study provides participant-level temporal architecture, not follicle-level linkage",
+    "human_organ_model_2026": "molecular and functional readouts are temporally structured in a human follicle system, but destructive assays and pooled/group reporting require explicit linkage before early-state predictive covariance can be claimed"
+  },
+  "falsification": "If early-state information adds no out-of-sample prediction once baseline output, donor/region and intervention are included, reject the proposed early-state predictor even if group means move in the expected direction.",
+  "claim_boundary": "Passing this contract would strengthen temporal prediction evidence. It would still not by itself establish a recoverability threshold, biological hysteresis, or a clinical decision rule."
+}
