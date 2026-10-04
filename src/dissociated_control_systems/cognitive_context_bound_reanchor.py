@@ -23,7 +23,9 @@ SIGMA_FUNCTION = 0.02
 SIGMA_CONTEXT = 0.01
 ENVIRONMENT_SHIFT = 0.12
 ENVIRONMENT_EVENT_PROBABILITIES = (0.0, 0.02, 0.05, 0.10)
-THRESHOLDS = tuple(step / 100.0 for step in range(5, 36))
+# 0.00 is an explicit fail-safe guard: it triggers objective reacquisition on
+# every visit and therefore represents collapse of selective stale reuse.
+THRESHOLDS = tuple(step / 100.0 for step in range(0, 36))
 MAX_AGE = 16
 ANCHOR_COST = 0.08
 ACCEPTED_STALE_RMSE_CONTRACT = 0.085
@@ -211,7 +213,9 @@ def context_bound_scheduler_experiment():
         raw_policy = select_threshold(pilot, "raw_function")
         normalized_policy = select_threshold(pilot, "context_normalized")
         if raw_policy is None or normalized_policy is None:
-            raise AssertionError("frozen threshold grid yielded no valid policy")
+            raise AssertionError(
+                "even the 0.00 full-reacquisition guard failed the freshness contract"
+            )
 
         fixed8 = evaluate_policy(heldout, "fixed8")
         fixed16 = evaluate_policy(heldout, "fixed16")
@@ -231,6 +235,7 @@ def context_bound_scheduler_experiment():
                 "event_probability": event_probability,
                 "raw_threshold": raw_policy["threshold"],
                 "normalized_threshold": normalized_policy["threshold"],
+                "raw_selective_reuse_collapsed": raw_policy["threshold"] == 0.0,
                 "fixed8": fixed8,
                 "fixed16": fixed16,
                 "raw": raw,
@@ -266,6 +271,7 @@ def format_markdown() -> str:
         f"- context measurement noise std: {SIGMA_CONTEXT:.2f}",
         f"- synthetic anchor cost: {ANCHOR_COST:.2f}",
         f"- accepted-stale RMSE contract: <= {ACCEPTED_STALE_RMSE_CONTRACT:.3f}",
+        "- threshold 0.00 = fail-safe full objective reacquisition; no selective stale reuse",
         "",
         "Environment state is piecewise persistent. On an event it jumps to a",
         "signed +/-0.12 offset and remains there until a later event changes it.",
@@ -310,6 +316,10 @@ def format_markdown() -> str:
                     f"- p={level['event_probability']:.1%}: normalized loss gain "
                     f"vs fixed8 = {level['normalized_loss_gain_vs_fixed8']:.1%}"
                 ),
+                (
+                    f"- p={level['event_probability']:.1%}: raw selective reuse collapsed "
+                    f"= {level['raw_selective_reuse_collapsed']}"
+                ),
                 "",
             ]
         )
@@ -321,11 +331,13 @@ def format_markdown() -> str:
             "~~~text",
             "Function Innovation Without Context Binding",
             "    can mistake scaffold/environment change for state change",
+            "    and may collapse to continuous objective reacquisition",
             "",
             "Context-Bound Function Innovation",
             "    can preserve selective freshness with fewer false re-anchors",
             "",
             "Observation Context Is Part Of Evidence Identity",
+            "No Selective Policy != Permission To Reuse Stale Evidence",
             "~~~",
             "",
             "All environment rates, offsets, costs and RMSE contracts are synthetic",

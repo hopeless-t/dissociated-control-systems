@@ -30,3 +30,13 @@ def test_normalized_policy_remains_competitive_with_fixed8():
     result = context_bound_scheduler_experiment()
     for level in result["levels"]:
         assert level["normalized"]["loss"] < level["fixed8"]["loss"]
+
+
+def test_raw_sentinel_can_collapse_to_full_reacquisition():
+    result = context_bound_scheduler_experiment()
+    highest_environment_rate = result["levels"][-1]
+    assert highest_environment_rate["raw_selective_reuse_collapsed"]
+    assert highest_environment_rate["raw_threshold"] == 0.0
+    assert highest_environment_rate["raw"]["anchor_rate"] >= 0.99
+    assert highest_environment_rate["normalized_threshold"] > 0.0
+    assert highest_environment_rate["normalized"]["anchor_rate"] < 0.10
