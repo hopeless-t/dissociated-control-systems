@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "id": "HF01-ORGAN-SYSID-V1",
+  "status": "SOURCE_BOUND_SYSTEM_IDENTIFICATION_CONTRACT",
+  "source": {
+    "title": "Development and validation of a comprehensive in vitro organ model for androgenetic alopecia",
+    "year": 2026,
+    "pmid": "42237333",
+    "pmcid": "PMC13274076"
+  },
+  "system_identification_view": {
+    "plant": "human hair-follicle organ culture retaining regional androgen sensitivity",
+    "disturbance_input": "DHT; optimized model concentration reported as 5e-6 mol/L",
+    "functional_outputs": [
+      "hair-follicle growth/elongation",
+      "hair-cycle/catagen entry",
+      "matrix-cell proliferation",
+      "apoptosis"
+    ],
+    "internal_state_probes": [
+      "beta-catenin",
+      "IGF-1",
+      "TGF-beta1",
+      "DKK1",
+      "p21",
+      "androgen receptor",
+      "versican",
+      "K15"
+    ],
+    "rescue_inputs": [
+      "minoxidil",
+      "bicalutamide"
+    ]
+  },
+  "reported_direction": {
+    "DHT": [
+      "inhibited follicle growth",
+      "accelerated catagen entry",
+      "24 percent reduction in matrix-cell proliferation",
+      "31 percent increase in apoptosis",
+      "decreased beta-catenin and IGF-1",
+      "increased TGF-beta1, DKK1, p21 and AR",
+      "reduced versican",
+      "K15 remained unchanged"
+    ],
+    "rescue": "minoxidil or bicalutamide partially reversed DHT-associated growth inhibition; rescue remained incomplete relative to control"
+  },
+  "HF01_mapping": {
+    "A_driver": "DHT/AR perturbation channel",
+    "R_candidate": "beta-catenin and IGF-1 plus regenerative functional output",
+    "P_or_growth_execution": "matrix proliferation/apoptosis as downstream execution probes, not direct P measurement",
+    "N_or_stem_presence": "K15 preservation is compatible with retained stem-cell presence but does not measure niche integrity",
+    "H_functional_output": "follicle elongation and cycle-state trajectory"
+  },
+  "pre_registered_questions_for_future_raw_or_reanalysis": [
+    "Does the early internal-state response under DHT predict later functional output within the same organ system?",
+    "Do rescue inputs improve functional output only when selected internal-state probes reverse direction?",
+    "Are there discordant follicles with molecular response but poor functional rescue, analogous to synthetic Early Response != Recoverability?",
+    "Does regional frontal-vs-occipital sensitivity create a within-donor recoverability gradient?"
+  ],
+  "claim_ceiling": [
+    "stronger source-bound bridge from input to state to functional output than cross-sectional tissue comparison",
+    "not in-vivo human longitudinal recoverability",
+    "not evidence that minoxidil or bicalutamide should be used by a particular person",
+    "not proof that K15 preservation implies recoverability"
+  ],
+  "next_data_rule": "Do not infer subject-level clinical advice. If raw data are later analyzed, freeze exact temporal contrasts and outcome variables before label inspection.",
+  "clinical_authority": "NONE"
+}
