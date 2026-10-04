@@ -1,0 +1,48 @@
+{
+  "id": "HF-SIM-032",
+  "title": "Orthogonal interventions are required to identify split androgen-response branches",
+  "status": "SYNTHETIC_DESIGN_THEOREM",
+  "clinical_authority": "NONE",
+  "model": {
+    "local_output": "effect = alpha * A_AR + mu * M",
+    "unknown_parameters": ["alpha", "mu"],
+    "design_row": "[A_AR activity, M activity]",
+    "identifiability_condition": "design matrix rank = 2"
+  },
+  "known_answers": [
+    {
+      "design": [[1.0, 1.0]],
+      "interpretation": "DHT challenge only",
+      "rank": 1,
+      "result": "A_AR and M effects are not separately identifiable"
+    },
+    {
+      "design": [[0.5, 0.5], [1.0, 1.0]],
+      "interpretation": "more doses along the same branch direction",
+      "rank": 1,
+      "result": "additional same-direction perturbations do not solve branch confounding"
+    },
+    {
+      "design": [[1.0, 1.0], [0.0, 1.0], [1.0, 0.0]],
+      "interpretation": "DHT challenge + AR-specific block + mechanical relaxation",
+      "rank": 2,
+      "result": "the two branch coefficients are locally identifiable inside the frozen linear model"
+    }
+  ],
+  "biological_motivation": {
+    "source": "Li et al., Nature Communications 2026, doi:10.1038/s41467-026-70153-4",
+    "observations": [
+      "DHT increased DS/CTS contractility and impaired human hair-follicle growth",
+      "AR knockdown alleviated part of DHT-associated growth inhibition but did not alter CTS contraction",
+      "GPR133 knockdown or ML-7 reduced the contractile branch and rescued major pathological phenotypes",
+      "PIEZO1 activation phenocopied growth retardation and progenitor injury while PIEZO1 inhibition rescued MCH-associated phenotypes"
+    ]
+  },
+  "claim_boundary": [
+    "rank 2 is a design property, not proof that real interventions are perfectly selective",
+    "the local linear output model is a synthetic approximation",
+    "off-target effects, incomplete blockade, nonlinear coupling and donor heterogeneity can still break parameter recovery",
+    "this does not establish clinical benefit or recommend any intervention"
+  ],
+  "next_test": "Use source-level or prospective paired perturbation data to estimate cross-talk and test whether the nominal AR and mechanical probes remain sufficiently non-collinear in real human follicle systems."
+}
