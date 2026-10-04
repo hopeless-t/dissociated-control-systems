@@ -251,6 +251,58 @@ BENCH-xxx  comparative benchmark
 REF-xxx    named reference object
 ~~~
 
+## Active domain lane — RQ-HF-001
+
+**Hair-Follicle State Calibration and Recoverability** applies the repository's
+partial-observability formalism to androgenetic hair-follicle degeneration
+without promoting a synthetic model into a clinical claim.
+
+Current status:
+
+~~~text
+synthetic control / observability        LOCAL FIXED POINT
+cross-sectional public-data mapping      LOCAL FIXED POINT
+dynamic human recoverability             OPEN EVIDENCE BOTTLENECK
+normal-model awareness -> hair recovery  UNPROVEN
+clinical authority                       NONE
+~~~
+
+The lane currently separates:
+
+~~~text
+state
+!= state observation
+!= actuator response
+!= reachability
+~~~
+
+Start here:
+
+- [RQ-HF-001 contract](docs/RQ-HF-001.md)
+- [HF01 convergence log](docs/HF01_CONVERGENCE.md)
+- [literature map](docs/HF01_LITERATURE_MAP.md)
+- [observability contract](docs/HF01_OBSERVABILITY.md)
+- [control susceptibility](docs/HF01_CONTROL_SUSCEPTIBILITY.md)
+- [longitudinal evidence](docs/HF01_LONGITUDINAL_EVIDENCE.md)
+- [normal-model feedback gates](docs/HF01_FEEDBACK_GATE.md)
+- [public-data result: GSE36169](docs/HF01_GSE36169_RESULT.md)
+- [public-data result: GSE93766](docs/HF01_GSE93766_RESULT.md)
+- [actuator test: GSE178510](docs/HF01_GSE178510_RESULT.md)
+
+The current strongest biological-compatible result is that frozen
+WNT/regeneration-loss and ECM/structural-remodeling projections transfer in the
+declared disease-associated direction across the paired human-scalp GSE36169
+analysis and the distinct dermal-papilla GSE93766 model.
+
+The current minoxidil actuator test deliberately retains a failed primary
+prediction, which motivated the invariant candidate:
+
+~~~text
+State Separation Axis != Actuator Response Axis
+~~~
+
+See the convergence log for the claim ceiling and stop condition.
+
 ## Planned sequence
 
 ~~~mermaid
