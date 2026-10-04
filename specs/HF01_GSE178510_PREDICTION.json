@@ -1,0 +1,27 @@
+{
+  "id": "HF-DATA-003",
+  "dataset": "GSE178510",
+  "source_file": "GSE178510_2D_minox_vs_2D_Control.txt.gz",
+  "freeze_status": "PREDICTION_FROZEN_BEFORE_REPOSITORY_DATA_RUN",
+  "biological_material": "primary human follicle dermal papilla cells, 2D culture",
+  "input": "minoxidil, 48 h",
+  "role": "actuator-identification transfer test",
+  "primary_prediction": {
+    "axis": "wnt_regeneration_loss",
+    "expected_signed_axis_score": "< 0",
+    "meaning": "the frozen disease-direction WNT/regeneration-loss projection should move toward the opposite/health-associated direction after minoxidil exposure"
+  },
+  "secondary_axes": {
+    "androgen_growth_suppression": "no directional acceptance criterion",
+    "ecm_structural_remodeling": "no directional acceptance criterion at 48 h",
+    "vascular_regression": "exploratory only",
+    "inflammatory_activation": "exploratory only",
+    "hypoxia_oxidative_response": "exploratory only"
+  },
+  "acceptance": {
+    "primary": "finite WNT/regeneration-loss score < 0",
+    "replication_requirement": "primary direction should also be tested in a separate 3D HFDPC context before promotion",
+    "caveat": "same-lab cell-culture replication is not human clinical replication"
+  },
+  "claim_boundary": "This tests whether a known pharmacologic input moves a frozen transcript projection in cultured HFDPCs. It does not establish clinical efficacy, a patient biomarker, recoverability, or a consciousness-mediated route."
+}
