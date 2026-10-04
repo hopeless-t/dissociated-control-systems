@@ -1,0 +1,29 @@
+{
+  "id": "HF-SIM-038",
+  "title": "Post-baseline trajectory attrition can manufacture early-state predictivity",
+  "status": "SYNTHETIC_SELECTION_BIAS_COUNTEREXAMPLE",
+  "clinical_authority": "NONE",
+  "known_answer": {
+    "early": [0, 0, 1, 1],
+    "late": [0, 1, 0, 1],
+    "full_population_covariance": 0.0,
+    "retain_concordant_only": [true, false, false, true],
+    "complete_case_covariance_after_concordant_retention": 0.25,
+    "retain_discordant_only": [false, true, true, false],
+    "complete_case_covariance_after_discordant_retention": -0.25
+  },
+  "result": "A complete-case longitudinal analysis can create either positive or negative early-state/late-output association from a full set with zero covariance when retention depends on post-baseline trajectory characteristics.",
+  "HF01_implication": [
+    "donor-held-out validation does not by itself protect against selective follicle attrition",
+    "culture failure, loss of trackable identity, imaging failure, early catagen/death and technical exclusion can be biologically informative rather than ignorable missingness",
+    "post-treatment survival/retention must not silently become an analysis inclusion criterion"
+  ],
+  "required_controls_for_HF_VAL_006": [
+    "account for every enrolled/eligible follicle from baseline to analysis disposition",
+    "freeze exclusion rules before late outcomes are inspected",
+    "report attrition by donor, region and intervention arm",
+    "treat biological death/catagen/failure as an outcome where scientifically appropriate rather than automatically deleting it",
+    "perform sensitivity analyses when late output is unobserved and missing-not-at-random cannot be excluded"
+  ],
+  "claim_boundary": "This synthetic construction demonstrates possibility of bias; it does not quantify expected attrition bias in any particular organ-culture experiment."
+}
