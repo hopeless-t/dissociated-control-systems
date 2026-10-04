@@ -1,8 +1,8 @@
 """Evidence-bound assurance layer for proof-carrying projections.
 
 This module distinguishes syntactic checkpoint completion from substantive
-witness support.  It does not decide scientific truth; it makes support and
-common-mode dependency explicit.
+witness support.  It does not decide scientific truth; it makes support,
+applicability, and common-mode dependency explicit.
 """
 
 from __future__ import annotations
@@ -27,18 +27,47 @@ class DefeaterStatus(str, Enum):
     RESIDUAL = "RESIDUAL"
 
 
+class ObligationStatus(str, Enum):
+    PASS = "PASS"
+    UNKNOWN = "UNKNOWN"
+    FAIL = "FAIL"
+
+
+@dataclass(frozen=True)
+class WitnessObligations:
+    source_authenticity: ObligationStatus
+    claim_relevance: ObligationStatus
+    scope_compatibility: ObligationStatus
+    transformation_reproducibility: ObligationStatus
+
+    def usable_for_empirical_pass(self) -> bool:
+        return all(
+            status is ObligationStatus.PASS
+            for status in (
+                self.source_authenticity,
+                self.claim_relevance,
+                self.scope_compatibility,
+                self.transformation_reproducibility,
+            )
+        )
+
+
 @dataclass(frozen=True)
 class EvidenceWitness:
     witness_id: str
     role: CheckpointRole
     source_roots: frozenset[str]
-    verified: bool = True
+    obligations: WitnessObligations
 
     def __post_init__(self) -> None:
         if not self.witness_id:
             raise ValueError("witness_id must be non-empty")
         if not self.source_roots:
             raise ValueError("source_roots must be non-empty")
+
+    @property
+    def usable(self) -> bool:
+        return self.obligations.usable_for_empirical_pass()
 
 
 @dataclass(frozen=True)
@@ -74,9 +103,9 @@ def root_blast_radius(
     """Number of required PASS roles whose support disappears with each root.
 
     A witness is invalidated when any one of its declared source roots fails.
-    Multiple independent witnesses can protect a role from a single-root loss.
+    Multiple usable witnesses can protect a role from a single-root loss.
     """
-    witnesses_t = tuple(w for w in witnesses if w.verified)
+    witnesses_t = tuple(w for w in witnesses if w.usable)
     roles = _required_pass_roles(certificate)
     all_roots = sorted({root for w in witnesses_t for root in w.source_roots})
     blast: dict[str, int] = {}
@@ -100,7 +129,7 @@ def validate_evidence_bound_certificate(
     witnesses: Iterable[EvidenceWitness],
     defeaters: Iterable[Defeater] = (),
 ) -> AssuranceResult:
-    """Validate protocol plus witness binding and explicit defeaters."""
+    """Validate protocol plus witness obligations and explicit defeaters."""
     base = validate_projection_certificate(certificate)
     violations = list(base.violations)
     warnings: list[str] = []
@@ -114,12 +143,12 @@ def validate_evidence_bound_certificate(
         record = record_by_role.get(role)
         if record is None or record.status is not CheckStatus.PASS:
             continue
-        verified = [
+        usable = [
             w for w in witnesses_t
-            if w.role is role and w.verified
+            if w.role is role and w.usable
         ]
-        if not verified:
-            violations.append(f"pass_without_verified_witness:{role.value}")
+        if not usable:
+            violations.append(f"pass_without_usable_witness:{role.value}")
 
     open_defeaters = [
         d for d in defeaters_t
