@@ -154,6 +154,17 @@ def run_episode(
 
     tail = 20
     window = 15
+    segment = max(1, len(performance) // 3)
+
+    reference_early = fmean(reference_observation[:segment])
+    reference_mid = fmean(reference_observation[segment : 2 * segment])
+    reference_late = fmean(reference_observation[-segment:])
+    reference_drop_early = max(0.0, reference_early - reference_mid)
+    reference_drop_late = max(0.0, reference_mid - reference_late)
+
+    def trend(values: list[float]) -> float:
+        return fmean(values[-segment:]) - fmean(values[:segment])
+
     features = {
         "performance_loss": 1.0 - fmean(performance[-window:]),
         "performance_drop": max(
@@ -168,6 +179,13 @@ def run_episode(
             fmean(reference_observation[:window])
             - fmean(reference_observation[-window:]),
         ),
+        "reference_drop_early": reference_drop_early,
+        "reference_drop_late": reference_drop_late,
+        "reference_drop_acceleration": reference_drop_late - reference_drop_early,
+        "self_reference_gap_trend": trend(self_reference_gap),
+        "handoff_gap_trend": trend(handoff_gap),
+        "observer_disagreement_trend": trend(observer_disagreement),
+        "feedback_error_trend": trend(feedback_error),
     }
     return Episode(
         state=HarnessState(capability, self_estimate),
