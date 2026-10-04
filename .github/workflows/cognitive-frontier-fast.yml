@@ -8,6 +8,9 @@ on:
       - "src/dissociated_control_systems/cognitive_context_bound_reanchor.py"
       - "tests/test_cognitive_context_bound_reanchor.py"
       - "docs/CGD-SIM-048.md"
+      - "src/dissociated_control_systems/cognitive_context_authority_gate.py"
+      - "tests/test_cognitive_context_authority_gate.py"
+      - "docs/CGD-SIM-049.md"
       - ".github/workflows/cognitive-frontier-fast.yml"
   workflow_dispatch:
 
@@ -31,3 +34,10 @@ jobs:
           python -m dissociated_control_systems.cognitive_context_bound_reanchor > cognitive-context-bound-reanchor.md
           cat cognitive-context-bound-reanchor.md
           cat cognitive-context-bound-reanchor.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Context reliability authority-gate validation
+        run: pytest -q tests/test_cognitive_context_authority_gate.py
+      - name: Run context reliability authority gate
+        run: |
+          python -m dissociated_control_systems.cognitive_context_authority_gate > cognitive-context-authority-gate.md
+          cat cognitive-context-authority-gate.md
+          cat cognitive-context-authority-gate.md >> "$GITHUB_STEP_SUMMARY"
