@@ -66,7 +66,7 @@ No single test is equated with global capability.
 
 ~~~text
 O_j(t) = task-specific objective performance
-~~~/
+~~~
 
 The modeling requirement is to retain task/domain identity rather than average
 all tests into one latent score before checking whether that averaging is
@@ -165,6 +165,7 @@ A minimal linear thought model for identifiability analysis is:
 self report:      S = Z - A + eps_S
 informant report: I = Z + B + eps_I
 objective task:   O = Z     + eps_O
+daily function:   F = Z + E + eps_F
 ~~~
 
 This is not a biological model. It is a structural-observation model used to
