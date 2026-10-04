@@ -1,12 +1,10 @@
-# RQ-005 — Psychological control state, neuroimmune mediation, and tumor dynamics
+# RQ-005 — Survivor divergence and multi-layer cancer control dynamics
 
 ## Status
 
 **OPEN RESEARCH / SYNTHETIC MODEL ONLY**
 
-This research lane asks whether a change commonly described with words such as
-"hope", "resilience", "will to live", or "giving up" can be decomposed into
-measurable intermediate states that alter tumor-control dynamics.
+This research lane asks what separates exceptional/long-term survivor trajectories from short-survival trajectories. Psychological states such as "hope", "resilience", "will to live", or "giving up" remain candidate observations, but they are not privileged over tumor biology, treatment exposure, immune/TME state, neuroendocrine state, or health behavior.
 
 It does **not** assume that positive thinking cures cancer.
 
@@ -14,16 +12,18 @@ It does **not** recommend delaying, replacing, or modifying oncology treatment.
 
 ## Research question
 
-> Can a psychological state transition alter measurable neuroendocrine,
-> behavioral, and immune mediators enough to move a cancer-bearing system
-> across a tumor-growth / tumor-control boundary?
+> Which measurable state, transition, interaction, or latent regime first separates long-term/exceptional survivors from clinically comparable short-survival trajectories, and can any candidate survive prospective validation and competing explanations?
 
-The central DCS move is:
+The central DCS move is now broader:
 
 ~~~text
-global label ("hopeful", "hopeless")
+global endpoint ("survivor", "non-survivor")
     !=
 unique internal biological state
+
+psychological label ("hopeful", "hopeless")
+    !=
+unique causal mechanism
 ~~~
 
 The label is therefore not entered directly into the tumor equation.
@@ -360,4 +360,47 @@ Meta-loop rule:
 
 If the model cannot represent the null or an adverse mediator shift,
 it is not yet a fair test of the psychological hypothesis.
+~~~
+
+
+## Survivor-divide extension
+
+The current program no longer treats psychological state as the center of
+RQ-005. It is one layer in a six-layer model competition:
+
+~~~text
+tumor biology / burden
+treatment exposure
+immune / TME
+neuroendocrine / inflammation
+health behavior / adherence
+psychological / agency
+~~~
+
+The new protocol is:
+[docs/RQ-005_SURVIVOR_DIVIDE.md](RQ-005_SURVIVOR_DIVIDE.md)
+
+The synthetic known-answer harness now distinguishes at least:
+
+~~~text
+psych/neuroimmune precedence candidate
+treatment-first candidate
+tumor-first / reverse-causality candidate
+ambiguous
+~~~
+
+These labels validate temporal-precedence arithmetic only. They are not causal
+classifiers for patient data.
+
+New convergence rule:
+
+~~~text
+Do not ask "did hope work?"
+
+Ask:
+1. where did survivor and non-survivor trajectories first separate?
+2. did that separation precede tumor response?
+3. did it add information beyond tumor biology and treatment?
+4. did it reproduce across independent blocks/cohorts?
+5. did it predict future outcome without future-label leakage?
 ~~~
