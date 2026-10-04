@@ -53,6 +53,85 @@ Normalized trial identities are frozen in
 `tests/test_meta_trial_sets.py` and
 `specs/RQ-005-META-A-RECONCILIATION.json`.
 
+## Full-row count identity audit
+
+The publication Figure 2 rows were frozen in:
+
+- `specs/RQ-005-META-A-BOGNAR-FIG2-AUDIT.json`
+
+Canonical comparator records were taken from primary RCT reports and the 2026
+Asakawa-Haas trial table where available.
+
+Important identity distinction:
+
+~~~text
+Trial identity
+!=
+Population snapshot identity
+~~~
+
+For example, Edelman 1999 has an initial randomized allocation of 62/62 and a
+later survival-analysis population of 60/61 after exclusions. Both remain one
+trial with two evidence snapshots.
+
+Executable audit:
+
+- `src/dissociated_control_systems/evidence_binding.py`
+- `src/dissociated_control_systems/binding_graph.py`
+- `analysis/rq005_bognar_fig2_binding_audit.py`
+- `tests/test_evidence_binding.py`
+- `tests/test_binding_graph.py`
+
+Using exact intervention/control count matching, the frozen 14 rows classify as:
+
+~~~text
+count identity matches displayed trial          2 / 14
+count identity matches a different known trial 11 / 14
+count identity unresolved                       1 / 14
+~~~
+
+When effect identity is also considered, the current automated status count is:
+
+~~~text
+OWN_IDENTITY_CONSISTENT                 1
+COUNT_CROSS_BINDING_CANDIDATE           6
+CROSS_BINDING_CANDIDATE                 5
+EFFECT_SOURCE_CONFLICT_OR_DERIVATION    1
+UNRESOLVED_IDENTITY                     1
+~~~
+
+`candidate` is deliberate. Exact count reuse identifies a provenance pattern;
+it does not identify the mechanism that created it.
+
+## Count-binding graph
+
+Unique exact cross-trial count matches form a nontrivial directed pattern.
+The longest currently observed path is:
+
+~~~text
+WANG_J_2019
+ -> SPIEGEL_2007
+ -> BAO_2019
+ -> KUCHLER_1999_2007
+ -> LU_2021
+ -> VANBUTSELE_2018
+ -> KISSANE_2004
+ -> KIRKEGAARD_2023
+ -> EDELMAN_1999
+~~~
+
+This is 8 cross-binding edges spanning 9 trial identities.
+
+Two shorter branches currently include:
+
+~~~text
+KISSANE_2007 -> GOODWIN_2001 -> ANDERSEN_2008
+TAKANO_2021  -> CUNNINGHAM_1998
+~~~
+
+No causal or software-bug interpretation follows from graph length alone.
+The graph exists to make a systematic identity pattern falsifiable.
+
 ## Row identity conflicts
 
 The figure appears to contain combinations of study label, randomized counts,
@@ -113,11 +192,11 @@ The observations are compatible with several worlds:
 ~~~text
 F0  visual transcription / rendering interpretation error
 F1  labels were reordered separately from numeric columns
-F2  sample-count columns use an undocumented analysis subset
-F3  study/effect rows were joined incorrectly before plotting
-F4  the publication figure and source analysis were generated from different
-    data snapshots
-F5  another explanation not yet observed
+F2  sample-count columns use undocumented analysis subsets
+F3  study/effect/count fields were joined incorrectly before plotting
+F4  publication figure and source analysis came from different data snapshots
+F5  a deterministic ordering/permutation rule exists but has not been identified
+F6  another explanation not yet observed
 ~~~
 
 No world is privileged yet.
@@ -130,12 +209,12 @@ calling this a confirmed plotting or data-binding bug.
 A meta-analysis requires identity preservation:
 
 ~~~text
-Study Label
-+ Randomized Population
+Trial identity
++ Population snapshot
 + Endpoint
-+ Effect Estimate
-+ Standard Error / CI
-+ Follow-up Publication
++ Effect estimate
++ Standard error / CI
++ Follow-up publication
 = one coherent evidence record
 ~~~
 
@@ -146,16 +225,34 @@ Hence:
 
 ~~~text
 Pooled Arithmetic Consistency != Row Identity Consistency
+Aggregate Observable != Correct Internal Binding
+Population Snapshot != New Randomization
 Forest Plot Looks Plausible != Evidence Records Are Correctly Bound
 ~~~
+
+## Next falsification tests
+
+The count-binding graph creates concrete tests rather than a visual suspicion:
+
+1. recover the original supplementary/source table order;
+2. ask whether the observed cross-binding graph is reproduced by a single
+   column-wise sort/permutation;
+3. test whether effect columns, count columns, and labels each correspond to a
+   different stable ordering;
+4. distinguish randomized counts from endpoint-specific analysis counts;
+5. verify every apparent match against the primary randomized population;
+6. repeat the reconstruction from the authors' raw source artifact if obtained.
+
+If no simple permutation explains the graph, `F1/F5` are downgraded and the
+source-snapshot/join worlds gain relative priority.
 
 ## Promotion gate
 
 Before using Bognár 2024 study-specific values in META-A:
 
 1. obtain the supplementary/source data;
-2. assign stable `trial_id` and publication identity;
-3. verify randomized counts against primary trials;
+2. assign stable `trial_id`, population snapshot, and publication identity;
+3. verify randomized/analysis counts against primary trials;
 4. verify effect estimate and CI provenance;
 5. reproduce the plotted order and pooled result;
 6. explain the 0.97 versus 1.01 source split;
