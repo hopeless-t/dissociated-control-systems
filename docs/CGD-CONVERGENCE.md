@@ -247,3 +247,36 @@ This record describes convergence in a synthetic engineering model.
 
 It does not establish a dementia mechanism, clinical monitoring method,
 diagnosis, prognosis, treatment, or patient-facing decision rule.
+
+
+## Harness convergence
+
+The final loop also optimized the experiment harness itself.
+
+Repeated deterministic frontier calculations inside the same pytest process
+were memoized so that validation does not recompute unchanged synthetic
+frontiers.
+
+Observed GitHub Actions wall-clock change:
+
+| workflow | before | after | reduction |
+| --- | ---: | ---: | ---: |
+| cognitive-frontier-fast | 92 s | 62 s | 32.6% |
+| ci | 220 s | 141 s | 35.9% |
+| cognitive-graceful-degradation-simulation | 258 s | 205 s | 20.5% |
+
+The optimization changed execution friction only. The latest head passed:
+
+- cognitive-frontier-fast (push);
+- ci (push);
+- cognitive-graceful-degradation-simulation (push);
+- ci (pull_request);
+- cognitive-graceful-degradation-simulation (pull_request).
+
+This matters to the fixed-point claim because the loop did not stop merely when
+the research model saturated; it also removed an identified deterministic
+validation bottleneck, then re-ran the full checks successfully.
+
+At this point the remaining productive work is no longer recursive harness
+tuning inside the same closed synthetic family. It is acquisition of new
+independent evidence, a changed generative model, or external validation.
