@@ -4,8 +4,10 @@
   "invariants": [
     "paper_title_scope_label_is_not_eligibility_criteria",
     "abstract_estimate_is_not_automatically_canonical",
+    "figure_estimate_is_not_automatically_canonical",
     "publication_is_not_trial",
     "followup_publication_is_not_new_randomization",
+    "study_label_sample_count_and_effect_estimate_must_share_one_trial_identity",
     "same_effect_metric_does_not_imply_same_data_universe",
     "pooled_survival_effect_does_not_identify_biological_mediator"
   ],
@@ -29,7 +31,14 @@
           "hr": 0.97,
           "ci95": [0.87, 1.08]
         },
-        "status": "INTERNAL_CONFLICT_OPEN"
+        "published_figure_2": {
+          "hr": 0.97,
+          "ci95": [0.87, 1.08],
+          "prediction_interval": [0.77, 1.23]
+        },
+        "status": "INTERNAL_CONFLICT_OPEN",
+        "source_pattern": "abstract_and_figure_agree_body_results_isolated",
+        "canonical_choice": null
       },
       "rfs": {
         "k": 5,
@@ -42,6 +51,26 @@
         "os_hr": 1.01,
         "ci95": [0.95, 1.07],
         "role": "provenance_clue_not_canonical_resolution"
+      },
+      "published_figure_2_trial_set": {
+        "n": 14,
+        "normalized_trial_ids": [
+          "ZHANG_L_2021",
+          "BAO_2019",
+          "LU_2021",
+          "KIRKEGAARD_2023",
+          "TAKANO_2021",
+          "GOODWIN_2001",
+          "SPIEGEL_2007",
+          "EDELMAN_1999",
+          "GUO_Z_2013",
+          "VANBUTSELE_2018",
+          "KISSANE_2007",
+          "WANG_J_2019",
+          "KUCHLER_1999_2007",
+          "KISSANE_2004"
+        ],
+        "row_identity_status": "CONFLICTS_DETECTED_PENDING_SOURCE_DATA_AUDIT"
       }
     },
     "ASAKAWA_HAAS_2026": {
@@ -70,10 +99,65 @@
         "estimate": 3.9,
         "ci95": [-0.7, 8.5],
         "hypothesis_testing_role": "not_used"
+      },
+      "prior_meta_analysis_table": {
+        "n": 10,
+        "publication_year_range": [2004, 2019],
+        "bognar_2024_presence_in_main_text_table": false,
+        "reason_for_absence": "UNRESOLVED_DO_NOT_CALL_OMISSION_WITHOUT_ELIGIBILITY_AUDIT"
       }
     }
   },
+  "trial_set_delta_2024_2026": {
+    "shared": 11,
+    "bognar_2024_only": 3,
+    "asakawa_haas_2026_only": 21,
+    "union": 35,
+    "jaccard": 0.3142857142857143,
+    "bognar_2024_only_ids": [
+      "LU_2021",
+      "TAKANO_2021",
+      "VANBUTSELE_2018"
+    ],
+    "exclusion_reason_status": {
+      "LU_2021": "CANDIDATE_CONFLICT_WITH_SYSTEMATIC_LIFESTYLE_CORE_RULE_NOT_CONFIRMED_WITH_A8",
+      "VANBUTSELE_2018": "CANDIDATE_CONFLICT_WITH_PRIMARILY_PALLIATIVE_CARE_RULE_NOT_CONFIRMED_WITH_A8",
+      "TAKANO_2021": "UNKNOWN_PENDING_A8"
+    }
+  },
+  "figure_row_identity_red_team": {
+    "status": "OPEN_HIGH_PRIORITY",
+    "examples": [
+      {
+        "figure_label": "GOODWIN_2001",
+        "figure_displayed_randomized_counts": [114, 113],
+        "primary_trial_randomized_counts": [158, 77],
+        "primary_trial_univariate_hr": 1.06,
+        "primary_trial_ci95": [0.78, 1.45],
+        "note": "figure counts 114/113 match the randomized counts of Andersen 2008, not Goodwin 2001"
+      },
+      {
+        "figure_label": "KISSANE_2007",
+        "figure_displayed_randomized_counts": [158, 77],
+        "figure_displayed_hr": 1.06,
+        "figure_displayed_ci95": [0.78, 1.45],
+        "primary_trial_randomized_counts": [147, 80],
+        "primary_trial_univariate_hr": 0.92,
+        "primary_trial_ci95": [0.69, 1.26],
+        "note": "figure row values coincide with Goodwin 2001 primary values rather than Kissane 2007"
+      },
+      {
+        "figure_label": "KUCHLER_1999_2007",
+        "figure_displayed_randomized_counts": [214, 114],
+        "primary_trial_total_randomized": 271,
+        "asakawa_haas_2026_counts": [136, 135],
+        "note": "figure counts 214/114 match Lu 2021 randomization counts; source-data audit required before diagnosing a binding bug"
+      }
+    ],
+    "promotion_rule": "do_not_pool_or_compare_study_specific_values_until_label_count_effect_identity_is_reconciled"
+  },
   "current_discrepancy_hypotheses_ranked": [
+    "study_row_identity_or_source_binding_conflict_in_bognar_2024",
     "trial_inclusion_and_search_horizon_difference",
     "followup_publication_identity_and_effect_selection_rules",
     "hr_extraction_or_reconstruction_difference",
@@ -90,16 +174,22 @@
     {
       "claim": "2024_is_strictly_early_stage_whereas_2026_is_all_stage",
       "reason": "the 2024 published eligibility text permits adult patients with any cancer, including palliative treatment or survivor populations"
+    },
+    {
+      "claim": "2024_abstract_is_simply_a_typo",
+      "reason": "published Figure 2 independently reports the same 0.97 [0.87, 1.08] pooled OS estimate as the abstract"
     }
   ],
   "next_gates": [
-    "resolve_2024_abstract_vs_body_os_provenance_without_guessing",
+    "audit_bognar_2024_figure2_row_binding_against_primary_trials_and_supplement_source_data",
+    "resolve_2024_abstract_figure_vs_body_os_provenance_without_guessing",
+    "verify_individual_exclusion_reasons_for_2024_only_trials_from_2026_supplement_A8",
     "build_stable_trial_id_map_for_both_reviews",
-    "compute_trial_set_intersection_and_symmetric_difference",
     "map_each_included_effect_to_primary_followup_or_reconstructed_source",
     "reproduce_2026_author_analysis_from_sha256_verified_osf_assets",
     "reproduce_2024_analysis_from_available_primary_or_supplementary_assets",
-    "rerun_common_trial_set_under_common_hr_extraction_rule"
+    "rerun_common_trial_set_under_common_hr_extraction_rule",
+    "quantify_path_dependence_of_any_sequential_delta_decomposition"
   ],
   "claim_ceiling": "no causal cancer-survival or psychoneuroimmune mechanism claim may be promoted from the review-level discrepancy"
 }
