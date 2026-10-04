@@ -1,0 +1,31 @@
+{
+  "id": "HF-SIM-003",
+  "title": "Fail-closed reachability classification under partial observability",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "decision_rule": "Classify RECOVERABLE only if every latent state still compatible with the evidence reaches H>=threshold under the declared actuator; classify NONRECOVERABLE only if none do; otherwise UNKNOWN.",
+  "known_answer": {
+    "candidate_states": [
+      {
+        "H0": 0.5,
+        "F0": 0.2,
+        "synthetic_future": "recoverable"
+      },
+      {
+        "H0": 0.5,
+        "F0": 0.6,
+        "synthetic_future": "nonrecoverable"
+      }
+    ],
+    "observation": "H0 alone cannot distinguish the two candidates",
+    "declared_control": "behavioral=1 + antiandrogen=1",
+    "robust_decision": "UNKNOWN"
+  },
+  "invariant_candidates": [
+    "Observation uncertainty must propagate into reachability uncertainty",
+    "UNKNOWN != RECOVERABLE",
+    "UNKNOWN != NONRECOVERABLE",
+    "Probe value is decision-dependent, not merely descriptive"
+  ],
+  "boundary": "This validates a decision rule inside the frozen synthetic model. It does not classify any real person's hair follicles."
+}
