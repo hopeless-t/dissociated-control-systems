@@ -7,7 +7,7 @@ on:
     paths:
       - "src/dissociated_control_systems/cognitive_residual_cusum.py"
       - "tests/test_cognitive_residual_cusum.py"
-      - "docs/CGD-SIM-018.md"
+      - "docs/CGD-SIM-020.md"
       - ".github/workflows/cognitive-frontier-fast.yml"
   workflow_dispatch:
 

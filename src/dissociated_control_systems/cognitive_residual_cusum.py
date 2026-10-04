@@ -1,4 +1,4 @@
-"""CGD-SIM-018: template-residual CUSUM for weak variance shift.
+"""CGD-SIM-020: template-residual CUSUM for weak variance shift.
 
 Synthetic harness experiment only. Clinical authority: NONE.
 """
@@ -290,7 +290,7 @@ def format_markdown() -> str:
     result = residual_cusum_experiment()
     detector = result["detector"]
     lines = [
-        "# CGD-SIM-018 template-residual CUSUM",
+        "# CGD-SIM-020 template-residual CUSUM",
         "",
         "> Synthetic control-model result only. Clinical authority: NONE.",
         "",
