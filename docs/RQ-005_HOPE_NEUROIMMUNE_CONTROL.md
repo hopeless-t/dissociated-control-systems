@@ -124,10 +124,12 @@ mediators that move the system across this boundary.
 
 ## Mediator dynamics
 
+The current synthetic implementation uses **absolute measured/assigned mediator values**, not one-way "boost" variables. This matters: the model is deliberately neutral about whether a psychological state increases, decreases, or leaves adherence and stress recovery unchanged. That mapping is an empirical question.
+
 The current synthetic implementation adds:
 
 ~~~text
-dS/dt = stress_input - recovery * S
+dS/dt = stress_input - measured_stress_recovery_rate * S
 
 dI/dt =
     tumor_to_suppression(T)
@@ -207,15 +209,16 @@ Psychological narrative alone is insufficient evidence.
 
 2. **VAL-B — mediator separation**
    Show that stress-recovery and treatment-adherence channels can alter the
-   trajectory independently.
+   trajectory independently, in either direction when their measured values
+   differ between groups.
 
 3. **VAL-C — sensitivity / phase map**
    Sweep S, E, M, and I to map the tumor-control boundary and identify knees,
    bistable-like regions, and fragile transition zones.
 
 4. **VAL-D — negative controls**
-   Add a "hope label" that has no mediator edges and verify that it has exactly
-   zero effect.
+   Verify structurally that a "hope" or "resilience" label has no direct model
+   edge. A label-only perturbation must therefore have exactly zero effect.
 
 5. **PUBLIC-DATA-A — longitudinal biomarker test**
    Use public oncology cohorts with repeated distress/stress measures,
@@ -331,3 +334,30 @@ surface: sign and magnitude of dT/dt
 
 Then add uncertainty bands and Monte Carlo parameter sweeps to identify which
 claims survive broad parameter perturbation.
+
+
+## Meta-improvement log — beneficial-by-construction failure
+
+The first implementation represented the two behavioral channels as
+`adherence_boost >= 0` and `recovery_boost >= 0`.
+
+A 10,000-draw synthetic Monte Carlo perturbation then found the "mediated"
+arm outperforming the reference arm in 100% of draws.
+
+That result was rejected as evidence.
+
+The experiment exposed a design flaw: the intervention variables could only
+move in a beneficial direction, so the apparent robustness was partly
+structural.
+
+The model was revised to accept absolute `adherence` and
+`stress_recovery_rate` values instead. The psychological-state-to-mediator
+mapping is now outside the tumor model and must be learned or tested from
+data.
+
+~~~text
+Meta-loop rule:
+
+If the model cannot represent the null or an adverse mediator shift,
+it is not yet a fair test of the psychological hypothesis.
+~~~
