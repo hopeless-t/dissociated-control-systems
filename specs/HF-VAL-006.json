@@ -22,6 +22,10 @@
     {
       "gate": "trajectory_accounting",
       "requirement": "every baseline-enrolled follicle has a declared final disposition and HF-SIM-038 attrition/selection risks are reported before complete-case prediction is interpreted"
+    },
+    {
+      "gate": "cluster_information",
+      "requirement": "follicles are not treated as independent human replicates; donor/region/follicle hierarchy and HF-SIM-039 pseudoreplication risk are explicit"
     }
   ],
   "early_candidates": {
@@ -44,6 +48,9 @@
   },
   "validation": [
     "evaluate prediction out of sample with donor held out, not only random follicle splits",
+    "all feature normalization, tuning, threshold selection and model selection occur inside the training donors of each validation fold",
+    "no held-out donor contributes preprocessing statistics or feature-selection decisions",
+    "report donor count separately from follicle count and never present follicles as independent human replicates",
     "report within-donor and between-donor variance",
     "freeze feature definitions before inspecting late outcomes",
     "retain frontal/occipital region as a declared covariate/stratum rather than pooling by default",
@@ -53,16 +60,18 @@
     "perform declared sensitivity analyses when missing-not-at-random late output cannot be excluded"
   ],
   "primary_success_logic": [
-    "M1 improves predeclared out-of-sample prediction versus M0 in the expected direction",
+    "M1 improves predeclared donor-held-out prediction versus M0 in the expected direction",
     "the improvement is not confined to one donor",
     "confidence/calibration does not worsen materially under the predeclared criterion",
     "the result survives the declared trajectory-attrition sensitivity analysis",
+    "the result is not dependent on leakage from held-out donors during preprocessing/tuning",
     "if M2 is tested, M-susceptibility adds information beyond M-state and baseline output"
   ],
   "falsification": [
     "early mechanical state fails to improve donor-held-out prediction beyond baseline output",
     "apparent association disappears after donor/region structure is respected",
     "apparent association disappears or reverses under plausible attrition/missingness sensitivity analyses",
+    "apparent gain disappears when all preprocessing and tuning are correctly nested inside donor-held-out validation",
     "observer back-action or diagnostic-probe persistence cannot be bounded",
     "the early feature is predictive only in-sample or only after post-hoc feature selection",
     "same-unit trajectories show molecular/mechanical response without later functional rescue, weakening a simple response->recovery bridge"
