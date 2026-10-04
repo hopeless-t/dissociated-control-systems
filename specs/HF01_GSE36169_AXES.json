@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "dataset": "GSE36169",
+  "freeze_rule": "These axes are committed before downloading/examining expression values in the repository harness.",
+  "positive_control_not_validation": {
+    "PGD2": {
+      "PTGDS": 1
+    }
+  },
+  "axes": {
+    "androgen_growth_suppression": {
+      "AR": 1,
+      "SRD5A1": 1,
+      "SRD5A2": 1,
+      "DKK1": 1,
+      "TGFB1": 1,
+      "TGFB2": 1,
+      "IGF1": -1
+    },
+    "wnt_regeneration_loss": {
+      "DKK1": 1,
+      "SFRP2": 1,
+      "SERPINF1": 1,
+      "CTNNB1": -1,
+      "LEF1": -1,
+      "AXIN2": -1
+    },
+    "vascular_regression": {
+      "PECAM1": -1,
+      "VWF": -1,
+      "KDR": -1,
+      "VEGFA": -1,
+      "EMCN": -1
+    },
+    "ecm_structural_remodeling": {
+      "COL1A1": 1,
+      "COL1A2": 1,
+      "LOX": 1,
+      "FN1": 1,
+      "ITGA5": 1,
+      "ITGB1": 1
+    },
+    "inflammatory_activation": {
+      "CCL2": 1,
+      "IL6": 1,
+      "CXCL8": 1,
+      "TNF": 1,
+      "ITGAX": 1
+    },
+    "hypoxia_oxidative_response": {
+      "HIF1A": 1,
+      "EGLN1": 1,
+      "EGLN3": 1,
+      "NQO1": 1,
+      "SOD2": 1
+    }
+  }
+}
