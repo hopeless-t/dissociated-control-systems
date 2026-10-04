@@ -1,0 +1,32 @@
+{
+  "id": "HF-VAL-003",
+  "title": "Contingent personalized feedback changes a pre-specified controllable state beyond static/sham feedback",
+  "status": "PRE_REGISTERED_FUTURE_VALIDATION",
+  "clinical_authority": "NONE",
+  "purpose": "Test the first physiological gate of the normal-model awareness hypothesis without treating hair growth as the immediate endpoint.",
+  "arms": {
+    "A": "static normal/degeneration educational model",
+    "B": "non-contingent or sham state feedback matched for attention",
+    "C": "contingent personalized state feedback"
+  },
+  "primary_outcome": "one pre-specified fast physiological or behavioral state with a validated measurement protocol",
+  "secondary_outcomes": [
+    "comprehension/calibration accuracy",
+    "state-estimation error",
+    "adherence/behavioral response",
+    "pre-specified safety and burden measures"
+  ],
+  "acceptance": [
+    "C changes the pre-specified fast state more than B",
+    "B vs A separates generic attention/expectancy from feedback contingency",
+    "analysis is randomized or otherwise causally identified",
+    "outcome and analysis are frozen before unblinding",
+    "no follicle-recovery claim is made from Gate-1 success alone"
+  ],
+  "failure_interpretation": "If contingent feedback does not outperform sham for the pre-specified physiological state, HF01 must weaken or reject that feedback channel rather than asking the person to try harder.",
+  "next_gate": "Only a successful Gate-1 state change can be tested for propagation into follicle-relevant R/F*/P/N measurements and then delayed H.",
+  "literature_boundary": [
+    "HRV biofeedback/sham literature shows context-dependent physiological effects",
+    "human endocrine/immune conditioning literature shows some learnable physiological responses but does not establish a hair-follicle route"
+  ]
+}
