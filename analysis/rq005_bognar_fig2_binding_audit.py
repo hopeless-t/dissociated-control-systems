@@ -1,9 +1,9 @@
 """Run the frozen Bognar 2024 Figure 2 evidence-binding audit.
 
 The input spec contains transcribed publication rows plus independently sourced
-canonical comparator identities. This script classifies identity consistency
-and constructs a trial-level count-binding graph. It does not infer why a
-mismatch exists.
+canonical comparator identities. This script classifies identity consistency,
+field semantics, and a trial-level population-count binding graph. It does not
+infer why a mismatch exists.
 """
 
 from __future__ import annotations
@@ -26,6 +26,9 @@ def _canonical_record(evidence_id: str, payload: dict[str, object]) -> Canonical
     trial_id_raw = payload.get("trial_id", evidence_id)
     if not isinstance(trial_id_raw, str):
         raise ValueError(f"{evidence_id}: trial_id must be a string")
+    count_semantics = payload.get("count_semantics", "population_size")
+    if not isinstance(count_semantics, str):
+        raise ValueError(f"{evidence_id}: count_semantics must be a string")
 
     count_i = payload.get("intervention_n")
     count_c = payload.get("control_n")
@@ -54,6 +57,7 @@ def _canonical_record(evidence_id: str, payload: dict[str, object]) -> Canonical
         lower=lower,
         upper=upper,
         evidence_id=evidence_id,
+        count_semantics=count_semantics,
     )
 
 
@@ -78,6 +82,7 @@ def run(spec_path: Path) -> dict[str, object]:
     cross_count_rows = 0
     unresolved_count_rows = 0
     ambiguous_count_rows = 0
+    semantic_collision_rows = 0
 
     for raw in rows:
         if not isinstance(raw, dict):
@@ -93,9 +98,13 @@ def run(spec_path: Path) -> dict[str, object]:
             hr=float(raw["hr"]),
             lower=float(ci[0]),
             upper=float(ci[1]),
+            count_semantics=str(raw.get("count_semantics", "population_size")),
         )
         result = classify_binding(row, canonical)
         audits.append(result)
+
+        if result["cross_semantic_count_matches"]:
+            semantic_collision_rows += 1
 
         count_trial_ids = tuple(result["count_match_trial_ids"])
         if row.displayed_trial_id in count_trial_ids:
@@ -114,18 +123,20 @@ def run(spec_path: Path) -> dict[str, object]:
         "spec_id": payload.get("id"),
         "source": payload.get("source"),
         "row_count": len(audits),
-        "count_identity": {
+        "count_identity_same_semantics": {
             "own": own_count_rows,
             "cross_unique_trial": cross_count_rows,
             "ambiguous_multiple_trials": ambiguous_count_rows,
             "unresolved": unresolved_count_rows,
         },
+        "cross_semantic_exact_pair_rows": semantic_collision_rows,
         "binding_status_counts": dict(sorted(statuses.items())),
         "rows": audits,
-        "unique_count_cross_binding_graph": graph,
+        "unique_population_count_cross_binding_graph": graph,
         "claim_ceiling": (
-            "descriptive provenance audit only; graph structure does not identify "
-            "the mechanism that produced a mismatch"
+            "descriptive provenance audit only; equal numbers, graph structure, "
+            "and semantic collisions do not identify the mechanism that produced "
+            "a mismatch"
         ),
     }
 
