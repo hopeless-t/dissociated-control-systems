@@ -1,0 +1,38 @@
+{
+  "id": "HF-VAL-001",
+  "title": "Synthetic hair-follicle hysteresis and reachability",
+  "status": "OPEN_RESEARCH",
+  "clinical_authority": "NONE",
+  "model_scope": "synthetic-only",
+  "state": [
+    "androgen_pressure",
+    "stress_load",
+    "regeneration",
+    "progenitor_reserve",
+    "niche_integrity",
+    "structural_lock",
+    "hair_output"
+  ],
+  "acceptance": {
+    "bounded_state": true,
+    "coarse_output_non_identifying": true,
+    "early_control_ordering": "combo > antiandrogen > behavioral >= none",
+    "late_upstream_only_output_lt": 0.30,
+    "late_structural_rescue_output_gt": 0.60,
+    "baseline_recoverability_thresholds": {
+      "behavioral_plus_antiandrogen": 0.35,
+      "plus_regenerative": 0.80,
+      "plus_structural": 1.00
+    },
+    "sensitivity": {
+      "samples": 300,
+      "all_coefficient_perturbation_fraction": 0.20,
+      "required_core_claim_fraction_gte": 0.94
+    }
+  },
+  "falsification_notes": [
+    "Failure of deterministic tests falsifies the declared synthetic claim.",
+    "Passing tests does not validate the equations as human biology.",
+    "Human biological interpretation requires independent longitudinal data."
+  ]
+}
