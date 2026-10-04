@@ -1,0 +1,30 @@
+{
+  "id": "HF-SIM-002",
+  "title": "Early hidden response precedes visible recoverability separation",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "initial_condition": {
+    "visible_output": 0.5,
+    "recoverable_structural_lock": 0.2,
+    "locked_structural_lock": 0.6
+  },
+  "control": {
+    "behavioral": 1,
+    "antiandrogen": 1,
+    "regenerative": 0,
+    "structural": 0
+  },
+  "checkpoints": {
+    "early_steps": 80,
+    "late_steps": 2000,
+    "dt": 0.05
+  },
+  "known_answer": {
+    "recoverable_early_regeneration_gain": 0.2689814792,
+    "locked_early_regeneration_gain": 0.1419597783,
+    "recoverable_late_output_gain": 0.517550474,
+    "locked_late_output_gain": 7.736e-8
+  },
+  "inference": "Within the frozen equations, an intervention-linked hidden-state response contains information about later reachability that is not yet expressed as comparable early visible-output benefit.",
+  "boundary": "This synthetic result does not establish IGF-1 as the latent state, drug efficacy, biological hysteresis, or consciousness-driven recovery."
+}
