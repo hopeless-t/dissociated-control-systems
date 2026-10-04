@@ -1,1 +1,114 @@
 # HF01 Projection Ladder — Bridging Model, Measurement, and Human Understanding\n\n> Status: WORKING FORMALISM + SYNTHETIC DESIGN THEOREM\n> Biological authority: NONE\n> Quantitative cognitive authority: SURROGATE ONLY\n\n## Problem\n\nHF01 previously treated several projections as if they could be crossed in one jump:\n\n~~~text\nlatent mathematical state\n    -> biological meaning\n    -> measurement\n    -> evidence\n    -> human-understandable explanation\n    -> decision\n~~~\n\nThat compression is efficient only when each mapping is already familiar and low-friction.\nWhen the semantic distance is large, the receiver must reconstruct missing intermediate mappings internally.\n\nThe DCS hypothesis is therefore:\n\n> Some apparent disagreement between a valid formal model and a human's ability to recognize its relevance can arise from a projection ladder that is too sparse, rather than from the endpoint model alone.\n\nThis is an explanation/observation hypothesis, not a claim about neural pathology.\n\n## Two ladders must be separated\n\n### Scientific projection ladder\n\n~~~text\nS0  formal latent state\n    R_state, F*, A, ...\n\nS1  biological interpretation\n    regenerative competence, structural remodeling, local driver state\n\nS2  mechanistic family\n    WNT/beta-catenin, ECM/focal adhesion, androgen signaling, ...\n\nS3  measurable substrate / probe\n    transcript abundance, protein/localization, trichoscopy, mechanics, ...\n\nS4  normalized observable\n    fold change, pathway score, diameter variance, uncertainty interval, ...\n\nS5  evidence status\n    replicated candidate / mixed / rejected observer / unknown\n\nS6  decision state\n    sufficient / insufficient / UNKNOWN / next probe needed\n~~~\n\nEvery edge is independently falsifiable.\n\n### Human-recognition ladder\n\n~~~text\nC0  mathematical result\nC1  one-sentence meaning\nC2  causal/mechanistic chain\nC3  concrete observable example\nC4  uncertainty + what the result does NOT mean\nC5  next discriminating observation or action\n~~~\n\nC-layers do not create biological evidence. They only reduce the effort needed to reconstruct what existing evidence means.\n\n## Edge contract\n\nEvery projection edge should carry six fields:\n\n1. source representation;\n2. target representation;\n3. mapping rule;\n4. evidence or assumption supporting the mapping;\n5. uncertainty / known failure mode;\n6. reverse or consistency check.\n\nAn unsupported edge must not inherit the confidence of its neighbors.\n\nExample:\n\n~~~text\nR_state candidate\n  -> WNT/regeneration-loss projection\n\nsupport:\n  cross-sectional transfer in GSE36169 and GSE93766\n\nfailure mode:\n  GSE178510 shows the same static projection is not a validated\n  monotonic actuator-response coordinate\n\nclaim ceiling:\n  useful state-separation candidate; not recoverability\n~~~\n\n## Projection-friction surrogate\n\nLet:\n\n~~~text\nD      total semantic/projection distance\nn      number of explanatory transitions\nalpha  penalty on large semantic jumps\nbeta   per-transition overhead\n~~~\n\nFor equal-sized transitions, define:\n\n~~~text\nJ(n) = alpha * D^2 / n + beta * n\n~~~\n\nThe first term represents missing-intermediate-step friction.\nThe second represents over-segmentation / navigation / attention overhead.\n\nFor positive n, alpha, beta and D:\n\n~~~text\ndJ/dn  = -alpha*D^2/n^2 + beta\nd2J/dn2 = 2*alpha*D^2/n^3 > 0\n~~~\n\nSo J is strictly convex and has a unique continuous minimum:\n\n~~~text\nn* = D * sqrt(alpha / beta)\n~~~\n\nTherefore, inside this declared surrogate:\n\n~~~text\ntoo few projections  -> high jump friction\ntoo many projections -> high stage overhead\nfinite adaptive depth -> optimum\n~~~\n\n## Frozen HF-SIM-004 known answer\n\nFor:\n\n~~~text\nD = 8\nalpha = 1\nbeta = 1\n~~~\n\nwe obtain:\n\n~~~text\none direct jump:       n=1   J=65\noptimal ladder:        n=8   J=16\nover-segmented ladder: n=32  J=34\n~~~\n\nThis is a theorem about the surrogate cost function, not a measured human cognitive-load curve.\n\n## Why the ladder should be a gradient, not a uniform staircase\n\nReal mappings are heterogeneous.\n\nSuppose local span j has distance d_j and difficulty/uncertainty weight w_j.\nUse:\n\n~~~text\nJ_j(n_j) = alpha*w_j*d_j^2/n_j + beta*n_j\n~~~\n\nwhich gives:\n\n~~~text\nn_j* = d_j * sqrt(alpha*w_j/beta)\n~~~\n\nTherefore more intermediate projections should be inserted where:\n\n- the semantic jump is large;\n- uncertainty is high;\n- a concept changes representational domain;\n- the user repeatedly mispredicts the next step;\n- the consequence of misunderstanding is high.\n\nEasy/familiar edges should be collapsed.\n\n## Homotopy interpretation\n\nInstead of asking a person to jump directly from endpoint hypothesis H to endpoint observation Y, construct a path:\n\n~~~text\ngamma(s), 0 <= s <= 1\ngamma(0) = formal hypothesis\ngamma(1) = human-visible evidence/decision\n~~~\n\nThen sample gamma sparsely where the mapping is smooth/familiar and densely where curvature, uncertainty, or domain change is high.\n\nThis is an explanatory analogue of continuation methods: do not require one discontinuous cognitive jump when a sequence of locally checkable transformations exists.\n\n## HF01 concrete ladder\n\nFor the current regeneration candidate, a default path is:\n\n~~~text\nP0  equation/state:\n    R_state is a latent regenerative-state candidate\n\nP1  biological sentence:\n    some follicles may occupy a less regeneration-supportive state\n\nP2  mechanism family:\n    WNT/regeneration-associated transcription differs in disease contexts\n\nP3  concrete probes:\n    declared WNT/related genes in paired scalp and DP-cell datasets\n\nP4  observed public-data result:\n    disease-direction score transferred in GSE36169 and GSE93766\n\nP5  falsification boundary:\n    GSE178510 failed the claim that the same score is a monotonic\n    short-term minoxidil response coordinate\n\nP6  calibrated human statement:\n    the axis is a state-separation candidate; it is not a direct meter of\n    recoverability or treatment response\n\nP7  next discriminating measurement:\n    longitudinal early-response probe linked to later output\n~~~\n\nThis is deliberately longer than a headline and shorter than the entire molecular literature.\n\n## Adaptive user model\n\nThe same endpoint should not force the same number of stages for every reader.\n\nIn the surrogate:\n\n~~~text\nlarge alpha / small beta\n    -> user/task is sensitive to semantic jumps\n    -> expose more intermediate states\n\nsmall alpha / large beta\n    -> user/task tolerates abstraction but is burdened by detail\n    -> collapse familiar states\n~~~\n\nThe UI should update alpha-like behavior from demonstrated comprehension, not from self-reported expertise alone.\n\nExamples of evidence for collapsing an edge:\n\n- user correctly predicts the next transformation;\n- user can restate the claim boundary;\n- user can map the observable back to the latent concept without overclaim.\n\nExamples for expanding an edge:\n\n- repeated category error;\n- confusing correlation with mechanism;\n- confusing state with response;\n- confidence remains high while reconstruction is wrong.\n\n## Meta-meta loop\n\nThe explanation system itself becomes a controlled system:\n\n~~~text\ncurrent explanation ladder\n  -> user reconstruction\n  -> projection error\n  -> insert / merge / reorder intermediate concepts\n  -> re-test reconstruction\n~~~\n\nThe optimization target is not maximal detail.\n\nIt is:\n\n~~~text\nminimum explanation complexity\nsubject to\ncorrect reconstruction + calibrated uncertainty + claim-boundary retention\n~~~\n\n## Design consequence for the proposed PowerPoint / UI\n\nDo not build one giant normal-vs-degenerate slide.\n\nUse progressive layers:\n\n~~~text\nLayer 0  visible one-cycle overview\nLayer 1  state-transition skeleton\nLayer 2  tissue/cell actors\nLayer 3  pathway families\nLayer 4  measurable probes\nLayer 5  personal/current estimates + uncertainty\nLayer 6  response-to-input evidence\nLayer 7  reachability decision / UNKNOWN + next probe\n~~~\n\nEach layer should be independently understandable, and the viewer should be able to expand only the edge that produced uncertainty.\n\n## External design priors\n\nThis direction is compatible with several established ideas without being equivalent to them:\n\n- multimedia-learning segmenting/pre-training: complex material is easier to process when learner-paced and prerequisite concepts are established;\n- worked examples: intermediate solution structure can reduce unnecessary search during early learning;\n- Concept Bottleneck Models: prediction can pass through human-interpretable intermediate concepts rather than raw-to-output only;\n- probabilistic concept bottlenecks: uncertainty in intermediate concepts matters;\n- prototype-grounded concept models: a human-readable concept should be grounded in inspectable evidence, not merely named.\n\n## Current claim\n\nThe project now treats projection density as a first-class design variable.\n\n~~~text\nHypothesis != Explanation\nMeasurement != Meaning\nEndpoint Correctness != Human-Reconstructible Path\nMore Detail != Better Projection\n~~~\n\nThe current research target is an adaptive, locally falsifiable projection ladder that is only as deep as needed to preserve meaning and uncertainty.\n
+
+## Projection Mesh — evidence density and explanation density are independent
+
+The first ladder model still had one failure mode: a smooth explanation could
+hide a missing empirical bridge.
+
+HF01 therefore separates two gap coordinates:
+
+~~~text
+E = epistemic gap
+    missing measurement / causal / provenance / validation connection
+
+C = cognitive gap
+    connection exists, but the intended reader cannot reconstruct it reliably
+~~~
+
+The controller uses the quadrant, not a single scalar:
+
+~~~text
+E low, C low
+    collapse redundant steps
+
+E low, C high
+    add intermediate representations
+    test reconstruction
+
+E high, C low
+    collect or validate evidence
+    preserve UNKNOWN
+    do NOT explain around the missing bridge
+
+E high, C high
+    improve evidence and representation independently
+~~~
+
+This creates a two-dimensional projection mesh.
+
+A scientifically dense path may still be cognitively sparse.
+A cognitively smooth path may still be scientifically unsupported.
+
+The two failure classes require different repairs.
+
+## HF01 examples
+
+### Cross-sectional R_state candidate -> plain-language explanation
+
+Current status:
+
+~~~text
+epistemic gap:
+    moderate, because two different public-data systems transfer the
+    disease-associated projection but longitudinal recoverability is unproven
+
+cognitive gap:
+    potentially high for a reader asked to jump directly from a pathway score
+    to "regenerative state"
+~~~
+
+Repair:
+
+~~~text
+do both:
+    preserve candidate/UNKNOWN boundary
+    expose the pathway -> probe -> score -> claim-ceiling intermediate steps
+~~~
+
+### Normal-model understanding -> hair recovery
+
+Current status:
+
+~~~text
+epistemic gap:
+    high
+
+cognitive gap:
+    low to moderate; the proposed causal story is easy to explain
+~~~
+
+Repair:
+
+~~~text
+collect evidence at Gate 1 / Gate 2 / Gate 3
+do not add rhetorical smoothness and mistake it for validation
+~~~
+
+This is a key meta-meta safeguard.
+
+## Projection-edge evidence ceiling
+
+Every edge now carries a grounding state:
+
+~~~text
+SUPPORTED
+ASSUMED
+UNKNOWN
+FALSIFIED
+~~~
+
+The composed endpoint inherits the most restrictive required edge:
+
+~~~text
+all supported                -> GROUNDED
+any assumed                  -> MODEL_ONLY
+any unknown                  -> UNKNOWN
+any falsified required edge  -> FALSIFIED
+~~~
+
+Adding more supported intermediate explanation steps cannot rescue an assumed,
+unknown, or falsified bridge.
+
+This freezes the invariant:
+
+> Explanation smoothness must not launder an assumption into evidence.
