@@ -2,6 +2,7 @@ from dissociated_control_systems.projection_protocol import (
     CheckpointRecord,
     CheckpointRole,
     CheckStatus,
+    ClaimType,
     ProjectionCertificate,
     canonical_trace,
     validate_projection_certificate,
@@ -122,3 +123,68 @@ def test_failure_dominates_terminal_status() -> None:
 
     assert result.accepted
     assert result.terminal_status is CheckStatus.FAIL
+
+
+def test_descriptive_claim_does_not_require_reachability_gate() -> None:
+    result = validate_projection_certificate(
+        canonical_trace(
+            claim_type=ClaimType.DESCRIPTIVE,
+            empirical_authority_requested=True,
+        )
+    )
+
+    assert result.accepted
+    assert result.terminal_status is CheckStatus.PASS
+
+
+def test_state_inference_requires_typing_but_not_reachability() -> None:
+    result = validate_projection_certificate(
+        canonical_trace(
+            claim_type=ClaimType.STATE_INFERENCE,
+            empirical_authority_requested=True,
+        )
+    )
+
+    assert result.accepted
+
+
+def test_reachability_claim_still_requires_all_four_roles() -> None:
+    certificate = ProjectionCertificate(
+        records=(
+            CheckpointRecord(
+                CheckpointRole.PROVENANCE,
+                CheckStatus.PASS,
+            ),
+            CheckpointRecord(
+                CheckpointRole.STATE_RESPONSE,
+                CheckStatus.PASS,
+            ),
+            CheckpointRecord(
+                CheckpointRole.UNCERTAINTY,
+                CheckStatus.PASS,
+            ),
+        ),
+        claim_type=ClaimType.REACHABILITY,
+        empirical_authority_requested=True,
+    )
+
+    result = validate_projection_certificate(certificate)
+
+    assert not result.accepted
+    assert "missing_required_role:REACHABILITY" in result.violations
+
+
+def test_descriptive_claim_unknown_still_cannot_claim_empirical_pass() -> None:
+    result = validate_projection_certificate(
+        canonical_trace(
+            (
+                CheckStatus.PASS,
+                CheckStatus.UNKNOWN,
+            ),
+            claim_type=ClaimType.DESCRIPTIVE,
+            empirical_authority_requested=True,
+        )
+    )
+
+    assert not result.accepted
+    assert result.terminal_status is CheckStatus.UNKNOWN
