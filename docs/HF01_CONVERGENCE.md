@@ -237,3 +237,203 @@ The synthetic layer is CONVERGED FOR V0.
 
 The biological layer is OPEN and must proceed through public-data and
 longitudinal validation rather than stronger narrative claims.
+
+
+## Loop 5 — paired human scalp public-data falsification
+
+The frozen axis specification was executed on GSE36169 without post-hoc gene
+selection.
+
+Positive control:
+
+~~~text
+PTGDS bald-minus-haired mean log2 delta = +1.927634
+direction = 5/5
+~~~
+
+Frozen-axis outcomes:
+
+~~~text
+WNT / regeneration loss       +0.727979   5/5 paired direction
+ECM / structural remodeling   +0.739120   5/5 paired direction
+hypoxia / oxidative           +0.194802   4/5 paired direction
+inflammation                  +0.371793   4/5 paired direction, only 2 genes
+androgen transcript axis      -0.058722   2/5 paired direction
+vascular transcript axis      -0.144918   2/5 paired direction
+~~~
+
+Important model update:
+
+The negative androgen/vascular results are retained. They falsify the stronger
+observer assumption that whole-scalp transcript abundance is a direct proxy for
+local androgen-driver or dermal-papilla vascular state.
+
+Disposition:
+
+~~~text
+R regenerative candidate                 STRENGTHENED
+F* structural-remodeling candidate       STRENGTHENED
+A bulk-transcript observer               WEAKENED
+vascular bulk-transcript observer        REJECTED FOR CURRENT PANEL
+~~~
+
+## Loop 6 — observation-cost failure and harness adaptation
+
+An independent GSE90594 transfer was implemented, but the automatic workflow
+required the large GPL17077 annotation object. Two executions were terminated
+by hosted-runner shutdown signals before analysis completion.
+
+The loop classified this as:
+
+~~~text
+observation / infrastructure cost failure
+!= biological result
+~~~
+
+Rather than repeatedly retrying the same expensive path, HF01 preserved the
+frozen script and switched the next automatic transfer test to GSE93766, whose
+gene-level Cuffdiff artifact already contains gene identifiers.
+
+This is a harness self-improvement result:
+
+> When an evidence channel is too costly or unstable, first seek an
+> information-equivalent lower-friction observation path rather than adding
+> more controller recursion.
+
+## Loop 7 — dermal-papilla cell-model transfer
+
+GSE93766 BK0 vs NBK0 was analyzed with the unchanged axis specification.
+
+A first result was discarded because Cuffdiff contrast orientation had not yet
+been mechanically verified.
+
+A known-answer test was added:
+
+~~~text
+sample_1 = BK0
+sample_2 = NBK0
+raw log2(value_2/value_1) = +2
+=> HF01 bald-minus-nonbald effect = -2
+~~~
+
+The corrected public-data workflow and ordinary CI both pass.
+
+Corrected frozen-axis outcomes:
+
+~~~text
+androgen / growth suppression
+    mean finite signed log2 FC = +1.180584
+    direction alignment        = 5/7
+
+WNT / regeneration loss
+    mean finite signed log2 FC = +1.163161
+    direction alignment        = 4/6
+
+ECM / structural remodeling
+    mean finite signed log2 FC = +0.881893
+    direction alignment        = 5/6
+
+vascular regression
+    mean finite signed log2 FC = -2.190883
+    direction alignment        = 1/4
+
+hypoxia / oxidative
+    mean finite signed log2 FC = -0.495191
+    direction alignment        = 1/5
+
+inflammation
+    mean finite signed log2 FC = +0.959649
+    direction alignment        = 2/4
+~~~
+
+The inflammatory axis is classified as mixed because the mean is driven by
+large CCL2/IL6 effects while half of the available genes oppose the declared
+direction.
+
+## Cross-dataset convergence
+
+Only two declared axes currently show strong directional transfer across both
+very different public-data systems:
+
+~~~text
+WNT / regeneration loss
+ECM / structural remodeling
+~~~
+
+This drives a model reduction.
+
+The biological interpretation should now distinguish:
+
+~~~text
+R:
+    replicated regenerative-state candidate
+
+F*:
+    replicated structural-remodeling candidate
+
+F:
+    synthetic structural-lock / hysteresis variable
+    NOT biologically validated
+
+A:
+    plausible local driver/mechanism state
+    observer depends strongly on cell type / measurement channel
+
+V:
+    published local vascular mechanism candidate
+    current frozen transcript observer rejected
+
+Q, P, N:
+    source-supported or hypothesized states not validated by this public-data
+    bridge
+~~~
+
+## Updated convergence boundary
+
+The strongest biological-compatible statement is now:
+
+> A paired human scalp dataset and a distinct dermal-papilla cell model both
+> support pre-registered disease-associated directions for a
+> WNT/regeneration-loss axis and an ECM/structural-remodeling axis.
+
+This does **not** prove:
+
+- that the structural axis is a mechanical lock;
+- that biological hysteresis exists;
+- that awareness or behavior can reverse AGA;
+- that a non-invasive observer can estimate R or F* accurately;
+- that restoring either axis restores hair.
+
+The next information bottleneck is therefore longitudinal observability, not
+another synthetic meta-layer.
+
+## Current fixed point
+
+Synthetic-control layer:
+
+~~~text
+CONVERGED V0
+~~~
+
+Cross-sectional public-data layer:
+
+~~~text
+LOCALLY CONVERGED V1:
+    R and F* survive the current transfer tests;
+    several broader axes do not.
+~~~
+
+Human recoverability / self-calibration layer:
+
+~~~text
+OPEN
+~~~
+
+Stopping rule for the current loop:
+
+> Do not add further internal complexity until new evidence can discriminate
+> structural remodeling from true path-dependent loss of recoverability.
+
+The next high-value evidence is longitudinal or intervention-linked data with
+repeated follicle output plus at least one independent structural/regenerative
+probe.
