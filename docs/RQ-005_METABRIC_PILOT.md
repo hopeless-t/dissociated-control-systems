@@ -8,8 +8,7 @@ This pass exercises the RQ-005 survivor-divide method on real METABRIC-derived
 clinical rows.
 
 It is **not yet the canonical METABRIC result** because the accessible GitHub
-mirror contains 1,897 rows, whereas the current cBioPortal/Zenodo clinical
-patient object contains 2,509 patients.
+mirror contains 1,897 MB rows, whereas the current cBioPortal/Zenodo clinical patient object contains 2,509 rows total but the canonical MB-prefixed METABRIC subset contains 1,985 rows. The remaining rows are MTS-prefixed records with a different/sparser field regime.
 
 The row-count mismatch is treated as a provenance failure gate, not silently
 ignored.
@@ -28,9 +27,11 @@ The file reproduces cBioPortal-style METABRIC patient clinical fields.
 Current canonical-source cross-check:
 
 ~~~text
-cBioPortal brca_metabric: 2,509 patients
-Zenodo 2026 clinical mirror: 2,509 patient rows
-pilot GitHub mirror: 1,897 rows
+cBioPortal/Zenodo clinical object: 2,509 rows total
+canonical MB-prefixed subset:       1,985 rows
+MTS-prefixed rows:                    524 rows
+pilot GitHub MB mirror:             1,897 rows
+unreconciled MB-row delta:             88 rows
 ~~~
 
 Therefore all numerical findings below have ceiling:
@@ -300,11 +301,9 @@ treatment association
 
 No causal interpretation is allowed without a treatment-aware design.
 
-### 4. Canonical rerun is mandatory
+### 4. Canonical-scope rerun is mandatory
 
-The next METABRIC promotion gate requires rerunning the exact frozen pipeline on
-the 2,509-patient canonical clinical snapshot and documenting row-level
-inclusion/exclusion deltas relative to the 1,897-row pilot mirror.
+The next METABRIC promotion gate requires rerunning the exact frozen pipeline on the 1,985-row canonical MB-prefixed subset and documenting the 88-row inclusion/exclusion delta relative to the 1,897-row pilot mirror. MTS-prefixed records must be analyzed as a separate provenance block rather than silently pooled.
 
 ## Reproducers
 
@@ -314,3 +313,75 @@ inclusion/exclusion deltas relative to the 1,897-row pilot mirror.
 
 The scripts make no network requests and require the data snapshot to be passed
 explicitly.
+
+
+## Meta-loop iteration — survivor endpoint contains multiple trajectories
+
+Within the high-risk stratum NPI >= 5.5:
+
+~~~text
+LTS 48
+STS 86
+
+mean NPI:
+  LTS 6.061
+  STS 6.079
+
+mean positive nodes:
+  LTS 8.21
+  STS 10.37
+~~~
+
+The coarse prognostic index is therefore nearly matched while long/short
+survival still separates.
+
+The 48 high-NPI LTS cases themselves split into distinct trajectories:
+
+~~~text
+no recorded recurrence    26
+late recurrence >60 mo    20
+early recurrence <=60 mo   2
+~~~
+
+The two early-recurrence long survivors are especially informative:
+
+~~~text
+MB-5566
+  Basal / IntClust 10
+  NPI 6.064
+  14 positive nodes
+  recurrence 20.23 months
+  alive at 234.4 months
+
+MB-4348
+  HER2-like / IntClust 5
+  NPI 6.08
+  4 positive nodes
+  recurrence 44.9 months
+  died of disease at 226.2 months
+~~~
+
+For recurrent cases only, these correspond to more than 15 years of observed
+post-recurrence survival.
+
+This creates a new DCS distinction:
+
+~~~text
+Long-term survival endpoint
+!=
+one survivor trajectory
+
+late recurrence control
+!=
+early recurrence with prolonged post-recurrence control
+!=
+no recorded recurrence
+~~~
+
+The next rare-state model must therefore classify *trajectory form*, not only
+LTS/STS endpoint.
+
+Important semantic correction: RFS_MONTHS is a recurrence/follow-up endpoint
+and OS_MONTHS-RFS_MONTHS is interpretable as post-recurrence survival only when
+RFS_STATUS records recurrence. It must not be computed as a biological interval
+for non-recurrent cases.
