@@ -1,24 +1,68 @@
 {
   "id": "RQ-005",
-  "title": "Psychological control state -> neuroimmune mediation -> tumor dynamics",
+  "title": "Survivor divergence and multi-layer cancer control dynamics",
   "status": "OPEN_RESEARCH",
   "clinical_authority": "NONE",
+  "hope_status": "candidate_nonprivileged",
   "direct_hope_to_tumor_edge": false,
-  "state_variables": ["tumor", "effector", "immunosuppression", "stress"],
-  "measured_or_assigned_inputs": [
-    "prescribed_treatment",
-    "adherence",
-    "stress_recovery_rate"
+  "state_layers": [
+    "tumor_biology_and_burden",
+    "treatment_exposure",
+    "immune_and_tumor_microenvironment",
+    "neuroendocrine_and_systemic_inflammation",
+    "health_behavior_and_adherence",
+    "psychological_and_agency_state"
   ],
-  "unknown_empirical_mapping": "psychological_state -> measured_mediators",
+  "analysis_modes": [
+    "retrospective_matched_survivor_contrast_for_discovery",
+    "prospective_time_varying_future_hazard_validation"
+  ],
+  "competing_worlds": [
+    "baseline_no_extra_divergence",
+    "tumor_biology_first",
+    "treatment_first",
+    "immune_tme_first",
+    "neuroendocrine_inflammation_first",
+    "health_behavior_adherence_first",
+    "psychological_state_first",
+    "reverse_causality_tumor_response_first",
+    "mixed_latent_regime"
+  ],
   "known_answer_checks": [
     "control_margin_sign_matches_tumor_derivative_sign",
     "stress_recovery_and_adherence_channels_are_separable",
-    "psychological_label_has_no_structural_direct_edge"
+    "psychological_label_has_no_structural_direct_edge",
+    "transient_group_difference_is_not_persistent_divergence",
+    "synthetic_precedence_worlds_are_distinguishable"
   ],
-  "red_team_finding": "positive-only mediator boosts produced beneficial-by-construction Monte Carlo results and were removed",
+  "imported_methodology": {
+    "finite_ram_lab": [
+      "rare_event_census",
+      "block_preserving_resampling",
+      "model_complexity_ladder",
+      "block_heldout_scoring",
+      "hierarchical_and_mixture_models",
+      "failure_state_biopsy",
+      "monte_carlo_stress"
+    ],
+    "dcs": [
+      "current_state_not_complete_causal_history",
+      "observation_channel_not_latent_state",
+      "early_response_not_reachability",
+      "fixed_point_and_return_time_probes",
+      "independent_observation_channels",
+      "active_observation_value_of_information",
+      "preserve_perishable_evidence_windows",
+      "unknown_when_nonidentifiable"
+    ]
+  },
   "falsification_rules": [
     "psychological_label_without_mediator_change_has_no_modeled_tumor_effect",
+    "hope_must_not_be_privileged_over_competing_worlds",
+    "candidate_precedence_after_tumor_divergence_is_not_upstream_evidence",
+    "retrospective_survivor_contrast_must_not_be_promoted_without_prospective_validation",
+    "candidate_must_survive_stage_burden_subtype_and_treatment_adjustment",
+    "candidate_must_survive_block_heldout_validation",
     "model_must_allow_null_or_adverse_empirical_mediator_mapping",
     "synthetic_model_result_cannot_be_promoted_to_clinical_claim",
     "case_report_cannot_establish_psychological_causation"
