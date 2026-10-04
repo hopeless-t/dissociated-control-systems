@@ -1,0 +1,23 @@
+{
+  "id": "HF-SIM-031",
+  "title": "Biological state taxonomy v2 is not invertible from the legacy model",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "projection": {
+    "legacy_A": "mean(D, A_AR, M) in the synthetic counterexample",
+    "legacy_F": "mean(E, M, F_hyst) in the synthetic counterexample"
+  },
+  "known_answer": {
+    "v2_state_1": "D=1.0, A_AR=0.5, E=1.0, M=0.0, F_hyst=0",
+    "v2_state_2": "D=0.5, A_AR=0.0, E=0.0, M=1.0, F_hyst=0",
+    "legacy_projection": "identical across all seven legacy coordinates under the declared mapping",
+    "hidden_difference": "opposite ECM/mechanical composition and different upstream/receptor composition"
+  },
+  "invariants": [
+    "Reduced-Order State Equality != Biological Mechanism Equality",
+    "A legacy projection can remain adequate for one question while becoming non-identifying for actuator-specific questions",
+    "Model refinement should be triggered by decision-relevant non-injectivity, not by a preference for maximal biological detail"
+  ],
+  "HF01_consequence": "Do not discard the legacy 7-state synthetic model. Treat it as a reduced-order control model and switch to the v2 taxonomy only where biological interpretation or actuator selection depends on the hidden branch composition.",
+  "boundary": "The arithmetic projection is a deliberately simple counterexample and is not a fitted biological mapping."
+}
