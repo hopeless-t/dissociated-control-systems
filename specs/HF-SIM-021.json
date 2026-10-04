@@ -1,0 +1,25 @@
+{
+  "id": "HF-SIM-021",
+  "title": "Explicit trust boundary terminates verification regress",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "problem": "Recursively asking who verifies each verifier creates an infinite regress unless the assurance case declares a trust boundary.",
+  "rules": [
+    "Every primitive evidence node must map to exactly one explicit trust root.",
+    "Every trust root must state at least one assumption.",
+    "Missing or duplicate root identities make the trust boundary incomplete.",
+    "Trust roots are exposed assumptions, not silently promoted proofs."
+  ],
+  "root_kinds": [
+    "RAW_OBSERVATION",
+    "EXTERNAL_SOURCE",
+    "TOOL_RUNTIME",
+    "HUMAN_ATTESTATION"
+  ],
+  "invariants": [
+    "Verification Regress Must Terminate in Declared Assumptions",
+    "Trust Root != Proven Truth",
+    "Hidden Trust Assumption != Acceptable Provenance"
+  ],
+  "boundary": "This contract makes trust assumptions inspectable. It does not establish that a declared trust root is reliable."
+}
