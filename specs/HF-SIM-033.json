@@ -1,0 +1,40 @@
+{
+  "id": "HF-SIM-033",
+  "title": "Rank-two intervention designs can still be nearly unidentifiable under cross-talk",
+  "status": "SYNTHETIC_ROBUSTNESS_CONTRACT",
+  "clinical_authority": "NONE",
+  "metric": {
+    "name": "pair_separation_score",
+    "formula": "abs(det(p1,p2)) / (norm(p1) * norm(p2))",
+    "range": "0 to 1",
+    "interpretation": {
+      "0": "collinear intervention directions; no branch separation",
+      "1": "orthogonal intervention directions; maximal geometric separation in the 2-branch model"
+    }
+  },
+  "known_answers": [
+    {
+      "probes": [[1.0, 1.0], [0.99, 1.0]],
+      "rank": 2,
+      "result": "formally identifiable but poorly separated; tiny perturbations/noise can dominate coefficient recovery"
+    },
+    {
+      "probes": [[0.0, 1.0], [1.0, 0.0]],
+      "rank": 2,
+      "separation": 1.0,
+      "result": "ideal orthogonal design"
+    }
+  ],
+  "HF01_implication": [
+    "Do not treat rank=2 alone as a strong biological identifiability claim.",
+    "Estimate actual intervention directions from proximal branch readouts whenever possible.",
+    "AR-path probes and mechanical-path probes should include non-target readouts so cross-talk is observable rather than assumed absent.",
+    "A nominally selective drug or knockdown is not automatically a selective system-identification input."
+  ],
+  "source_bound_next_measurements": {
+    "A_AR_proximal": "an AR-dependent proximal readout chosen before analysis; exact marker panel remains to be frozen from source evidence",
+    "M_proximal": "CTS contraction/p-MLC2/AFM or directly validated mechanical proxy",
+    "functional": "hair-follicle elongation, cycle state, progenitor survival/proliferation"
+  },
+  "claim_boundary": "This score measures design geometry only. It is not a probability of biological truth or treatment success."
+}
