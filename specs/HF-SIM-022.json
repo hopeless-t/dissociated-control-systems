@@ -1,0 +1,23 @@
+{
+  "id": "HF-SIM-022",
+  "title": "Orthogonal evidence can raise root-cut robustness more than same-family replication",
+  "status": "FROZEN_SYNTHETIC_TO_SOURCE_BOUND_VALIDATION",
+  "biological_authority": "CANDIDATE_ONLY",
+  "setup": {
+    "transcript_witness_1": "GSE36169 scored with HF01_GSE36169_AXES.json",
+    "transcript_witness_2": "GSE93766 scored with HF01_GSE36169_AXES.json",
+    "shared_projection_root": "HF01_GSE36169_AXES.json",
+    "orthogonal_candidate": "Lu et al. 2016, PMID 27472703, beta-catenin protein/localization plus pathway perturbation"
+  },
+  "known_answer": {
+    "transcript_only_provenance_role_root_cut": 1,
+    "transcript_plus_orthogonal_protein_localization_root_cut": 2
+  },
+  "interpretation": "Two datasets that reuse one projection family are context replications but remain vulnerable to failure of that shared projection root. A measurement family that does not reuse the projection definition can improve structural evidence robustness.",
+  "invariants": [
+    "More Datasets != More Projection Independence",
+    "Orthogonal Measurement Can Be Higher Information Gain Than Same-Axis Replication",
+    "Evidence Topology Is Part Of Validation Design"
+  ],
+  "boundary": "The 1->2 root-cut result is a structural dependency calculation, not a biological effect-size or truth-confidence score. Lu 2016 supplies source-bound orthogonal compatibility, not validation of a universal R latent state."
+}
