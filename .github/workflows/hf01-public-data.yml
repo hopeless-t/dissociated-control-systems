@@ -1,25 +1,14 @@
 name: hf01-public-data
 
+# Live GEO validation is intentionally manual.
+#
+# PR path filters are cumulative across the pull request, so once a public-data
+# file is touched, every later synchronize event can re-download immutable GEO
+# payloads. That created avoidable NCBI rate-limit failures unrelated to the
+# model. Ordinary CI tests the parsers and frozen known-answer contracts without
+# network access; this workflow is for explicit source revalidation only.
 on:
   workflow_dispatch:
-  pull_request:
-    paths:
-      - "scripts/analyze_gse36169.py"
-      - "scripts/analyze_gse93766.py"
-      - "scripts/analyze_gse178510.py"
-      - "specs/HF01_GSE36169_AXES.json"
-      - "specs/HF01_GSE178510_PREDICTION.json"
-      - ".github/workflows/hf01-public-data.yml"
-  push:
-    branches:
-      - "research/hf01-follicle-state-calibration"
-    paths:
-      - "scripts/analyze_gse36169.py"
-      - "scripts/analyze_gse93766.py"
-      - "scripts/analyze_gse178510.py"
-      - "specs/HF01_GSE36169_AXES.json"
-      - "specs/HF01_GSE178510_PREDICTION.json"
-      - ".github/workflows/hf01-public-data.yml"
 
 jobs:
   gse36169:
