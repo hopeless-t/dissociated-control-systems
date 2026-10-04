@@ -4,6 +4,7 @@ import pytest
 
 from dissociated_control_systems.artifact_verification import (
     normalize_sha256,
+    safe_artifact_path,
     sha256_file,
     verify_sha256,
 )
@@ -41,3 +42,28 @@ def test_chunk_size_validation(tmp_path) -> None:
     path.write_bytes(b"x")
     with pytest.raises(ValueError):
         sha256_file(path, chunk_size=0)
+
+
+def test_safe_artifact_path_accepts_direct_regular_file(tmp_path) -> None:
+    path = tmp_path / "artifact.bin"
+    path.write_bytes(b"known")
+    assert safe_artifact_path(tmp_path, "artifact.bin") == path.resolve()
+
+
+@pytest.mark.parametrize("name", ["../artifact.bin", "sub/artifact.bin", "/tmp/x", " artifact.bin"])
+def test_safe_artifact_path_rejects_non_frozen_name_shapes(tmp_path, name) -> None:
+    with pytest.raises((ValueError, FileNotFoundError)):
+        safe_artifact_path(tmp_path, name)
+
+
+def test_safe_artifact_path_rejects_symlink(tmp_path) -> None:
+    target = tmp_path / "target.bin"
+    target.write_bytes(b"known")
+    link = tmp_path / "artifact.bin"
+    try:
+        link.symlink_to(target)
+    except (OSError, NotImplementedError):
+        pytest.skip("symlinks unavailable on this platform")
+
+    with pytest.raises(ValueError, match="symlink"):
+        safe_artifact_path(tmp_path, "artifact.bin")
