@@ -54,10 +54,13 @@ def probe_dropout(dataset, *, seed: int, train_means):
     for _, features in shifted:
         if rng.random() < 0.50:
             features["observer_disagreement"] = train_means["observer_disagreement"]
+            features["_missing_observer_disagreement"] = 1.0
         if rng.random() < 0.25:
             features["self_reference_gap"] = train_means["self_reference_gap"]
+            features["_missing_self_reference_gap"] = 1.0
         if rng.random() < 0.15:
             features["handoff_gap"] = train_means["handoff_gap"]
+            features["_missing_handoff_gap"] = 1.0
     return shifted
 
 
