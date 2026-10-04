@@ -1,3 +1,5 @@
+from itertools import pairwise
+
 from dissociated_control_systems.cognitive_context_effective_diversity import (
     MC_TOLERANCE,
     effective_diversity_experiment,
@@ -7,7 +9,7 @@ from dissociated_control_systems.cognitive_context_effective_diversity import (
 def test_trigger_power_decreases_monotonically_as_shared_bias_increases():
     result = effective_diversity_experiment()
     powers = [level["analytic_tpr"] for level in result["levels"]]
-    assert all(left >= right for left, right in zip(powers, powers[1:], strict=True))
+    assert all(left >= right for left, right in pairwise(powers))
 
 
 def test_frozen_high_power_knee_occurs_at_rho_0625():
