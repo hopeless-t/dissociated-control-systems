@@ -134,5 +134,26 @@
     "Early Molecular Response != Recoverability",
     "Structural Remodeling != Proven Mechanical Lock",
     "Mechanism Existence != Measurement Sensitivity"
-  ]
+  ],
+  "projection_architecture": {
+    "status": "LOCAL_FIXED_POINT",
+    "theorem_contracts": [
+      "HF-SIM-004",
+      "HF-SIM-005",
+      "HF-SIM-006"
+    ],
+    "validation_contract": "HF-VAL-004",
+    "invariants": [
+      "Endpoint Correctness != Human-Reconstructible Path",
+      "More Detail != Better Projection",
+      "Explanation Smoothness != Evidence Authority",
+      "Explanatory refinement cannot repair missing empirical evidence",
+      "Empirical refinement does not automatically repair comprehension"
+    ],
+    "current_model": {
+      "epistemic_gap": "missing evidence/measurement/causal bridge",
+      "cognitive_gap": "existing bridge is too compressed for reliable reconstruction",
+      "control_target": "minimum exposed explanation complexity subject to correct reconstruction, uncertainty calibration, and evidence-authority preservation"
+    }
+  }
 }
