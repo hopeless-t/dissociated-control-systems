@@ -1166,3 +1166,153 @@ Compression is allowed between barriers, not through barriers
 The next empirical validation is still HF-VAL-004: test whether an adaptive
 minimal path preserves reconstruction and uncertainty with less exposed
 explanatory cost than a fixed ladder.
+
+## Loop 23 — CI falsifies naive redundancy assumption
+
+The first HF-SIM-007 implementation asserted that a second checkpoint with the same failure coverage should disappear from every minimum-cardinality solution.
+
+CI falsified that assertion.
+
+If two concrete checkpoints cover the same failure at equal cost, they are interchangeable implementations, not one mandatory plus one redundant checkpoint.
+
+The model was corrected by adding explicit checkpoint cost and dominance.
+
+A checkpoint instance is dominated only when another instance provides equal or stronger coverage at no greater cost, with a strict improvement in coverage or cost.
+
+This is a direct example of the meta-loop correcting its own checkpoint model.
+
+## Loop 24 — proof-carrying projection
+
+HF-SIM-009 upgrades the semantic roles from reminders into a protocol.
+
+Every terminal claim carries a trace through:
+
+~~~text
+PROVENANCE
+STATE / RESPONSE
+UNCERTAINTY
+REACHABILITY
+~~~
+
+with PASS / UNKNOWN / FAIL states.
+
+For empirical authority:
+
+~~~text
+UNKNOWN cannot be promoted to PASS
+FAIL cannot be promoted to PASS
+missing roles reject the claim
+wrong role order rejects the claim
+~~~
+
+This is structurally analogous to a forcing function rather than an advisory checklist.
+
+## Loop 25 — claim-conditioned checkpoints
+
+A second overconstraint was found:
+
+> Requiring all four gates for every statement creates unnecessary friction.
+
+HF-SIM-010 therefore activates barriers according to endpoint claim type.
+
+~~~text
+DESCRIPTIVE
+    provenance
+    uncertainty
+
+STATE_INFERENCE / RESPONSE_INFERENCE
+    provenance
+    state-response typing
+    uncertainty
+
+REACHABILITY
+    provenance
+    state-response typing
+    uncertainty
+    reachability
+~~~
+
+A stronger claim activates a superset of barriers.
+
+New invariant:
+
+~~~text
+Absolute checkpoints are claim-relative.
+~~~
+
+## Loop 26 — exhaustive bypass attack
+
+HF-SIM-011 enumerates the complete declared attack surface for an empirical reachability claim.
+
+~~~text
+role subsets:
+    2^4 = 16 tested
+    1 accepted
+
+complete-role permutations:
+    4! = 24 tested
+    1 accepted
+
+PASS/UNKNOWN/FAIL vectors:
+    3^4 = 81 tested
+    1 accepted
+~~~
+
+The sole accepted configuration is the four required roles, in canonical order, all PASS.
+
+This does not prove that the four-role universe is complete.
+
+It proves that, inside the declared protocol, no missing/reordered/uncertain shortcut acquires empirical reachability authority.
+
+## Loop 27 — last responsible moment
+
+HF-SIM-012 finds another compression dimension: placement.
+
+A mandatory checkpoint does not need to be displayed from the beginning of the reasoning path.
+
+For each failure mode, define the first operation where omission becomes consequential.
+
+Under the declared nonnegative early-exposure cost, the minimum-cost valid checkpoint position is the latest point that still precedes the earliest covered hazard.
+
+So:
+
+~~~text
+mandatory != always visible
+mandatory = must pass before hazard
+~~~
+
+This produces just-in-time correctness barriers.
+
+## Updated fixed point
+
+The projection architecture now has four independent compression levers:
+
+~~~text
+1. role minimization
+   keep only barriers covering declared catastrophic failures
+
+2. implementation substitution
+   choose the cheapest non-dominated implementation of a required role
+
+3. claim conditioning
+   activate only roles relevant to the requested endpoint authority
+
+4. just-in-time placement
+   expose/enforce each role at the last responsible moment
+~~~
+
+The endpoint still carries a proof trace.
+
+Therefore the current target is:
+
+~~~text
+minimum cognitive / presentation friction
+
+subject to:
+    known catastrophic failures remain structurally blocked
+    stronger claims activate stronger barriers
+    UNKNOWN cannot become authority
+    no accepted path bypasses a required role
+~~~
+
+This is the current local fixed point for the checkpoint-compression loop.
