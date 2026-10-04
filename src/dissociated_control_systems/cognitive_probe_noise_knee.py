@@ -19,8 +19,17 @@ MAX_REPEATS = 5
 ACCURACY_TARGET = 0.90
 
 
+@lru_cache(maxsize=None)
+def _cached_raw_probe(fault_tuple, target_fault, seed):
+    return raw_probe(frozenset(fault_tuple), target_fault, seed)
+
+
 def measured_probe(fault_set, target_fault, seed, noise_std):
-    signal = raw_probe(fault_set, target_fault, seed)
+    signal = _cached_raw_probe(
+        tuple(sorted(fault_set)),
+        target_fault,
+        seed,
+    )
     fault_index = FAULT_NAMES.index(target_fault) + 1
     noise_key = int(round(noise_std * 1_000_000))
     rng = Random(
