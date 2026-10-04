@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "claim_id": "HF01-P-PROGENITOR-CANDIDATE-V1",
+  "claim_type": "STATE_INFERENCE",
+  "claim": "Human AGA evidence supports separating preserved hair-follicle stem-cell populations from a reduced progenitor-cell state; P is therefore retained as a distinct latent candidate rather than collapsed into N or R.",
+  "claim_ceiling": "HUMAN_CROSS_SECTIONAL_PROGENITOR_STATE_COMPATIBILITY_ONLY",
+  "witnesses": [
+    {
+      "source": "Garza et al. 2011; PMID 21206086; PMCID PMC3026732",
+      "assay_family": "flow cytometry + localization + qPCR + functional characterization",
+      "human_comparison": "bald vs non-bald scalp from men with AGA",
+      "reported_pattern": [
+        "KRT15-high stem-cell population maintained in bald scalp",
+        "CD200-high/ITGA6-high progenitor population markedly diminished",
+        "CD34-high progenitor population diminished",
+        "LGR5 expression reduced while KRT15 was maintained"
+      ]
+    },
+    {
+      "source": "Bazid et al. 2026; PMID 41629248",
+      "assay_family": "immunohistochemistry",
+      "design": "40 subjects: 14 male AGA, 6 FPHL, 20 matched controls",
+      "reported_pattern": [
+        "CD34 detected in all control biopsies vs 60% of frontal bald AGA samples",
+        "CD34 staining lower in frontal bald vs hairy occipital tissue within AGA patients",
+        "Sox9 expression preserved across frontal bald, occipital hairy and control samples"
+      ]
+    }
+  ],
+  "projection": {
+    "P": "functional progenitor-reserve candidate",
+    "N_or_HFSC_presence": "stem-cell/niche-presence candidate",
+    "supported_separation": "preserved stem-cell markers can coexist with reduced progenitor markers",
+    "not_supported": [
+      "P is a validated scalar biomarker",
+      "CD34 alone uniquely measures P",
+      "restoring CD34 restores hair",
+      "the observed cross-sectional difference proves causal conversion failure"
+    ]
+  },
+  "evidence_topology": {
+    "measurement_families": [
+      "flow-cytometric progenitor/stem-cell phenotyping",
+      "immunohistochemical progenitor/stem-cell staining"
+    ],
+    "strength": "orthogonal human measurement compatibility",
+    "remaining_common_mode": "both studies infer cell-state identity through marker biology and remain cross-sectional"
+  },
+  "open_defeaters": [
+    "marker expression is not identical to functional regenerative reserve",
+    "different sampling, disease stage and assay thresholds can affect apparent cell-population abundance",
+    "causal stem-to-progenitor transition failure is plausible but not longitudinally demonstrated in human scalp"
+  ],
+  "next_information_gain": {
+    "preferred": "functional or intervention-linked progenitor assay measured before later follicle output",
+    "reason": "move from cell-state separation to dynamic conversion competence"
+  },
+  "clinical_authority": "NONE"
+}
