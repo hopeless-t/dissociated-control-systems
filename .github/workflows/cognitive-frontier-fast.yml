@@ -1,0 +1,40 @@
+name: cognitive-frontier-fast
+
+on:
+  push:
+    branches:
+      - research/cognitive-graceful-degradation-sim
+    paths:
+      - "src/dissociated_control_systems/cognitive_active_diagnosis.py"
+      - "src/dissociated_control_systems/cognitive_convergence.py"
+      - "src/dissociated_control_systems/cognitive_ceiling_audit.py"
+      - "tests/test_cognitive_active_diagnosis.py"
+      - "tests/test_cognitive_convergence.py"
+      - "tests/test_cognitive_ceiling_audit.py"
+      - "docs/CGD-SIM-007.md"
+      - "docs/CGD-SIM-008.md"
+      - "docs/CGD-SIM-009.md"
+      - ".github/workflows/cognitive-frontier-fast.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  frontier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Install research package
+        run: python -m pip install -e ".[dev]"
+      - name: Fast frontier smoke
+        run: |
+          pytest -q tests/test_cognitive_ceiling_audit.py
+      - name: Run classifier ceiling audit
+        run: |
+          python -m dissociated_control_systems.cognitive_ceiling_audit > cognitive-ceiling-audit.md
+          cat cognitive-ceiling-audit.md
+          cat cognitive-ceiling-audit.md >> "$GITHUB_STEP_SUMMARY"
