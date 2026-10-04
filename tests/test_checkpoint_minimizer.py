@@ -2,6 +2,8 @@ from dissociated_control_systems.checkpoint_minimizer import (
     Checkpoint,
     failure_exposure_after_removal,
     mandatory_checkpoints,
+    dominated_checkpoints,
+    minimum_cost_sufficient_checkpoint_sets,
     minimum_sufficient_checkpoint_sets,
     removable_checkpoints,
 )
@@ -15,22 +17,58 @@ FAILURES = {
 }
 
 
-def test_redundant_checkpoint_is_removed_from_minimum_solution() -> None:
+def test_equal_coverage_checkpoint_is_interchangeable_not_redundant() -> None:
     checkpoints = [
         Checkpoint("source", frozenset({"provenance_loss"})),
         Checkpoint("state_response", frozenset({"state_response_confusion"})),
         Checkpoint("uncertainty", frozenset({"uncertainty_laundering"})),
         Checkpoint("reachability", frozenset({"reachability_overclaim"})),
-        Checkpoint(
-            "pretty_explanation",
-            frozenset({"provenance_loss"}),
-        ),
+        Checkpoint("pretty_explanation", frozenset({"provenance_loss"})),
     ]
 
     solutions = minimum_sufficient_checkpoint_sets(checkpoints, FAILURES)
 
-    assert all("pretty_explanation" not in solution for solution in solutions)
+    assert any("source" in solution for solution in solutions)
+    assert any("pretty_explanation" in solution for solution in solutions)
     assert len(solutions[0]) == 4
+
+
+def test_cost_breaks_tie_between_interchangeable_implementations() -> None:
+    checkpoints = [
+        Checkpoint("source", frozenset({"provenance_loss"}), cost=1.0),
+        Checkpoint(
+            "pretty_explanation",
+            frozenset({"provenance_loss"}),
+            cost=2.0,
+        ),
+        Checkpoint(
+            "state_response",
+            frozenset({"state_response_confusion"}),
+            cost=1.0,
+        ),
+        Checkpoint(
+            "uncertainty",
+            frozenset({"uncertainty_laundering"}),
+            cost=1.0,
+        ),
+        Checkpoint(
+            "reachability",
+            frozenset({"reachability_overclaim"}),
+            cost=1.0,
+        ),
+    ]
+
+    solutions = minimum_cost_sufficient_checkpoint_sets(
+        checkpoints,
+        FAILURES,
+    )
+
+    assert solutions == (
+        ("reachability", "source", "state_response", "uncertainty"),
+    )
+    assert dominated_checkpoints(checkpoints) == frozenset(
+        {"pretty_explanation"}
+    )
 
 
 def test_alternative_checkpoints_are_not_both_mandatory() -> None:
