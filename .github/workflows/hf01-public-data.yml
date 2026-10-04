@@ -1,0 +1,33 @@
+name: hf01-public-data
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "scripts/analyze_gse36169.py"
+      - "specs/HF01_GSE36169_AXES.json"
+      - ".github/workflows/hf01-public-data.yml"
+  push:
+    branches:
+      - "research/hf01-follicle-state-calibration"
+    paths:
+      - "scripts/analyze_gse36169.py"
+      - "specs/HF01_GSE36169_AXES.json"
+      - ".github/workflows/hf01-public-data.yml"
+
+jobs:
+  gse36169:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run pre-registered paired analysis
+        run: python scripts/analyze_gse36169.py
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: hf01-gse36169-result
+          path: artifacts/hf01/gse36169-result.json
