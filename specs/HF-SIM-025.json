@@ -1,0 +1,26 @@
+{
+  "id": "HF-SIM-025",
+  "title": "Composed normative assurance kernel v2",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "authority_path": [
+    "claim-relative projection validator v2",
+    "usable evidence witnesses plus defeater disposition",
+    "acyclic primitive-grounded support graph",
+    "explicit primitive trust boundary",
+    "version-bound dependency freshness"
+  ],
+  "rules": [
+    "A component listed as normative is not a forcing barrier until it is actually composed into the single authority path.",
+    "Any kernel-level violation downgrades an otherwise PASS terminal status to UNKNOWN.",
+    "Witness roots must exist in the declared support graph and may not themselves be claim nodes.",
+    "Stale dependency snapshots block current authority.",
+    "Missing primitive trust roots block authority."
+  ],
+  "invariants": [
+    "Normative Manifest != Enforced Normative Path",
+    "Authority Is The Intersection Of All Active Kernel Obligations",
+    "A PASS certificate is reusable only while its support graph, trust roots and dependencies remain current"
+  ],
+  "boundary": "Kernel v2 enforces structural assurance obligations. It still depends on correct claim typing and correct declaration of support/trust/dependency metadata, which are attacked in subsequent contracts."
+}
