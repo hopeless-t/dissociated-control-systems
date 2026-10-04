@@ -11,14 +11,16 @@ For one functional output y, the local model is
 
 where each intervention contributes a declared branch-activity row
 [A_AR, M].  The two coefficients are locally identifiable only when the design
-matrix has rank 2.
+matrix has rank 2.  Because almost-parallel rows can technically have rank 2
+while remaining numerically fragile, the module also reports a normalized
+separation score equal to |sin(theta)| between intervention directions.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
 from itertools import combinations
-from math import isclose
+from math import hypot, isclose
 from typing import Iterable
 
 
@@ -56,6 +58,40 @@ def design_rank(probes: Iterable[BranchProbe], *, tolerance: float = 1e-12) -> i
 
 def branches_locally_identifiable(probes: Iterable[BranchProbe]) -> bool:
     return design_rank(probes) == 2
+
+
+def pair_separation_score(
+    first: BranchProbe,
+    second: BranchProbe,
+    *,
+    tolerance: float = 1e-12,
+) -> float:
+    """Return normalized intervention-direction separation in [0, 1].
+
+    score = |det(p1, p2)| / (||p1|| ||p2||) = |sin(theta)|.
+    Zero means collinear/no branch separation. One means orthogonal directions.
+    """
+    n1 = hypot(first.ar_activity, first.mechanical_activity)
+    n2 = hypot(second.ar_activity, second.mechanical_activity)
+    if n1 <= tolerance or n2 <= tolerance:
+        return 0.0
+    determinant = abs(
+        first.ar_activity * second.mechanical_activity
+        - first.mechanical_activity * second.ar_activity
+    )
+    score = determinant / (n1 * n2)
+    # Defend against tiny floating error above 1.
+    return min(1.0, max(0.0, score))
+
+
+def best_pair_separation(probes: Iterable[BranchProbe]) -> float:
+    probes_t = tuple(probes)
+    if len(probes_t) < 2:
+        return 0.0
+    return max(
+        pair_separation_score(left, right)
+        for left, right in combinations(probes_t, 2)
+    )
 
 
 def canonical_probe_set() -> tuple[BranchProbe, ...]:
