@@ -1,0 +1,74 @@
+{
+  "id": "RQ-005-META-A-OSF-MANIFEST",
+  "source": {
+    "paper": "Asakawa-Haas et al. 2026",
+    "pmid": "41673256",
+    "doi": "10.1038/s44271-026-00414-x",
+    "osf_project": "wnxdb",
+    "article_folder_id": "680496e27f747b3fdbfe2a9d"
+  },
+  "supplement_s2": {
+    "folder_id": "6804982566409411f9763c35",
+    "data_folder_id": "680a5005bbb53800b139a790",
+    "rscript_folder_id": "680a502c70d953549a360096",
+    "artifacts": [
+      {
+        "name": "data_meta-analysis_asakawa-haas_2026.xlsx",
+        "guid": "5893d",
+        "file_id": "697466825c43a853d1c27ede",
+        "size_bytes": 22796,
+        "sha256": "c37e4aa5fb4cf175dc08a570c24d3b5ffeaf621ffd2c5673756479753c304bb0"
+      },
+      {
+        "name": "data_meta-analysis_asakawa-haas_2026_with_comments.xlsx",
+        "guid": "sa28c",
+        "file_id": "697466913dc7d81ea8573c2d",
+        "size_bytes": 114590,
+        "sha256": "0bbfca468d7c7512c7d631bf6fe6aa974876ad0ba3b92dedb7074601d2e6b678"
+      },
+      {
+        "name": "Rscript_meta-analysis_asakawa-haas_2026.R",
+        "guid": "cxf3z",
+        "file_id": "692c1701f68acd659be63fd2",
+        "size_bytes": 204402,
+        "sha256": "cd6a0755cb0fef1cbed7832adf06fd45000896dcd676b6c788b04feeb4b29d02"
+      }
+    ]
+  },
+  "supplement_s3": {
+    "folder_id": "680a511a015d73a9de568c9e",
+    "data_folder_id": "680a51273a311d653835fe49",
+    "rscript_folder_id": "692c187cf68acd659be64001",
+    "artifacts": [
+      {
+        "name": "data_multiverse_meta-analysis_asakawa_2026.xlsx",
+        "guid": "kw9g5",
+        "file_id": "692c17478b0ab51e5a9573db",
+        "size_bytes": 49881,
+        "sha256": "25c30e0754b28cbe5f0ef9882c62d30d2377465851983d13d5c871ad8384ecb1"
+      },
+      {
+        "name": "data_multiverse_meta-analysis_asakawa_2026_with_comments.xlsx",
+        "guid": "9yu85",
+        "file_id": "692c1747a9df539ca3770067",
+        "size_bytes": 98971,
+        "sha256": "f0992a645a4c82f3fe4ca51290d7ec4c1caf6771d832a23eee29eedcd590be47"
+      },
+      {
+        "name": "1. Step Data Specification OR, RR and HR.R",
+        "guid": "b3us7",
+        "file_id": "692c18cd0cc4ba743cb54d81",
+        "size_bytes": 22327,
+        "sha256": "358c5f5cdd18e716fc8c97121ee3c003e4d39c763be4b581e54f7f239d206b37"
+      }
+    ]
+  },
+  "reproduction_gate": [
+    "download_by_guid_or_file_id_from_osf_project_wnxdb",
+    "verify_sha256_before_analysis",
+    "reproduce_author_primary_result_before_dcs_specific_reanalysis",
+    "record_runtime_and_package_versions",
+    "never_edit_upstream_artifact_in_place"
+  ],
+  "claim_ceiling": "artifact identity and provenance only; no meta-analytic result is revalidated until the frozen artifacts are actually executed"
+}
