@@ -280,3 +280,234 @@ validation bottleneck, then re-ran the full checks successfully.
 At this point the remaining productive work is no longer recursive harness
 tuning inside the same closed synthetic family. It is acquisition of new
 independent evidence, a changed generative model, or external validation.
+
+
+## Post-convergence cross-research phase
+
+The SIM-013 clean-world fixed point did not end the research program. It changed
+the permitted direction of improvement.
+
+Instead of adding deeper recursive governance, later generations changed the
+world model, observation interface, evidence acquisition policy, and research
+admission contract.
+
+### SIM-014 through SIM-018 — break and contain the fixed point
+
+- OOD world shifts broke the clean-world classifier severely.
+- small shifted calibration data helped but did not restore the original
+  contract;
+- per-sample OOD gating reduced unsafe execution exposure but missed weak
+  distributional shifts;
+- window and sequential detectors localized the remaining weak-noise failure;
+- template-residual CUSUM changed the monitored sufficient statistic and
+  detected weak noise after 14 samples with 97.8% error-exposure reduction and
+  zero false alarms in the frozen independent clean-sequence test.
+
+Key lesson:
+
+~~~text
+More Recursion != Better Observability
+Wrong Sufficient Statistic Can Be The Fault
+~~~
+
+### SIM-019 through SIM-021 — fail-closed restoration and factorization
+
+- shifted-regime retraining did not restore exact 16-state recovery even with
+  substantial new evidence;
+- explicit missingness semantics improved correctness of representation but did
+  not solve the full-state limit;
+- factorizing the state recovered L0 above the 0.90 contract while keeping
+  failed dimensions closed.
+
+Key lesson:
+
+~~~text
+Full-State Recovery != Useful Partial-State Recovery
+~~~
+
+### SIM-022 through SIM-028 — causal observability and probe pressure
+
+Paired causal probes changed the problem from passive classification to active
+system identification.
+
+SIM-022:
+
+~~~text
+exact 16-state reconstruction = 0.929
+macro per-fault accuracy      = 0.982
+~~~
+
+SIM-023, after fixing the comparator to a true 20-probe fixed-five policy:
+
+~~~text
+fixed-five exact accuracy = 0.969 at 20 probes
+sequential exact accuracy = 0.963 at 5.399 mean probes
+probe reduction           = 73.0%
+accuracy gap              = 0.0062
+~~~
+
+SIM-024/025 established a causal-observability noise/resource knee. Repetition
+moved the knee but did not remove it.
+
+SIM-026 localized the noise=0.020 residual failure almost entirely to L2
+handoff.
+
+SIM-027 redesigned L2 as a known-command/receipt controlled-input challenge:
+
+~~~text
+L2 accuracy = 1.000 at noise 0.020 / 0.040 / 0.080
+exact state = 0.984 at 0.020
+exact state = 0.930 at 0.040
+~~~
+
+SIM-028 then redesigned L1 as a controlled calibration step-response:
+
+~~~text
+exact state = 0.996 at noise 0.040
+exact state = 0.990 at noise 0.080
+exact state = 0.956 at noise 0.120
+L1 accuracy ~ 1.000 across the tested range
+~~~
+
+The remaining failure moved to another observation channel rather than being
+solved by meta recursion.
+
+Key lesson:
+
+~~~text
+Passive Observability Failure != Causal Observability Failure
+Probe Design Can Move The Information Knee
+More Evidence != Better Policy
+~~~
+
+### SIM-029 — probe admission
+
+Cross-repository methods were imported from Finite RAM Lab, Finite Tool Surface
+Lab, Harness Component Economics, Jev/Cua Lab, MVCA, and Memory Attention Lab.
+
+A naive accuracy-only rule would have admitted four frozen invalid/unqualified
+probe candidates.
+
+The explicit contract produced:
+
+~~~text
+accuracy-only invalid admissions = 4
+contract false admissions        = 0
+~~~
+
+Including rejection of a perfect latent-truth oracle.
+
+Key lesson:
+
+~~~text
+Diagnostic Accuracy != Probe Admission
+Probe Qualification != Execution Authority
+Synthetic Admission != Human / Clinical Authorization
+~~~
+
+See:
+
+~~~text
+docs/CROSS-RESEARCH-TRANSFER-2026-10-04.md
+docs/CGD-SIM-029.md
+~~~
+
+### SIM-030 — durable probe transaction
+
+The probe lifecycle was converted from one-shot measurement into a fail-closed
+transaction.
+
+Frozen fault injection produced:
+
+~~~text
+accepted-result correctness                  = 1.000
+duplicate interventions under contract       = 0
+naive-retry duplicate-intervention scenarios = 1
+~~~
+
+A lost response after dispatch remained UNKNOWN with one dispatch despite
+multiple physical attempts. A lost response after commit returned the stored
+accepted result.
+
+Key lesson:
+
+~~~text
+Probe Attempt != Probe Operation
+Re-observation != Re-intervention
+UNKNOWN != Retry Permission
+INVALIDATED != Diagnostic Negative
+~~~
+
+### SIM-031 / SIM-032 — rare-state harvesting transfer
+
+Finite RAM Lab rare-state methodology was transferred to the synthetic
+silent-overconfidence lane.
+
+SIM-031 held-out result:
+
+~~~text
+pooled rare-state incidence          = 0.234%
+enriched-stratum incidence           = 2.250%
+enrichment ratio                     = 9.60x
+95% >=1 specimen pooled              = 1277 episodes
+95% >=1 specimen enriched            = 132 episodes
+~~~
+
+SIM-032 replaced latent-label targeting with admitted causal-probe targeting.
+
+~~~text
+biopsy-all:
+    6400 biopsies, 12/12 rare states
+
+causal targeting:
+    382 biopsies
+    7/12 rare states
+    58.3% recall
+    1.832% biopsy precision
+    94.0% biopsy-load reduction
+
+same-budget random:
+    382 biopsies
+    0/12 rare states in the frozen run
+~~~
+
+Oracle-label targeting remained an explicitly non-admissible upper-bound lane.
+
+Key lesson:
+
+~~~text
+Rare-State Enrichment != Permission To Treat
+Synthetic Stratum != Human Phenotype
+Causal Sampling Can Replace Oracle Sampling In The Synthetic Lane
+~~~
+
+## Revised stopping boundary
+
+The post-convergence work adds a second boundary to the SIM-013 fixed point.
+
+The loop may continue internally only when it changes a justified research
+dimension such as:
+
+- observation sufficient statistic;
+- evidence-acquisition policy;
+- bounded probe interface;
+- failure-state sampling strategy;
+- provenance/admission/recovery contract.
+
+It should stop when improvement requires making the synthetic probe increasingly
+oracle-like or embedding the answer into the challenge.
+
+At that point:
+
+~~~text
+STOP SYNTHETIC PROBE ESCALATION
+    ->
+QUALIFY A REAL OBSERVATION CONTRACT
+    ->
+BIND EXTERNAL EVIDENCE
+    ->
+DOMAIN-LOCAL VALIDATION
+~~~
+
+No current result authorizes human experimentation, diagnosis, treatment, or
+clinical decision-making.
