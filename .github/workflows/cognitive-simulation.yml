@@ -13,6 +13,7 @@ on:
       - "src/dissociated_control_systems/cognitive_harness_scheduler.py"
       - "src/dissociated_control_systems/cognitive_active_diagnosis.py"
       - "src/dissociated_control_systems/cognitive_convergence.py"
+      - "src/dissociated_control_systems/cognitive_ceiling_audit.py"
       - "tests/test_cognitive_decline.py"
       - "tests/test_cognitive_experiments.py"
       - "tests/test_cognitive_governor.py"
@@ -21,6 +22,7 @@ on:
       - "tests/test_cognitive_harness_scheduler.py"
       - "tests/test_cognitive_active_diagnosis.py"
       - "tests/test_cognitive_convergence.py"
+      - "tests/test_cognitive_ceiling_audit.py"
       - "docs/CGD-SIM-001.md"
       - "docs/CGD-SIM-002.md"
       - "docs/CGD-SIM-003.md"
@@ -29,6 +31,7 @@ on:
       - "docs/CGD-SIM-006.md"
       - "docs/CGD-SIM-007.md"
       - "docs/CGD-SIM-008.md"
+      - "docs/CGD-SIM-009.md"
       - ".github/workflows/cognitive-simulation.yml"
   pull_request:
     paths:
@@ -40,6 +43,7 @@ on:
       - "src/dissociated_control_systems/cognitive_harness_scheduler.py"
       - "src/dissociated_control_systems/cognitive_active_diagnosis.py"
       - "src/dissociated_control_systems/cognitive_convergence.py"
+      - "src/dissociated_control_systems/cognitive_ceiling_audit.py"
       - "tests/test_cognitive_decline.py"
       - "tests/test_cognitive_experiments.py"
       - "tests/test_cognitive_governor.py"
@@ -48,6 +52,7 @@ on:
       - "tests/test_cognitive_harness_scheduler.py"
       - "tests/test_cognitive_active_diagnosis.py"
       - "tests/test_cognitive_convergence.py"
+      - "tests/test_cognitive_ceiling_audit.py"
       - "docs/CGD-SIM-001.md"
       - "docs/CGD-SIM-002.md"
       - "docs/CGD-SIM-003.md"
@@ -56,6 +61,7 @@ on:
       - "docs/CGD-SIM-006.md"
       - "docs/CGD-SIM-007.md"
       - "docs/CGD-SIM-008.md"
+      - "docs/CGD-SIM-009.md"
       - ".github/workflows/cognitive-simulation.yml"
   workflow_dispatch:
 
@@ -82,6 +88,7 @@ jobs:
           pytest -q tests/test_cognitive_harness_scheduler.py
           pytest -q tests/test_cognitive_active_diagnosis.py
           pytest -q tests/test_cognitive_convergence.py
+          pytest -q tests/test_cognitive_ceiling_audit.py
       - name: Run frozen four-arm simulation
         run: |
           python -m dissociated_control_systems.cognitive_decline --format markdown > cognitive-summary.md
@@ -122,3 +129,8 @@ jobs:
           python -m dissociated_control_systems.cognitive_convergence > cognitive-convergence.md
           cat cognitive-convergence.md
           cat cognitive-convergence.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Run classifier ceiling audit
+        run: |
+          python -m dissociated_control_systems.cognitive_ceiling_audit > cognitive-ceiling-audit.md
+          cat cognitive-ceiling-audit.md
+          cat cognitive-ceiling-audit.md >> "$GITHUB_STEP_SUMMARY"
