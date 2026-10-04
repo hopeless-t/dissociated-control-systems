@@ -25,7 +25,6 @@ Same Overall Survival != Same Disease-Control Trajectory
 Long-term Survival != Low Recurrence Hazard
 ~~~
 
-
 ## Minimal observed state graph
 
 ~~~text
@@ -101,6 +100,24 @@ This makes depth of response / NED state a high-value observation before adding
 more speculative hidden-state explanations.
 
 Reference: PMID 39987798.
+
+A 2026 multicountry Latin American cohort explicitly reset time zero at first
+breast-cancer recurrence and reconstructed systemic treatment sequences for up
+to six lines. Among 162 patients with documented first recurrence, median
+post-recurrence overall survival was 24.0 months (IQR 9.6-45.6). The study also
+stress-tested incomplete follow-up using best/worst-case censoring,
+inverse-probability-of-censoring weighting, and competing-risk analysis.
+
+This is methodologically aligned with the RQ-005 transition-specific direction:
+post-recurrence control should be analyzed from recurrence rather than hidden
+inside diagnosis-to-death OS.
+
+Reference: PMID 42095205.
+
+The METABRIC pilot sentinels MB-5566 and MB-4348 have observed
+post-recurrence intervals above 181 months. They must not be numerically compared
+as if they came from the same cohort or treatment era, but the contrast further
+supports treating them as high-information rare residuals.
 
 Recent dormancy reviews emphasize that disseminated tumor-cell dormancy and
 reactivation are regulated by tumor-cell-intrinsic programs plus organ-specific
