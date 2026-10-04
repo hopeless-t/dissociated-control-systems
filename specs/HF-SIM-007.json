@@ -1,0 +1,28 @@
+{
+  "id": "HF-SIM-007",
+  "title": "Minimum sufficient checkpoint set",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "objective": "Retain only checkpoints required to block every declared catastrophic projection/control failure, while allowing interchangeable checkpoints to remain alternatives rather than duplicate mandatory gates.",
+  "formulation": {
+    "universe": "F = declared catastrophic failure modes",
+    "checkpoint": "c_i covers subset S_i of F",
+    "minimum_problem": "find C* minimizing |C| subject to union(S_i for c_i in C*) = F",
+    "mandatory_checkpoint": "checkpoint present in every minimum sufficient solution",
+    "removable_checkpoint": "deleting it from the current set leaves every required failure mode covered"
+  },
+  "failure_modes_for_hf01": [
+    "provenance_loss",
+    "state_response_confusion",
+    "uncertainty_laundering",
+    "reachability_overclaim"
+  ],
+  "invariants": [
+    "A checkpoint earns permanence by preventing a declared failure, not by being informative or attractive.",
+    "Redundant checkpoints should collapse.",
+    "Alternative checkpoints form a choice set; they are not individually mandatory.",
+    "A checkpoint is structurally critical when its counterfactual deletion exposes a required failure mode.",
+    "Minimum sufficient does not mean minimum evidence: evidence authority must still satisfy projection-edge contracts."
+  ],
+  "boundary": "This is a checkpoint-selection theorem inside a declared failure-coverage model. The failure universe must itself be justified and may change with new evidence."
+}
