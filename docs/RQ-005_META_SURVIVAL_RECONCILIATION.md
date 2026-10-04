@@ -76,6 +76,51 @@ Positive Overall Meta-Effect != Universal Patient Effect
 Null Early-Stage Meta-Effect != Proof Of No Effect In Every Subgroup
 ~~~
 
+## Public executable source
+
+The 2026 study is unusually reproducible for this question.
+
+The authors state that the following are openly available at OSF project
+`wnxdb`:
+
+- HR and death-number reconstruction spreadsheets from Kaplan-Meier curves;
+- the meta-analysis data sheet;
+- the custom R analysis script;
+- multiverse/specification-curve data sheets;
+- multiverse R scripts;
+- numerical data underlying plots and analyses.
+
+The analysis used R 4.3.0 and Metafor 4.0.0 with log-HR calculations and a
+random-effects model using REML for the primary synthesis.
+
+This promotes META-A from a literature-summary task to an executable
+reproduction target.
+
+Source: https://osf.io/wnxdb/files
+
+## Moderator overfitting gate
+
+The 2026 study explored many substantive and methodological moderators.
+Moderator output must not be converted directly into a DCS mechanism.
+
+The paper's peer-review record explicitly discusses the weakness of
+meta-regression with very small numbers of studies per covariate; the authors
+acknowledge that analyses with only a few studies should be interpreted with
+caution and provide complementary MetaForest analyses.
+
+RQ-005 therefore freezes:
+
+~~~text
+Exploratory Meta-Regression Moderator
+!=
+Replicated Effect Modifier
+!=
+Biological State Transition
+~~~
+
+A timing/stage/component moderator cannot promote a reachability hypothesis
+unless the interaction itself has adequate evidence.
+
 ## Reconciliation dimensions
 
 META-A must reconstruct, trial by trial, at least:
@@ -120,16 +165,22 @@ long-term survival follow-up, recurrence analysis, and mediator papers.
 
 Create a publication-to-trial graph and detect duplicated cohorts.
 
-### META-A1 — fixed common endpoint
+### META-A1 — original-code reproduction
+
+Run the authors' public data/code without changing specifications and require
+reproduction of the reported primary summary before making any DCS-specific
+changes.
+
+### META-A2 — fixed common endpoint
 
 Where possible, compare the same effect measure on the same endpoint under a
 predeclared extraction rule.
 
-### META-A2 — leave-one-trial-out influence
+### META-A3 — leave-one-trial-out influence
 
 Measure how much each randomized cohort moves the pooled estimate.
 
-### META-A3 — specification multiverse
+### META-A4 — specification multiverse
 
 Vary only defensible predeclared choices such as:
 
@@ -142,7 +193,7 @@ Vary only defensible predeclared choices such as:
 
 Do not vary choices merely to obtain significance.
 
-### META-A4 — moderator validation
+### META-A5 — moderator validation
 
 Any apparent stage/timing/intervention-component moderator must be tested with
 held-out or sufficiently powered interaction evidence where possible.
@@ -176,8 +227,9 @@ psychosocial interventions have one universal cancer-survival effect:
   NOT SUPPORTED
 
 average survival effect across all eligible RCTs:
-  CURRENTLY CONTESTED BY SCOPE / SYNTHESIS CHOICES,
-  with a positive 2026 broad synthesis and null 2024 early-stage synthesis
+  POSITIVE IN THE 2026 BROAD MULTIVERSE SYNTHESIS,
+  NULL IN THE 2024 EARLY-STAGE SYNTHESIS,
+  WITH IMPORTANT SCOPE / METRIC / ANALYTIC DIFFERENCES TO REPRODUCE
 
 specific biological mediator responsible for any survival effect:
   UNKNOWN
