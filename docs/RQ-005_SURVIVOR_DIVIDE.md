@@ -299,3 +299,75 @@ signatures.
 
 It cannot, by itself, establish that a psychological state cures cancer,
 establish a clinical intervention, or provide an individual prognosis.
+
+
+## Meta-loop iteration 1 — threshold-crossing fragility
+
+The deterministic precedence examples are easy by construction, so the
+classifier was immediately stressed with Gaussian observation noise.
+
+Fixed synthetic stress:
+
+~~~text
+seed              14005
+trials/world       2000
+noise SD           0.09 standardized-effect units
+threshold          0.50
+persistence        2 observations
+~~~
+
+Observed known-world classification accuracy:
+
+~~~text
+psych/neuroimmune precedence   0.7935
+tumor-first / reverse          0.9195
+treatment-first                0.9870
+~~~
+
+This is a method failure, not a biological result.
+
+A small threshold/persistence grid can improve apparent accuracy, but selecting
+that grid after seeing the same synthetic outcomes would merely move the
+overfitting problem one level upward.
+
+Therefore:
+
+~~~text
+first persistent divergence time
+    = descriptive projection
+
+first persistent divergence time
+    != causal estimator
+    != primary real-data inference engine
+~~~
+
+The real-data primary path is revised toward uncertainty-aware change-point or
+state-space estimation coupled to future hazard/response, with threshold
+crossings retained only as interpretable projections.
+
+Reproducer:
+[analysis/rq005_survivor_divergence_stress.py](../analysis/rq005_survivor_divergence_stress.py)
+
+## Minimum sufficient evidence checkpoints
+
+Borrowing the minimum-checkpoint idea from the hair-follicle DCS lane, every
+accepted watershed claim must pass all of these semantic barriers:
+
+~~~text
+[PROVENANCE]
+      ->
+[BASELINE COMPARABILITY]
+      ->
+[TEMPORAL PRECEDENCE]
+      ->
+[INDEPENDENT LAYER EVIDENCE]
+      ->
+[HELD-OUT REPLICATION]
+      ->
+[UNCERTAINTY / CLAIM CEILING]
+~~~
+
+Compression is allowed between checkpoints, never through them.
+
+This guards against a smooth narrative connecting a survivor testimony to an
+immune observation when the required intermediate evidence was never measured.
