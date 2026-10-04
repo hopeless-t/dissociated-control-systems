@@ -1,44 +1,39 @@
-# CGD-SIM-020 — Template-residual CUSUM
+# CGD-SIM-020 — Missingness-aware restoration
 
-> Status: SYNTHETIC POST-CONVERGENCE CONTROL TEST  
+> Status: SYNTHETIC POST-CONVERGENCE REPRESENTATION REPAIR  
 > Clinical authority: NONE
 
-SIM-019 accumulated evidence across time but still failed on weak variance
-inflation. The failure biopsy suggested that the monitored variable itself was
-wrong.
+SIM-019 found that even 160 shifted calibration samples per latent hypothesis
+did not restore accuracy above 0.511 on validation or 0.479 on held-out test.
 
-The global observation stream is a mixture of many legitimate latent fault
-states. Its natural between-state variance can hide a small increase in
-within-state observation noise.
+That makes "just collect more data" an insufficient explanation.
 
-SIM-018 first removes that nuisance structure.
-
-For each sample:
+The next failure is a representation contract violation:
 
 ~~~text
-for every clean fault template h:
-    E_h = mean_j ((x_j - mu_hj)^2 / var_hj)
-
-residual_energy = min_h E_h
+Missing Observation != Observation At Mean
 ~~~
 
-The minimum asks:
+The OOD generator explicitly marks missing observations, but the previous
+classifier consumed the imputed clean-mean value as if it had actually been
+observed.
 
-> How surprising is this observation even under the clean latent state that
-> explains it best?
+SIM-020 propagates missingness into the classifier itself.
 
-The residual energy is standardized against independent clean data and fed to
-a one-sided CUSUM:
+## Masked Bayes
 
-~~~text
-C_t = max(0, C_(t-1) + z_t - kappa)
-~~~
+A missing probe contributes no likelihood term.
 
-The detector's kappa and threshold are selected on separate calibration data
-subject to a declared clean-sequence false-alarm target. Final performance is
-measured on different clean and shifted seeds.
+## Masked kNN
 
-This generation therefore changes the monitored sufficient statistic rather
-than adding another governance layer.
+A probe contributes to a pairwise distance only when it is observed in both
+the query and candidate row. Distance is normalized by the mean number of
+usable dimensions rather than treating imputed values as evidence.
+
+The same shifted validation/test split and the same restoration threshold
+(0.90 exact validation accuracy) are retained.
+
+If accuracy rises, this is evidence that the prior restoration failure was
+caused by information semantics rather than by insufficient sample count.
 
 Synthetic engineering result only; no clinical authority.
