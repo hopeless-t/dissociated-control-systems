@@ -1,0 +1,43 @@
+{
+  "id": "HF-SIM-040",
+  "title": "Follicular Recoverability Knee is an intervention-response gain transition, not a static baldness threshold",
+  "status": "SYNTHETIC_OPERATIONAL_DEFINITION",
+  "clinical_authority": "NONE",
+  "definition": {
+    "baseline_burden": "z = prospectively declared degeneration/structural-state coordinate measured before intervention",
+    "local_control_gain": "g(z) = partial functional recovery / partial declared control input",
+    "operational_knee": "FRK candidate = interval with the steepest unique decline in g across increasing z"
+  },
+  "known_answers": [
+    {
+      "burden": [0, 1, 2, 3, 4],
+      "gain": [1.0, 0.9, 0.8, 0.3, 0.2],
+      "candidate_interval": [2, 3]
+    },
+    {
+      "burden": [0, 1, 2, 3, 4],
+      "gain": [1.0, 0.8, 0.6, 0.4, 0.2],
+      "candidate_interval": null,
+      "reason": "uniform linear gain loss has no unique knee under the frozen definition"
+    }
+  ],
+  "required_evidence": [
+    "baseline burden measured before the control input",
+    "declared intervention/control input with reference comparison",
+    "functional later output linked to the prediction unit",
+    "coverage across enough baseline-burden range to estimate gain change",
+    "donor/region hierarchy and attrition handled under HF-SIM-038/HF-SIM-039",
+    "observer and diagnostic-probe back-action controlled where applicable"
+  ],
+  "stage_marker_boundary": "Cross-sectional partial-bald vs complete-bald differences in CD34/Sox9 or structure may define useful sampling strata but do not themselves identify FRK because no intervention-response gain is measured.",
+  "non_equivalences": [
+    "visible miniaturization threshold != FRK",
+    "progenitor loss threshold != FRK without response data",
+    "FRK candidate != biological hysteresis",
+    "FRK candidate != irreversibility",
+    "one intervention's gain knee != universal treatment threshold",
+    "ex-vivo FRK != in-vivo clinical decision rule"
+  ],
+  "next_test": "After HF-VAL-006 establishes linked early-state/later-function prediction, stratify by prospectively measured baseline P/E/M burden and test whether intervention response gain declines smoothly or contains a reproducible donor-held-out transition region.",
+  "claim_boundary": "FRK is currently an operational research target only. No human in-vivo recoverability knee has been demonstrated."
+}
