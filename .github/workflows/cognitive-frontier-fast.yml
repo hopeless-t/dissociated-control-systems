@@ -17,6 +17,9 @@ on:
       - "src/dissociated_control_systems/cognitive_context_authority_watchdog.py"
       - "tests/test_cognitive_context_authority_watchdog.py"
       - "docs/CGD-SIM-051.md"
+      - "src/dissociated_control_systems/cognitive_context_watchdog_common_mode.py"
+      - "tests/test_cognitive_context_watchdog_common_mode.py"
+      - "docs/CGD-SIM-052.md"
       - ".github/workflows/cognitive-frontier-fast.yml"
   workflow_dispatch:
 
@@ -61,3 +64,10 @@ jobs:
           python -m dissociated_control_systems.cognitive_context_authority_watchdog > cognitive-context-authority-watchdog.md
           cat cognitive-context-authority-watchdog.md
           cat cognitive-context-authority-watchdog.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Common-mode watchdog attack validation
+        run: pytest -q tests/test_cognitive_context_watchdog_common_mode.py
+      - name: Run common-mode watchdog attack
+        run: |
+          python -m dissociated_control_systems.cognitive_context_watchdog_common_mode > cognitive-context-watchdog-common-mode.md
+          cat cognitive-context-watchdog-common-mode.md
+          cat cognitive-context-watchdog-common-mode.md >> "$GITHUB_STEP_SUMMARY"
