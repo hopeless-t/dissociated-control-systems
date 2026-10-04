@@ -2,6 +2,8 @@ from dissociated_control_systems.projection_assurance import (
     Defeater,
     DefeaterStatus,
     EvidenceWitness,
+    ObligationStatus,
+    WitnessObligations,
     root_blast_radius,
     validate_evidence_bound_certificate,
 )
@@ -13,12 +15,30 @@ from dissociated_control_systems.projection_protocol import (
 )
 
 
+def _good_obligations() -> WitnessObligations:
+    return WitnessObligations(
+        source_authenticity=ObligationStatus.PASS,
+        claim_relevance=ObligationStatus.PASS,
+        scope_compatibility=ObligationStatus.PASS,
+        transformation_reproducibility=ObligationStatus.PASS,
+    )
+
+
+def _witness(witness_id: str, role: CheckpointRole, root: str) -> EvidenceWitness:
+    return EvidenceWitness(
+        witness_id,
+        role,
+        frozenset({root}),
+        _good_obligations(),
+    )
+
+
 def _full_reachability_witnesses():
     return (
-        EvidenceWitness("w-prov", CheckpointRole.PROVENANCE, frozenset({"src-prov"})),
-        EvidenceWitness("w-state", CheckpointRole.STATE_RESPONSE, frozenset({"src-state"})),
-        EvidenceWitness("w-unc", CheckpointRole.UNCERTAINTY, frozenset({"src-unc"})),
-        EvidenceWitness("w-reach", CheckpointRole.REACHABILITY, frozenset({"src-reach"})),
+        _witness("w-prov", CheckpointRole.PROVENANCE, "src-prov"),
+        _witness("w-state", CheckpointRole.STATE_RESPONSE, "src-state"),
+        _witness("w-unc", CheckpointRole.UNCERTAINTY, "src-unc"),
+        _witness("w-reach", CheckpointRole.REACHABILITY, "src-reach"),
     )
 
 
@@ -31,11 +51,11 @@ def test_syntactic_pass_without_witness_is_rejected() -> None:
     result = validate_evidence_bound_certificate(cert, witnesses=())
 
     assert not result.accepted
-    assert "pass_without_verified_witness:PROVENANCE" in result.violations
-    assert "pass_without_verified_witness:REACHABILITY" in result.violations
+    assert "pass_without_usable_witness:PROVENANCE" in result.violations
+    assert "pass_without_usable_witness:REACHABILITY" in result.violations
 
 
-def test_verified_witness_per_required_pass_role_is_accepted() -> None:
+def test_usable_witness_per_required_pass_role_is_accepted() -> None:
     cert = canonical_trace(
         claim_type=ClaimType.REACHABILITY,
         empirical_authority_requested=True,
@@ -48,6 +68,67 @@ def test_verified_witness_per_required_pass_role_is_accepted() -> None:
 
     assert result.accepted
     assert result.terminal_status is CheckStatus.PASS
+
+
+def test_authentic_but_irrelevant_witness_cannot_support_pass() -> None:
+    cert = canonical_trace(
+        claim_type=ClaimType.DESCRIPTIVE,
+        empirical_authority_requested=True,
+    )
+    irrelevant = EvidenceWitness(
+        "authentic-but-irrelevant",
+        CheckpointRole.PROVENANCE,
+        frozenset({"paper-1"}),
+        WitnessObligations(
+            source_authenticity=ObligationStatus.PASS,
+            claim_relevance=ObligationStatus.FAIL,
+            scope_compatibility=ObligationStatus.PASS,
+            transformation_reproducibility=ObligationStatus.PASS,
+        ),
+    )
+    uncertainty = _witness(
+        "uncertainty",
+        CheckpointRole.UNCERTAINTY,
+        "analysis-1",
+    )
+
+    result = validate_evidence_bound_certificate(
+        cert,
+        witnesses=(irrelevant, uncertainty),
+    )
+
+    assert not result.accepted
+    assert "pass_without_usable_witness:PROVENANCE" in result.violations
+
+
+def test_scope_unknown_witness_cannot_support_empirical_pass() -> None:
+    cert = canonical_trace(
+        claim_type=ClaimType.DESCRIPTIVE,
+        empirical_authority_requested=True,
+    )
+    witness = EvidenceWitness(
+        "scope-unknown",
+        CheckpointRole.PROVENANCE,
+        frozenset({"paper-1"}),
+        WitnessObligations(
+            source_authenticity=ObligationStatus.PASS,
+            claim_relevance=ObligationStatus.PASS,
+            scope_compatibility=ObligationStatus.UNKNOWN,
+            transformation_reproducibility=ObligationStatus.PASS,
+        ),
+    )
+    uncertainty = _witness(
+        "uncertainty",
+        CheckpointRole.UNCERTAINTY,
+        "analysis-1",
+    )
+
+    result = validate_evidence_bound_certificate(
+        cert,
+        witnesses=(witness, uncertainty),
+    )
+
+    assert not result.accepted
 
 
 def test_open_defeater_downgrades_pass_to_unknown() -> None:
@@ -103,6 +184,7 @@ def test_shared_root_is_reported_as_common_mode_dependency() -> None:
             f"w-{role.value}",
             role,
             frozenset({"single-root"}),
+            _good_obligations(),
         )
         for role in (
             CheckpointRole.PROVENANCE,
@@ -128,10 +210,10 @@ def test_independent_duplicate_witnesses_remove_single_root_blast() -> None:
         empirical_authority_requested=True,
     )
     witnesses = (
-        EvidenceWitness("p-a", CheckpointRole.PROVENANCE, frozenset({"a"})),
-        EvidenceWitness("p-b", CheckpointRole.PROVENANCE, frozenset({"b"})),
-        EvidenceWitness("u-a", CheckpointRole.UNCERTAINTY, frozenset({"c"})),
-        EvidenceWitness("u-b", CheckpointRole.UNCERTAINTY, frozenset({"d"})),
+        _witness("p-a", CheckpointRole.PROVENANCE, "a"),
+        _witness("p-b", CheckpointRole.PROVENANCE, "b"),
+        _witness("u-a", CheckpointRole.UNCERTAINTY, "c"),
+        _witness("u-b", CheckpointRole.UNCERTAINTY, "d"),
     )
 
     assert root_blast_radius(cert, witnesses) == {
