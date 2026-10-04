@@ -1,0 +1,24 @@
+{
+  "id": "RQ-005",
+  "title": "Psychological control state -> neuroimmune mediation -> tumor dynamics",
+  "status": "OPEN_RESEARCH",
+  "clinical_authority": "NONE",
+  "direct_hope_to_tumor_edge": false,
+  "state_variables": ["tumor", "effector", "immunosuppression", "stress"],
+  "mediators": [
+    "stress_recovery",
+    "treatment_adherence",
+    "effective_treatment",
+    "anti_tumor_effector_activity"
+  ],
+  "known_answer_checks": [
+    "control_margin_sign_matches_tumor_derivative_sign",
+    "recovery_and_adherence_channels_are_separable",
+    "mediated_control_package_changes_synthetic_trajectory"
+  ],
+  "falsification_rules": [
+    "psychological_label_without_mediator_change_has_no_modeled_tumor_effect",
+    "synthetic_model_result_cannot_be_promoted_to_clinical_claim",
+    "case_report_cannot_establish_psychological_causation"
+  ]
+}
