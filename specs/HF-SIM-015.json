@@ -1,0 +1,33 @@
+{
+  "id": "HF-SIM-015",
+  "title": "Evidence topology and epistemic root cuts",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "problem": "Multiple checkpoint PASS states can reuse the same underlying evidence and create an illusion of independent confirmation.",
+  "model": {
+    "witness": "parallel support path for one checkpoint role",
+    "source_root": "primitive dependency whose failure invalidates every witness that declares it",
+    "role_root_cut": "minimum number of source roots whose removal invalidates all usable witnesses for a required role",
+    "certificate_root_cut": "minimum role_root_cut across all required PASS roles"
+  },
+  "known_answers": {
+    "one_shared_root_supporting_four_roles": {
+      "certificate_root_cut": 1,
+      "common_mode_blast_radius": 4
+    },
+    "two_disjoint_parallel_witnesses_for_one_role": {
+      "role_root_cut": 2
+    },
+    "one_witness_requiring_raw_data_and_analysis_code": {
+      "role_root_cut": 1,
+      "reason": "series dependency: either primitive root can invalidate the witness"
+    }
+  },
+  "invariants": [
+    "Checkpoint Multiplicity != Evidence Diversity",
+    "Four PASS roles supported by one root are not four independent confirmations",
+    "Parallel independent witnesses increase root-cut robustness",
+    "A certificate is only as root-robust as its weakest required role"
+  ],
+  "boundary": "Declared roots encode a dependency model. Root-cut robustness measures structural dependence, not scientific effect size or truth probability."
+}
