@@ -60,6 +60,15 @@ def test_same_trial_cannot_map_to_two_randomized_populations() -> None:
         validate_trial_ledger(records)
 
 
+def test_same_randomized_population_cannot_hide_behind_two_trial_ids() -> None:
+    records = [
+        TrialPublication("A", "P1", "primary", "R1", "OS", "HR"),
+        TrialPublication("B", "P2", "followup", "R1", "OS", "HR"),
+    ]
+    with pytest.raises(ValueError, match="maps to multiple trial_ids"):
+        validate_trial_ledger(records)
+
+
 def test_duplicate_publication_id_fails_closed() -> None:
     records = [
         TrialPublication("A", "P1", "primary", "R1", "OS", "HR"),
@@ -67,3 +76,13 @@ def test_duplicate_publication_id_fails_closed() -> None:
     ]
     with pytest.raises(ValueError, match="duplicate publication_id"):
         validate_trial_ledger(records)
+
+
+def test_surrounding_whitespace_cannot_create_shadow_identity() -> None:
+    with pytest.raises(ValueError, match="surrounding whitespace"):
+        TrialPublication(" A", "P1", "primary", "R1", "OS", "HR")
+
+
+def test_boolean_followup_is_rejected_as_non_numeric_semantics() -> None:
+    with pytest.raises(TypeError, match="followup_months"):
+        TrialPublication("A", "P1", "primary", "R1", "OS", "HR", True)
