@@ -6,6 +6,7 @@ Synthetic harness experiment only. Clinical authority: NONE.
 from __future__ import annotations
 
 from collections import Counter
+from functools import lru_cache
 from statistics import fmean
 
 from .cognitive_active_diagnosis import (
@@ -15,6 +16,9 @@ from .cognitive_active_diagnosis import (
     update_posterior,
 )
 from .cognitive_ceiling_audit import make_dataset, normalization, vector
+
+K_VALUES = (3, 5, 7, 11, 15)
+WEIGHTS = tuple(step / 10.0 for step in range(11))
 
 
 def bayes_posterior(
@@ -33,21 +37,11 @@ def bayes_posterior(
     return posterior
 
 
-def knn_posterior(
-    train: list[tuple[frozenset[str], tuple[float, ...]]],
-    point: tuple[float, ...],
-    *,
+def _vote_posterior(
+    nearest_labels: list[frozenset[str]],
     k: int,
 ) -> dict[frozenset[str], float]:
-    distances = []
-    for label, candidate in train:
-        distance = sum(
-            (left - right) ** 2
-            for left, right in zip(point, candidate)
-        )
-        distances.append((distance, label))
-    nearest = sorted(distances, key=lambda item: item[0])[:k]
-    counts = Counter(label for _, label in nearest)
+    counts = Counter(nearest_labels[:k])
     hs = hypotheses()
     smoothing = 0.05
     denominator = k + smoothing * len(hs)
@@ -55,6 +49,49 @@ def knn_posterior(
         hypothesis: (counts.get(hypothesis, 0) + smoothing) / denominator
         for hypothesis in hs
     }
+
+
+def precompute_posteriors(
+    dataset: list[tuple[frozenset[str], dict[str, float]]],
+    templates: dict[frozenset[str], dict[str, tuple[float, float]]],
+    norm: dict[str, tuple[float, float]],
+    train: list[tuple[frozenset[str], tuple[float, ...]]],
+) -> list[
+    tuple[
+        frozenset[str],
+        dict[frozenset[str], float],
+        dict[int, dict[frozenset[str], float]],
+    ]
+]:
+    result = []
+    for true_label, features in dataset:
+        point = vector(features, norm)
+        distances = [
+            (
+                sum(
+                    (left - right) ** 2
+                    for left, right in zip(point, candidate)
+                ),
+                label,
+            )
+            for label, candidate in train
+        ]
+        nearest = [
+            label
+            for _, label in sorted(distances, key=lambda item: item[0])[: max(K_VALUES)]
+        ]
+        knn_by_k = {
+            k: _vote_posterior(nearest, k)
+            for k in K_VALUES
+        }
+        result.append(
+            (
+                true_label,
+                bayes_posterior(features, templates),
+                knn_by_k,
+            )
+        )
+    return result
 
 
 def mix_posteriors(
@@ -89,11 +126,14 @@ def prepare(
     return templates, norm, train
 
 
-def evaluate(
-    dataset: list[tuple[frozenset[str], dict[str, float]]],
-    templates: dict[frozenset[str], dict[str, tuple[float, float]]],
-    norm: dict[str, tuple[float, float]],
-    train: list[tuple[frozenset[str], tuple[float, ...]]],
+def evaluate_precomputed(
+    data: list[
+        tuple[
+            frozenset[str],
+            dict[frozenset[str], float],
+            dict[int, dict[frozenset[str], float]],
+        ]
+    ],
     *,
     k: int,
     bayes_weight: float,
@@ -102,16 +142,10 @@ def evaluate(
     knn_correct = 0
     ensemble_correct = 0
     oracle_union_correct = 0
-    total = 0
     confidence: list[float] = []
 
-    for true_label, features in dataset:
-        bp = bayes_posterior(features, templates)
-        kp = knn_posterior(
-            train,
-            vector(features, norm),
-            k=k,
-        )
+    for true_label, bp, knn_by_k in data:
+        kp = knn_by_k[k]
         ep = mix_posteriors(
             bp,
             kp,
@@ -120,7 +154,6 @@ def evaluate(
         b = max(bp, key=bp.get)
         n = max(kp, key=kp.get)
         e = max(ep, key=ep.get)
-
         bayes_ok = b == true_label
         knn_ok = n == true_label
         ensemble_ok = e == true_label
@@ -129,8 +162,8 @@ def evaluate(
         ensemble_correct += int(ensemble_ok)
         oracle_union_correct += int(bayes_ok or knn_ok)
         confidence.append(ep[e])
-        total += 1
 
+    total = len(data)
     return {
         "bayes_accuracy": bayes_correct / total,
         "knn_accuracy": knn_correct / total,
@@ -140,20 +173,23 @@ def evaluate(
     }
 
 
+@lru_cache(maxsize=1)
 def optimize() -> dict[str, object]:
     templates, norm, train = prepare()
-    validation = make_dataset(40, 41_000_000)
+    validation_raw = make_dataset(40, 41_000_000)
+    validation = precompute_posteriors(
+        validation_raw,
+        templates,
+        norm,
+        train,
+    )
 
     best_score = -1.0
     best_params = (7, 0.5)
-    for k in (3, 5, 7, 11, 15):
-        for weight_step in range(0, 11):
-            weight = weight_step / 10.0
-            result = evaluate(
+    for k in K_VALUES:
+        for weight in WEIGHTS:
+            result = evaluate_precomputed(
                 validation,
-                templates,
-                norm,
-                train,
                 k=k,
                 bayes_weight=weight,
             )
@@ -161,12 +197,15 @@ def optimize() -> dict[str, object]:
                 best_score = result["ensemble_accuracy"]
                 best_params = (k, weight)
 
-    test = make_dataset(100, 42_000_000)
-    result = evaluate(
-        test,
+    test_raw = make_dataset(100, 42_000_000)
+    test = precompute_posteriors(
+        test_raw,
         templates,
         norm,
         train,
+    )
+    result = evaluate_precomputed(
+        test,
         k=best_params[0],
         bayes_weight=best_params[1],
     )
@@ -206,10 +245,12 @@ def format_markdown() -> str:
             f"- mean ensemble confidence: {result['mean_ensemble_confidence']:.3f}",
             f"- classifier frontier stable: {result['frontier_stable']}",
             "",
-            "If the ensemble materially improves accuracy, CGD-SIM-009 was correctly "
-            "identified as classifier-limited. If residual oracle headroom remains, "
-            "the next loop should learn a disagreement resolver rather than add a "
-            "new meta-control layer.",
+            "Distance calculations are precomputed once per held-out point and reused "
+            "across all k/weight candidates; this changes harness friction, not the "
+            "declared search space.",
+            "",
+            "If residual oracle headroom remains, the next loop should learn a "
+            "disagreement resolver rather than add a new meta-control layer.",
         ]
     )
 
