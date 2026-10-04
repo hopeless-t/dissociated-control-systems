@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "id": "HF01-BRANCH-PROXIMAL-READOUTS-V1",
+  "status": "SOURCE_BOUND_MEASUREMENT_CANDIDATES",
+  "clinical_authority": "NONE",
+  "purpose": "Estimate real intervention directions for A_AR and M instead of assuming nominal drug/knockdown selectivity.",
+  "A_AR": {
+    "state": "canonical DHT-activated androgen-receptor transcriptional branch",
+    "preferred_proximal_family": [
+      {
+        "measurement": "miR-221 expression in DPC/DSC",
+        "rationale": "human AGA study reports DHT dose-associated induction and reduction after AR knockdown"
+      },
+      {
+        "measurement": "AR occupancy at the miR-221 promoter by ChIP/ChIP-qPCR",
+        "rationale": "directly binds branch activity closer to receptor-dependent transcription than AR abundance alone"
+      }
+    ],
+    "source": {
+      "citation": "Li et al., Int J Biol Sci 2023",
+      "pmid": "37496996",
+      "pmcid": "PMC10367565",
+      "doi": "10.7150/ijbs.80481"
+    },
+    "downstream_context": "miR-221 suppresses IGF-1 and reduces DPC/DSC proliferation; anti-miR-221 partially rescues DHT-associated follicle effects in the reported experiments",
+    "do_not_collapse": [
+      "AR protein abundance != AR transcriptional activity",
+      "miR-221 abundance != unique AR activity scalar",
+      "IGF-1 response != uniquely AR-specific readout"
+    ]
+  },
+  "M": {
+    "state": "CTS mechanical/contractile branch",
+    "preferred_proximal_family": [
+      {
+        "measurement": "p-MLC2 within alpha-SMA-positive CTS cells",
+        "rationale": "molecular contractile-state proxy localized to the contractile compartment"
+      },
+      {
+        "measurement": "AFM-derived mechanical/contractility readout on patient-derived DS cells",
+        "rationale": "moves from signaling proxy toward measured mechanics"
+      },
+      {
+        "measurement": "direct intact-follicle contraction/width trajectory under real-time imaging",
+        "rationale": "organ-level physical readout of the target state"
+      }
+    ],
+    "source": {
+      "citation": "Li et al., Nature Communications 2026",
+      "pmid": "41748637",
+      "pmcid": "PMC13062005",
+      "doi": "10.1038/s41467-026-70153-4"
+    },
+    "do_not_collapse": [
+      "p-MLC2 != tissue contraction by itself",
+      "transcript contractile signature != measured mechanical state",
+      "mechanical relaxation != proof of recoverability"
+    ]
+  },
+  "system_identification_rule": {
+    "for_each_intervention": [
+      "measure at least one A_AR-proximal readout",
+      "measure at least one M-proximal readout",
+      "measure downstream P/function and H-function outputs"
+    ],
+    "derive": "empirical branch-activity directions first, then compute rank/separation; never assign [0,1] or [1,0] solely from intervention labels",
+    "success": "orthogonal or sufficiently separated measured response directions",
+    "failure": "nominally different interventions produce nearly collinear measured branch directions"
+  },
+  "claim_boundary": "These are measurement candidates for experimental system identification. They are not validated clinical biomarkers or personal treatment-selection tests."
+}
