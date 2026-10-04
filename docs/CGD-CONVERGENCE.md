@@ -511,3 +511,261 @@ DOMAIN-LOCAL VALIDATION
 
 No current result authorizes human experimentation, diagnosis, treatment, or
 clinical decision-making.
+
+
+### SIM-033 — exact random-capture null
+
+The single same-budget random draw from SIM-032 was replaced by an exact
+Hypergeometric null for the frozen held-out population:
+
+~~~text
+population N                         = 6400
+rare specimens K                    = 12
+causal biopsy budget n              = 382
+causal captures                     = 7
+random expected captures            = 0.716
+random 99.9th percentile            = 4
+P(random captures >= 7)             = 1.5598402e-06
+100,000 seeded null draws >= 7      = 0
+~~~
+
+The apparent causal-precision advantage over the oracle stratum was also
+localized. The causal selector retained all seven rare oracle-stratum rows,
+pruned 22 nonrare oracle-stratum rows, and admitted four nonrare contaminants.
+
+Key lesson:
+
+~~~text
+One Lucky Random Baseline != Evidence
+Exact Null Distribution > Anecdotal Random Draw
+Selection Precision Difference != Oracle Superiority
+~~~
+
+### SIM-034 — research enrichment versus action authority
+
+The rare-state selector was reinterpreted under an asymmetric false-positive
+loss model.
+
+Frozen held-out selector:
+
+~~~text
+TP / FP / TN / FN       = 7 / 375 / 6013 / 5
+prevalence              = 0.1875%
+sensitivity             = 58.333%
+specificity             = 94.130%
+precision               = 1.832%
+research enrichment     = 9.77x
+~~~
+
+For correct-action benefit B and false-positive harm k*B, positive-action
+expected value requires:
+
+~~~text
+specificity > 1 - q*sensitivity / ((1-q)*k)
+~~~
+
+At the measured prevalence:
+
+~~~text
+k=1   required specificity = 99.89042%
+k=4   required specificity = 99.97260%
+k=32  required specificity = 99.99658%
+~~~
+
+The measured selector was ineligible for every tested positive-action
+scenario while remaining useful for research sampling.
+
+Key lesson:
+
+~~~text
+Research Enrichment != Intervention Authority
+High Enrichment != High Precision
+Diagnostic Usefulness != Action Safety
+~~~
+
+### SIM-035 — fault-partition information ceiling
+
+All 65,535 non-empty subsets of the 16 true synthetic fault strata were
+enumerated as an oracle information upper bound.
+
+Only two strata contained held-out rare states:
+
+~~~text
+L0 + L1 + observer                    7 / 400 = 1.750%
+L0 + L1 + L2 + observer               5 / 400 = 1.250%
+~~~
+
+Even perfect fault-stratum knowledge could achieve at best:
+
+~~~text
+PPV                     = 1.750%
+sensitivity             = 58.333%
+specificity             = 93.848%
+~~~
+
+No non-empty fault-stratum subset had positive expected action margin for
+k=1,2,4,8.
+
+Required further within-stratum enrichment over the best oracle fault
+partition:
+
+~~~text
+k=1   28.6x
+k=2   38.1x
+k=4   45.7x
+k=8   50.8x
+~~~
+
+Key lesson:
+
+~~~text
+Perfect Fault Localization != Current-State Identification
+Cause Class != Current Severity / Current Hazard State
+More Accurate Fault Classification Cannot Exceed Partition Information
+~~~
+
+### SIM-036 — standardized objective current-state challenge
+
+A new information channel was introduced instead of improving cause
+classification again.
+
+The synthetic challenge observes only:
+
+~~~text
+standardized task success rate
+noisy self-reported confidence
+their discrepancy
+~~~
+
+Latent capability and latent self estimate remain generator/evaluator state and
+are not emitted by the challenge.
+
+Pilot-selected policies evaluated on disjoint held-out seeds showed that the
+new current-state channel exceeded the 1.75% fault-partition PPV ceiling.
+
+Best held-out PPV among the frozen pilot-selected policies:
+
+~~~text
+128 standardized trials
+sensitivity             = 7.692%
+specificity             = 99.749%
+PPV                     = 7.692%
+~~~
+
+This was a substantial within-stratum information gain but still had negative
+action margin for every tested k.
+
+Key lesson:
+
+~~~text
+Fault Class != Current State
+Objective Feedback + Self Report Can Add Within-Stratum Information
+More Evidence Can Trade Sensitivity For Specificity
+~~~
+
+### SIM-037 — two-stage diagnostic cascade
+
+The causal cause-screen and current-state verifier were then composed without
+collapsing their roles.
+
+~~~text
+bounded causal screen
+    ->
+expensive standardized current-state challenge
+    ->
+positive-action gate
+~~~
+
+Held-out:
+
+~~~text
+population                         = 9600
+rare states                        = 27
+causal-screen challenge admissions = 590 / 9600 = 6.146%
+~~~
+
+Best tested cascade point:
+
+~~~text
+128 standardized trials
+k                       = 1
+sensitivity             = 22.222%
+specificity             = 99.760%
+PPV                     = 20.690%
+expensive challenge     = 6.146% of population
+margin / B per episode  = -0.001771
+~~~
+
+Compared with current-state-only evaluation, the cascade substantially
+increased PPV and reduced expensive challenge coverage, but still did not cross
+the positive-action boundary.
+
+Key lesson:
+
+~~~text
+Cause Screen -> Current-State Verification
+is a productive architecture
+
+but
+
+Better Cascade != Sufficient Action Authority
+~~~
+
+## Current convergence wall
+
+The post-SIM-037 boundary is now sharper than the earlier generic
+"get external evidence" instruction.
+
+The synthetic program has separated three objects:
+
+~~~text
+1. Cause / fault class
+2. Current functional state
+3. Action authority
+~~~
+
+The experiments establish that:
+
+- fault localization is useful for routing and research enrichment;
+- current-state observation adds information unavailable from cause class;
+- staged screening can reduce expensive measurement burden;
+- neither cause classification nor the tested current-state proxy is sufficient
+  for high-consequence positive-action authority in a rare-state population.
+
+Therefore the next justified work is not deeper recursion, a higher-order
+meta-controller, or a still more oracle-like synthetic probe.
+
+The next scientific question is:
+
+> Which externally observable, domain-valid current-state measurements carry
+> additional information about function and self/objective divergence, and how
+> stable are they over time?
+
+The permitted next path is:
+
+~~~text
+external observational literature / public data
+    ->
+claim + variable map
+    ->
+measurement provenance / freshness contract
+    ->
+observational current-state model
+    ->
+risk / coverage evaluation
+    ->
+only then consider any interventional design
+~~~
+
+The two-track original CGD structure remains:
+
+~~~text
+Track A — function preservation / rerouting
+Track B — root cause / disease modification
+
+Compensation != Disease Modification
+Research Signal != Treatment Authority
+~~~
+
+No result in SIM-001 through SIM-037 authorizes diagnosis, treatment, human
+experimentation, or clinical decision-making.
