@@ -68,26 +68,48 @@ def parse_matrix(text: str):
 
 def parse_annotation(text: str) -> dict[str, list[str]]:
     probe_to_symbols: dict[str, list[str]] = {}
-    reader = csv.reader(
-        (line for line in text.splitlines() if line and not line.startswith("#")),
-        delimiter="\t",
-    )
-    header = next(reader)
-    normalized = [h.strip().lower().replace(" ", "_") for h in header]
-
-    id_i = normalized.index("id")
-    symbol_candidates = [
-        "gene_symbol",
-        "gene_symbol_",
-        "gene_assignment",
+    lines = [
+        line.lstrip("\ufeff")
+        for line in text.splitlines()
+        if line and not line.startswith("#")
     ]
-    symbol_i = next(
-        (normalized.index(name) for name in symbol_candidates if name in normalized),
-        None,
-    )
-    if symbol_i is None:
-        raise RuntimeError(f"gene symbol column not found: {header}")
 
+    header_index = None
+    header = None
+    normalized = None
+    for idx, line in enumerate(lines):
+        candidate = next(csv.reader([line], delimiter="\t"))
+        norm = [
+            h.strip().strip('"').lstrip("\ufeff").lower().replace(" ", "_")
+            for h in candidate
+        ]
+        has_id = any(name in norm for name in ("id", "probe_set_id", "id_ref"))
+        has_symbol = any(
+            name in norm
+            for name in ("gene_symbol", "gene_symbol_", "gene_assignment")
+        )
+        if has_id and has_symbol:
+            header_index = idx
+            header = candidate
+            normalized = norm
+            break
+
+    if header_index is None or header is None or normalized is None:
+        preview = lines[:5]
+        raise RuntimeError(f"annotation header not found; preview={preview!r}")
+
+    id_i = next(
+        normalized.index(name)
+        for name in ("id", "probe_set_id", "id_ref")
+        if name in normalized
+    )
+    symbol_i = next(
+        normalized.index(name)
+        for name in ("gene_symbol", "gene_symbol_", "gene_assignment")
+        if name in normalized
+    )
+
+    reader = csv.reader(lines[header_index + 1 :], delimiter="\t")
     for row in reader:
         if len(row) <= max(id_i, symbol_i):
             continue
