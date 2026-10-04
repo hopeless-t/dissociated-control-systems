@@ -146,6 +146,7 @@ def validate_evidence_bound_certificate(
 
     required = required_roles_for_claim(certificate.claim_type)
     record_by_role = {record.role: record for record in certificate.records}
+    usable_witness_ids = {w.witness_id for w in witnesses_t if w.usable}
 
     for role in required:
         record = record_by_role.get(role)
@@ -162,10 +163,21 @@ def validate_evidence_bound_certificate(
         d for d in defeaters_t
         if d.status is DefeaterStatus.OPEN and d.target_role in required
     ]
+    resolved_defeaters = [
+        d for d in defeaters_t
+        if d.status is DefeaterStatus.RESOLVED and d.target_role in required
+    ]
     residual_defeaters = [
         d for d in defeaters_t
         if d.status is DefeaterStatus.RESIDUAL and d.target_role in required
     ]
+
+    for defeater in resolved_defeaters:
+        if defeater.resolution_witness_id not in usable_witness_ids:
+            violations.append(
+                "resolved_defeater_without_usable_resolution_witness:"
+                f"{defeater.defeater_id}"
+            )
 
     if open_defeaters:
         warnings.extend(
