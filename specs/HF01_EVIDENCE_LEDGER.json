@@ -173,5 +173,62 @@
       "checkpoint_role": "semantic correctness barrier that must appear on every accepted path"
     },
     "compression_rule": "Compress aggressively between required role-dominators; reject any endpoint path that bypasses one."
+  },
+  "checkpoint_protocol": {
+    "status": "LOCAL_FIXED_POINT",
+    "contracts": [
+      "HF-SIM-007",
+      "HF-SIM-008",
+      "HF-SIM-009",
+      "HF-SIM-010",
+      "HF-SIM-011",
+      "HF-SIM-012"
+    ],
+    "architecture": [
+      "minimum failure-covering semantic roles",
+      "cost-aware interchangeable implementations",
+      "claim-conditioned barrier activation",
+      "proof-carrying ordered trace",
+      "exhaustive declared bypass rejection",
+      "last-responsible-moment placement"
+    ],
+    "reachability_attack_surface": {
+      "role_subsets": {
+        "tested": 16,
+        "accepted": 1
+      },
+      "permutations": {
+        "tested": 24,
+        "accepted": 1
+      },
+      "status_vectors": {
+        "tested": 81,
+        "accepted": 1
+      }
+    },
+    "forcing_function_rule": "For empirical authority, a required checkpoint is structural: the endpoint cannot be emitted as PASS unless the active claim-conditioned protocol passes.",
+    "claim_conditioning": {
+      "DESCRIPTIVE": [
+        "provenance",
+        "uncertainty"
+      ],
+      "STATE_INFERENCE": [
+        "provenance",
+        "state_response_typing",
+        "uncertainty"
+      ],
+      "RESPONSE_INFERENCE": [
+        "provenance",
+        "state_response_typing",
+        "uncertainty"
+      ],
+      "REACHABILITY": [
+        "provenance",
+        "state_response_typing",
+        "uncertainty",
+        "reachability"
+      ]
+    },
+    "placement_rule": "Expose/enforce each active barrier at the latest point that still precedes the earliest hazard it covers."
   }
 }
