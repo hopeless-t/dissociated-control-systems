@@ -1,0 +1,26 @@
+{
+  "id": "HF-SIM-041",
+  "title": "A unique steepest gain-loss interval can be a noise artifact rather than a recoverability knee",
+  "status": "SYNTHETIC_FRK_DEFEATER",
+  "clinical_authority": "NONE",
+  "attack": {
+    "burden": [0, 1, 2, 3, 4],
+    "near_linear_gain": [1.0, 0.79, 0.61, 0.39, 0.20],
+    "adjacent_slopes": [-0.21, -0.18, -0.22, -0.19],
+    "raw_max_rule": "selects interval [2,3] because -0.22 is uniquely most negative",
+    "interpretation": "the apparent knee is created by tiny deviations around an approximately constant decline"
+  },
+  "repair": [
+    "treat raw argmax as exploratory only",
+    "predeclare a minimum slope-contrast or model-comparison criterion before observing candidate outcomes",
+    "quantify uncertainty around gain estimates",
+    "require the transition region to replicate in held-out donors/independent data",
+    "compare explicit smooth/no-knee models against knee/change-point models instead of assuming a change point exists"
+  ],
+  "non_equivalences": [
+    "unique maximum curvature/slope != biological threshold",
+    "change-point fit != hysteresis",
+    "cross-validated knee != clinical cutoff without external validation"
+  ],
+  "claim_boundary": "HF-SIM-040 remains an operational target definition. HF-SIM-041 blocks treating a raw maximum in noisy finite data as FRK evidence."
+}
