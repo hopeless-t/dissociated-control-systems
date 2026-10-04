@@ -1,0 +1,36 @@
+{
+  "id": "HF-SIM-004",
+  "title": "Projection ladder has a finite optimal granularity",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "cognitive_authority": "SURROGATE_ONLY",
+  "hypothesis": "A large semantic projection gap can create recognition friction; inserting intermediate representations can reduce jump friction, but too many representations add overhead.",
+  "model": {
+    "homogeneous_cost": "J(n) = alpha * D^2 / n + beta * n",
+    "continuous_optimum": "n* = D * sqrt(alpha / beta)",
+    "meaning": {
+      "D": "semantic/projection distance surrogate",
+      "alpha": "large-jump friction weight",
+      "beta": "per-stage overhead",
+      "n": "number of explanatory transitions"
+    }
+  },
+  "theorem_boundary": "For D>0, alpha>0, beta>0, J is strictly convex over positive real n and has a unique finite continuous minimum at n*.",
+  "known_answer": {
+    "D": 8,
+    "alpha": 1,
+    "beta": 1,
+    "direct_n1_cost": 65,
+    "optimum_n": 8,
+    "optimum_cost": 16,
+    "overspecified_n32_cost": 34
+  },
+  "adaptive_extension": "For local span j with difficulty w_j and distance d_j, n_j* = d_j * sqrt(alpha*w_j/beta); harder semantic transitions receive finer subdivision.",
+  "invariants": [
+    "One giant projection can be unnecessarily expensive",
+    "Infinite explanatory granularity is not optimal",
+    "Optimal granularity depends on user/task friction and stage overhead",
+    "High-difficulty edges deserve denser intermediate representations"
+  ],
+  "boundary": "This is a design theorem for a declared friction surrogate. It is not a quantitative model of human working memory or neural processing."
+}
