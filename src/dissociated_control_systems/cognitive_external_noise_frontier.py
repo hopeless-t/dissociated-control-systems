@@ -30,7 +30,15 @@ def theoretical_rmse(repeats: int):
 
 
 def simulate_rmse(repeats: int, seed: int):
+    """Monte Carlo cross-check using the exact distribution of the sample mean.
+
+    For iid Gaussian objective trials, their mean is Gaussian with standard
+    deviation sigma/sqrt(n). Drawing that mean directly is distributionally
+    identical and avoids generating up to 256 individual trial noises for every
+    Monte Carlo specimen.
+    """
     rng = Random(seed)
+    objective_mean_sigma = SIGMA_OBJECTIVE_SINGLE / sqrt(repeats)
     errors = {
         "Z_current_state": [],
         "A_self_bias": [],
@@ -47,11 +55,7 @@ def simulate_rmse(repeats: int, seed: int):
         s = z - a + rng.gauss(0.0, SIGMA_SELF)
         i = z + b + rng.gauss(0.0, SIGMA_INFORMANT)
         f = z + e + rng.gauss(0.0, SIGMA_FUNCTION)
-        objective_trials = [
-            z + rng.gauss(0.0, SIGMA_OBJECTIVE_SINGLE)
-            for _ in range(repeats)
-        ]
-        o = fmean(objective_trials)
+        o = z + rng.gauss(0.0, objective_mean_sigma)
 
         estimates = {
             "Z_current_state": o,
@@ -97,7 +101,7 @@ def external_noise_frontier():
 
     transitions = []
     practical_knee = None
-    for before, after in zip(rows, rows[1:], strict=True):
+    for before, after in zip(rows, rows[1:]):
         before_rmse = reporter_state_mean_rmse(before)
         after_rmse = reporter_state_mean_rmse(after)
         gain = (before_rmse - after_rmse) / before_rmse
