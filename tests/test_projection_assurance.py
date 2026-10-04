@@ -49,7 +49,6 @@ def test_syntactic_pass_without_witness_is_rejected() -> None:
         claim_type=ClaimType.REACHABILITY,
         empirical_authority_requested=True,
     )
-
     result = validate_evidence_bound_certificate(cert, witnesses=())
 
     assert not result.accepted
@@ -62,7 +61,6 @@ def test_usable_witness_per_required_pass_role_is_accepted() -> None:
         claim_type=ClaimType.REACHABILITY,
         empirical_authority_requested=True,
     )
-
     result = validate_evidence_bound_certificate(
         cert,
         witnesses=_full_reachability_witnesses(),
@@ -88,11 +86,7 @@ def test_authentic_but_irrelevant_witness_cannot_support_pass() -> None:
             transformation_reproducibility=ObligationStatus.PASS,
         ),
     )
-    uncertainty = _witness(
-        "uncertainty",
-        CheckpointRole.UNCERTAINTY,
-        "analysis-1",
-    )
+    uncertainty = _witness("uncertainty", CheckpointRole.UNCERTAINTY, "analysis-1")
 
     result = validate_evidence_bound_certificate(
         cert,
@@ -119,11 +113,7 @@ def test_scope_unknown_witness_cannot_support_empirical_pass() -> None:
             transformation_reproducibility=ObligationStatus.PASS,
         ),
     )
-    uncertainty = _witness(
-        "uncertainty",
-        CheckpointRole.UNCERTAINTY,
-        "analysis-1",
-    )
+    uncertainty = _witness("uncertainty", CheckpointRole.UNCERTAINTY, "analysis-1")
 
     result = validate_evidence_bound_certificate(
         cert,
@@ -173,7 +163,7 @@ def test_residual_defeater_requires_explicit_rationale() -> None:
         )
 
 
-def test_resolved_defeater_with_witness_does_not_block_pass() -> None:
+def test_fake_resolution_witness_id_does_not_close_defeater() -> None:
     cert = canonical_trace(
         claim_type=ClaimType.REACHABILITY,
         empirical_authority_requested=True,
@@ -182,7 +172,32 @@ def test_resolved_defeater_with_witness_does_not_block_pass() -> None:
         "d-reach-1",
         CheckpointRole.REACHABILITY,
         DefeaterStatus.RESOLVED,
-        resolution_witness_id="resolution-analysis-1",
+        resolution_witness_id="missing-witness",
+    )
+
+    result = validate_evidence_bound_certificate(
+        cert,
+        witnesses=_full_reachability_witnesses(),
+        defeaters=(defeater,),
+    )
+
+    assert not result.accepted
+    assert (
+        "resolved_defeater_without_usable_resolution_witness:d-reach-1"
+        in result.violations
+    )
+
+
+def test_resolved_defeater_with_registered_usable_witness_does_not_block_pass() -> None:
+    cert = canonical_trace(
+        claim_type=ClaimType.REACHABILITY,
+        empirical_authority_requested=True,
+    )
+    defeater = Defeater(
+        "d-reach-1",
+        CheckpointRole.REACHABILITY,
+        DefeaterStatus.RESOLVED,
+        resolution_witness_id="w-reach",
     )
 
     result = validate_evidence_bound_certificate(
