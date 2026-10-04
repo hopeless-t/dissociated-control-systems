@@ -5,9 +5,9 @@ on:
     branches:
       - research/cognitive-graceful-degradation-sim
     paths:
-      - "src/dissociated_control_systems/cognitive_context_failure_mode_diversity.py"
-      - "tests/test_cognitive_context_failure_mode_diversity.py"
-      - "docs/CGD-SIM-053.md"
+      - "src/dissociated_control_systems/cognitive_context_effective_diversity.py"
+      - "tests/test_cognitive_context_effective_diversity.py"
+      - "docs/CGD-SIM-054.md"
       - ".github/workflows/cognitive-frontier-fast.yml"
   workflow_dispatch:
 
@@ -26,9 +26,9 @@ jobs:
       - name: Install research package
         run: python -m pip install -e ".[dev]"
       - name: Current frontier validation
-        run: pytest -q tests/test_cognitive_context_failure_mode_diversity.py
+        run: pytest -q tests/test_cognitive_context_effective_diversity.py
       - name: Run current frontier report
         run: |
-          python -m dissociated_control_systems.cognitive_context_failure_mode_diversity > cognitive-frontier.md
+          python -m dissociated_control_systems.cognitive_context_effective_diversity > cognitive-frontier.md
           cat cognitive-frontier.md
           cat cognitive-frontier.md >> "$GITHUB_STEP_SUMMARY"
