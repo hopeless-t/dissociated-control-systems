@@ -248,3 +248,13 @@ Possible falsifiers include:
 The branch currently treats the Murofushi–Mizoguchi case as a biological entry point into a broader DCS idea:
 
 > Abundance hides structure. Bounded pressure reveals structure. Once the invariant outcome is known, redesign the path freely and prefer the cheapest valid transition sequence.
+
+## Derived branch: presbyopia / visual-control recovery
+
+The visual-control extension has converged far enough to live in a dedicated note:
+
+- [`PRESBYOPIA_CONTROL_RECOVERY_DIGITAL_TWIN_2026-10-06.md`](./PRESBYOPIA_CONTROL_RECOVERY_DIGITAL_TWIN_2026-10-06.md)
+
+The key translation is that the Murofushi–Mizoguchi principle should **not** be implemented as deliberate eye fatigue. In the visual system, the safer analog is bounded sensory-cue perturbation and progressive control-space expansion: temporarily weaken a dominant cue, observe residual/alternate control, mechanically unlock only when necessary, then retrain newly reachable freedom.
+
+That branch also formalizes an observable Digital Twin, identifiability limits, separate endpoints for true accommodation vs functional visual recovery, a Monte Carlo hypothesis stress test, and the `unlock -> retrain` prediction.
