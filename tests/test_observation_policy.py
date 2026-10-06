@@ -1,5 +1,6 @@
 from dissociated_control_systems.observation_policy import (
     ObservationCandidate,
+    available_before_deadline,
     exhaustive_best_panel,
     greedy_information_per_burden,
 )
@@ -53,3 +54,23 @@ def test_exhaustive_panel_obeys_budget_and_prefers_lower_burden_on_tie():
         return values.get(tuple(sorted(panel)), 0.0)
 
     assert exhaustive_best_panel(candidates, value_fn, 3.0) == ("A", "B")
+
+
+def test_information_arriving_after_deadline_is_not_decision_available():
+    candidates = (
+        ObservationCandidate("fast", burden=2.0, delay=1.0),
+        ObservationCandidate("slow-strong", burden=2.0, delay=8.0),
+    )
+
+    available = available_before_deadline(
+        candidates,
+        current_time=0.0,
+        decision_deadline=4.0,
+    )
+
+    assert tuple(item.name for item in available) == ("fast",)
+
+
+def test_deadline_before_current_time_has_no_available_observation():
+    candidates = (ObservationCandidate("x", burden=1.0, delay=0.0),)
+    assert available_before_deadline(candidates, 5.0, 4.0) == ()
