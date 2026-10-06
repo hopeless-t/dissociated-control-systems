@@ -68,6 +68,20 @@ def test_equal_observation_can_diverge_after_treatment_transition():
     assert fast_states[-1].total > slow_states[-1].total
 
 
+def test_future_is_conditional_on_intervention_path():
+    state = CancerState(0.7, 0.3, 0.45, 0.35, 0.8)
+    dynamics = _dynamics(growth_r=0.018, drug_kill_r=0.015)
+
+    off_path = simulate(state, dynamics, (0.0,) * 80)
+    on_path = simulate(state, dynamics, (1.0,) * 80)
+
+    # The present latent state is identical; only the declared future input
+    # path differs. A forecast that omits that path is therefore incomplete.
+    assert off_path[0] == on_path[0]
+    assert off_path[-1].total != on_path[-1].total
+    assert off_path[-1].br != on_path[-1].br
+
+
 def test_invalid_state_fails_closed():
     try:
         CancerState(-0.1, 0.0, 0.5, 0.3, 0.8)
