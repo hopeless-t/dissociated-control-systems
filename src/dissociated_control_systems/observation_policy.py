@@ -15,16 +15,37 @@ from typing import Callable, Iterable
 class ObservationCandidate:
     name: str
     burden: float
+    delay: float = 0.0
 
     def __post_init__(self) -> None:
         if not self.name:
             raise ValueError("name must be non-empty")
         if self.burden <= 0:
             raise ValueError("burden must be > 0")
+        if self.delay < 0:
+            raise ValueError("delay must be >= 0")
 
 
 def panel_burden(panel: Iterable[ObservationCandidate]) -> float:
     return sum(item.burden for item in panel)
+
+
+def available_before_deadline(
+    candidates: Iterable[ObservationCandidate],
+    current_time: float,
+    decision_deadline: float,
+) -> tuple[ObservationCandidate, ...]:
+    """Return observations whose results can arrive by the declared deadline."""
+
+    if current_time < 0:
+        raise ValueError("current_time must be >= 0")
+    if decision_deadline < current_time:
+        return ()
+    return tuple(
+        item
+        for item in candidates
+        if current_time + item.delay <= decision_deadline
+    )
 
 
 def exhaustive_best_panel(
