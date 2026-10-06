@@ -85,6 +85,7 @@ def test_below_detection_limit_is_censored_not_zero():
     )
     assert sample.value is None
     assert sample.censored_below_limit
+    assert sample.observation_kind == "below_detection_limit"
 
     try:
         ObservationRecord(
@@ -99,3 +100,53 @@ def test_below_detection_limit_is_censored_not_zero():
         pass
     else:
         raise AssertionError("censored result must not masquerade as exact zero")
+
+
+def test_no_result_requires_explicit_reason():
+    try:
+        ObservationRecord(
+            modality="ctDNA",
+            observed_at=30,
+            calibration_id="assay-v1",
+        )
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("ambiguous null observation must fail closed")
+
+
+def test_technical_failure_is_not_below_detection_limit():
+    sample = ObservationRecord(
+        modality="ctDNA",
+        observed_at=30,
+        calibration_id="assay-v1",
+        missing_reason="technical_failure",
+    )
+    assert sample.value is None
+    assert not sample.censored_below_limit
+    assert sample.observation_kind == "technical_failure"
+
+
+def test_not_collected_is_distinct_from_technical_failure():
+    sample = ObservationRecord(
+        modality="ctDNA",
+        observed_at=30,
+        calibration_id="assay-v1",
+        missing_reason="not_collected",
+    )
+    assert sample.observation_kind == "not_collected"
+
+
+def test_measured_value_cannot_also_be_missing():
+    try:
+        ObservationRecord(
+            modality="ctDNA",
+            observed_at=30,
+            calibration_id="assay-v1",
+            value=0.2,
+            missing_reason="technical_failure",
+        )
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("measured value and missing reason cannot coexist")
