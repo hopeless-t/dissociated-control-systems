@@ -2,7 +2,11 @@ from dissociated_control_systems.observation_policy import (
     ObservationCandidate,
     available_before_deadline,
     exhaustive_best_panel,
+    expected_successful_value,
     greedy_information_per_burden,
+    panel_fits_burden_ceiling,
+    parallel_completion_time,
+    sequential_completion_time,
 )
 
 
@@ -74,3 +78,40 @@ def test_information_arriving_after_deadline_is_not_decision_available():
 def test_deadline_before_current_time_has_no_available_observation():
     candidates = (ObservationCandidate("x", burden=1.0, delay=0.0),)
     assert available_before_deadline(candidates, 5.0, 4.0) == ()
+
+
+def test_parallel_panel_can_finish_when_sequential_panel_misses_deadline():
+    panel = (
+        ObservationCandidate("A", burden=1.0, delay=3.0),
+        ObservationCandidate("B", burden=1.0, delay=3.0),
+    )
+
+    assert sequential_completion_time(panel) == 6.0
+    assert parallel_completion_time(panel) == 3.0
+
+
+def test_patient_specific_burden_ceiling_is_hard_constraint():
+    panel = (
+        ObservationCandidate("A", burden=2.0),
+        ObservationCandidate("B", burden=3.0),
+    )
+
+    assert panel_fits_burden_ceiling(panel, 5.0)
+    assert not panel_fits_burden_ceiling(panel, 4.9)
+
+
+def test_failure_probability_reduces_expected_information_value():
+    reliable = ObservationCandidate("reliable", burden=1.0, success_probability=1.0)
+    fragile = ObservationCandidate("fragile", burden=1.0, success_probability=0.5)
+
+    assert expected_successful_value(reliable, 8.0) == 8.0
+    assert expected_successful_value(fragile, 8.0) == 4.0
+
+
+def test_success_probability_is_bounded():
+    try:
+        ObservationCandidate("bad", burden=1.0, success_probability=1.1)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("success probability outside [0,1] must fail closed")
