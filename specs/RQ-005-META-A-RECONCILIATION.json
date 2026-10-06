@@ -1,0 +1,244 @@
+{
+  "id": "RQ-005-META-A-RECONCILIATION",
+  "status": "OPEN_RECONCILIATION",
+  "invariants": [
+    "paper_title_scope_label_is_not_eligibility_criteria",
+    "abstract_estimate_is_not_automatically_canonical",
+    "figure_estimate_is_not_automatically_canonical",
+    "publication_is_not_trial",
+    "followup_publication_is_not_new_randomization",
+    "population_snapshot_is_not_new_randomization",
+    "field_value_match_is_not_field_semantics_match",
+    "study_label_sample_count_and_effect_estimate_must_share_one_trial_identity",
+    "aggregate_total_consistency_is_not_row_identity_consistency",
+    "revision_complete_is_not_all_observers_converged",
+    "same_effect_metric_does_not_imply_same_data_universe",
+    "pooled_survival_effect_does_not_identify_biological_mediator"
+  ],
+  "reports": {
+    "BOGNAR_PREPRINT_2023": {
+      "doi": "10.21203/rs.3.rs-3407894/v1",
+      "posted": "2023-10-11",
+      "search_through": "2021-10-18",
+      "os": {
+        "k": 12,
+        "n": 2294,
+        "hr": 1.01,
+        "ci95": [0.95, 1.07],
+        "i2_pct": 3,
+        "figure_population_count_identity": {
+          "own": 12,
+          "cross": 0,
+          "unresolved": 0
+        }
+      },
+      "role": "direct_pre_revision_snapshot"
+    },
+    "BOGNAR_2024": {
+      "doi": "10.1038/s41598-024-63431-y",
+      "pmid": "38853187",
+      "search_updated_through": "2024-02-01",
+      "search_update_context": "during_revision_process",
+      "title_scope_label": "early-stage cancer",
+      "published_eligibility_population": "adult patients with any cancer receiving cancer or palliative treatment, or reporting as cancer survivors",
+      "effect_metric_primary_survival": "HR",
+      "random_effects": true,
+      "os": {
+        "body_results": {
+          "k": 14,
+          "n": 2683,
+          "hr": 1.01,
+          "ci95": [0.95, 1.07]
+        },
+        "abstract": {
+          "hr": 0.97,
+          "ci95": [0.87, 1.08]
+        },
+        "published_figure_2": {
+          "hr": 0.97,
+          "ci95": [0.87, 1.08],
+          "prediction_interval": [0.77, 1.23]
+        },
+        "status": "INTERNAL_CONFLICT_OPEN",
+        "source_pattern": "abstract_and_figure_agree_body_results_matches_preprint_state",
+        "canonical_choice": null
+      },
+      "rfs": {
+        "k": 5,
+        "n": 900,
+        "hr": 0.99,
+        "ci95": [0.84, 1.16],
+        "status": "SOURCE_AGREEMENT_OBSERVED"
+      },
+      "published_figure_2_trial_set": {
+        "n": 14,
+        "normalized_trial_ids": [
+          "ZHANG_L_2021",
+          "BAO_2019",
+          "LU_2021",
+          "KIRKEGAARD_2023",
+          "TAKANO_2021",
+          "GOODWIN_2001",
+          "SPIEGEL_2007",
+          "EDELMAN_1999",
+          "GUO_Z_2013",
+          "VANBUTSELE_2018",
+          "KISSANE_2007",
+          "WANG_J_2019",
+          "KUCHLER_1999_2007",
+          "KISSANE_2004"
+        ],
+        "same_semantic_population_count_identity": {
+          "own": 2,
+          "cross": 11,
+          "unresolved": 1
+        },
+        "cross_semantic_exact_pair_candidate": {
+          "displayed_row": "EDELMAN_1999",
+          "displayed_pair": [29, 33],
+          "candidate_source_trial": "ANDERSEN_2008",
+          "candidate_source_semantics": "recurrence_event_count",
+          "status": "NUMERIC_COLLISION_NOT_SOURCE_PROOF"
+        },
+        "row_identity_status": "SYSTEMATIC_CONFLICT_PATTERN_PENDING_SOURCE_DATA_AUDIT"
+      }
+    },
+    "ASAKAWA_HAAS_2026": {
+      "doi": "10.1038/s44271-026-00414-x",
+      "pmid": "41673256",
+      "search_updated_through": "2025-10-17",
+      "eligibility_population": "adult patients with primary or metastatic cancer of any type and any stage",
+      "effect_metric_primary_survival": "HR",
+      "random_effects": true,
+      "os": {
+        "k": 32,
+        "n": 5704,
+        "hr": 0.80,
+        "ci95": [0.71, 0.90],
+        "i2_pct": 48,
+        "prediction_interval_hr": [0.49, 1.29]
+      },
+      "hr_provenance_counts": {
+        "available_in_primary_rct": 16,
+        "inverse_of_control_group_hr": 2,
+        "taken_from_prior_meta_analysis": 4,
+        "reconstructed_from_kaplan_meier": 10
+      },
+      "median_survival_difference_months": {
+        "k": 16,
+        "estimate": 3.9,
+        "ci95": [-0.7, 8.5],
+        "hypothesis_testing_role": "not_used"
+      },
+      "prior_meta_analysis_table": {
+        "n": 10,
+        "publication_year_range": [2004, 2019],
+        "bognar_2024_presence_in_main_text_table": false,
+        "reason_for_absence": "UNRESOLVED_DO_NOT_CALL_OMISSION_WITHOUT_ELIGIBILITY_AUDIT"
+      }
+    }
+  },
+  "bognar_revision_transition": {
+    "preprint_os_studies": 12,
+    "final_os_studies": 14,
+    "preprint_n": 2294,
+    "final_n": 2683,
+    "new_final_labels": ["LU_2021", "KIRKEGAARD_2023"],
+    "population_count_pair_intersection": 9,
+    "preprint_only_population_pairs": 3,
+    "final_only_observed_pairs": 5,
+    "pure_same_membership_permutation_status": "INSUFFICIENT_EXPLANATION",
+    "final_only_pair_sources_or_candidates": {
+      "214/114": "LU_2021_population_size",
+      "96/102": "KIRKEGAARD_2023_population_size",
+      "30/36": "CUNNINGHAM_1998_population_size_not_final_os_label",
+      "114/113": "ANDERSEN_2008_randomized_population_not_final_os_label",
+      "29/33": "ANDERSEN_2008_recurrence_event_count_numeric_match_cross_semantic_only"
+    },
+    "current_state": "REVISION_IDENTITY_REGRESSION_OBSERVED_CAUSE_UNRESOLVED"
+  },
+  "trial_set_delta_2024_2026": {
+    "shared": 11,
+    "bognar_2024_only": 3,
+    "asakawa_haas_2026_only": 21,
+    "union": 35,
+    "jaccard": 0.3142857142857143,
+    "bognar_2024_only_ids": [
+      "LU_2021",
+      "TAKANO_2021",
+      "VANBUTSELE_2018"
+    ],
+    "exclusion_reason_status": {
+      "LU_2021": "CANDIDATE_CONFLICT_WITH_SYSTEMATIC_LIFESTYLE_CORE_RULE_NOT_CONFIRMED_WITH_A8",
+      "VANBUTSELE_2018": "CANDIDATE_CONFLICT_WITH_PRIMARILY_PALLIATIVE_CARE_RULE_NOT_CONFIRMED_WITH_A8",
+      "TAKANO_2021": "UNKNOWN_PENDING_A8"
+    }
+  },
+  "figure_row_identity_red_team": {
+    "status": "OPEN_HIGH_PRIORITY_SYSTEMATIC_PATTERN",
+    "same_semantic_population_count_summary": {
+      "own": 2,
+      "cross": 11,
+      "unresolved": 1
+    },
+    "longest_unique_count_cross_binding_path": [
+      "WANG_J_2019",
+      "SPIEGEL_2007",
+      "BAO_2019",
+      "KUCHLER_1999_2007",
+      "LU_2021",
+      "VANBUTSELE_2018",
+      "KISSANE_2004",
+      "KIRKEGAARD_2023",
+      "EDELMAN_1999"
+    ],
+    "promotion_rule": "do_not_pool_or_compare_study_specific_values_until_label_population_snapshot_field_semantics_and_effect_identity_are_reconciled"
+  },
+  "current_discrepancy_hypotheses_ranked": [
+    "bognar_revision_partial_update_or_snapshot_divergence",
+    "study_row_identity_or_source_binding_conflict_in_bognar_2024",
+    "broader_master_extraction_table_column_membership_or_join_mismatch",
+    "field_semantics_collision_between_population_and_event_counts",
+    "trial_inclusion_and_search_horizon_difference",
+    "followup_publication_identity_and_effect_selection_rules",
+    "hr_extraction_or_reconstruction_difference",
+    "eligibility_and_intervention_definition_difference",
+    "pooling_and_variance_estimation_difference",
+    "treatment_era_and_case_mix_difference"
+  ],
+  "downgraded_explanations": [
+    {
+      "claim": "effect_metric_alone_explains_2024_vs_2026_difference",
+      "reason": "both primary syntheses report hazard ratios"
+    },
+    {
+      "claim": "2024_is_strictly_early_stage_whereas_2026_is_all_stage",
+      "reason": "the 2024 published eligibility text permits adult patients with any cancer, including palliative treatment or survivor populations"
+    },
+    {
+      "claim": "2024_abstract_is_simply_a_typo",
+      "reason": "published Figure 2 independently reports the same 0.97 [0.87, 1.08] pooled OS estimate as the abstract"
+    },
+    {
+      "claim": "final_figure_count_conflict_is_only_a_permutation_of_the_same_preprint_count_pairs",
+      "reason": "preprint/final unique count-pair membership differs: intersection 9, preprint-only 3, final-only 5"
+    },
+    {
+      "claim": "exact_numeric_pair_match_proves_same_source_field",
+      "reason": "29/33 matches Andersen recurrence-event counts but the final forest column is presented as patient counts; equal values do not establish equal semantics"
+    }
+  ],
+  "next_gates": [
+    "obtain_final_2024_supplementary_source_data_without_transformation",
+    "recover_master_extraction_table_row_order_and_field_names",
+    "test_whether_final_count_sequence_is_one_column_from_a_broader_table_sorted_under_another_field",
+    "resolve_2024_abstract_figure_vs_body_os_provenance_without_guessing",
+    "verify_individual_exclusion_reasons_for_2024_only_trials_from_2026_supplement_A8",
+    "map_each_included_effect_to_primary_followup_or_reconstructed_source",
+    "reproduce_2026_author_analysis_from_sha256_verified_osf_assets",
+    "reproduce_2024_analysis_from_verified_source_or_supplementary_assets",
+    "rerun_common_trial_set_under_common_hr_extraction_rule",
+    "quantify_path_dependence_of_any_sequential_delta_decomposition"
+  ],
+  "claim_ceiling": "no causal cancer-survival or psychoneuroimmune mechanism claim may be promoted from the review-level discrepancy"
+}

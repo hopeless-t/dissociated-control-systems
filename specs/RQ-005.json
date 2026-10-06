@@ -1,0 +1,205 @@
+{
+  "id": "RQ-005",
+  "title": "Survivor divergence and multi-layer cancer control dynamics",
+  "status": "OPEN_RESEARCH",
+  "clinical_authority": "NONE",
+  "hope_status": "candidate_nonprivileged",
+  "direct_hope_to_tumor_edge": false,
+  "state_layers": [
+    "tumor_biology_and_burden",
+    "treatment_exposure",
+    "immune_and_tumor_microenvironment",
+    "neuroendocrine_and_systemic_inflammation",
+    "health_behavior_and_adherence",
+    "psychological_and_agency_state"
+  ],
+  "analysis_modes": [
+    "retrospective_matched_survivor_contrast_for_discovery",
+    "prospective_time_varying_future_hazard_validation",
+    "multistate_recurrence_and_post_recurrence_transition_model"
+  ],
+  "competing_worlds": [
+    "baseline_no_extra_divergence",
+    "tumor_biology_first",
+    "treatment_first",
+    "immune_tme_first",
+    "neuroendocrine_inflammation_first",
+    "health_behavior_adherence_first",
+    "psychological_state_first",
+    "reverse_causality_tumor_response_first",
+    "mixed_latent_regime"
+  ],
+  "transition_specific_mechanism_scope": {
+    "diagnosis_to_recurrence": [
+      "residual_or_disseminated_tumor_state",
+      "classic_dormancy_and_reawakening",
+      "organ_specific_niche",
+      "immune_surveillance_and_escape",
+      "dissemination_competence",
+      "treatment_effects_on_residual_disease",
+      "temporally_measured_systemic_host_state"
+    ],
+    "recurrence_to_cancer_death": [
+      "metastatic_site_lesion_count_and_burden",
+      "oligometastatic_vs_polymetastatic_topology",
+      "treatment_sequence_and_sensitivity",
+      "radiologic_response_depth_cr_ned",
+      "metastasis_directed_local_therapy",
+      "recurrent_tumor_evolutionary_state",
+      "metastatic_immune_tme_containment",
+      "systemic_host_state_via_measured_mediators",
+      "psychological_state_via_measured_mediators",
+      "post_control_microscopic_dormancy_only_if_separately_measured"
+    ]
+  },
+  "known_answer_checks": [
+    "control_margin_sign_matches_tumor_derivative_sign",
+    "stress_recovery_and_adherence_channels_are_separable",
+    "psychological_label_has_no_structural_direct_edge",
+    "transient_group_difference_is_not_persistent_divergence",
+    "synthetic_precedence_worlds_are_distinguishable",
+    "same_overall_survival_can_hide_distinct_recurrence_paths",
+    "post_recurrence_interval_requires_recorded_recurrence",
+    "treatment_can_be_beneficial_within_risk_strata_while_naive_pooled_association_is_adverse",
+    "noninformative_observation_has_zero_expected_information_gain",
+    "perfect_binary_world_discriminator_has_one_bit_information_gain",
+    "future_observation_is_rejected_before_its_landmark",
+    "classic_pre_recurrence_dormancy_cannot_be_silently_promoted_to_post_recurrence_control",
+    "conditioning_on_post_randomization_recurrence_can_change_latent_risk_composition_and_create_apparent_post_recurrence_effect"
+  ],
+  "imported_methodology": {
+    "finite_ram_lab": [
+      "rare_event_census",
+      "block_preserving_resampling",
+      "model_complexity_ladder",
+      "block_heldout_scoring",
+      "hierarchical_and_mixture_models",
+      "failure_state_biopsy",
+      "monte_carlo_stress"
+    ],
+    "dcs": [
+      "current_state_not_complete_causal_history",
+      "observation_channel_not_latent_state",
+      "early_response_not_reachability",
+      "fixed_point_and_return_time_probes",
+      "independent_observation_channels",
+      "active_observation_value_of_information",
+      "preserve_perishable_evidence_windows",
+      "unknown_when_nonidentifiable"
+    ]
+  },
+  "observation_policy": {
+    "ranking": "expected_information_gain_per_cost",
+    "ranking_unit": "evidence_design_for_declared_transition_not_domain_name",
+    "likelihood_source_rule": "data_or_explicit_synthetic_known_answer_only",
+    "unknown_likelihood_output": "VOI_UNKNOWN",
+    "current_post_recurrence_tiers": {
+      "A_direct_state": [
+        "recurrence_topology_and_burden",
+        "response_depth_cr_ned_and_treatment_sequence"
+      ],
+      "B_mechanistic_discrimination": [
+        "paired_primary_recurrence_biology",
+        "metastatic_immune_tme",
+        "randomized_upstream_perturbation_with_contemporaneous_repeated_mediators"
+      ],
+      "C_hidden_state_candidates": [
+        "validated_post_control_minimal_residual_or_dormancy_measure",
+        "systemic_neuroendocrine_inflammation",
+        "longitudinal_psychological_agency_measured_before_endpoint"
+      ],
+      "D_hypothesis_generation": [
+        "late_survivor_narrative_without_contemporaneous_mediator_records"
+      ]
+    }
+  },
+  "temporal_evidence_gate": {
+    "rule": "observation_time_must_be_at_or_before_prediction_landmark",
+    "later_measurement_requires": "explicit_new_landmark_and_new_estimand"
+  },
+  "post_randomization_selection_gate": {
+    "rule": "baseline_randomization_is_not_assumed_preserved_after_conditioning_on_post_randomization_recurrence",
+    "primary_randomized_estimand": "original_intention_to_treat_total_effect",
+    "recurrent_subgroup_role": "selected_mechanistic_cohort_unless_selection_is_explicitly_addressed"
+  },
+  "falsification_rules": [
+    "psychological_label_without_mediator_change_has_no_modeled_tumor_effect",
+    "hope_must_not_be_privileged_over_competing_worlds",
+    "candidate_precedence_after_tumor_divergence_is_not_upstream_evidence",
+    "retrospective_survivor_contrast_must_not_be_promoted_without_prospective_validation",
+    "candidate_must_survive_stage_burden_subtype_and_treatment_adjustment",
+    "candidate_must_survive_block_heldout_validation",
+    "model_must_allow_null_or_adverse_empirical_mediator_mapping",
+    "synthetic_model_result_cannot_be_promoted_to_clinical_claim",
+    "case_report_cannot_establish_psychological_causation",
+    "recorded_treatment_category_cannot_be_interpreted_as_treatment_effect_without_selection_adjustment",
+    "mechanism_claim_for_post_recurrence_control_must_predict_the_recurrence_to_death_transition_it_claims_to_explain",
+    "future_measurement_cannot_enter_an_earlier_prediction_landmark",
+    "voi_likelihoods_cannot_be_invented_to_favor_a_preferred_world",
+    "mechanism_for_one_transition_cannot_be_laundered_into_another_transition_without_separate_evidence",
+    "domain_name_alone_cannot_determine_observation_priority",
+    "randomized_assignment_cannot_be_promoted_to_randomized_post_recurrence_effect_after_conditioning_on_recurrence_without_selection_analysis"
+  ],
+  "divergence_threshold_role": "descriptive_projection_only",
+  "primary_real_data_inference": "uncertainty_aware_multistate_or_state_space_model_coupled_to_transition_specific_future_hazard_or_response",
+  "data_priority": [
+    "METABRIC_public_matched_biological_baseline",
+    "LACRN_post_recurrence_restricted_replication",
+    "NCI_exceptional_responders_rare_state_analysis",
+    "longitudinal_psychosocial_immune_row_level_if_accessible",
+    "ovarian_HGSC_collaborative_analysis",
+    "survivor_narratives_for_variable_discovery_only"
+  ],
+  "meta_loop_findings": [
+    "positive_only_mediator_boosts_were_beneficial_by_construction_and_removed",
+    "hard_divergence_thresholds_are_noise_sensitive_and_downgraded_from_primary_inference",
+    "overall_survival_collapses_distinct_recurrence_and_post_recurrence_control_paths",
+    "treatment_confounding_by_indication_can_reverse_naive_association_sign",
+    "future_observation_can_create_survivor_leakage_if_landmark_is_not_explicit",
+    "value_of_information_requires_evidence_grounded_likelihoods",
+    "classic_dormancy_was_overgeneralized_and_is_now_scoped_primarily_to_recurrence_timing",
+    "psychological_domain_was_over_demoted_and_is_now_ranked_by_evidence_design_not_domain_label",
+    "post_recurrence_randomized_psychosocial_survival_evidence_is_mixed_and_requires_explicit_competing_models",
+    "conditioning_on_recurrence_can_break_baseline_randomization_and_create_a_selected_subgroup_effect_without_direct_post_recurrence_effect"
+  ],
+  "metabric_pilot": {
+    "status": "REAL_DATA_METHOD_PILOT_NONCANONICAL",
+    "source_rows": 1897,
+    "canonical_mb_rows": 1985,
+    "mts_rows_separate_block": 524,
+    "unreconciled_mb_delta": 88,
+    "lts": 906,
+    "sts": 324,
+    "tumor_basic_block_heldout_auc": 0.7802203417545581,
+    "combined_block_heldout_auc": 0.7820701496198185,
+    "unexpected_lts_p_lt_0_25": 15,
+    "unexpected_sts_p_gt_0_75": 89
+  },
+  "survivor_trajectory_classes": [
+    "no_recorded_recurrence",
+    "late_recurrence_gt_60_months",
+    "early_recurrence_le_60_months_with_prolonged_survival",
+    "early_recurrence_with_rapid_failure",
+    "unresolved"
+  ],
+  "transition_estimands": [
+    "time_to_first_recurrence",
+    "post_recurrence_control_or_cancer_death"
+  ],
+  "new_invariants": [
+    "data_snapshot_identity_required_for_model_reproducibility",
+    "long_term_survival_endpoint_is_not_one_survivor_trajectory",
+    "same_overall_survival_is_not_same_transition_path",
+    "long_term_survival_is_not_equivalent_to_low_recurrence_hazard",
+    "post_recurrence_interval_only_defined_when_recurrence_event_is_recorded",
+    "residual_specimen_should_be_frozen_before_model_complexity_increase",
+    "treatment_category_association_is_not_treatment_effect",
+    "observed_action_selected_from_state_is_not_an_exogenous_perturbation",
+    "observed_later_is_not_known_earlier",
+    "voi_calculator_is_not_an_evidence_generator",
+    "mechanism_for_recurrence_timing_is_not_mechanism_for_post_recurrence_control",
+    "domain_priority_is_not_evidence_design_priority",
+    "baseline_randomization_is_not_randomization_within_a_post_randomization_selected_recurrence_subgroup",
+    "post_randomization_selection_is_not_a_neutral_filter"
+  ]
+}

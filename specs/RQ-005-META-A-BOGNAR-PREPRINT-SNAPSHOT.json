@@ -1,0 +1,50 @@
+{
+  "id": "RQ-005-META-A-BOGNAR-PREPRINT-SNAPSHOT",
+  "status": "FROZEN_VISUAL_AND_TEXT_OBSERVATION",
+  "source": {
+    "paper": "Bognar et al. Research Square preprint v1",
+    "doi": "10.21203/rs.3.rs-3407894/v1",
+    "posted": "2023-10-11",
+    "pdf_page": 15,
+    "figure": "Figure 2 overall survival panel",
+    "observation_method": "publication PDF page screenshot plus manuscript text"
+  },
+  "search_horizon": "2021-10-18",
+  "overall_survival": {
+    "study_count": 12,
+    "intervention_total": 1224,
+    "control_total": 1070,
+    "total_n": 2294,
+    "pooled_hr": 1.01,
+    "ci95": [0.95, 1.07],
+    "i2_percent": 3
+  },
+  "figure_count_rows": [
+    {"row":1,"trial_id":"ZHANG_L_2021","intervention_n":80,"control_n":80},
+    {"row":2,"trial_id":"BAO_2019","intervention_n":110,"control_n":110},
+    {"row":3,"trial_id":"TAKANO_2021","intervention_n":64,"control_n":65},
+    {"row":4,"trial_id":"GOODWIN_2001","intervention_n":158,"control_n":77},
+    {"row":5,"trial_id":"SPIEGEL_2007","intervention_n":64,"control_n":61},
+    {"row":6,"trial_id":"EDELMAN_1999","intervention_n":62,"control_n":62,"population_snapshot":"initial_randomized_allocation"},
+    {"row":7,"trial_id":"KISSANE_2004","intervention_n":154,"control_n":149},
+    {"row":8,"trial_id":"GUO_Z_2013","intervention_n":89,"control_n":89},
+    {"row":9,"trial_id":"KISSANE_2007","intervention_n":147,"control_n":80},
+    {"row":10,"trial_id":"VANBUTSELE_2018","intervention_n":92,"control_n":94},
+    {"row":11,"trial_id":"WANG_J_2019","intervention_n":68,"control_n":68},
+    {"row":12,"trial_id":"KUCHLER_1999_2007","intervention_n":136,"control_n":135}
+  ],
+  "identity_observation": {
+    "same_semantic_population_count_own": 12,
+    "same_semantic_population_count_cross": 0,
+    "same_semantic_population_count_unresolved": 0
+  },
+  "revision_context": {
+    "final_search_updated": "2024-02-01",
+    "final_os_study_count": 14,
+    "final_total_n": 2683,
+    "final_abstract_and_figure_hr": 0.97,
+    "final_results_text_hr": 1.01,
+    "new_final_os_labels_not_in_preprint": ["LU_2021", "KIRKEGAARD_2023"]
+  },
+  "claim_ceiling": "visual/textual revision snapshot only; does not identify the mechanism of the final-publication binding conflict"
+}

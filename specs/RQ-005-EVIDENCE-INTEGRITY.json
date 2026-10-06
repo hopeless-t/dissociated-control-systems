@@ -1,0 +1,88 @@
+{
+  "id": "RQ-005-EVIDENCE-INTEGRITY",
+  "status": "ACTIVE_RESEARCH_CONTRACT",
+  "scope": "RQ-005 meta-analysis, external cohort, and evidence-join provenance",
+  "clinical_authority": "NONE",
+  "invariants": [
+    "publication_is_not_trial",
+    "followup_publication_is_not_new_randomization",
+    "population_snapshot_is_not_new_randomization",
+    "equal_vector_length_is_not_evidence_identity",
+    "field_value_match_is_not_field_semantics_match",
+    "correct_effect_pool_is_not_correct_metadata_binding",
+    "aggregate_total_consistency_is_not_row_identity_consistency",
+    "pooled_arithmetic_consistency_is_not_row_identity_consistency",
+    "correct_rendering_logic_is_not_correct_input_binding",
+    "plot_sort_preserves_object_identity_does_not_imply_object_identity_was_correct_before_plotting",
+    "revision_complete_is_not_all_observers_converged",
+    "data_snapshot_identity_is_required_for_model_reproducibility"
+  ],
+  "required_evidence_key": [
+    "trial_id",
+    "publication_id",
+    "population_snapshot_id",
+    "endpoint",
+    "prediction_or_analysis_landmark",
+    "effect_metric",
+    "effect_source",
+    "count_semantics",
+    "source_artifact_identity"
+  ],
+  "parallel_vector_gate": {
+    "minimum": [
+      "equal_length",
+      "same_trial_id_order",
+      "same_population_snapshot_scope",
+      "declared_field_semantics"
+    ],
+    "forbidden_shortcut": "accept_equal_length_parallel_vectors_as_semantically_aligned_without_keys"
+  },
+  "aggregate_gate": {
+    "rule": "reported_aggregate_must_be_traceable_to_identity-preserving_row_records",
+    "not_sufficient": [
+      "displayed_column_sums_to_reported_total",
+      "pooled_effect_reconstructs_from_displayed_effects_and_weights"
+    ]
+  },
+  "revision_gate": {
+    "rule": "when study membership or extraction changes, all observer surfaces must be independently revalidated",
+    "observer_surfaces": [
+      "abstract",
+      "results_text",
+      "figure",
+      "supplement",
+      "analysis_object",
+      "source_extraction_table"
+    ]
+  },
+  "software_gate": {
+    "renderer_audit": "verify whether plotting/sorting preserves aligned object identity",
+    "constructor_audit": "verify whether statistical constructor checks only shape or also semantic row identity",
+    "current_meta_5_5_0_observation": {
+      "forest_meta": "one common order index is applied to built-in labels/effects/counts/weights",
+      "metagen": "TE_seTE_studlab_n_e_n_c_are_parallel_inputs_with_length_checks_but_no_observed_trial_key_identity_gate",
+      "interpretation": "standard forest sorting is downgraded; upstream input binding remains a plausible failure class"
+    }
+  },
+  "known_answer_implementations": [
+    "src/dissociated_control_systems/trial_ledger.py",
+    "src/dissociated_control_systems/artifact_verification.py",
+    "src/dissociated_control_systems/evidence_binding.py",
+    "src/dissociated_control_systems/binding_graph.py",
+    "src/dissociated_control_systems/parallel_vector_identity.py",
+    "src/dissociated_control_systems/aggregate_identity.py",
+    "src/dissociated_control_systems/meta_input_failure_fixture.py"
+  ],
+  "bognar_2024_current_example": {
+    "preprint_population_binding": "12_of_12_own",
+    "final_population_binding": "2_own_11_cross_1_unresolved_same_semantics",
+    "final_unresolved_numeric_collision": "29_33_matches_andersen_recurrence_event_counts_cross_semantically",
+    "preprint_reported_n": 2294,
+    "preprint_own_count_total": 2294,
+    "final_reported_n": 2683,
+    "final_displayed_count_total": 2683,
+    "current_final_label_population_total_using_randomized_edelman_snapshot": 2820,
+    "status": "PROVENANCE_CONFLICT_CANDIDATE_CAUSE_UNRESOLVED"
+  },
+  "claim_ceiling": "evidence integrity diagnostics do not establish biological mechanisms or clinical effects"
+}
