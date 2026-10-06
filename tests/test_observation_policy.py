@@ -6,6 +6,7 @@ from dissociated_control_systems.observation_policy import (
     greedy_information_per_burden,
     panel_fits_burden_ceiling,
     parallel_completion_time,
+    robust_best_panel,
     sequential_completion_time,
 )
 
@@ -115,3 +116,30 @@ def test_success_probability_is_bounded():
         pass
     else:
         raise AssertionError("success probability outside [0,1] must fail closed")
+
+
+def test_robust_panel_can_differ_from_nominal_optimum():
+    candidates = (
+        ObservationCandidate("fragile", burden=1.0),
+        ObservationCandidate("robust", burden=1.0),
+    )
+
+    def nominal(panel):
+        return {("fragile",): 10.0, ("robust",): 7.0}.get(tuple(sorted(panel)), 0.0)
+
+    def shifted(panel):
+        return {("fragile",): -2.0, ("robust",): 7.0}.get(tuple(sorted(panel)), 0.0)
+
+    assert exhaustive_best_panel(candidates, nominal, 1.0) == ("fragile",)
+    assert robust_best_panel(candidates, (nominal, shifted), 1.0) == ("robust",)
+
+
+def test_robust_panel_requires_declared_alternative_worlds():
+    candidates = (ObservationCandidate("A", burden=1.0),)
+
+    try:
+        robust_best_panel(candidates, (), 1.0)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("robust optimization without declared worlds must fail closed")
