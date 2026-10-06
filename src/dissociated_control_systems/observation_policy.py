@@ -89,6 +89,19 @@ def expected_successful_value(
     return float(information_value) * candidate.success_probability
 
 
+def _candidate_panels(
+    candidates: tuple[ObservationCandidate, ...],
+    burden_budget: float,
+):
+    if burden_budget <= 0:
+        raise ValueError("burden_budget must be > 0")
+    for size in range(1, len(candidates) + 1):
+        for group in combinations(candidates, size):
+            burden = panel_burden(group)
+            if burden <= burden_budget:
+                yield group, burden
+
+
 def exhaustive_best_panel(
     candidates: tuple[ObservationCandidate, ...],
     value_fn: Callable[[tuple[str, ...]], float],
@@ -99,28 +112,55 @@ def exhaustive_best_panel(
     Ties prefer lower burden and then lexical order for deterministic tests.
     """
 
-    if burden_budget <= 0:
-        raise ValueError("burden_budget must be > 0")
-
     best: tuple[str, ...] = ()
     best_value = float("-inf")
     best_burden = float("inf")
 
-    for size in range(1, len(candidates) + 1):
-        for group in combinations(candidates, size):
-            burden = panel_burden(group)
-            if burden > burden_budget:
-                continue
-            names = tuple(item.name for item in group)
-            value = float(value_fn(names))
-            if (
-                value > best_value
-                or (value == best_value and burden < best_burden)
-                or (value == best_value and burden == best_burden and names < best)
-            ):
-                best = names
-                best_value = value
-                best_burden = burden
+    for group, burden in _candidate_panels(candidates, burden_budget):
+        names = tuple(item.name for item in group)
+        value = float(value_fn(names))
+        if (
+            value > best_value
+            or (value == best_value and burden < best_burden)
+            or (value == best_value and burden == best_burden and names < best)
+        ):
+            best = names
+            best_value = value
+            best_burden = burden
+
+    return best
+
+
+def robust_best_panel(
+    candidates: tuple[ObservationCandidate, ...],
+    world_value_fns: tuple[Callable[[tuple[str, ...]], float], ...],
+    burden_budget: float,
+) -> tuple[str, ...]:
+    """Choose a panel maximizing its worst-case value across declared worlds.
+
+    This is a small exact minimax-style research primitive. It only protects
+    against the alternative worlds supplied by the caller; omitted worlds are
+    not magically covered.
+    """
+
+    if not world_value_fns:
+        raise ValueError("at least one world_value_fn is required")
+
+    best: tuple[str, ...] = ()
+    best_worst = float("-inf")
+    best_burden = float("inf")
+
+    for group, burden in _candidate_panels(candidates, burden_budget):
+        names = tuple(item.name for item in group)
+        worst = min(float(value_fn(names)) for value_fn in world_value_fns)
+        if (
+            worst > best_worst
+            or (worst == best_worst and burden < best_burden)
+            or (worst == best_worst and burden == best_burden and names < best)
+        ):
+            best = names
+            best_worst = worst
+            best_burden = burden
 
     return best
 
