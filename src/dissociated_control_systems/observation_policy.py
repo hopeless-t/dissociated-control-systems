@@ -89,6 +89,30 @@ def expected_successful_value(
     return float(information_value) * candidate.success_probability
 
 
+def decision_adjusted_loss(
+    prediction_loss: float,
+    burden: float,
+    delay: float,
+    *,
+    burden_weight: float = 0.0,
+    delay_weight: float = 0.0,
+) -> float:
+    """Combine declared predictive loss with burden and waiting penalties.
+
+    This is a generic research accounting primitive, not a clinical utility
+    function. The weights are assumptions that must be exposed and stress-tested.
+    """
+
+    values = (prediction_loss, burden, delay, burden_weight, delay_weight)
+    if any(float(value) < 0.0 for value in values):
+        raise ValueError("loss, burden, delay, and weights must be >= 0")
+    return (
+        float(prediction_loss)
+        + float(burden_weight) * float(burden)
+        + float(delay_weight) * float(delay)
+    )
+
+
 def worst_case_confidence(world_confidences: Iterable[float]) -> float:
     """Return the lowest confidence across explicitly declared plausible worlds.
 
