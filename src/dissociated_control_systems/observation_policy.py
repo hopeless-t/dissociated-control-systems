@@ -89,6 +89,21 @@ def expected_successful_value(
     return float(information_value) * candidate.success_probability
 
 
+def worst_case_confidence(world_confidences: Iterable[float]) -> float:
+    """Return the lowest confidence across explicitly declared plausible worlds.
+
+    A high average confidence must not erase one unresolved plausible world.
+    The caller is responsible for deciding which worlds remain plausible.
+    """
+
+    values = tuple(float(value) for value in world_confidences)
+    if not values:
+        raise ValueError("at least one world confidence is required")
+    if any(not 0.0 <= value <= 1.0 for value in values):
+        raise ValueError("world confidence must be in [0, 1]")
+    return min(values)
+
+
 def _candidate_panels(
     candidates: tuple[ObservationCandidate, ...],
     burden_budget: float,
@@ -160,6 +175,74 @@ def robust_best_panel(
         ):
             best = names
             best_worst = worst
+            best_burden = burden
+
+    return best
+
+
+def _weighted_lower_tail(
+    values: tuple[float, ...],
+    weights: tuple[float, ...],
+    alpha: float,
+) -> float:
+    """Return weighted mean of the lowest-alpha mass of utility values."""
+
+    if len(values) != len(weights) or not values:
+        raise ValueError("values and weights must be non-empty and equal length")
+    if not 0.0 < alpha <= 1.0:
+        raise ValueError("alpha must be in (0, 1]")
+    if any(weight < 0.0 for weight in weights):
+        raise ValueError("weights must be >= 0")
+    total_weight = sum(weights)
+    if total_weight <= 0.0:
+        raise ValueError("weights must have positive total mass")
+
+    normalized = tuple(weight / total_weight for weight in weights)
+    target = alpha
+    used = 0.0
+    total = 0.0
+    for value, weight in sorted(zip(values, normalized), key=lambda pair: pair[0]):
+        take = min(weight, target - used)
+        if take > 0.0:
+            total += value * take
+            used += take
+        if used >= target:
+            break
+    return total / used
+
+
+def cvar_best_panel(
+    candidates: tuple[ObservationCandidate, ...],
+    world_value_fns: tuple[Callable[[tuple[str, ...]], float], ...],
+    world_weights: tuple[float, ...],
+    alpha: float,
+    burden_budget: float,
+) -> tuple[str, ...]:
+    """Maximize lower-tail expected value across declared model worlds.
+
+    Higher values are assumed better. `alpha=1` recovers a weighted average;
+    smaller alpha increasingly emphasizes poorly performing declared worlds.
+    Like `robust_best_panel`, this protects only against supplied worlds.
+    """
+
+    if len(world_value_fns) != len(world_weights) or not world_value_fns:
+        raise ValueError("world functions and weights must be non-empty and aligned")
+
+    best: tuple[str, ...] = ()
+    best_tail = float("-inf")
+    best_burden = float("inf")
+
+    for group, burden in _candidate_panels(candidates, burden_budget):
+        names = tuple(item.name for item in group)
+        values = tuple(float(value_fn(names)) for value_fn in world_value_fns)
+        tail = _weighted_lower_tail(values, world_weights, alpha)
+        if (
+            tail > best_tail
+            or (tail == best_tail and burden < best_burden)
+            or (tail == best_tail and burden == best_burden and names < best)
+        ):
+            best = names
+            best_tail = tail
             best_burden = burden
 
     return best
