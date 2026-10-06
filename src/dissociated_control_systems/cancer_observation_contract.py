@@ -22,6 +22,17 @@ def _nonnegative_int(value: int, name: str) -> int:
     return value
 
 
+_MISSING_REASONS = frozenset(
+    {
+        "technical_failure",
+        "not_collected",
+        "insufficient_material",
+        "assay_unavailable",
+        "other",
+    }
+)
+
+
 @dataclass(frozen=True)
 class ObservationRecord:
     modality: str
@@ -30,6 +41,7 @@ class ObservationRecord:
     value: float | None = None
     lower_detection_limit: float | None = None
     censored_below_limit: bool = False
+    missing_reason: str | None = None
 
     def __post_init__(self) -> None:
         _nonempty(self.modality, "modality")
@@ -46,6 +58,23 @@ class ObservationRecord:
             raise ValueError("censored observation requires lower_detection_limit")
         if self.censored_below_limit and self.value is not None:
             raise ValueError("censored observation must not masquerade as an exact value")
+        if self.censored_below_limit and self.missing_reason is not None:
+            raise ValueError("below-detection censoring is not a missing-result reason")
+        if self.value is not None and self.missing_reason is not None:
+            raise ValueError("measured observation cannot also declare a missing reason")
+        if self.missing_reason is not None and self.missing_reason not in _MISSING_REASONS:
+            raise ValueError("unsupported missing_reason")
+        if self.value is None and not self.censored_below_limit and self.missing_reason is None:
+            raise ValueError("non-censored no-result observation requires missing_reason")
+
+    @property
+    def observation_kind(self) -> str:
+        if self.censored_below_limit:
+            return "below_detection_limit"
+        if self.value is not None:
+            return "measured"
+        assert self.missing_reason is not None
+        return self.missing_reason
 
 
 @dataclass(frozen=True)
