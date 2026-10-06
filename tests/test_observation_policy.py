@@ -1,6 +1,7 @@
 from dissociated_control_systems.observation_policy import (
     ObservationCandidate,
     available_before_deadline,
+    cvar_best_panel,
     exhaustive_best_panel,
     expected_successful_value,
     greedy_information_per_burden,
@@ -8,6 +9,7 @@ from dissociated_control_systems.observation_policy import (
     parallel_completion_time,
     robust_best_panel,
     sequential_completion_time,
+    worst_case_confidence,
 )
 
 
@@ -143,3 +145,41 @@ def test_robust_panel_requires_declared_alternative_worlds():
         pass
     else:
         raise AssertionError("robust optimization without declared worlds must fail closed")
+
+
+def test_tail_risk_can_reject_high_mean_fragile_panel():
+    candidates = (
+        ObservationCandidate("fragile", burden=1.0),
+        ObservationCandidate("robust", burden=1.0),
+    )
+
+    def common(panel):
+        return {("fragile",): 10.0, ("robust",): 6.0}.get(tuple(sorted(panel)), 0.0)
+
+    def rare_bad(panel):
+        return {("fragile",): -5.0, ("robust",): 6.0}.get(tuple(sorted(panel)), 0.0)
+
+    def rare_good(panel):
+        return {("fragile",): 9.0, ("robust",): 6.0}.get(tuple(sorted(panel)), 0.0)
+
+    assert exhaustive_best_panel(candidates, common, 1.0) == ("fragile",)
+    assert cvar_best_panel(
+        candidates,
+        (common, rare_bad, rare_good),
+        (0.70, 0.15, 0.15),
+        alpha=0.30,
+        burden_budget=1.0,
+    ) == ("robust",)
+
+
+def test_one_unresolved_world_blocks_robust_high_confidence():
+    assert worst_case_confidence((0.97, 0.95, 0.61)) == 0.61
+
+
+def test_worst_case_confidence_requires_declared_worlds():
+    try:
+        worst_case_confidence(())
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("robust confidence without plausible worlds must fail closed")
