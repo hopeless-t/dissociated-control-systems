@@ -2,6 +2,7 @@ from dissociated_control_systems.observation_policy import (
     ObservationCandidate,
     available_before_deadline,
     cvar_best_panel,
+    decision_adjusted_loss,
     exhaustive_best_panel,
     expected_successful_value,
     greedy_information_per_burden,
@@ -183,3 +184,44 @@ def test_worst_case_confidence_requires_declared_worlds():
         pass
     else:
         raise AssertionError("robust confidence without plausible worlds must fail closed")
+
+
+def test_waiting_cost_can_flip_preferred_observation():
+    slow_strong_no_wait_cost = decision_adjusted_loss(
+        prediction_loss=0.10,
+        burden=1.0,
+        delay=5.0,
+        burden_weight=0.0,
+        delay_weight=0.0,
+    )
+    fast_weak_no_wait_cost = decision_adjusted_loss(
+        prediction_loss=0.20,
+        burden=1.0,
+        delay=1.0,
+        burden_weight=0.0,
+        delay_weight=0.0,
+    )
+    assert slow_strong_no_wait_cost < fast_weak_no_wait_cost
+
+    slow_strong_with_wait_cost = decision_adjusted_loss(
+        prediction_loss=0.10,
+        burden=1.0,
+        delay=5.0,
+        delay_weight=0.03,
+    )
+    fast_weak_with_wait_cost = decision_adjusted_loss(
+        prediction_loss=0.20,
+        burden=1.0,
+        delay=1.0,
+        delay_weight=0.03,
+    )
+    assert fast_weak_with_wait_cost < slow_strong_with_wait_cost
+
+
+def test_decision_adjusted_loss_rejects_negative_costs():
+    try:
+        decision_adjusted_loss(0.1, burden=1.0, delay=1.0, delay_weight=-0.1)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("negative waiting-cost assumptions must fail closed")
