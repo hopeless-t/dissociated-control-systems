@@ -1,0 +1,60 @@
+name: hf01-public-data
+
+# Live GEO validation is intentionally manual.
+#
+# PR path filters are cumulative across the pull request, so once a public-data
+# file is touched, every later synchronize event can re-download immutable GEO
+# payloads. That created avoidable NCBI rate-limit failures unrelated to the
+# model. Ordinary CI tests the parsers and frozen known-answer contracts without
+# network access; this workflow is for explicit source revalidation only.
+on:
+  workflow_dispatch:
+
+jobs:
+  gse36169:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run pre-registered paired analysis
+        run: python scripts/analyze_gse36169.py
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: hf01-gse36169-result
+          path: artifacts/hf01/gse36169-result.json
+
+  gse93766:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run frozen-axis DP-cell transfer test
+        run: python scripts/analyze_gse93766.py
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: hf01-gse93766-result
+          path: artifacts/hf01/gse93766-bk0-result.json
+
+  gse178510:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run frozen minoxidil actuator-identification test
+        run: python scripts/analyze_gse178510.py
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: hf01-gse178510-result
+          path: artifacts/hf01/gse178510-minox-result.json

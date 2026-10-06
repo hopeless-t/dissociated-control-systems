@@ -1,0 +1,36 @@
+{
+  "id": "HF-SIM-010",
+  "title": "Claim-conditioned mandatory checkpoint roles",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "claim_types": {
+    "DESCRIPTIVE": [
+      "PROVENANCE",
+      "UNCERTAINTY"
+    ],
+    "STATE_INFERENCE": [
+      "PROVENANCE",
+      "STATE_RESPONSE",
+      "UNCERTAINTY"
+    ],
+    "RESPONSE_INFERENCE": [
+      "PROVENANCE",
+      "STATE_RESPONSE",
+      "UNCERTAINTY"
+    ],
+    "REACHABILITY": [
+      "PROVENANCE",
+      "STATE_RESPONSE",
+      "UNCERTAINTY",
+      "REACHABILITY"
+    ]
+  },
+  "theorem_contract": [
+    "A checkpoint role is mandatory only relative to an endpoint claim class.",
+    "Requiring irrelevant roles increases friction without increasing correctness.",
+    "A stronger claim activates a superset of barriers.",
+    "Reachability claims retain the full four-role protocol."
+  ],
+  "invariant": "Absolute checkpoints are claim-relative: retain every barrier required to justify the requested endpoint, and no compulsory barrier that cannot affect that endpoint's correctness.",
+  "boundary": "The mapping from claim class to role set is an HF01 design contract and may evolve if new failure classes appear."
+}

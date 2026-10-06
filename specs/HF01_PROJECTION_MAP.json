@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "research_lane": "HF01",
+  "purpose": "Explicitly separate scientific evidence bridges from human-recognition bridges.",
+  "paths": {
+    "regenerative_state_explanation": {
+      "target_claim": "R_state is a cross-sectional regenerative-state candidate, not a recoverability meter",
+      "stages": [
+        {
+          "id": "R0",
+          "label": "formal latent candidate",
+          "value": "R_state",
+          "representation": "model"
+        },
+        {
+          "id": "R1",
+          "label": "biological interpretation",
+          "value": "regeneration-supportive follicle state",
+          "representation": "concept"
+        },
+        {
+          "id": "R2",
+          "label": "mechanistic family",
+          "value": "WNT/regeneration-associated biology",
+          "representation": "mechanism_family"
+        },
+        {
+          "id": "R3",
+          "label": "measurement family",
+          "value": "declared transcript projections",
+          "representation": "probe"
+        },
+        {
+          "id": "R4",
+          "label": "observed evidence",
+          "value": "GSE36169 + GSE93766 directional transfer",
+          "representation": "public_data"
+        },
+        {
+          "id": "R5",
+          "label": "counterexample boundary",
+          "value": "GSE178510 static axis failed as monotonic short-term actuator-response coordinate",
+          "representation": "falsification"
+        },
+        {
+          "id": "R6",
+          "label": "calibrated claim",
+          "value": "state-separation candidate; response/recoverability remains open",
+          "representation": "human_claim"
+        },
+        {
+          "id": "R7",
+          "label": "next discriminating evidence",
+          "value": "longitudinal early-response probe linked to later output",
+          "representation": "next_probe"
+        }
+      ],
+      "scientific_gap": {
+        "current": "MODERATE",
+        "reason": "cross-sectional transfer exists but latent state and recoverability are not longitudinally identified"
+      },
+      "cognitive_gap": {
+        "current": "HIGH_IF_DIRECT",
+        "repair": "show R2-R6 progressively rather than jumping R0->R6"
+      }
+    },
+    "normal_model_to_hair_recovery": {
+      "target_claim": "Normal-model presentation is a candidate controller aid, not a biological restore image",
+      "stages": [
+        {
+          "id": "N0",
+          "label": "reference presentation",
+          "value": "normal/degenerate/current model",
+          "representation": "human_interface"
+        },
+        {
+          "id": "N1",
+          "label": "comprehension",
+          "value": "correct internal representation and claim boundaries",
+          "representation": "cognitive_state"
+        },
+        {
+          "id": "N2",
+          "label": "controller response",
+          "value": "behavior/learned regulation",
+          "representation": "control"
+        },
+        {
+          "id": "N3",
+          "label": "fast physiology",
+          "value": "pre-specified autonomic/behavioral state",
+          "representation": "physiology"
+        },
+        {
+          "id": "N4",
+          "label": "follicle state",
+          "value": "R/F*/P/N candidate change",
+          "representation": "biological_state"
+        },
+        {
+          "id": "N5",
+          "label": "delayed output",
+          "value": "hair trajectory",
+          "representation": "phenotype"
+        }
+      ],
+      "scientific_gap": {
+        "current": "HIGH",
+        "missing_edges": [
+          "N0->N1 personalized HF01 comprehension effect",
+          "N1/N2->N3 contingent physiological effect in target context",
+          "N3->N4 follicle propagation",
+          "N4->N5 validated longitudinal mediation"
+        ]
+      },
+      "cognitive_gap": {
+        "current": "LOW_TO_MODERATE",
+        "warning": "The causal story is easy to narrate, so explanatory fluency can exceed evidence authority."
+      },
+      "endpoint_claim_ceiling": "UNKNOWN"
+    }
+  },
+  "rendering_policy": {
+    "default": "progressive disclosure",
+    "expand_when": [
+      "reader mispredicts next transformation",
+      "claim boundary is lost",
+      "state is confused with response",
+      "confidence is high while reconstruction is wrong"
+    ],
+    "collapse_when": [
+      "reader predicts transformation correctly",
+      "reader preserves uncertainty and claim ceiling",
+      "edge is familiar and low-risk"
+    ],
+    "never": "Use added explanatory smoothness to upgrade an ASSUMED/UNKNOWN/FALSIFIED scientific edge."
+  }
+}

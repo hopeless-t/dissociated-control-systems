@@ -1,0 +1,28 @@
+{
+  "id": "HF-SIM-013",
+  "title": "Evidence-bound proof-carrying projection",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "problem": "A syntactically complete checkpoint trace can still be semantically empty or supported by one common faulty source.",
+  "rules": [
+    "Every required PASS role must have at least one verified evidence witness.",
+    "An open defeater targeting a required role downgrades terminal PASS to UNKNOWN.",
+    "For empirical authority, an open defeater blocks acceptance.",
+    "Residual doubts are recorded explicitly rather than silently erased.",
+    "Evidence-source roots are tracked so common-mode dependency can be measured."
+  ],
+  "common_mode_metric": "root blast radius = number of required PASS roles that lose all verified witness support if one declared source root fails",
+  "known_answers": {
+    "four PASS roles with no witnesses": "REJECT",
+    "four PASS roles with one verified witness each": "ACCEPT",
+    "open reachability defeater": "UNKNOWN / empirical rejection",
+    "single shared root supporting all four roles": "blast radius 4"
+  },
+  "invariants": [
+    "Trace Completeness != Evidence Validity",
+    "PASS without witness is not authority",
+    "Common evidence roots create common-mode epistemic fragility",
+    "Defeaters belong in the official proof object, not outside the argument"
+  ],
+  "boundary": "Witness verification and root declarations are still model inputs; this contract exposes dependence and unresolved challenge but does not prove a witness is scientifically true."
+}

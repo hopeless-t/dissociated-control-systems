@@ -1,0 +1,20 @@
+{
+  "id": "HF-SIM-024",
+  "title": "Authority-kernel mutation sentinels",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "failure_injections": [
+    "aggregate irrelevant extra-role UNKNOWN into a weaker claim",
+    "allow duplicate required-role records",
+    "treat authentic but claim-irrelevant evidence as usable witness support",
+    "ignore an OPEN defeater",
+    "accept circular claim-to-claim support as grounded"
+  ],
+  "acceptance": "Every declared mutant class must be killed by at least one deterministic sentinel test on the normative authority path.",
+  "invariants": [
+    "Passing Tests != Tested Invariants unless plausible mutants are explicitly challenged",
+    "Regression tests should encode previously observed or high-likelihood authority failures",
+    "Mutation sentinels belong outside the authority kernel; they test the kernel rather than participate in claim acceptance"
+  ],
+  "boundary": "This is a hand-selected mutation corpus, not exhaustive mutation testing. Surviving unknown mutants remain possible."
+}

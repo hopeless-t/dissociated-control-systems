@@ -1,0 +1,32 @@
+{
+  "id": "HF-SIM-028",
+  "title": "P-F* causal direction is not identified by cross-sectional covariance",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "setup": {
+    "P": "progenitor-state candidate",
+    "F_star": "structural/fibrogenic-remodeling candidate",
+    "observed_cross_sectional_pattern": "P-associated regions and F*/EMT-associated changes co-occur in human AGA tissue"
+  },
+  "known_answer": {
+    "target_moments": {
+      "Var(P)": 1.0,
+      "Var(F*)": 1.0,
+      "Cov(P,F*)": 0.6
+    },
+    "model_1": "F* -> P with coefficient 0.6 and residual variance 0.64",
+    "model_2": "P -> F* with coefficient 0.6 and residual variance 0.64",
+    "observational_result": "identical covariance matrix",
+    "do(F*=1)_expected_P": {
+      "F*_to_P_model": 0.6,
+      "P_to_F*_model": 0.0
+    }
+  },
+  "invariants": [
+    "Cross-Sectional Co-occurrence != Causal Direction",
+    "Observational Equivalence Can Hide Intervention Divergence",
+    "P-F* Direction Requires Perturbation, Temporal Ordering, or Stronger Causal Assumptions"
+  ],
+  "HF01_consequence": "GSE282856 strengthens the existence of a spatial P/F* association but does not authorize the claim that fibrosis/EMT causes progenitor loss. The next high-value experiment should perturb the candidate structural context and measure progenitor function plus later follicle output, or perturb progenitor state and test structural response.",
+  "boundary": "The linear Gaussian SCM is a mathematical counterexample demonstrating non-identifiability. It is not a quantitative model of AGA biology."
+}

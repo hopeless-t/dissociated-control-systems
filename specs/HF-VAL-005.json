@@ -1,0 +1,47 @@
+{
+  "id": "HF-VAL-005",
+  "title": "Minimum proof skeleton suppresses unsupported bridge completion",
+  "status": "PRE_REGISTERED_FUTURE_VALIDATION",
+  "biological_authority": "NONE",
+  "target": "human reconstruction of HF01 evidence boundaries",
+  "core_hypothesis": "A small set of claim-conditioned proof barriers can reduce unsupported mental bridge completion while imposing less cognitive cost than a full explanatory ladder.",
+  "arms": {
+    "endpoint_only": "headline claim plus endpoint evidence, without mandatory proof-barrier display",
+    "full_ladder": "fixed detailed projection ladder exposing mechanism, probes, uncertainty, counterexamples and next evidence",
+    "minimum_proof_skeleton": "claim-conditioned SOURCE / TYPE / CEILING / REACHABILITY badges with optional detail hidden by default"
+  },
+  "adversarial_transfer_items": [
+    "disease-state separator -> treatment-response meter",
+    "early molecular response -> recoverability",
+    "mechanism existence -> current observer validity",
+    "normal-model comprehension -> follicle recovery",
+    "two datasets using one shared projection family -> two independent projection confirmations"
+  ],
+  "primary_outcome": "false_bridge_rate on unsupported transfer inferences",
+  "secondary_outcomes": [
+    "claim-boundary retention",
+    "state-vs-response distinction accuracy",
+    "correct UNKNOWN usage",
+    "confidence-error calibration",
+    "time to criterion",
+    "visible stage count",
+    "optional-detail expansions"
+  ],
+  "primary_predictions": [
+    "minimum_proof_skeleton false_bridge_rate < endpoint_only false_bridge_rate",
+    "minimum_proof_skeleton time/stage exposure < full_ladder at equal or better claim-boundary accuracy"
+  ],
+  "rejection_conditions": [
+    "proof skeleton increases confidence without reducing false bridges",
+    "full ladder materially outperforms proof skeleton on transfer accuracy after burden is accounted for",
+    "participants bypass or ignore proof barriers so often that the nominal structure does not alter reconstruction",
+    "benefit appears only on verbatim recall and not on new inference items"
+  ],
+  "analysis_discipline": [
+    "freeze unsupported bridge items before participant exposure",
+    "score confidence separately from correctness",
+    "report arm-wise burden and accuracy rather than a single composite score",
+    "do not treat comprehension improvement as evidence of hair biology change"
+  ],
+  "claim_boundary": "Passing HF-VAL-005 would support a human-interface/epistemic-control design. It would not validate any biological recovery pathway."
+}

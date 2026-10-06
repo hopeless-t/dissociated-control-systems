@@ -1,0 +1,50 @@
+{
+  "id": "HF-SIM-040",
+  "title": "Follicular Recoverability Knee is an actuator-conditional response-gain transition, not a static baldness threshold",
+  "status": "SYNTHETIC_OPERATIONAL_DEFINITION",
+  "clinical_authority": "NONE",
+  "definition": {
+    "baseline_burden": "z = prospectively declared degeneration/structural-state coordinate measured before intervention",
+    "actuator": "u = one prospectively declared intervention and dose/context",
+    "local_control_gain": "g(z,u) = partial functional recovery / partial declared control input for that actuator",
+    "operational_knee": "FRK(u) candidate = a reproducible region where g(z,u) loses gain unusually steeply under a predeclared contrast/model-comparison rule"
+  },
+  "known_answers": [
+    {
+      "burden": [0, 1, 2, 3, 4],
+      "gain": [1.0, 0.9, 0.8, 0.3, 0.2],
+      "exploratory_candidate_interval": [2, 3]
+    },
+    {
+      "burden": [0, 1, 2, 3, 4],
+      "gain": [1.0, 0.8, 0.6, 0.4, 0.2],
+      "candidate_interval": null,
+      "reason": "uniform linear gain loss has no unique knee under the frozen definition"
+    }
+  ],
+  "required_evidence": [
+    "baseline burden measured before the control input",
+    "one declared actuator/dose/context per response surface rather than pooling mechanistically different controls",
+    "reference comparison sufficient to estimate intervention response gain",
+    "functional later output linked to the prediction unit",
+    "coverage across enough baseline-burden range to estimate gain change",
+    "donor/region hierarchy and attrition handled under HF-SIM-038/HF-SIM-039",
+    "observer and diagnostic-probe back-action controlled where applicable",
+    "HF-SIM-041 pseudo-knee/noise attack passed with predeclared contrast or explicit no-knee-vs-knee model comparison",
+    "transition region replicated outside the data used to choose it"
+  ],
+  "human_conflict_context": "HF01_HUMAN_MINIATURIZATION_RESPONSE_LEDGER_V1 documents that finasteride biopsy-count, finasteride mapped-hair, and sublingual-minoxidil hair-to-hair studies yield different apparent reversal/response patterns under different measurement units, doses and actuators. This blocks a universal miniaturization threshold.",
+  "stage_marker_boundary": "Cross-sectional partial-bald vs complete-bald differences in CD34/Sox9 or structure may define useful sampling strata but do not themselves identify FRK(u) because no intervention-response gain is measured.",
+  "non_equivalences": [
+    "visible miniaturization threshold != FRK(u)",
+    "progenitor loss threshold != FRK(u) without response data",
+    "FRK(u1) != FRK(u2)",
+    "dose threshold != structural recoverability threshold",
+    "FRK candidate != biological hysteresis",
+    "FRK candidate != irreversibility",
+    "one actuator's gain knee != universal treatment threshold",
+    "ex-vivo FRK != in-vivo clinical decision rule"
+  ],
+  "next_test": "After HF-VAL-006 establishes linked early-state/later-function prediction, estimate actuator-specific response surfaces over prospectively measured baseline P/E/M burden and compare smooth/no-knee models against predeclared transition models under donor-held-out validation.",
+  "claim_boundary": "FRK(u) is currently an operational research target only. No universal or human in-vivo recoverability knee has been demonstrated."
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "id": "HF01-DEFEATER-GSE267664-ORGANISM-MAPPING",
+  "status": "OPEN",
+  "target": "use of GSE267664 raw RNA-seq as human HF01 evidence",
+  "conflict": {
+    "paper_methods": "2026 organ-model paper describes human frontal/occipital follicles from 10 AGA patients and states RNA-seq reads were aligned to human reference genome GRCh38 with HISAT2",
+    "paper_data_availability": "paper points to GEO accession GSE267664",
+    "geo_series_metadata": "GSE267664 is described as Homo sapiens / human frontal hair-follicle experiment",
+    "geo_sample_processing_example": "GSM8272412 is titled Human frontal hair follicles,control3,DAY3 and lists Organism Homo sapiens, but its Data processing field states mapping to GrCM38/mm10 and Assembly mm10"
+  },
+  "risk": "raw-data processing provenance is internally inconsistent across the publication/GEO record; blindly reusing processed sample values could import a species/reference-build annotation error or documentation error into HF01",
+  "disposition": {
+    "paper_level_organ_culture_phenotyping": "RETAIN as source-bound evidence with ordinary in-vitro/ex-vivo claim ceiling",
+    "GSE267664_raw_or_processed_RNAseq_analysis": "BLOCK until discrepancy is resolved",
+    "clinical_inference": "NONE"
+  },
+  "resolution_requirements": [
+    "determine whether the mm10/GrCM38 processing text is a GEO metadata documentation error, a sample-processing error, or a real mismatch",
+    "verify SRA read organism/reference independently before any HF01 expression reanalysis",
+    "if raw reads are human, realign independently to an explicitly versioned human reference rather than trusting the listed processed mapping",
+    "bind the corrected provenance chain into the HF01 assurance kernel before promoting any transcript result"
+  ],
+  "invariant": "Paper Species Label != Verified Raw-Data Processing Provenance",
+  "clinical_authority": "NONE"
+}

@@ -1,0 +1,25 @@
+{
+  "id": "HF-SIM-014",
+  "title": "Defeater-search saturation stopping surrogate",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "question": "When repeated adversarial search stops finding new defeater classes, when is it reasonable to pause rather than recurse forever?",
+  "model": {
+    "assumption": "Comparable rounds are modeled as Bernoulli/iid-like opportunities to discover at least one new defeater class.",
+    "observation": "k consecutive rounds discover zero new classes.",
+    "upper_bound": "p_upper = 1 - alpha^(1/k)",
+    "meaning": "one-sided upper bound on the per-round probability of discovering a new class under the declared surrogate"
+  },
+  "known_answer": {
+    "alpha": 0.05,
+    "target_upper_bound": 0.05,
+    "minimum_zero_novel_rounds": 59
+  },
+  "invariants": [
+    "No finite adversarial search proves completeness.",
+    "A stopping rule should state what residual novelty rate it is willing to tolerate.",
+    "Stopping defeater search is a resource decision, not proof that unknown failures do not exist.",
+    "New evidence or a new failure mode resets the saturation argument."
+  ],
+  "boundary": "Search rounds are rarely truly iid or equally powerful; this is a transparent stopping surrogate, not a completeness theorem."
+}

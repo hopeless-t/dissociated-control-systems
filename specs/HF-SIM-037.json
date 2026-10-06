@@ -1,0 +1,26 @@
+{
+  "id": "HF-SIM-037",
+  "title": "A diagnostic perturbation can identify susceptibility while contaminating the later trajectory",
+  "status": "SYNTHETIC_EXPERIMENT_DESIGN_CONTRACT",
+  "clinical_authority": "NONE",
+  "invariant": "Active Probe != Passive Observation",
+  "problem": "Estimating a local response gain requires a controlled input. If that input causes a persistent state change, the later output belongs to the post-probe trajectory rather than the original baseline trajectory.",
+  "required_before_baseline_like_prediction": [
+    "predeclared diagnostic challenge magnitude and duration",
+    "sham-challenge control",
+    "predeclared washout interval",
+    "remeasure the same state proxy after washout",
+    "predeclared equivalence margin for residual probe effect",
+    "later functional endpoint under probe and sham conditions"
+  ],
+  "pass_rule": "The confidence interval for post-washout probe-vs-sham state/output difference lies wholly inside the predeclared equivalence region, with all required controls present.",
+  "unknown_rule": "Boundary-overlapping uncertainty or missing controls keeps washout/reversibility UNKNOWN.",
+  "fail_rule": "A persistent effect interval wholly outside the equivalence region rejects use of that challenge as a neutral diagnostic probe for the declared later trajectory.",
+  "HF01_implication": [
+    "baseline M != M susceptibility",
+    "M susceptibility can be measured only through an input",
+    "a useful susceptibility probe can still be unsuitable for forecasting an untreated baseline-like trajectory",
+    "observer back-action and diagnostic-input back-action are separate failure modes and require separate controls"
+  ],
+  "claim_boundary": "This contract does not classify DHT, MCH, YODA1 or any other specific perturbation as reversible. Reversibility must be demonstrated for the exact model, dose, timing and endpoint before predictive reuse."
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": 2,
+  "claim_id": "HF01-P-PROGENITOR-CANDIDATE-V2",
+  "claim_type": "STATE_INFERENCE",
+  "claim": "Human AGA evidence supports separating preserved follicular stem-cell markers from a reduced/altered progenitor compartment, while spatially resolved data indicate that the progenitor-cell region is embedded in an ECM/EMT- and inflammation-associated microenvironment distinct from controls.",
+  "claim_ceiling": "HUMAN_CROSS_SECTIONAL_PROGENITOR_COMPARTMENT_COMPATIBILITY_ONLY",
+  "witness_families": [
+    {
+      "source": "Garza et al. 2011; PMID 21206086; PMCID PMC3026732",
+      "measurement_family": "flow cytometry + localization + qPCR",
+      "support": "KRT15-high stem-cell population preserved while CD200-high/ITGA6-high and CD34-high progenitor populations were reduced in bald scalp"
+    },
+    {
+      "source": "Bazid et al. 2026; PMID 41629248",
+      "measurement_family": "immunohistochemistry",
+      "support": "Sox9 preserved while CD34 staining was lower in frontal bald AGA tissue than control and hairy occipital tissue"
+    },
+    {
+      "source": "Charoensuksira et al. 2025; PMID 40565255; PMCID PMC12193697; GSE282856",
+      "measurement_family": "GeoMX Digital Spatial Profiling of CD34-positive/progenitor regions plus protein confirmation",
+      "support": [
+        "human AGA progenitor-cell regions differ transcriptionally from control regions",
+        "ECM/EMT-associated genes including FN1, TWIST1 and TGFB2 were increased",
+        "protein-level measurements supported increased products of key genes",
+        "peri-infundibular immune infiltration was implicated as a candidate contributor to a fibrogenic/microinflammatory environment"
+      ]
+    }
+  ],
+  "HF01_mapping": {
+    "P": "functional progenitor-compartment/reserve candidate",
+    "F_star": "local ECM/fibrogenic structural-remodeling candidate",
+    "I": "local immune/microinflammatory context candidate",
+    "supported_connection": "P-associated regions and F*/immune-associated remodeling co-occur in human AGA tissue",
+    "not_yet_supported": "F* or inflammation causally drives P loss in longitudinal human follicles"
+  },
+  "orthogonality": {
+    "cell_population_marker_family": "Garza / Bazid",
+    "spatial_microenvironment_family": "GSE282856 / GeoMX DSP",
+    "value": "reduces dependence on a single marker or bulk-tissue projection family"
+  },
+  "open_defeaters": [
+    "the spatial study is small and cross-sectional",
+    "progenitor-region transcript state is not identical to functional progenitor reserve",
+    "EMT/fibrogenic signatures can be consequences, correlates or causes of progenitor alteration",
+    "protein confirmation of selected genes does not validate a single scalar F* or P coordinate"
+  ],
+  "next_information_gain": {
+    "preferred": "perturbation or longitudinal human-follicle experiment that changes ECM/TGF-beta/EMT context and measures progenitor function plus later follicle output",
+    "reason": "directly test the candidate P <-> F* coupling rather than accumulating additional static marker studies"
+  },
+  "clinical_authority": "NONE"
+}

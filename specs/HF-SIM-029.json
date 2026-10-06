@@ -1,0 +1,30 @@
+{
+  "id": "HF-SIM-029",
+  "title": "Reduced structural lock loses actuator-specific response",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "state_split": {
+    "E": "ECM/fibrogenic remodeling coordinate",
+    "M": "mechanical/contractile coordinate",
+    "F_reduced": "(E + M) / 2"
+  },
+  "known_answer": {
+    "state_1": {"E": 1.0, "M": 0.0, "F_reduced": 0.5},
+    "state_2": {"E": 0.0, "M": 1.0, "F_reduced": 0.5},
+    "mechanical_relaxation_strength_1": {
+      "state_1_final_F": 0.5,
+      "state_2_final_F": 0.0
+    },
+    "ecm_intervention_strength_1": {
+      "state_1_final_F": 0.0,
+      "state_2_final_F": 0.5
+    }
+  },
+  "invariants": [
+    "Equal Reduced Structural State != Equal Actuator Response",
+    "A reduced coordinate is valid only relative to the questions/actuators it preserves",
+    "ECM remodeling, mechanics, and synthetic hysteresis should not be silently collapsed when actuator specificity matters"
+  ],
+  "HF01_consequence": "The original F structural-lock coordinate can remain as a reduced-order synthetic abstraction for some control experiments, but external biological interpretation should separate at least E and M until their coupling and path dependence are identified.",
+  "boundary": "The E/M actuator counterexample is deliberately minimal. It demonstrates information loss under aggregation and is not a quantitative AGA dynamics model."
+}

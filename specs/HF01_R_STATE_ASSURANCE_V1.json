@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "claim_id": "HF01-R-STATE-CANDIDATE-V1",
+  "claim_type": "STATE_INFERENCE",
+  "claim": "A WNT/regeneration-associated projection is a replicated cross-sectional disease-state candidate across the current HF01 public-data bridge; it is not a validated actuator-response or recoverability coordinate.",
+  "required_roles": [
+    "PROVENANCE",
+    "STATE_RESPONSE",
+    "UNCERTAINTY"
+  ],
+  "role_status": {
+    "PROVENANCE": "PASS",
+    "STATE_RESPONSE": "PASS",
+    "UNCERTAINTY": "PASS",
+    "REACHABILITY": "NOT_REQUESTED"
+  },
+  "provenance_witnesses": [
+    {
+      "witness_id": "GSE36169-axis-result",
+      "roots": [
+        "GSE36169-raw",
+        "analyze_gse36169.py",
+        "HF01_GSE36169_AXES.json"
+      ],
+      "result": "WNT/regeneration-loss direction positive in 5/5 paired subjects"
+    },
+    {
+      "witness_id": "GSE93766-axis-result",
+      "roots": [
+        "GSE93766-BK0vsNBK0",
+        "analyze_gse93766.py",
+        "HF01_GSE36169_AXES.json"
+      ],
+      "result": "WNT/regeneration-loss positive mean; 4/6 gene directions aligned"
+    }
+  ],
+  "state_response_witness": {
+    "witness_id": "GSE178510-failed-response-transfer",
+    "roots": [
+      "GSE178510-2D-minoxidil",
+      "analyze_gse178510.py",
+      "HF01_GSE36169_AXES.json",
+      "HF01_GSE178510_PREDICTION.json"
+    ],
+    "result": "pre-registered static-axis-as-response prediction failed; state and actuator-response coordinates remain separated"
+  },
+  "uncertainty": [
+    "The shared frozen transcript-axis definition is a common-mode dependency across the two cross-sectional datasets.",
+    "Cross-sectional transfer does not identify recoverability.",
+    "Different biological materials do not make the scoring projection itself independent.",
+    "The state label R_state is an interpretive latent candidate, not a directly measured molecular quantity."
+  ],
+  "root_topology": {
+    "independent_raw_data_roots": 2,
+    "shared_projection_root": "HF01_GSE36169_AXES.json",
+    "current_structural_conclusion": "two independent data contexts, one shared projection family",
+    "certificate_root_cut_warning": "the shared axis definition can invalidate both cross-sectional witnesses"
+  },
+  "next_information_gain": {
+    "preferred": "orthogonal regenerative-state probe that does not reuse HF01_GSE36169_AXES.json",
+    "examples": [
+      "protein/localization assay tied to regenerative signaling",
+      "independently derived transcriptomic latent factor frozen before comparison",
+      "functional follicle/cell assay linked to later output"
+    ],
+    "lower_value_repeat": "a third dataset scored only with the identical frozen transcript axis improves context replication but does not remove the shared projection root"
+  },
+  "claim_ceiling": "CROSS_SECTIONAL_STATE_CANDIDATE_ONLY"
+}

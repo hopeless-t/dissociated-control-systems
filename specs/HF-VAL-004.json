@@ -1,0 +1,40 @@
+{
+  "id": "HF-VAL-004",
+  "title": "Adaptive projection ladders reduce reconstruction error without unnecessary explanatory overhead",
+  "status": "PRE_REGISTERED_FUTURE_VALIDATION",
+  "biological_authority": "NONE",
+  "target": "human understanding of a fixed HF01 evidence object",
+  "arms": {
+    "direct": "endpoint claim plus endpoint evidence only",
+    "fixed_ladder": "same content with a fixed set of intermediate representations",
+    "adaptive_ladder": "intermediate representations inserted/removed based on reconstruction errors"
+  },
+  "primary_outcomes": [
+    "causal-chain reconstruction accuracy",
+    "claim-boundary retention",
+    "state-vs-response distinction accuracy"
+  ],
+  "cost_outcomes": [
+    "time to criterion",
+    "number of exposed projection stages",
+    "navigation/interactions"
+  ],
+  "calibration_outcomes": [
+    "confidence-error calibration",
+    "UNKNOWN usage when evidence is insufficient"
+  ],
+  "acceptance": [
+    "adaptive ladder lowers reconstruction error versus direct projection",
+    "adaptive ladder does not require more exposed stages than fixed ladder for equal or better criterion performance",
+    "benefit persists on transfer questions rather than verbatim recall",
+    "claim-boundary error does not increase"
+  ],
+  "failure_modes": [
+    "extra stages improve recall but not transfer",
+    "extra stages increase confidence without accuracy",
+    "adaptive policy overfits to one explanation object",
+    "stage count grows without measurable error reduction"
+  ],
+  "stop_rule": "Do not add a projection stage unless it reduces a declared reconstruction/calibration error or is required to expose uncertainty/evidence provenance.",
+  "claim_boundary": "Passing HF-VAL-004 would support an explanation-design strategy. It would not establish that understanding the model changes hair biology."
+}\n

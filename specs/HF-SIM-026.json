@@ -1,0 +1,26 @@
+{
+  "id": "HF-SIM-026",
+  "title": "Claim semantics derive checkpoint strength",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "problem": "A strong endpoint can bypass strong barriers if it self-labels as a weaker claim class.",
+  "semantic_capabilities": [
+    "describes_observation",
+    "infers_latent_state",
+    "infers_intervention_response",
+    "asserts_target_reachability"
+  ],
+  "derivation_order": [
+    "asserts_target_reachability -> REACHABILITY",
+    "else infers_intervention_response -> RESPONSE_INFERENCE",
+    "else infers_latent_state -> STATE_INFERENCE",
+    "else -> DESCRIPTIVE"
+  ],
+  "kernel_rule": "The certificate's declared claim_type must equal the strongest type derived from structured endpoint semantics; mismatch blocks authority.",
+  "invariants": [
+    "Claim Labels Are Not Authority",
+    "Barrier Strength Must Follow What The Claim Does, Not What It Calls Itself",
+    "Reachability Semantics Cannot Be Downgraded To Descriptive By Relabeling"
+  ],
+  "boundary": "Structured semantic flags can themselves be misdeclared; production use should bind them to the claim-construction operation or an independently auditable semantic classifier."
+}

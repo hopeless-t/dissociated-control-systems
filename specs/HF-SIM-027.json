@@ -1,0 +1,27 @@
+{
+  "id": "HF-SIM-027",
+  "title": "Canonical proof-object fingerprint",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "problem": "A dependency list can omit a changed proof-object component, allowing nominal certificate freshness despite semantic drift.",
+  "fingerprinted_components": [
+    "claim-conditioned certificate records",
+    "structured claim semantics",
+    "evidence witnesses and their obligations",
+    "defeaters and dispositions",
+    "support graph nodes/edges/target",
+    "trust-root kinds and assumptions",
+    "declared extra dependency revisions"
+  ],
+  "rules": [
+    "Set-like collections are canonicalized before hashing so irrelevant ordering does not change identity.",
+    "Any semantic/support/trust/dependency change changes the SHA-256 proof-object fingerprint.",
+    "The fingerprint is an integrity/change detector, not a digital signature and not a truth/confidence score."
+  ],
+  "invariants": [
+    "Proof Object Identity Must Cover Its Semantic Inputs",
+    "Unchanged IDs With Changed Meaning != Same Proof Object",
+    "Content Fingerprint != Scientific Truth"
+  ],
+  "boundary": "A hash can show that two declared proof objects differ; it cannot establish that either object is correct or that an attacker has not supplied a consistently false object."
+}

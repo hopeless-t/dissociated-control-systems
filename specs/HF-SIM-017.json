@@ -1,0 +1,24 @@
+{
+  "id": "HF-SIM-017",
+  "title": "Acyclic primitive-grounded support graph",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "problem": "A proof trace can be formally complete while claims and derived evidence support each other circularly.",
+  "rules": [
+    "Support edges form a directed graph from primitive or derived evidence toward claims.",
+    "Any directed cycle invalidates grounded status for claims participating in that support graph.",
+    "A grounded claim must have at least one primitive-evidence ancestor in an acyclic graph.",
+    "Derived evidence may mediate support but cannot replace primitive ancestry."
+  ],
+  "known_answers": {
+    "primitive_evidence_to_claim": "GROUNDED",
+    "primitive_to_derived_to_claim": "GROUNDED",
+    "claim_A_to_claim_B_to_claim_A": "NOT_GROUNDED",
+    "primitive_plus_cycle": "NOT_GROUNDED"
+  },
+  "invariants": [
+    "Circular Support != Independent Justification",
+    "A proof object must bottom out in declared primitive evidence rather than its own conclusions"
+  ],
+  "boundary": "Primitive ancestry is a structural condition. It does not establish that the primitive evidence is relevant, unbiased, or sufficient; those obligations remain in HF-SIM-013."
+}

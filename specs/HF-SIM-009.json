@@ -1,0 +1,28 @@
+{
+  "id": "HF-SIM-009",
+  "title": "Proof-carrying projection protocol",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "required_order": [
+    "PROVENANCE",
+    "STATE_RESPONSE",
+    "UNCERTAINTY",
+    "REACHABILITY"
+  ],
+  "rules": [
+    "Every terminal claim carries a checkpoint trace.",
+    "Every required role must occur on the trace.",
+    "Required roles must occur in protocol order.",
+    "UNKNOWN propagates to terminal UNKNOWN unless a FAIL is present.",
+    "FAIL propagates to terminal FAIL.",
+    "An empirical-authority claim is rejected unless all required checks pass."
+  ],
+  "threat_model": [
+    "human fills a missing bridge with a plausible inference",
+    "LLM invents an intermediate causal edge",
+    "a UI shortcut skips uncertainty",
+    "a state measurement is silently promoted to reachability"
+  ],
+  "invariant": "No endpoint claim may acquire more authority than its proof-carrying checkpoint trace.",
+  "boundary": "The protocol validates trace completeness and fail-closed semantics, not the scientific truth of the records themselves."
+}

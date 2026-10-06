@@ -1,0 +1,24 @@
+{
+  "id": "HF-SIM-019",
+  "title": "Defeater-search saturation requires search, not absence",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "model": {
+    "search_log": "ordered adversarial rounds with strategy family and newly discovered defeater classes",
+    "trailing_zero_novel_rounds": "consecutive most-recent rounds finding no new class",
+    "strategy_diversity": "number of distinct declared adversarial strategy families",
+    "novelty_upper_bound": "HF-SIM-014 zero-discovery Bernoulli surrogate applied only to the trailing zero-novelty run"
+  },
+  "rules": [
+    "Zero recorded defeaters without a search log is not saturation.",
+    "Repeated rounds from only one strategy family do not satisfy a declared diversity requirement.",
+    "A newly discovered defeater resets the trailing zero-novelty streak.",
+    "Meeting the stopping surrogate permits pausing search; it does not prove completeness."
+  ],
+  "invariants": [
+    "No Defeaters Recorded != No Defeaters Exist",
+    "Search Saturation != Defeater Completeness",
+    "Adversarial search diversity is distinct from search volume"
+  ],
+  "boundary": "The strategy-family labels and Bernoulli-like stopping surrogate are research-control metadata, not validated estimates of real unknown-failure probability."
+}

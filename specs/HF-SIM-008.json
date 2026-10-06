@@ -1,0 +1,26 @@
+{
+  "id": "HF-SIM-008",
+  "title": "Mandatory checkpoint roles dominate every accepted projection path",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "graph_model": {
+    "source": "hypothesis/model input",
+    "target": "human-facing decision/claim",
+    "node": "concrete representation or check",
+    "role": "semantic invariant enforced by one or more interchangeable nodes"
+  },
+  "theorem_contract": [
+    "A concrete checkpoint instance is mandatory only if every accepted path traverses that node.",
+    "A semantic checkpoint role is mandatory when every accepted path contains some node implementing that role.",
+    "Alternative implementations may satisfy the same mandatory role without either concrete node being individually mandatory.",
+    "Any bypass path that reaches the endpoint while omitting a required role is invalid."
+  ],
+  "hf01_required_roles": [
+    "provenance",
+    "state_response_typing",
+    "uncertainty",
+    "reachability"
+  ],
+  "invariant": "Compress representation between role-dominating checkpoints, but never introduce a path that bypasses a required role.",
+  "boundary": "This is a graph-contract theorem for HF01 artifact design, not evidence that these four roles are universally sufficient for all biomedical reasoning."
+}

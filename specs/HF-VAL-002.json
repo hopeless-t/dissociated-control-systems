@@ -1,0 +1,60 @@
+{
+  "id": "HF-VAL-002",
+  "title": "Early internal response predicts later hair-output trajectory",
+  "status": "PRE_REGISTERED_FUTURE_VALIDATION",
+  "clinical_authority": "NONE",
+  "question": "Does an early intervention-linked internal-state response improve prediction of later hair output beyond baseline visible output?",
+  "time_order": {
+    "baseline": "t0",
+    "early_internal_response": "t1",
+    "late_visible_outcome": "t2",
+    "invariant": "t0 < t1 < t2"
+  },
+  "variables": {
+    "H0": "baseline visible hair-output measurement",
+    "z0": "baseline candidate internal-state probe",
+    "u": "declared bounded input/intervention",
+    "delta_z_early": "early change in candidate internal-state probe",
+    "delta_H_late": "later change in visible hair output"
+  },
+  "models": {
+    "M0": "delta_H_late ~ H0 + declared baseline covariates",
+    "M1": "delta_H_late ~ H0 + declared baseline covariates + delta_z_early"
+  },
+  "acceptance": [
+    "delta_z_early is measured before delta_H_late",
+    "M1 improves held-out predictive performance relative to M0",
+    "predictive direction replicates in at least one independent intervention-linked dataset",
+    "analysis preserves subject-level grouping and prevents leakage",
+    "uncertainty and sensitivity analysis are reported"
+  ],
+  "non_acceptance": [
+    "same-time correlation only",
+    "post-hoc biomarker selection after outcome inspection",
+    "in-sample fit improvement without held-out validation",
+    "single uncontrolled small cohort as sole evidence"
+  ],
+  "seed_evidence": [
+    {
+      "citation": "Tang et al., J Am Acad Dermatol 2003",
+      "pmid": "12894070",
+      "role": "proof-of-concept temporal architecture only",
+      "candidate_probe": "dermal-papilla IGF-1 mRNA change at 4 months",
+      "late_outcome": "photographic clinical efficacy at 12 months",
+      "limitations": [
+        "n=9",
+        "uncontrolled"
+      ]
+    },
+    {
+      "citation": "Mirmirani et al., Br J Dermatol 2015",
+      "pmid": "25204361",
+      "role": "controlled feasibility of intervention-linked transcriptome and hair-output observation",
+      "limitations": [
+        "pilot size",
+        "8-week horizon"
+      ]
+    }
+  ],
+  "claim_boundary": "Passing HF-VAL-002 would validate predictive value of a declared early-response probe in declared datasets; it would not establish treatment efficacy, consciousness-driven recovery, or a universal biological recoverability variable."
+}

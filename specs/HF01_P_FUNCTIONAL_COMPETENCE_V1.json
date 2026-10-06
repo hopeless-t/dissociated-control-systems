@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "id": "HF01-P-FUNCTIONAL-COMPETENCE-V1",
+  "status": "SOURCE_BOUND_MODEL_REFINEMENT",
+  "clinical_authority": "NONE",
+  "purpose": "Separate static progenitor-compartment abundance from the susceptibility/competence of stem/progenitor systems to activate, differentiate and support follicle function.",
+  "coordinates": {
+    "P_state": {
+      "meaning": "progenitor-compartment abundance/state candidate",
+      "support": [
+        "Garza et al. 2011: preserved KRT15-high human AGA stem-cell compartment with marked depletion of CD200-high/ITGA6-high and CD34-high progenitor populations",
+        "Bazid et al. 2026: preserved Sox9 with reduced CD34 in frontal bald AGA scalp, including frontal-vs-occipital differences"
+      ]
+    },
+    "chi_P": {
+      "meaning": "local activation/conversion/differentiation susceptibility of the stem/progenitor system under a declared perturbation",
+      "support": [
+        "Leirós et al. 2012: in a human AGA-DPC/HFSC coculture, androgen exposure impaired hair-follicle stem-cell differentiation and Wnt/beta-catenin activation restored differentiation-related output",
+        "Wen et al. 2025: primary human HFSC experiments showed retinoic-acid-associated proliferation and changes from stemness toward progenitor/differentiation markers, attenuated by RA-receptor or Wnt-pathway blockade; miniaturized frontal AGA HFs in organ culture also showed functional growth/cycle responses",
+        "Edelkamp et al. 2026: human HF ex-vivo OR2A4/7 agonism delayed catagen and expanded CD34-positive immediate progeny and CD71-positive transit-amplifying populations alongside hair-growth promotion"
+      ]
+    }
+  },
+  "non_equivalences": [
+    "P_state != chi_P",
+    "CD34 abundance != unique functional progenitor reserve scalar",
+    "CD200 increase != lineage tracing proof",
+    "in-vitro marker conversion != in-vivo durable regeneration",
+    "early activation/proliferation != recoverability",
+    "one pathway-specific rescue != universal restoration of the progenitor compartment"
+  ],
+  "evidence_scope_notes": [
+    "The 2012 coculture is a human cellular functional assay but does not reproduce the full in-vivo follicle niche.",
+    "The 2025 study combines human AGA organ culture, primary HFSC experiments, animal work and a clinical study; HF01 uses the human cell/organ findings here only as source-bound functional-conversion evidence, not as a treatment recommendation.",
+    "The 2026 OR2A4/7 ex-vivo study supports human progenitor/function coupling but is not promoted here as an AGA-specific recovery experiment.",
+    "None of these studies provides definitive lineage tracing from one identified human HFSC through progenitor state to durable hair recovery in vivo."
+  ],
+  "model_update": "Retain P as a compartment/state coordinate, and represent activation/conversion competence as a response susceptibility chi_P rather than folding both into one scalar.",
+  "next_high_information_test": "In a linked human HF system, measure baseline progenitor state and a prospectively declared activation/conversion response, then test whether chi_P adds later-function prediction beyond P_state while preserving unit identity and controlling probe back-action.",
+  "claim_ceiling": "human source-bound evidence that progenitor abundance and progenitor activation/conversion response are experimentally separable and both can associate with follicle functional outputs; not a validated recoverability coordinate."
+}

@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "claim_id": "HF01-M-TO-P-DIRECTION-V1",
+  "claim_type": "RESPONSE_INFERENCE",
+  "claim": "Experimental human hair-follicle systems support a directional path from excessive CTS mechanical contraction through PIEZO1-associated mechanotransduction to progenitor apoptosis/depletion and impaired follicle growth.",
+  "source": {
+    "citation": "Li et al., Nature Communications 2026",
+    "pmid": "41748637",
+    "pmcid": "PMC13062005",
+    "doi": "10.1038/s41467-026-70153-4"
+  },
+  "evidence_chain": [
+    {
+      "input": "MCH-induced CTS contraction in cultured human anagen hair follicles",
+      "observations": [
+        "dose-dependent hair-growth retardation and anagen-maintenance impairment",
+        "dose-dependent CD34-positive progenitor loss and apoptosis",
+        "suppressed matrix/ORS proliferation"
+      ]
+    },
+    {
+      "rescue": "ML-7 blockade of CTS contraction",
+      "observations": [
+        "improved growth retardation and premature catagen induction",
+        "reversed progenitor apoptotic loss",
+        "restored matrix/ORS proliferation relative to MCH challenge"
+      ]
+    },
+    {
+      "mechanistic_input": "PIEZO1 activation with YODA1",
+      "observations": [
+        "phenocopied growth retardation",
+        "induced progenitor apoptosis",
+        "suppressed ORS/matrix proliferation"
+      ]
+    },
+    {
+      "mechanistic_rescue": "PIEZO1 inhibition with GsMTX4",
+      "observations": "rescued major MCH-associated phenotypes"
+    },
+    {
+      "upstream_input": "DHT",
+      "observations": [
+        "enhanced DS/CTS contractility",
+        "progenitor apoptosis",
+        "matrix/ORS proliferation suppression",
+        "HF growth inhibition"
+      ],
+      "rescue": "GPR133 knockdown or ML-7 reversed the contractile/pathological effects"
+    }
+  ],
+  "HF01_mapping": {
+    "M": "mechanical/contractile state candidate",
+    "P": "progenitor-state candidate",
+    "H_function": "hair-follicle growth / cycle output",
+    "directional_support": "M perturbation -> P injury and H-function impairment; M inhibition -> partial rescue"
+  },
+  "important_separation": {
+    "supported": "M -> P/function directional experimental path",
+    "not_supported": [
+      "ECM/EMT transcript state E is identical to CTS contraction M",
+      "all human AGA progenitor loss is caused by M",
+      "M is an in-vivo clinical biomarker",
+      "M inhibition establishes full follicle recoverability",
+      "experimental rescue proves absence of a deeper hysteretic lock"
+    ]
+  },
+  "model_update": "HF-SIM-028 remains correct as a generic observational non-identifiability theorem. The external intervention evidence now selects M->P as one biologically supported directional mechanism for the mechanical state M, while E<->P and E<->M remain unresolved.",
+  "clinical_authority": "NONE"
+}

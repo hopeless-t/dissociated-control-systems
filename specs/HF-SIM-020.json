@@ -1,0 +1,19 @@
+{
+  "id": "HF-SIM-020",
+  "title": "Defeater disposition is itself proof-carrying",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "problem": "An uncertainty system can be gamed by relabeling an OPEN defeater as RESOLVED or RESIDUAL without evidence.",
+  "rules": [
+    "RESOLVED requires a declared resolution_witness_id.",
+    "The resolution_witness_id must exist in the usable witness registry.",
+    "RESIDUAL requires an explicit rationale note and remains visible in assurance warnings.",
+    "OPEN defeaters targeting a required role downgrade terminal PASS to UNKNOWN and block empirical authority."
+  ],
+  "invariants": [
+    "Defeater Labels Are Not Evidence",
+    "Closing a challenge requires support, not a status edit",
+    "Accepted residual doubt must remain inspectable"
+  ],
+  "boundary": "A usable resolution witness can still be scientifically wrong; HF-SIM-013 witness obligations and HF-SIM-017 support-graph rules remain applicable."
+}

@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "research_lane": "HF01",
+  "purpose": "Ground candidate must-pass roles in failures actually observed during the autonomous loop.",
+  "roles": {
+    "provenance": {
+      "catastrophic_failure": "provenance_loss_or_measurement_semantics_loss",
+      "observed_incidents": [
+        {
+          "id": "INC-HF01-001",
+          "event": "GSE93766 Cuffdiff direction could be misread from filename/order",
+          "repair": "derive direction from sample_1/sample_2 and freeze a known-answer orientation test"
+        },
+        {
+          "id": "INC-HF01-002",
+          "event": "GSE178510 vendor fold-change label was semantically ambiguous",
+          "repair": "ignore vendor fold-change sign and compute MINOXIDIL log2 signal minus CONTROL log2 signal directly"
+        }
+      ],
+      "permanence_reason": "Without explicit provenance/measurement semantics, sign or source meaning can silently invert downstream claims."
+    },
+    "state_response_typing": {
+      "catastrophic_failure": "state_response_confusion",
+      "observed_incidents": [
+        {
+          "id": "INC-HF01-003",
+          "event": "A frozen WNT/regeneration disease-state axis was predicted to move monotonically under minoxidil",
+          "result": "pre-registered primary prediction failed",
+          "repair": "separate state-separation coordinates from actuator-response coordinates"
+        }
+      ],
+      "permanence_reason": "A static discriminator can be biologically meaningful while being the wrong coordinate for dynamic response."
+    },
+    "uncertainty": {
+      "catastrophic_failure": "uncertainty_or_authority_laundering",
+      "observed_incidents": [
+        {
+          "id": "INC-HF01-004",
+          "event": "Published local androgen/vascular mechanisms did not transfer to the frozen whole-tissue transcript observers",
+          "repair": "retain mechanism support while downgrading the specific observer; preserve UNKNOWN/mixed status"
+        }
+      ],
+      "permanence_reason": "Mechanism existence, measurement sensitivity, and claim authority are not interchangeable."
+    },
+    "reachability": {
+      "catastrophic_failure": "reachability_overclaim",
+      "observed_incidents": [
+        {
+          "id": "INC-HF01-005",
+          "event": "Synthetic states with identical H=0.50 had opposite futures under the same control",
+          "repair": "H-only observer returns UNKNOWN"
+        },
+        {
+          "id": "INC-HF01-006",
+          "event": "Synthetic locked state showed positive early Delta R but essentially zero late Delta H",
+          "repair": "early molecular response is not treated as proof of recoverability"
+        }
+      ],
+      "permanence_reason": "State and early response can both look favorable while the target attractor remains unreachable."
+    }
+  },
+  "deletion_rule": "A role may leave the mandatory skeleton only after its known failure class is covered by another role/protocol with equal or stronger enforcement and lower total cost.",
+  "warning": "Observed incidents justify retention against known failures, not universal sufficiency against all future failure classes."
+}

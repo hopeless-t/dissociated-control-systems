@@ -1,0 +1,24 @@
+{
+  "id": "HF-SIM-005",
+  "title": "Projection smoothness cannot promote epistemic authority",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "rule": "The endpoint claim ceiling equals the most restrictive grounding status on the selected projection path.",
+  "order": [
+    "GROUNDED if all edges are supported",
+    "MODEL_ONLY if any edge is assumed and none are unknown/falsified",
+    "UNKNOWN if any edge is unknown and none are falsified",
+    "FALSIFIED if any required edge is falsified"
+  ],
+  "known_answer": {
+    "path": [
+      "SUPPORTED",
+      "ASSUMED",
+      "SUPPORTED"
+    ],
+    "endpoint_claim_ceiling": "MODEL_ONLY",
+    "after_adding_more_supported_intermediate_steps": "MODEL_ONLY"
+  },
+  "invariant": "Explanation smoothness must not launder an assumption into evidence.",
+  "boundary": "This is an epistemic bookkeeping rule for DCS artifacts, not a statistical confidence model."
+}\n

@@ -1,0 +1,26 @@
+{
+  "id": "HF-SIM-030",
+  "title": "Upstream DHT and downstream AR/mechanical branches are actuator-distinct",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "SOURCE_BOUND_MAPPING_ONLY",
+  "state_split": {
+    "D": "upstream DHT-like input",
+    "A_AR": "canonical AR-dependent branch",
+    "M": "mechanical/contractile branch"
+  },
+  "known_answer": {
+    "upstream_DHT_reduction": "moves both A_AR and M in the synthetic branch model",
+    "AR_specific_blockade": "moves A_AR but leaves M unchanged",
+    "mechanical_relaxation": "moves M but leaves A_AR unchanged",
+    "equal_reduced_burden_counterexample": "AR-blocked and mechanics-relaxed states can both have reduced burden 0.5 while retaining opposite active branches"
+  },
+  "source_bound_motivation": "Li et al. 2026 reports DHT-induced CTS hypercontraction through a GPR133-associated path; GPR133 knockdown or ML-7 reversed contractile/pathological effects, while AR knockdown alleviated HF growth inhibition without altering CTS contraction.",
+  "invariants": [
+    "Upstream Ligand State != Receptor-Specific Signaling State",
+    "AR Blockade != Mechanical Relaxation",
+    "Equal Reduced Androgen Burden != Equal Residual Mechanism",
+    "Actuator Specificity Determines Required State Resolution"
+  ],
+  "HF01_consequence": "Future biological interpretation should not use one A scalar as if it simultaneously represented DHT exposure, AR signaling and every DHT-dependent noncanonical path. The original A may remain a reduced synthetic coordinate only when actuator distinctions are irrelevant to the question.",
+  "clinical_boundary": "This is not a medication comparison or recommendation. In particular, an upstream DHT-lowering intervention and an AR antagonist are mechanistically different controls; the source experiment does not establish clinical superiority or treatment choice."
+}

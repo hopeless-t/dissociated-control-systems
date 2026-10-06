@@ -1,0 +1,22 @@
+{
+  "id": "HF-SIM-023",
+  "title": "Structural probe value from evidence root-cut gain",
+  "status": "FROZEN_SYNTHETIC_VALIDATION",
+  "biological_authority": "NONE",
+  "metric": {
+    "cut_gain": "role_root_cut(existing + candidate) - role_root_cut(existing)",
+    "gain_per_cost": "cut_gain / declared probe cost"
+  },
+  "known_answer": {
+    "baseline": "two transcript contexts sharing one frozen axis root; role root-cut = 1",
+    "third_dataset_reusing_same_axis": "cut gain = 0",
+    "independent_orthogonal_measurement_root": "cut gain = +1",
+    "equal_cost_ranking": "orthogonal probe ranks above same-axis replication"
+  },
+  "invariants": [
+    "Probe Count != Structural Information Gain",
+    "Replication value depends on which dependencies are shared",
+    "Experiment choice can target the weakest evidence cut rather than simply adding samples or papers"
+  ],
+  "boundary": "Root-cut gain is a structural robustness metric only. It does not estimate biological truth probability, effect size, clinical utility, or ethical/financial cost unless those are separately modeled."
+}

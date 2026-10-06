@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "status": "NORMATIVE_KERNEL_MANIFEST",
+  "purpose": "Minimize the trusted code/configuration surface that can directly authorize or block an HF01 empirical claim.",
+  "normative_kernel": [
+    "src/dissociated_control_systems/projection_protocol.py",
+    "src/dissociated_control_systems/projection_assurance.py",
+    "src/dissociated_control_systems/support_graph.py",
+    "src/dissociated_control_systems/assurance_versioning.py",
+    "src/dissociated_control_systems/trust_roots.py"
+  ],
+  "diagnostic_or_advisory": [
+    "src/dissociated_control_systems/checkpoint_minimizer.py",
+    "src/dissociated_control_systems/projection_checkpoint_graph.py",
+    "src/dissociated_control_systems/projection_attack_surface.py",
+    "src/dissociated_control_systems/checkpoint_placement.py",
+    "src/dissociated_control_systems/evidence_topology.py",
+    "src/dissociated_control_systems/defeater_saturation.py",
+    "src/dissociated_control_systems/assurance_dialectic.py",
+    "src/dissociated_control_systems/checkpoint_risk.py",
+    "src/dissociated_control_systems/projection_ladder.py",
+    "src/dissociated_control_systems/projection_gap.py",
+    "src/dissociated_control_systems/projection_contract.py"
+  ],
+  "kernel_rules": [
+    "Only normative-kernel components may directly determine empirical claim acceptance.",
+    "Diagnostic/advisory components may produce warnings, optimization suggestions or test attacks but must not silently upgrade authority.",
+    "A change to any normative-kernel dependency invalidates certificates bound to the previous kernel revision.",
+    "Adding a new normative component requires a documented failure class that cannot be blocked by the existing kernel."
+  ],
+  "invariant": "Minimize the authority-bearing trusted computing base; keep research exploration outside the proof kernel by default."
+}

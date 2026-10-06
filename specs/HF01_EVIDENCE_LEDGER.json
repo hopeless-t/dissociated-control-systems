@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "research_lane": "HF01",
+  "status": "OPEN_BIOLOGICAL_VALIDATION",
+  "axes": {
+    "R_regenerative_state": {
+      "evidence": "MODERATE_COMPATIBILITY",
+      "support": [
+        "GSE36169 frozen WNT/regeneration-loss axis: positive direction in 5/5 paired subjects",
+        "GSE93766 frozen WNT/regeneration-loss axis: positive mean and 4/6 gene-direction alignment"
+      ],
+      "limitations": [
+        "axis is a hand-declared low-dimensional projection",
+        "datasets are cross-sectional",
+        "does not prove recoverability"
+      ]
+    },
+    "F_structural_remodeling": {
+      "evidence": "MODERATE_COMPATIBILITY",
+      "support": [
+        "GSE36169 ECM/structural-remodeling axis: positive direction in 5/5 paired subjects",
+        "GSE93766 ECM/structural-remodeling axis: positive mean and 5/6 gene-direction alignment"
+      ],
+      "limitations": [
+        "structural remodeling is not equivalent to mechanical lock",
+        "no longitudinal hysteresis validation"
+      ]
+    },
+    "A_androgen_driver": {
+      "evidence": "MECHANISM_SUPPORTED_OBSERVER_UNSTABLE",
+      "support": [
+        "source literature supports androgen/AR mechanisms",
+        "GSE93766 DP-cell axis is positive"
+      ],
+      "contradictions": [
+        "GSE36169 whole-scalp frozen transcript axis is not positive"
+      ],
+      "interpretation": "treat as a driver/activity state rather than a reliably observed bulk-transcript state"
+    },
+    "V_vascular_state": {
+      "evidence": "CURRENT_FROZEN_TRANSCRIPT_PROBE_REJECTED",
+      "support": [
+        "source literature supports local microvascular mechanisms"
+      ],
+      "contradictions": [
+        "GSE36169 frozen vascular transcript axis fails directionally",
+        "GSE93766 frozen vascular transcript axis fails directionally"
+      ],
+      "interpretation": "do not use current transcript panel as a direct vascular-state observer"
+    },
+    "O_hypoxia_oxidative": {
+      "evidence": "NON_REPLICATING",
+      "support": [
+        "GSE36169 directionally positive"
+      ],
+      "contradictions": [
+        "GSE93766 directionally negative"
+      ]
+    },
+    "I_inflammation": {
+      "evidence": "MIXED",
+      "support": [
+        "GSE36169 positive direction but only 2/5 genes available",
+        "GSE93766 positive mean driven by CCL2/IL6"
+      ],
+      "contradictions": [
+        "GSE93766 gene-direction alignment is only 2/4"
+      ]
+    },
+    "Q_stress_neuroendocrine": {
+      "evidence": "NOT_TESTED_BY_CURRENT_PUBLIC_DATA",
+      "support": [
+        "source literature supplies animal and ex-vivo mechanistic candidates"
+      ]
+    },
+    "P_progenitor_reserve": {
+      "evidence": "SOURCE_SUPPORTED_NOT_PUBLIC_DATA_VALIDATED",
+      "support": [
+        "published human AGA studies report progenitor depletion with retained stem-cell populations"
+      ]
+    },
+    "N_niche_integrity": {
+      "evidence": "SOURCE_SUPPORTED_NOT_PUBLIC_DATA_VALIDATED",
+      "support": [
+        "ageing/niche literature supplies candidate mechanisms"
+      ]
+    }
+  },
+  "synthetic_hysteresis": {
+    "status": "QED_WITHIN_FROZEN_MODEL_ONLY",
+    "human_validation": "NONE"
+  },
+  "dynamic_observation": {
+    "HF_SIM_002": {
+      "evidence": "SYNTHETIC_KNOWN_ANSWER",
+      "result": "matched visible-output states show different early regeneration response and radically different late output response",
+      "invariant_candidate": "Early Molecular Response != Recoverability",
+      "biological_authority": "NONE"
+    },
+    "Tang_2003": {
+      "evidence": "SMALL_UNCONTROLLED_HUMAN_TEMPORAL_ASSOCIATION",
+      "pmid": "12894070",
+      "result": "4-month dermal-papilla IGF-1 response was associated with 12-month photographic response in 9 men",
+      "role": "proof-of-concept temporal observer architecture",
+      "limitations": [
+        "n=9",
+        "uncontrolled",
+        "single candidate probe"
+      ]
+    },
+    "Mirmirani_2015": {
+      "evidence": "CONTROLLED_HUMAN_INTERVENTION_FEASIBILITY",
+      "pmid": "25204361",
+      "result": "prospective minoxidil/placebo design combined scalp transcriptomics with photographic observation",
+      "role": "feasibility of intervention-linked molecular and output observation",
+      "limitations": [
+        "pilot study",
+        "short horizon"
+      ]
+    },
+    "GSE178510": {
+      "evidence": "PRE_REGISTERED_ACTUATOR_PREDICTION_FAILED",
+      "input": "minoxidil 48 h in primary HFDPC 2D culture",
+      "primary_axis": "wnt_regeneration_loss",
+      "expected_mean_signed_effect": "< 0",
+      "observed_mean_signed_effect": 0.159093,
+      "gene_direction": "4/6 genes moved opposite the disease direction, but frozen mean score remained positive",
+      "interpretation": "cross-sectional disease-state projection is not established as a monotonic actuator-response coordinate"
+    }
+  },
+  "model_invariants": [
+    "Observable Hair Output != Unique Latent State",
+    "State Separation Axis != Actuator Response Axis",
+    "Early Molecular Response != Recoverability",
+    "Structural Remodeling != Proven Mechanical Lock",
+    "Mechanism Existence != Measurement Sensitivity"
+  ],
+  "projection_architecture": {
+    "status": "LOCAL_FIXED_POINT",
+    "theorem_contracts": [
+      "HF-SIM-004",
+      "HF-SIM-005",
+      "HF-SIM-006"
+    ],
+    "validation_contract": "HF-VAL-004",
+    "invariants": [
+      "Endpoint Correctness != Human-Reconstructible Path",
+      "More Detail != Better Projection",
+      "Explanation Smoothness != Evidence Authority",
+      "Explanatory refinement cannot repair missing empirical evidence",
+      "Empirical refinement does not automatically repair comprehension"
+    ],
+    "current_model": {
+      "epistemic_gap": "missing evidence/measurement/causal bridge",
+      "cognitive_gap": "existing bridge is too compressed for reliable reconstruction",
+      "control_target": "minimum exposed explanation complexity subject to correct reconstruction, uncertainty calibration, and evidence-authority preservation"
+    }
+  },
+  "minimum_checkpoint_architecture": {
+    "status": "SYNTHETIC_LOCAL_FIXED_POINT",
+    "contracts": [
+      "HF-SIM-007",
+      "HF-SIM-008"
+    ],
+    "mandatory_role_candidates": [
+      "provenance",
+      "state_response_typing",
+      "uncertainty",
+      "reachability"
+    ],
+    "distinction": {
+      "checkpoint_instance": "replaceable concrete representation",
+      "checkpoint_role": "semantic correctness barrier that must appear on every accepted path"
+    },
+    "compression_rule": "Compress aggressively between required role-dominators; reject any endpoint path that bypasses one."
+  },
+  "checkpoint_protocol": {
+    "status": "LOCAL_FIXED_POINT",
+    "contracts": [
+      "HF-SIM-007",
+      "HF-SIM-008",
+      "HF-SIM-009",
+      "HF-SIM-010",
+      "HF-SIM-011",
+      "HF-SIM-012"
+    ],
+    "architecture": [
+      "minimum failure-covering semantic roles",
+      "cost-aware interchangeable implementations",
+      "claim-conditioned barrier activation",
+      "proof-carrying ordered trace",
+      "exhaustive declared bypass rejection",
+      "last-responsible-moment placement"
+    ],
+    "reachability_attack_surface": {
+      "role_subsets": {
+        "tested": 16,
+        "accepted": 1
+      },
+      "permutations": {
+        "tested": 24,
+        "accepted": 1
+      },
+      "status_vectors": {
+        "tested": 81,
+        "accepted": 1
+      }
+    },
+    "forcing_function_rule": "For empirical authority, a required checkpoint is structural: the endpoint cannot be emitted as PASS unless the active claim-conditioned protocol passes.",
+    "claim_conditioning": {
+      "DESCRIPTIVE": [
+        "provenance",
+        "uncertainty"
+      ],
+      "STATE_INFERENCE": [
+        "provenance",
+        "state_response_typing",
+        "uncertainty"
+      ],
+      "RESPONSE_INFERENCE": [
+        "provenance",
+        "state_response_typing",
+        "uncertainty"
+      ],
+      "REACHABILITY": [
+        "provenance",
+        "state_response_typing",
+        "uncertainty",
+        "reachability"
+      ]
+    },
+    "placement_rule": "Expose/enforce each active barrier at the latest point that still precedes the earliest hazard it covers."
+  }
+}

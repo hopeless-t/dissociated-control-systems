@@ -1,0 +1,31 @@
+{
+  "id": "HF-SIM-034",
+  "title": "Early-state and late-output marginals do not identify within-unit prediction",
+  "status": "SYNTHETIC_IDENTIFIABILITY_COUNTEREXAMPLE",
+  "clinical_authority": "NONE",
+  "counterexample": {
+    "early_state_values": [0.0, 1.0],
+    "late_output_marginal": [0.0, 1.0],
+    "pairing_A": {
+      "late_pairing": [0.0, 1.0],
+      "population_covariance": 0.25
+    },
+    "pairing_B": {
+      "late_pairing": [1.0, 0.0],
+      "population_covariance": -0.25
+    },
+    "shared": [
+      "same early-state marginal",
+      "same late-output marginal",
+      "same early mean",
+      "same late mean"
+    ]
+  },
+  "result": "Group-level temporal co-movement or matched marginal means cannot establish that early molecular response predicts later output at the follicle/patient unit level.",
+  "HF01_implication": [
+    "Early state mean improvement + later output mean improvement != within-unit predictive relation.",
+    "Destructive early assays require explicit unit-linkage or hierarchical replicate design before predictive/recoverability claims.",
+    "A time arrow alone does not repair missing unit identity."
+  ],
+  "claim_boundary": "This is a mathematical non-identifiability example. It does not assert that any cited biological study made this error; it defines the evidence needed for stronger HF01 claims."
+}
