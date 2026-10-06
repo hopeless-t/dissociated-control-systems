@@ -16,6 +16,7 @@ class ObservationCandidate:
     name: str
     burden: float
     delay: float = 0.0
+    success_probability: float = 1.0
 
     def __post_init__(self) -> None:
         if not self.name:
@@ -24,10 +25,23 @@ class ObservationCandidate:
             raise ValueError("burden must be > 0")
         if self.delay < 0:
             raise ValueError("delay must be >= 0")
+        if not 0.0 <= self.success_probability <= 1.0:
+            raise ValueError("success_probability must be in [0, 1]")
 
 
 def panel_burden(panel: Iterable[ObservationCandidate]) -> float:
     return sum(item.burden for item in panel)
+
+
+def panel_fits_burden_ceiling(
+    panel: Iterable[ObservationCandidate],
+    burden_ceiling: float,
+) -> bool:
+    """Return whether the declared observation panel fits a patient's ceiling."""
+
+    if burden_ceiling < 0:
+        raise ValueError("burden_ceiling must be >= 0")
+    return panel_burden(panel) <= burden_ceiling
 
 
 def available_before_deadline(
@@ -35,7 +49,7 @@ def available_before_deadline(
     current_time: float,
     decision_deadline: float,
 ) -> tuple[ObservationCandidate, ...]:
-    """Return observations whose results can arrive by the declared deadline."""
+    """Return observations whose deterministic results can arrive by deadline."""
 
     if current_time < 0:
         raise ValueError("current_time must be >= 0")
@@ -46,6 +60,33 @@ def available_before_deadline(
         for item in candidates
         if current_time + item.delay <= decision_deadline
     )
+
+
+def sequential_completion_time(panel: Iterable[ObservationCandidate]) -> float:
+    """Completion time when observations are acquired strictly one after another."""
+
+    return sum(item.delay for item in panel)
+
+
+def parallel_completion_time(panel: Iterable[ObservationCandidate]) -> float:
+    """Completion time when all observations are launched at the same time."""
+
+    delays = tuple(item.delay for item in panel)
+    return max(delays, default=0.0)
+
+
+def expected_successful_value(
+    candidate: ObservationCandidate,
+    information_value: float,
+) -> float:
+    """Reliability-adjust a synthetic information value.
+
+    This is a deliberately simple expectation primitive. It does not assume
+    that failed observations are missing at random, and should not be used as a
+    substitute for an explicit failure model when missingness is informative.
+    """
+
+    return float(information_value) * candidate.success_probability
 
 
 def exhaustive_best_panel(
